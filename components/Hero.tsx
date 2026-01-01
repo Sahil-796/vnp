@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { CtaButton } from "@/components/ui/cta-button";
 
 const Hero = () => {
   return (
@@ -47,13 +48,13 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Button
+            <CtaButton
               size="lg"
               variant="default"
               className="rounded-full text-lg h-14 px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               Get Started Now
-            </Button>
+            </CtaButton>
           </motion.div>
         </div>
 
@@ -84,13 +85,13 @@ const Hero = () => {
           Unlock the potential of your business with our comprehensive suite of
           tools designed to streamline your workflow and boost productivity.
         </p>
-        <Button
+        <CtaButton
           variant="secondary"
           size="lg"
           className="relative z-10 rounded-full text-base h-12 px-8 transition-all duration-300 cursor-pointer"
         >
           Learn More
-        </Button>
+        </CtaButton>
       </motion.div>
     </div>
   );
