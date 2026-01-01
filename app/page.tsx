@@ -1,5 +1,5 @@
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import HifiLandingPage from "./imports/HifiLandingPage";
 
 export default function page() {
-  return <BackgroundPaths />;
+  return <HifiLandingPage />;
 }
