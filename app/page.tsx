@@ -1,3 +1,7 @@
+import { DotGrid } from "@/components/ui/dot-grid";
+
 export default function Page() {
-  return <div></div>;
+  return <div>
+    <DotGrid size={10} />
+  </div>;
 }
