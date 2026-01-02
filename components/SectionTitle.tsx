@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 interface SectionTitleProps {
-    badge?: string;
     title: string;
     description?: string;
     className?: string; // For the text container or heading
@@ -11,7 +10,6 @@ interface SectionTitleProps {
 }
 
 export const SectionTitle = ({
-    badge,
     title,
     description,
     className,
@@ -29,7 +27,7 @@ export const SectionTitle = ({
             <h2
                 id={id}
                 className={cn(
-                    "text-3xl md:text-5xl font-extrabold tracking-tight text-center text-foreground transition-colors",
+                    "text-3xl md:text-5xl font-extrabold tracking-tight text-center text-primary transition-colors",
                     className
                 )}
             >
