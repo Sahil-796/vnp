@@ -27,10 +27,18 @@ const Footer = () => {
               <Logo />
 
               <div className="flex flex-col gap-2">
-                <h3 className="text-3xl font-bold tracking-tight leading-tight">Elevating Digital<br />Experiences</h3>
+                <h3 className="text-3xl font-bold tracking-tight leading-tight">
+                  Elevating Digital
+                  <br />
+                  Experiences
+                </h3>
                 <div className="flex flex-col gap-1 mt-2">
-                  <p className="text-base font-medium opacity-70">123 Innovation Drive, Tech City, CA 94043</p>
-                  <p className="text-base font-medium opacity-70">+1 (555) 123-4567</p>
+                  <p className="text-base font-medium opacity-70">
+                    123 Innovation Drive, Tech City, CA 94043
+                  </p>
+                  <p className="text-base font-medium opacity-70">
+                    +1 (555) 123-4567
+                  </p>
                 </div>
               </div>
             </div>
@@ -38,7 +46,9 @@ const Footer = () => {
             {/* Right Content - Links */}
             <div className="flex gap-12 md:gap-24 mr-0 md:mr-20 z-20">
               <div className="flex flex-col gap-6">
-                <h4 className="font-bold text-sm tracking-widest uppercase">Company</h4>
+                <h4 className="font-bold text-sm tracking-widest uppercase">
+                  Company
+                </h4>
                 <div className="flex flex-col gap-4 text-base font-medium text-muted-foreground">
                   <Link
                     href="/about"
@@ -68,7 +78,9 @@ const Footer = () => {
               </div>
 
               <div className="flex flex-col gap-6">
-                <h4 className="font-bold text-sm tracking-widest uppercase">Social Media</h4>
+                <h4 className="font-bold text-sm tracking-widest uppercase">
+                  Social Media
+                </h4>
                 <div className="flex flex-col gap-4 text-base font-medium text-muted-foreground">
                   <Link
                     href="#"
