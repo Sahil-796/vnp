@@ -40,11 +40,23 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
+  const linearGradients = [
+    "linear-gradient(to bottom right, var(--cyan-500), var(--emerald-500))",
+    "linear-gradient(to bottom right, var(--pink-500), var(--indigo-500))",
+    "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
+  ];
 
+  const [backgroundGradient, setBackgroundGradient] = useState(
+    linearGradients[0]
+  );
+
+  useEffect(() => {
+    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
+  }, [activeCard]);
 
   return (
     <motion.div
-      className="relative flex h-[60vh] justify-center space-x-10 overflow-y-auto rounded-md p-10 bg-card border border-border" // Changed bg and height
+      className="h-[30rem] overflow-y-auto flex justify-between relative space-x-10 rounded-[70px] p-10 bg-background/50 backdrop-blur-sm border-t shadow-lg px-24 border-dotted border-muted-foreground/50 shadow-[inset_0_-20px_80px_rgba(0,0,0,0.05)]"
       ref={ref}
     >
       <div className="div relative flex items-start px-4">
@@ -58,8 +70,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-
-                className="text-2xl font-bold text-foreground" // Changed text color
+                className="text-2xl font-bold text-foreground"
               >
                 {item.title}
               </motion.h2>
@@ -70,8 +81,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-
-                className="text-kg mt-10 max-w-sm text-muted-foreground" // Changed text color
+                className="text-kg text-muted-foreground max-w-sm mt-10"
               >
                 {item.description}
               </motion.p>
@@ -82,8 +92,8 @@ export const StickyScroll = ({
       </div>
       <div
         className={cn(
-          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md bg-white lg:block",
-          contentClassName,
+          "hidden lg:block w-[30rem] aspect-video rounded-md sticky top-10 overflow-hidden",
+          contentClassName
         )}
       >
         {content[activeCard].content ?? null}
