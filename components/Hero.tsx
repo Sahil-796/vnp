@@ -7,7 +7,7 @@ import { CtaButton } from "@/components/ui/cta-button";
 
 const Hero = () => {
   return (
-    <div className="relative mb-32">
+    <div className="relative mb-64">
       <div className="relative overflow-hidden rounded-4xl shadow-2xl">
         <div className="rounded-4xl overflow-hidden relative h-[70vh] w-full">
           <Image
