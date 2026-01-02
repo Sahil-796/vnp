@@ -128,10 +128,11 @@ export const Navbar = () => {
             <Dialog.Content className="fixed inset-0 z-60 flex flex-col items-center justify-center bg-background/95 backdrop-blur-3xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[2%] data-[state=open]:slide-in-from-top-[2%] duration-300">
               <Dialog.Close asChild>
                 <Button
-                  className="absolute top-12 right-10 md:top-16 md:right-38 p-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  variant="default"
+                  className="absolute top-12 right-10 md:top-16 md:right-38 px-8 py-7 rounded-full transition-colors cursor-pointer"
                   aria-label="Close menu"
                 >
-                  <X size={32} />
+                  <X className="size-8" />
                 </Button>
               </Dialog.Close>
 
