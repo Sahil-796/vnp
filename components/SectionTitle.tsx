@@ -1,0 +1,45 @@
+import { cn } from "@/lib/utils";
+import React from "react";
+
+interface SectionTitleProps {
+    badge?: string;
+    title: string;
+    description?: string;
+    className?: string; // For the text container or heading
+    containerClassName?: string; // For the outer wrapper
+    id?: string;
+}
+
+export const SectionTitle = ({
+    badge,
+    title,
+    description,
+    className,
+    containerClassName,
+    id,
+}: SectionTitleProps) => {
+    return (
+        <div
+            className={cn(
+                "flex flex-col items-center justify-center max-w-4xl mx-auto mb-16",
+                containerClassName
+            )}
+        >
+
+            <h2
+                id={id}
+                className={cn(
+                    "text-5xl md:text-7xl font-extrabold tracking-tight text-center text-foreground transition-colors",
+                    className
+                )}
+            >
+                {title}
+            </h2>
+            {description && (
+                <p className="text-center mt-5 text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto transition-colors">
+                    {description}
+                </p>
+            )}
+        </div>
+    );
+};

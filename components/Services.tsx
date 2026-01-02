@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
+import { SectionTitle } from "./SectionTitle";
 
 const content = [
   {
@@ -71,14 +72,12 @@ const content = [
 export function Services() {
   return (
     <div className="w-full relative">
-      <div className="max-w-[85vw] mx-auto mb-12 sticky top-24 z-30 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 py-4 transition-all text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Services</h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          We offer a comprehensive suite of tools designed to streamline your
-          workflow and enhance collaboration. Discover how we can help you
-          achieve more.
-        </p>
-      </div>
+      <SectionTitle
+        badge="Services"
+        title="Our Services"
+        description="We offer a comprehensive suite of tools designed to streamline your workflow and enhance collaboration. Discover how we can help you achieve more."
+        containerClassName="max-w-[85vw] sticky top-24 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 transition-all"
+      />
       <StickyScroll content={content} />
     </div>
   );
