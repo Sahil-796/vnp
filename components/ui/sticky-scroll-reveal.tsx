@@ -71,7 +71,7 @@ export const StickyScroll = ({
                 index === 0
                   ? "justify-start pt-10 mb-40"
                   : index === content.length - 1
-                    ? "justify-end pb-10 mb-40"
+                    ? "justify-end pb-10"
                     : "justify-center my-40"
               )}
             >

@@ -71,12 +71,12 @@ const content = [
 ];
 export function Services() {
   return (
-    <div className="w-full relative">
+    <div className="w-full relative pb-42">
       <SectionTitle
         badge="Services"
         title="Our Services"
         description="We offer a comprehensive suite of tools designed to streamline your workflow and enhance collaboration. Discover how we can help you achieve more."
-        containerClassName="max-w-[85vw] sticky top-24 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 transition-all"
+        containerClassName="max-w-[85vw] py-4"
       />
       <StickyScroll content={content} />
     </div>
