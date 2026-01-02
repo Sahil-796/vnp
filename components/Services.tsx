@@ -1,6 +1,6 @@
 "use client";
+import Image from "next/image";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
-
 
 const content = [
   {
@@ -8,14 +8,15 @@ const content = [
     description:
       "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity. Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-accent to-primary text-white">
-        <img
+      <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-accent to-primary text-white">
+        <Image
           src="/process-1.png"
           width={300}
           height={300}
           className="h-full w-full object-cover"
           alt="linear board demo"
-        />      </div>
+        />{" "}
+      </div>
     ),
   },
   {
@@ -24,7 +25,7 @@ const content = [
       "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updatesWork together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
     content: (
       <div className="flex h-full w-full items-center justify-center text-white">
-        <img
+        <Image
           src="/process-2.png"
           width={300}
           height={300}
@@ -39,14 +40,15 @@ const content = [
     description:
       "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions. Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary to-secondary text-white">
-        <img
+      <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-primary to-secondary text-white">
+        <Image
           src="/process-3.png"
           width={300}
           height={300}
           className="h-full w-full object-cover"
           alt="linear board demo"
-        />      </div>
+        />{" "}
+      </div>
     ),
   },
   {
@@ -54,25 +56,27 @@ const content = [
     description:
       "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions. Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-secondary to-accent text-white">
-        <img
+      <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-secondary to-accent text-white">
+        <Image
           src="/process-4.png"
           width={300}
           height={300}
           className="h-full w-full object-cover"
           alt="linear board demo"
-        />      </div>
+        />{" "}
+      </div>
     ),
   },
 ];
 export function Services() {
   return (
     <div className="w-full relative">
-      <div className="max-w-[85vw] mx-auto mb-12 sticky top-24 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 transition-all text-center">
+      <div className="max-w-[85vw] mx-auto mb-12 sticky top-24 z-30 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 py-4 transition-all text-center">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Services</h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          We offer a comprehensive suite of tools designed to streamline your workflow
-          and enhance collaboration. Discover how we can help you achieve more.
+          We offer a comprehensive suite of tools designed to streamline your
+          workflow and enhance collaboration. Discover how we can help you
+          achieve more.
         </p>
       </div>
       <StickyScroll content={content} />
