@@ -52,8 +52,8 @@ export const StickyScroll = ({
     setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
   }, [activeCard]);
 
-  // Stay visible initially, fade out at end
-  const opacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
+  // No opacity fade
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
 
   return (
     <motion.div
@@ -68,7 +68,11 @@ export const StickyScroll = ({
               key={item.title + index}
               className={cn(
                 "min-h-[80vh] flex flex-col",
-                index === 0 ? "justify-start pt-10 mb-40" : "justify-center my-40"
+                index === 0
+                  ? "justify-start pt-10 mb-40"
+                  : index === content.length - 1
+                    ? "justify-end pb-10 mb-40"
+                    : "justify-center my-40"
               )}
             >
               <motion.h2
@@ -95,7 +99,7 @@ export const StickyScroll = ({
               </motion.p>
             </div>
           ))}
-          <div className="h-[500px]" />
+          <div className="h-0" />
         </div>
       </div>
       <div
