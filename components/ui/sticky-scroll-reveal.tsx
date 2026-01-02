@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
-import { motion } from "motion/react";
+import { useMotionValueEvent, useScroll, motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const StickyScroll = ({
@@ -17,10 +16,13 @@ export const StickyScroll = ({
 }) => {
   const [activeCard, setActiveCard] = useState(0);
   const ref = useRef<any>(null);
+
+  // Track scroll progress of the entire container
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
+
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -33,69 +35,57 @@ export const StickyScroll = ({
         }
         return acc;
       },
-      0,
+      0
     );
     setActiveCard(closestBreakpointIndex);
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
-
   return (
     <motion.div
-      style={{ opacity }}
-      className="flex justify-center relative space-x-10 p-10"
+      className="flex justify-center relative space-x-10 rounded-md p-10"
       ref={ref}
+      // 1. Dynamic height ensures the user has space to scroll through all cards.
+      // Adjust the multiplier (e.g., 60vh) to change how fast the cards switch.
+      style={{ height: content.length * 80 + "vh" }}
     >
-      <div className="div relative flex items-start px-4">
-        <div className="max-w-2xl">
-          {content.map((item, index) => (
-            <div
-              key={item.title + index}
-              className={cn(
-                "min-h-[80vh] flex flex-col",
-                index === 0
-                  ? "justify-start pt-10 mb-40"
-                  : index === content.length - 1
-                    ? "justify-end pb-10"
-                    : "justify-center my-40"
-              )}
+      {/* 2. Sticky container to hold the view in the center while parent scrolls */}
+      <div className="sticky top-0 flex h-screen items-center -mt-60 justify-center w-full overflow-hidden">
+        <div className="max-w-6xl w-full px-4">
+          {/* 3. AnimatePresence handles the Exit/Enter animations */}
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={activeCard}
+              initial={{ opacity: 0, y: 50 }}  // Enters from bottom
+              animate={{ opacity: 1, y: 0 }}   // Centers
+              exit={{ opacity: 0, y: -50 }}    // Exits to top
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut"
+              }}
+              className="flex flex-col lg:flex-row justify-between items-center gap-10"
             >
-              <motion.h2
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: activeCard === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.5 }}
-                className="text-2xl font-bold text-secondary"
+              {/* Text Section */}
+              <div className="lg:w-1/2 flex flex-col justify-center">
+                <h2 className="text-2xl font-bold text-secondary">
+                  {content[activeCard].title}
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-sm mt-10">
+                  {content[activeCard].description}
+                </p>
+              </div>
+
+              {/* Image/Content Section */}
+              <div
+                className={cn(
+                  "hidden lg:block w-[40rem] aspect-video rounded-md overflow-hidden",
+                  contentClassName
+                )}
               >
-                {item.title}
-              </motion.h2>
-              <motion.p
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: activeCard === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.5 }}
-                className="text-lg text-muted-foreground max-w-sm mt-10"
-              >
-                {item.description}
-              </motion.p>
-            </div>
-          ))}
-          <div className="h-0" />
+                {content[activeCard].content ?? null}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </div>
-      <div
-        className={cn(
-          "hidden lg:block w-[40rem] aspect-video rounded-md sticky top-1/3 h-fit overflow-hidden",
-          contentClassName
-        )}
-      >
-        {content[activeCard].content ?? null}
       </div>
     </motion.div>
   );

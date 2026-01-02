@@ -71,7 +71,7 @@ const content = [
 ];
 export function Services() {
   return (
-    <div className="w-full relative pb-42">
+    <div className="w-full relative ">
       <SectionTitle
         title="Our Services"
         description="We offer a comprehensive suite of tools designed to streamline your workflow and enhance collaboration. Discover how we can help you achieve more."
