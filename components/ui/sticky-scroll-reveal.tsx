@@ -49,24 +49,27 @@ export const StickyScroll = ({
     initial: (direction: string) => ({
       opacity: 0,
       y: direction === "down" ? 50 : -50,
+      filter: "blur(10px)",
     }),
     animate: {
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
     },
     exit: (direction: string) => ({
       opacity: 0,
       y: direction === "down" ? -50 : 50,
+      filter: "blur(10px)",
     }),
   };
 
   return (
     <motion.div
-      className="flex justify-center relative space-x-10 rounded-md p-10"
+      className="flex justify-center relative space-x-10 rounded-md"
       ref={ref}
       // 1. Dynamic height ensures the user has space to scroll through all cards.
       // Adjust the multiplier (e.g., 60vh) to change how fast the cards switch.
-      style={{ height: content.length * 80 + "vh" }}
+      style={{ height: content.length * 60 + "vh" }}
     >
       {/* 2. Sticky container to hold the view in the center while parent scrolls */}
       <div className="sticky top-0 flex h-screen items-center -mt-60 justify-center w-full overflow-hidden">
