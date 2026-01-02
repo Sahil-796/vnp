@@ -8,7 +8,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="p-4 md:p-10">
-      <div className="rounded-4xl relative h-[50vh] w-full bg-[#EBE9D6]">
+      <div className="rounded-4xl relative h-[50vh] w-full bg-muted">
         {/* Background Image */}
         <Image
           src="/hero-footer.png"
@@ -19,7 +19,7 @@ const Footer = () => {
         />
 
         {/* Content Overlay */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 md:p-16 text-[#161C2D]">
+        <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 md:p-16 text-foreground">
           <div className="flex flex-col md:flex-row justify-between w-full h-full relative">
             {/* Left Content */}
             <div className="flex flex-col gap-14 md:w-1/3">
@@ -36,31 +36,31 @@ const Footer = () => {
             </div>
 
             {/* Right Content - Links */}
-            <div className="flex gap-12 md:gap-24 mt-10 md:mt-10 mr-0 md:mr-20 z-20">
+            <div className="flex gap-12 md:gap-24 mr-0 md:mr-20 z-20">
               <div className="flex flex-col gap-6">
-                <h4 className="font-bold text-sm tracking-widest uppercase opacity-40">Company</h4>
-                <div className="flex flex-col gap-4 text-base font-medium text-[#161C2D]/80">
+                <h4 className="font-bold text-sm tracking-widest uppercase">Company</h4>
+                <div className="flex flex-col gap-4 text-base font-medium text-muted-foreground">
                   <Link
                     href="/about"
-                    className="hover:text-[#161C2D] hover:translate-x-1 transition-all duration-300"
+                    className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
                   >
                     About
                   </Link>
                   <Link
                     href="/blog"
-                    className="hover:text-[#161C2D] hover:translate-x-1 transition-all duration-300"
+                    className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
                   >
                     Blog
                   </Link>
                   <Link
                     href="/gallery"
-                    className="hover:text-[#161C2D] hover:translate-x-1 transition-all duration-300"
+                    className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
                   >
                     Gallery
                   </Link>
                   <Link
                     href="/contact"
-                    className="hover:text-[#161C2D] hover:translate-x-1 transition-all duration-300"
+                    className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
                   >
                     Contact
                   </Link>
@@ -68,23 +68,23 @@ const Footer = () => {
               </div>
 
               <div className="flex flex-col gap-6">
-                <h4 className="font-bold text-sm tracking-widest uppercase opacity-40">Social Media</h4>
-                <div className="flex flex-col gap-4 text-base font-medium text-[#161C2D]/80">
+                <h4 className="font-bold text-sm tracking-widest uppercase">Social Media</h4>
+                <div className="flex flex-col gap-4 text-base font-medium text-muted-foreground">
                   <Link
                     href="#"
-                    className="hover:text-[#161C2D] hover:translate-x-1 transition-all duration-300"
+                    className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
                   >
                     Facebook
                   </Link>
                   <Link
                     href="#"
-                    className="hover:text-[#161C2D] hover:translate-x-1 transition-all duration-300"
+                    className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
                   >
                     Instagram
                   </Link>
                   <Link
                     href="#"
-                    className="hover:text-[#161C2D] hover:translate-x-1 transition-all duration-300"
+                    className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
                   >
                     Twitter
                   </Link>
@@ -93,7 +93,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="w-1/3 mt-8 relative z-20 border-t border-[#161C2D] pt-8">
+          <div className="w-1/3 mt-8 relative z-20 border-t border-foreground pt-8">
             <p className="text-sm font-medium">
               Copyright © 2025 Vision & Path. All Rights Reserved.
             </p>
@@ -114,8 +114,8 @@ const Footer = () => {
 
         {/* Bottom Right Box Decoration */}
         <div className="absolute bottom-10 right-10 w-30 h-30 z-0 hidden md:block pointer-events-none">
-          <div className="w-full h-full border border-[#161C2D] rounded-3xl relative">
-            <div className="absolute top-5 -left-10 w-15 h-15 bg-[#161C2D] rounded-2xl"></div>
+          <div className="w-full h-full border border-foreground rounded-3xl relative">
+            <div className="absolute top-5 -left-10 w-15 h-15 bg-foreground rounded-2xl"></div>
           </div>
         </div>
       </div>
