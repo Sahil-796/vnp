@@ -67,7 +67,14 @@ const content = [
 ];
 export function Services() {
   return (
-    <div className="w-full py-4">
+    <div className="w-full relative">
+      <div className="max-w-[85vw] mx-auto mb-12 sticky top-24 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 transition-all">
+        <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Services</h2>
+        <p className="text-muted-foreground text-lg max-w-2xl">
+          We offer a comprehensive suite of tools designed to streamline your workflow
+          and enhance collaboration. Discover how we can help you achieve more.
+        </p>
+      </div>
       <StickyScroll content={content} />
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -18,10 +18,8 @@ export const StickyScroll = ({
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef<any>(null);
   const { scrollYProgress } = useScroll({
-    // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
-    // target: ref
-    container: ref,
-    offset: ["start start", "end start"],
+    target: ref,
+    offset: ["start start", "end end"],
   });
   const cardLength = content.length;
 
@@ -54,15 +52,25 @@ export const StickyScroll = ({
     setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
   }, [activeCard]);
 
+  // Stay visible initially, fade out at end
+  const opacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
+
   return (
     <motion.div
-      className="h-[30rem] overflow-y-auto flex justify-between relative space-x-10 rounded-[70px] p-10 bg-background/50 backdrop-blur-sm border-t shadow-lg px-24 border-dotted border-muted-foreground/50 shadow-[inset_0_-20px_80px_rgba(0,0,0,0.05)]"
+      style={{ opacity }}
+      className="flex justify-center relative space-x-10 p-10"
       ref={ref}
     >
       <div className="div relative flex items-start px-4">
         <div className="max-w-2xl">
           {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
+            <div
+              key={item.title + index}
+              className={cn(
+                "min-h-[80vh] flex flex-col",
+                index === 0 ? "justify-start pt-10 mb-40" : "justify-center my-40"
+              )}
+            >
               <motion.h2
                 initial={{
                   opacity: 0,
@@ -87,12 +95,12 @@ export const StickyScroll = ({
               </motion.p>
             </div>
           ))}
-          <div className="h-40" />
+          <div className="h-[500px]" />
         </div>
       </div>
       <div
         className={cn(
-          "hidden lg:block w-[30rem] aspect-video rounded-md sticky top-10 overflow-hidden",
+          "hidden lg:block w-[40rem] aspect-video rounded-md sticky top-1/3 h-fit overflow-hidden",
           contentClassName
         )}
       >
