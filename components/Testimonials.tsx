@@ -190,7 +190,7 @@ export default function Testimonials() {
           role="region"
           aria-label="Scrolling Testimonials"
         >
-// ...          <TestimonialsColumn testimonials={firstColumn} duration={15} />
+          <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn
             testimonials={secondColumn}
             className="hidden md:block"
