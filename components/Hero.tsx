@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 
 const Hero = () => {
@@ -70,7 +69,7 @@ const Hero = () => {
             width={0}
             height={0}
             sizes="100vw"
-            className="h-full w-auto object-contain"
+            className="h-full w-auto object-contain hidden lg:block"
           />
         </motion.div>
       </div>
