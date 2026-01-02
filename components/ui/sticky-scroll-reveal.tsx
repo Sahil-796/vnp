@@ -15,7 +15,9 @@ export const StickyScroll = ({
   contentClassName?: string;
 }) => {
   const [activeCard, setActiveCard] = useState(0);
+  const [direction, setDirection] = useState("down");
   const ref = useRef<any>(null);
+  const activeCardRef = useRef(0);
 
   // Track scroll progress of the entire container
   const { scrollYProgress } = useScroll({
@@ -35,10 +37,28 @@ export const StickyScroll = ({
         }
         return acc;
       },
-      0
     );
-    setActiveCard(closestBreakpointIndex);
+    if (closestBreakpointIndex !== activeCardRef.current) {
+      setDirection(closestBreakpointIndex > activeCardRef.current ? "down" : "up");
+      setActiveCard(closestBreakpointIndex);
+      activeCardRef.current = closestBreakpointIndex;
+    }
   });
+
+  const variants = {
+    initial: (direction: string) => ({
+      opacity: 0,
+      y: direction === "down" ? 50 : -50,
+    }),
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+    exit: (direction: string) => ({
+      opacity: 0,
+      y: direction === "down" ? -50 : 50,
+    }),
+  };
 
   return (
     <motion.div
@@ -52,15 +72,17 @@ export const StickyScroll = ({
       <div className="sticky top-0 flex h-screen items-center -mt-60 justify-center w-full overflow-hidden">
         <div className="max-w-6xl w-full px-4">
           {/* 3. AnimatePresence handles the Exit/Enter animations */}
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="popLayout" custom={direction}>
             <motion.div
               key={activeCard}
-              initial={{ opacity: 0, y: 50 }}  // Enters from bottom
-              animate={{ opacity: 1, y: 0 }}   // Centers
-              exit={{ opacity: 0, y: -50 }}    // Exits to top
+              variants={variants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              custom={direction}
               transition={{
                 duration: 0.5,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
               className="flex flex-col lg:flex-row justify-between items-center gap-10"
             >
