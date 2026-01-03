@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+import SectionTitle from '../SectionTitle';
+
 interface FAQItemType {
   question: string;
   answer: string;
@@ -38,7 +40,7 @@ export const FAQ = ({
       )}
       {...props}
     >
-      <FAQHeader title={title} subtitle={subtitle} />
+      <SectionTitle title={title} description={subtitle} />
       <FAQTabs
         categories={categories}
         selected={selectedCategory}
@@ -51,16 +53,6 @@ export const FAQ = ({
     </section>
   );
 };
-
-const FAQHeader = ({ title, subtitle }: { title: string; subtitle: string }) => (
-  <div className="relative z-10 flex flex-col items-center justify-center">
-    <span className="mb-8 bg-gradient-to-r from-primary to-primary/60 bg-clip-text font-medium text-transparent">
-      {subtitle}
-    </span>
-    <h2 className="mb-8 text-5xl font-bold">{title}</h2>
-    <span className="absolute -top-[350px] left-[50%] z-0 h-[500px] w-[600px] -translate-x-[50%] rounded-full bg-gradient-to-r from-primary/10 to-primary/5 blur-3xl" />
-  </div>
-);
 
 const FAQTabs = ({ categories, selected, setSelected }: { categories: Record<string, string>; selected: string; setSelected: (key: string) => void }) => (
   <div className="relative z-10 flex flex-wrap items-center justify-center gap-4">
