@@ -67,25 +67,21 @@ export const WhyChooseUs = () => {
                                         index % 2 === 1 ? "lg:mt-16" : ""
                                     )}
                                 >
-                                    {/* Floating 3D Discs Decoration */}
-                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex items-center justify-center">
+                                    {/* 3D Pin Decoration */}
+                                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
                                         <div
                                             className={cn(
-                                                "relative w-14 h-14 rounded-full shadow-lg",
-                                                feature.iconBg,
+                                                "relative w-14 h-14 rounded-full shadow-[0_8px_16px_rgba(0,0,0,0.2)] border-[3px] border-white/50",
+                                                feature.iconBg
                                             )}
                                         >
-                                            <div
-                                                className={cn(
-                                                    "absolute top-0 right-0 w-10 h-10 rounded-full opacity-60 mix-blend-multiply",
-                                                    feature.color,
-                                                )}
-                                            />
-                                            <div
-                                                className={cn(
-                                                    "absolute bottom-1 left-1 w-12 h-12 rounded-full opacity-40 mix-blend-screen bg-white/50",
-                                                )}
-                                            />
+                                            {/* Gradient Overlay for volume */}
+                                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/60 to-black/5 pointer-events-none" />
+
+                                            {/* Inner Metal Head */}
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white shadow-md flex items-center justify-center">
+                                                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-300" />
+                                            </div>
                                         </div>
                                     </div>
 
