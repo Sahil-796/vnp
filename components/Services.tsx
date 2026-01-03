@@ -9,12 +9,15 @@ export function Services() {
   const content = data.services.content.map((item) => ({
     title: item.title,
     description: item.desc,
+    pillColor: item.pillColor,
+    bullets: item.bullets,
+    cta: item.cta,
     content: (
       <div className="flex h-full w-full items-center justify-center">
         <Image
           src={item.imgsrc}
-          width={300}
-          height={300}
+          width={800}
+          height={800}
           className="h-full w-full object-cover rounded-4xl"
           alt={item.title}
         />

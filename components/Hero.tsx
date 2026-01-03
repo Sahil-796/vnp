@@ -18,7 +18,7 @@ const Hero = () => {
             priority
           />
           {/* Contrast Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-0" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent z-0" />
         </div>
 
         <div className="absolute top-[20%] md:top-1/2 left-6 md:left-24 md:-translate-y-1/2 z-10 max-w-xl md:max-w-2xl lg:max-w-3xl">

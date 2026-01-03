@@ -24,23 +24,35 @@ export const data = {
     content: [
       {
         title: "Collaborative Editing",
-        desc: "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity. Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+        desc: "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
         imgsrc: "/process-1.png",
+        pillColor: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
+        bullets: ["Real-time sync across devices", "Automatic conflict resolution", "Team commenting system"],
+        cta: { label: "Try Editor", href: "/editor" }
       },
       {
         title: "Real time changes",
-        desc: "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updatesWork together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+        desc: "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project.",
         imgsrc: "/process-2.png",
+        pillColor: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
+        bullets: ["Instant live preview", "Smart auto-save capability", "Change tracking log"],
+        cta: { label: "See Live Demo", href: "/live" }
       },
       {
         title: "Version control",
-        desc: "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions. Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+        desc: "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates.",
         imgsrc: "/process-3.png",
+        pillColor: "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+        bullets: ["Detailed history tracking", "One-click rollback", "Branch comparison tools"],
+        cta: { label: "View History", href: "/history" }
       },
       {
         title: "Running out of content",
-        desc: "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions. Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+        desc: "Say goodbye to writer's block. Our AI-powered tools generate creative content ideas and drafts in seconds, helping you keep your content calendar full and engaging.",
         imgsrc: "/process-4.png",
+        pillColor: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+        bullets: ["AI-powered generation", "Smart content planning", "Trend analysis insights"],
+        cta: { label: "Generate Now", href: "/generate" }
       },
     ],
   },
