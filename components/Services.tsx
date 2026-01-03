@@ -30,7 +30,7 @@ export function Services() {
       <SectionTitle
         title={data.services.title}
         description={data.services.desc}
-        containerClassName="max-w-[85vw]"
+        containerClassName="max-w-[85vw] mb-4"
       />
       <StickyScroll content={content} />
     </div>

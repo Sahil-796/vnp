@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { useMotionValueEvent, useScroll, motion, AnimatePresence } from "motion/react";
+import { useMotionValueEvent, useScroll, motion, AnimatePresence, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
@@ -68,6 +68,9 @@ export const StickyScroll = ({
     }),
   };
 
+  // Initially shift the content up (closer to title) then slide to center
+  const verticalOffset = useTransform(scrollYProgress, [0, 0.05], ["-10vh", "0vh"]);
+
   return (
     <motion.div
       className="flex justify-center relative rounded-md"
@@ -78,7 +81,10 @@ export const StickyScroll = ({
     >
       {/* 2. Sticky container to hold the view in the center while parent scrolls */}
       <div className="sticky top-0 flex h-[calc(100vh-10vh)] items-center justify-center w-full overflow-hidden">
-        <div className="max-w-7xl w-full px-4">
+        <motion.div
+          style={{ y: verticalOffset }}
+          className="max-w-7xl w-full px-4"
+        >
           {/* 3. AnimatePresence handles the Exit/Enter animations */}
           <AnimatePresence mode="popLayout" custom={direction}>
             <motion.div
@@ -156,7 +162,7 @@ export const StickyScroll = ({
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
