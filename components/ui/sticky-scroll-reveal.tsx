@@ -92,7 +92,10 @@ export const StickyScroll = ({
                 duration: 0.5,
                 ease: "easeInOut",
               }}
-              className="flex flex-col lg:flex-row justify-between items-center gap-10"
+              className={cn(
+                "flex flex-col justify-between items-center gap-10",
+                activeCard % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              )}
             >
               {/* Text Section */}
               <div className="lg:w-[45%] flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
