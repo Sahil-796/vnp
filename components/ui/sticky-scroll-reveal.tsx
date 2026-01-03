@@ -72,7 +72,7 @@ export const StickyScroll = ({
       style={{ height: content.length * 60 + "vh" }}
     >
       {/* 2. Sticky container to hold the view in the center while parent scrolls */}
-      <div className="sticky top-0 flex h-screen items-center -mt-60 justify-center w-full overflow-hidden">
+      <div className="sticky top-0 flex h-[calc(100vh-10vh)] items-center justify-center w-full overflow-hidden">
         <div className="max-w-6xl w-full px-4">
           {/* 3. AnimatePresence handles the Exit/Enter animations */}
           <AnimatePresence mode="popLayout" custom={direction}>
@@ -90,7 +90,7 @@ export const StickyScroll = ({
               className="flex flex-col lg:flex-row justify-between items-center gap-10"
             >
               {/* Text Section */}
-              <div className="lg:w-1/2 flex flex-col justify-center">
+              <div className="lg:w-1/2 flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
                 <h2 className="text-2xl font-bold text-secondary">
                   {content[activeCard].title}
                 </h2>
@@ -102,7 +102,7 @@ export const StickyScroll = ({
               {/* Image/Content Section */}
               <div
                 className={cn(
-                  "hidden lg:block w-[40rem] aspect-video rounded-md overflow-hidden",
+                  "block w-full lg:w-1/2 aspect-video lg:aspect-square xl:aspect-video rounded-2xl overflow-hidden shadow-xl mt-8 lg:mt-0 bg-background mx-auto",
                   contentClassName
                 )}
               >
