@@ -10,6 +10,7 @@ import {
     BarChart3,
     Award,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import SectionTitle from "./SectionTitle";
 
 const features = [
@@ -96,17 +97,33 @@ export const WhyChooseUs = () => {
                     description="Here's why businesses choose us to handle their digital needs"
                     containerClassName="mb-16"
                 />
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-16 max-w-5xl mx-auto pt-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-12 max-w-5xl mx-auto pt-10 items-start">
                     {features.map((feature, index) => (
-                        <div
+                        <motion.div
                             key={index}
+                            initial={{
+                                opacity: 0,
+                                x: index % 2 === 0 ? -50 : 50,
+                                y: 50,
+                                rotate: index % 2 === 0 ? -2 : 2
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                                y: 0,
+                                rotate: index % 2 === 0 ? -2 : 2
+                            }}
+                            whileHover={{
+                                y: -5, // mimic hover:-translate-y-2
+                                rotate: 0
+                            }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
                             className={cn(
-                                "group relative bg-card rounded-[2rem] p-3 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-1",
+                                "group relative bg-card rounded-[2rem] p-3 shadow-xl transition-shadow duration-300",
+                                // Removed hover properties handled by motion
                                 // Stagger offset for desktop
-                                index % 2 === 1 ? "lg:mt-24" : "",
-                                // Slight random rotations
-                                index % 2 === 0 ? "-rotate-1" : "rotate-1",
+                                index % 2 === 1 ? "lg:mt-16" : ""
                             )}
                         >
                             {/* Floating 3D Discs Decoration */}
@@ -153,7 +170,7 @@ export const WhyChooseUs = () => {
                                     {feature.description}
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
