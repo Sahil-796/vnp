@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Logo } from "./Logo";
 import Link from "next/link";
-import { data } from "@/constansts";
+import { data } from "@/constants";
 
 export const MobileFooter = () => {
     return (

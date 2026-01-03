@@ -5,7 +5,7 @@ import { DotGrid } from "@/components/ui/dot-grid";
 import { Logo } from "./Logo";
 import Link from "next/link";
 import { MobileFooter } from "./MobileFooter";
-import { data } from "@/constansts";
+import { data } from "@/constants";
 
 const Footer = () => {
   return (

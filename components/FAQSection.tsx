@@ -1,5 +1,5 @@
 import { FAQ } from '@/components/ui/faq-tabs'
-import { data } from '@/constansts';
+import { data } from '@/constants';
 
 const FAQSection = () => {
   const allFaqs = Object.values(data.faq.faqData).flat();

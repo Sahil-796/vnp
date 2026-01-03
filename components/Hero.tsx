@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CtaButton } from "@/components/ui/cta-button";
-import { data } from "@/constansts";
+import { data } from "@/constants";
 
 const Hero = () => {
   return (

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import SectionTitle from "./SectionTitle";
 
-import { data } from "@/constansts";
+import { data } from "@/constants";
 
 export function Services() {
   const content = data.services.content.map((item) => ({

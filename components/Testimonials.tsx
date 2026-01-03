@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionTitle from "./SectionTitle";
-import { data } from "@/constansts";
+import { data } from "@/constants";
 
 interface Testimonial {
   text: string;
