@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CtaButton } from "@/components/ui/cta-button";
+import { data } from "@/constansts";
 
 const Hero = () => {
   return (
@@ -25,9 +26,10 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight drop-shadow-md">
-              Career guidance that <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-background to-background/70">
-                moves you forward
+              {data.hero.titlep1}
+              <br />
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/70">
+                {data.hero.titlep2}
               </span>
             </h1>
           </motion.div>
@@ -36,10 +38,9 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-foreground mb-8 font-medium max-w-lg leading-relaxed shadow-black/5 drop-shadow-sm"
+            className="text-lg md:text-xl text-foreground mb-8 font-medium max-w-lg leading-relaxed drop-shadow-sm"
           >
-            Crafting superior experiences with precision and innovative design
-            solutions.
+            {data.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -52,7 +53,7 @@ const Hero = () => {
               variant="default"
               className="rounded-full text-lg h-14 px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
-              Get Started Now
+              {data.hero.ctap}
             </CtaButton>
           </motion.div>
         </div>
@@ -78,18 +79,17 @@ const Hero = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6, type: "spring", bounce: 0.3 }}
-        className="absolute h-auto min-h-[20vh] w-[85vw] md:w-[60vw] -bottom-42 left-1/2 -translate-x-1/2 rounded-[2rem] bg-background/80 backdrop-blur-lg border border-border shadow-2xl flex flex-col gap-6 items-center justify-center p-8 z-20"
+        className="absolute h-auto min-h-[20vh] w-[85vw] md:w-[60vw] -bottom-42 left-1/2 -translate-x-1/2 rounded-4xl bg-background/80 backdrop-blur-lg border border-border shadow-2xl flex flex-col gap-6 items-center justify-center p-8 z-20"
       >
         <p className="text-center text-lg md:text-2xl font-medium text-foreground max-w-3xl leading-relaxed relative z-10">
-          Unlock the potential of your business with our comprehensive suite of
-          tools designed to streamline your workflow and boost productivity.
+          {data.hero.desc}
         </p>
         <CtaButton
           variant="secondary"
           size="lg"
           className="relative z-10 rounded-full text-base h-12 px-8 transition-all duration-300 cursor-pointer"
         >
-          Learn More
+          {data.hero.ctad}
         </CtaButton>
       </motion.div>
     </div>
