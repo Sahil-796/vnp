@@ -6,12 +6,17 @@ import HowWeHelp from "@/components/HowWeHelp";
 
 export default function Page() {
   return (
+    <div>
+
     <div className="max-w-[85vw] mx-auto mt-24">
       <Hero />
       <Services />
-      <HowWeHelp />
       <Testimonials />
+    </div>
+    <div>
+
       <Footer />
+    </div>
     </div>
   );
 }
