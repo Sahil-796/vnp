@@ -87,9 +87,9 @@ const Hero = () => {
           {data.hero.desc}
         </p>
         <CtaButton
-          variant="secondary"
+          variant="default"
           size="lg"
-          className="relative z-10 rounded-full text-sm md:text-base h-10 md:h-12 px-6 md:px-8 transition-all duration-300 cursor-pointer"
+          className="bg-gray-500 hover:bg-gray-600 relative z-10 rounded-full text-sm md:text-base h-10 md:h-12 px-6 md:px-8 transition-all duration-300 cursor-pointer"
         >
           {data.hero.ctad}
         </CtaButton>

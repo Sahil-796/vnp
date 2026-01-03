@@ -105,4 +105,23 @@ export const data = {
       },
     ],
   },
+
+  footer: {
+    titlep1: "Elevating Digital",
+    titlep2: "Experiences",
+    address: "123 Innovation Drive, Tech City, CA 94043",
+    phone: "+1 (555) 123-4567",
+    companyLinks: [
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Contact", href: "/contact" },
+    ],
+    socialLinks: [
+      { label: "Facebook", href: "#" },
+      { label: "Instagram", href: "#" },
+      { label: "Twitter", href: "#" },
+    ],
+    copyright: "Copyright © 2025 Vision & Path. All Rights Reserved.",
+  },
 };

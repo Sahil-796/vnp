@@ -65,7 +65,7 @@ export const StickyScroll = ({
 
   return (
     <motion.div
-      className="flex justify-center relative space-x-10 rounded-md"
+      className="flex justify-center relative rounded-md"
       ref={ref}
       // 1. Dynamic height ensures the user has space to scroll through all cards.
       // Adjust the multiplier (e.g., 60vh) to change how fast the cards switch.

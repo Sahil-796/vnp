@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Logo } from "./Logo";
 import Link from "next/link";
+import { data } from "@/constansts";
 
 export const MobileFooter = () => {
     return (
@@ -27,16 +28,16 @@ export const MobileFooter = () => {
 
                         <div className="flex flex-col gap-4">
                             <h3 className="text-2xl font-bold tracking-tight leading-tight">
-                                Elevating Digital
+                                {data.footer.titlep1}
                                 <br />
-                                Experiences
+                                {data.footer.titlep2}
                             </h3>
                             <div className="flex flex-col gap-1 mt-2">
                                 <p className="text-sm font-medium opacity-70">
-                                    123 Innovation Drive, Tech City, CA 94043
+                                    {data.footer.address}
                                 </p>
                                 <p className="text-sm font-medium opacity-70">
-                                    +1 (555) 123-4567
+                                    {data.footer.phone}
                                 </p>
                             </div>
                         </div>
@@ -49,18 +50,15 @@ export const MobileFooter = () => {
                                 Company
                             </h4>
                             <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
-                                <Link href="/about" className="hover:text-foreground transition-colors">
-                                    About
-                                </Link>
-                                <Link href="/blog" className="hover:text-foreground transition-colors">
-                                    Blog
-                                </Link>
-                                <Link href="/gallery" className="hover:text-foreground transition-colors">
-                                    Gallery
-                                </Link>
-                                <Link href="/contact" className="hover:text-foreground transition-colors">
-                                    Contact
-                                </Link>
+                                {data.footer.companyLinks.map((link) => (
+                                    <Link
+                                        key={link.label}
+                                        href={link.href}
+                                        className="hover:text-foreground transition-colors"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
 
@@ -69,15 +67,15 @@ export const MobileFooter = () => {
                                 Social Media
                             </h4>
                             <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
-                                <Link href="#" className="hover:text-foreground transition-colors">
-                                    Facebook
-                                </Link>
-                                <Link href="#" className="hover:text-foreground transition-colors">
-                                    Instagram
-                                </Link>
-                                <Link href="#" className="hover:text-foreground transition-colors">
-                                    Twitter
-                                </Link>
+                                {data.footer.socialLinks.map((link) => (
+                                    <Link
+                                        key={link.label}
+                                        href={link.href}
+                                        className="hover:text-foreground transition-colors"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -86,7 +84,7 @@ export const MobileFooter = () => {
                 {/* Bottom Content - Copyright */}
                 <div className="w-full mt-12 relative z-20 border-t border-foreground pt-6 bg-transparent">
                     <p className="text-xs font-medium opacity-60">
-                        Copyright © 2025 Vision & Path. All Rights Reserved.
+                        {data.footer.copyright}
                     </p>
                 </div>
             </div>

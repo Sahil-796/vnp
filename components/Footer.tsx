@@ -5,6 +5,7 @@ import { DotGrid } from "@/components/ui/dot-grid";
 import { Logo } from "./Logo";
 import Link from "next/link";
 import { MobileFooter } from "./MobileFooter";
+import { data } from "@/constansts";
 
 const Footer = () => {
   return (
@@ -35,16 +36,16 @@ const Footer = () => {
 
                 <div className="flex flex-col gap-4">
                   <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
-                    Elevating Digital
+                    {data.footer.titlep1}
                     <br />
-                    Experiences
+                    {data.footer.titlep2}
                   </h3>
                   <div className="flex flex-col gap-1 mt-2">
                     <p className="text-sm md:text-base font-medium opacity-70">
-                      123 Innovation Drive, Tech City, CA 94043
+                      {data.footer.address}
                     </p>
                     <p className="text-sm md:text-base font-medium opacity-70">
-                      +1 (555) 123-4567
+                      {data.footer.phone}
                     </p>
                   </div>
                 </div>
@@ -57,30 +58,15 @@ const Footer = () => {
                     Company
                   </h4>
                   <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
-                    <Link
-                      href="/about"
-                      className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                    >
-                      About
-                    </Link>
-                    <Link
-                      href="/blog"
-                      className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                    >
-                      Blog
-                    </Link>
-                    <Link
-                      href="/gallery"
-                      className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                    >
-                      Gallery
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                    >
-                      Contact
-                    </Link>
+                    {data.footer.companyLinks.map((link) => (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
 
@@ -89,24 +75,15 @@ const Footer = () => {
                     Social Media
                   </h4>
                   <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
-                    <Link
-                      href="#"
-                      className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                    >
-                      Facebook
-                    </Link>
-                    <Link
-                      href="#"
-                      className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                    >
-                      Instagram
-                    </Link>
-                    <Link
-                      href="#"
-                      className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                    >
-                      Twitter
-                    </Link>
+                    {data.footer.socialLinks.map((link) => (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -114,7 +91,7 @@ const Footer = () => {
 
             <div className="w-full md:w-1/3 mt-12 md:mt-0 relative z-20 border-t border-foreground pt-6 md:pt-8 bg-transparent">
               <p className="text-xs md:text-sm font-medium opacity-60 md:opacity-100">
-                Copyright © 2025 Vision & Path. All Rights Reserved.
+                {data.footer.copyright}
               </p>
             </div>
           </div>
