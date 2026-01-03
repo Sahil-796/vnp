@@ -99,49 +99,9 @@ export const StickyScroll = ({
             >
               {/* Text Section */}
               <div className="lg:w-[45%] flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
-                {content[activeCard].pillColor && (
-                  <span
-                    className={cn(
-                      "inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 tracking-wide uppercase",
-                      content[activeCard].pillColor
-                    )}
-                  >
-                    {content[activeCard].title}
-                  </span>
-                )}
 
-                {/* Fallback title if no pillColor, or maybe just render it as main title? 
-                    User asked to "give title a bg color". The above span does that. 
-                    Let's also keep a main semantic H3 if desired, but user might mean the main heading itself has bg. 
-                    I'll treat the pill AS the title header for now, or add a larger heading below?
-                    Re-reading: "give title a bg color".
-                    The previous layout had `h2` for title. 
-                    Let's keep h2 but maybe style it? No, standard design is Pill + Heading. 
-                    But if I replace H2 with Pill, it might be too small. 
-                    Let's Render the Pill (Title) and then maybe the subtitle/description?
-                    Actually, let's keep the existing title logic but style it?
-                    OR: Render Pill (Category/Title) -> H2 (Headline?) -> Desc.
-                    The data has `title` = "Collaborative Editing".
-                    Let's use that as the H2, but wrapped in a container that gives it background?
-                    "give title a bg color" -> `bg-blue-100` on the H2 element?
-                    Let's try: Inline-block H2 with rounded corners and bg color.
-                */}
-                <h2
-                  className={cn(
-                    "text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70",
-                    // If user meant the ACTUAL title text should have bg box:
-                    // content[activeCard].pillColor ? cn("bg-transparent text-inherit", content[activeCard].pillColor) : ""
-                    // Let's stick to the pill approach for "variety" as requested (common SaaS pattern)
-                    // OR: Render the title AS the pill.
-                  )}
-                >
-                  {/* If we used the pill above for title, maybe we don't need this h2? 
-                       But semantic hierarchy...
-                       Let's go with: Pill (Title) then maybe a summary phrase? 
-                       The `title` in data IS "Collaborative Editing". 
-                       So I will use the Pill logic I wrote above for the title.
-                    */}
-                </h2>
+
+
 
                 {/* Re-doing the title logic based on "give title a bg color" literally means the text background. */}
                 {content[activeCard].pillColor ? (
