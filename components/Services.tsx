@@ -16,9 +16,9 @@ export function Services() {
       <div className="flex h-full w-full items-center justify-center">
         <Image
           src={item.imgsrc}
-          width={800}
-          height={800}
-          className="h-full w-full object-cover rounded-4xl"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
           alt={item.title}
         />
       </div>
@@ -30,7 +30,6 @@ export function Services() {
       <SectionTitle
         title={data.services.title}
         description={data.services.desc}
-        containerClassName="max-w-[85vw] mb-4"
       />
       <StickyScroll content={content} />
     </div>

@@ -23,12 +23,25 @@ export const StickyScroll = ({
   const [direction, setDirection] = useState("down");
   const ref = useRef<any>(null);
   const activeCardRef = useRef(0);
+  
 
   // Track scroll progress of the entire container
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
+  
+  const background = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [
+      "linear-gradient(135deg, #e8fff2 0%, #c9efdd 55%, #aecdff 100%)",
+      "linear-gradient(135deg, #ebfff8 0%, #cfe8e1 55%, #b9c8ff 100%)",
+      "linear-gradient(135deg, #effff9 0%, #d8ede4 55%, #c6beff 100%)",
+
+    ]
+  );
+
 
   const cardLength = content.length;
 
@@ -73,11 +86,12 @@ export const StickyScroll = ({
 
   return (
     <motion.div
-      className="flex justify-center relative rounded-md"
+      className="flex px-5 justify-center relative w-full border rounded-4xl"
       ref={ref}
-      // 1. Dynamic height ensures the user has space to scroll through all cards.
-      // Adjust the multiplier (e.g., 60vh) to change how fast the cards switch.
-      style={{ height: content.length * 60 + "vh" }}
+      style={{
+        height: content.length * 60 + "vh",
+        background,
+      }}
     >
       {/* 2. Sticky container to hold the view in the center while parent scrolls */}
       <div className="sticky top-0 flex h-[calc(100vh-10vh)] items-center justify-center w-full overflow-hidden">
