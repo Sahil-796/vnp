@@ -173,7 +173,7 @@ export const Navbar = () => {
           </Dialog.Trigger>
 
           <Dialog.Portal>
-            <Dialog.Content className="fixed inset-0 z-60 flex flex-col items-center justify-center bg-background/95 backdrop-blur-3xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[2%] data-[state=open]:slide-in-from-top-[2%] duration-300">
+            <Dialog.Content className="fixed inset-0 z-60 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[2%] data-[state=open]:slide-in-from-top-[2%] duration-300">
               <Dialog.Close asChild>
                 <Button
                   variant="default"
