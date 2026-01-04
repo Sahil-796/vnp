@@ -36,7 +36,7 @@ export const SectionTitle = ({
       </h2>
 
       {/* Decorative Separator */}
-      <div className="w-24 h-1.5 mt-6 mb-8 rounded-full bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
+      <div className="w-24 h-1.5 mt-6 mb-8 rounded-full bg-gradient-to-r from-transparent via-secondary to-transparent" />
 
       {description && (
         <p className="text-center text-muted-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
