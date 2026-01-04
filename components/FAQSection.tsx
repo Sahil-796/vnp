@@ -18,7 +18,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="py-20">
+    <div className="pt-10 pb-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
