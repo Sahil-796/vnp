@@ -95,9 +95,9 @@ export const WhyChooseUs = () => {
                             return (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, y: 50, x: index % 2 === 0 ? -50 : 50 }}
-                                    whileInView={{ opacity: 1, y: 0, x: 0 }}
-                                    whileHover={{ y: -5, transition: { duration: 0.3 } }}
+                                    initial={{ opacity: 0, y: 50, x: index % 2 === 0 ? -50 : 50, rotate: index % 2 === 0 ? -2 : 2 }}
+                                    whileInView={{ opacity: 1, y: 0, x: 0, rotate: index % 2 === 0 ? -2 : 2 }}
+                                    whileHover={{ y: -5, rotate: 0, transition: { duration: 0.3 } }}
                                     viewport={{ once: true, margin: "-50px" }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     className={cn(
