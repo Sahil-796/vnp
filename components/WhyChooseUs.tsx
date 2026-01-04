@@ -38,72 +38,47 @@ export const WhyChooseUs = () => {
                         </svg>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-12 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-10 items-start">
                         {data.whyChooseUs.map((feature, index) => {
                             const Icon = feature.icon;
                             return (
                                 <motion.div
                                     key={index}
-                                    initial={{
-                                        opacity: 0,
-                                        x: index % 2 === 0 ? -50 : 50,
-                                        y: 50,
-                                        rotate: index % 2 === 0 ? -2 : 2
-                                    }}
-                                    whileInView={{
-                                        opacity: 1,
-                                        x: 0,
-                                        y: 0,
-                                        rotate: index % 2 === 0 ? -2 : 2
-                                    }}
-                                    whileHover={{
-                                        y: -5,
-                                        rotate: 0
-                                    }}
+                                    initial={{ opacity: 0, y: 50, x: index % 2 === 0 ? -50 : 50 }}
+                                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                                    whileHover={{ y: -5, transition: { duration: 0.3 } }}
                                     viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ duration: 0.6, ease: "easeOut" }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
                                     className={cn(
-                                        "group relative bg-card rounded-[2rem] p-3 shadow-xl transition-shadow duration-300",
-                                        index % 2 === 1 ? "lg:mt-16" : ""
+                                        "group relative flex flex-col items-start p-6 rounded-3xl bg-white dark:bg-card border border-border/50 shadow-md hover:shadow-xl",
+                                        "overflow-hidden",
+                                        index % 2 === 1 ? "lg:mt-12" : ""
                                     )}
                                 >
-                                    {/* 3D Pin Decoration */}
-                                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
-                                        <div
-                                            className={cn(
-                                                "relative w-14 h-14 rounded-full shadow-[0_8px_16px_rgba(0,0,0,0.2)] border-[3px] border-white/50",
-                                                feature.iconBg
-                                            )}
-                                        >
-                                            {/* Gradient Overlay for volume */}
-                                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/60 to-black/5 pointer-events-none" />
+                                    {/* Ambient Background Gradient (derived from feature color) */}
+                                    <div className={cn(
+                                        "absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-transparent to-transparent opacity-20 rounded-full blur-3xl group-hover:opacity-40 transition-opacity duration-500",
+                                        feature.color.replace('bg-', 'from-') // Hacky but works if colors are standard bg-*-100
+                                    )} />
 
-                                            {/* Inner Metal Head */}
-                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white shadow-md flex items-center justify-center">
-                                                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-300" />
-                                            </div>
-                                        </div>
+                                    {/* Icon Container */}
+                                    <div className={cn(
+                                        "relative mb-6 p-4 rounded-2xl shadow-sm group-hover:scale-110 transition-transform duration-500",
+                                        feature.color // Use the light color for background
+                                    )}>
+                                        <Icon className={cn("w-8 h-8", feature.iconColor)} />
                                     </div>
 
-                                    {/* Inner Colored Content Card */}
-                                    <div
-                                        className={cn(
-                                            "h-full rounded-[1.5rem] p-6 pt-10 flex flex-col items-start gap-3",
-                                            feature.color,
-                                        )}
-                                    >
-                                        {/* Icon */}
-                                        <div className="mb-1">
-                                            <Icon className={cn("w-8 h-8", feature.iconColor)} />
-                                        </div>
+                                    <h3 className="text-2xl font-bold text-foreground mb-3 tracking-tight group-hover:text-primary transition-colors duration-300">
+                                        {feature.title}
+                                    </h3>
 
-                                        <h3 className="text-xl font-bold text-foreground/90 tracking-tight">
-                                            {feature.title}
-                                        </h3>
-                                        <p className="text-muted-foreground/80 leading-relaxed text-sm font-medium">
-                                            {feature.description}
-                                        </p>
-                                    </div>
+                                    <p className="text-muted-foreground leading-relaxed text-base">
+                                        {feature.description}
+                                    </p>
+
+                                    {/* Decorative arrow/line on hover */}
+                                    <div className="mt-6 w-12 h-1 rounded-full bg-border group-hover:w-full group-hover:bg-secondary transition-all duration-500" />
                                 </motion.div>
                             );
                         })}
