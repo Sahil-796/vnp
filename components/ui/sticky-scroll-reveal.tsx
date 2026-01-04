@@ -78,52 +78,52 @@ const StickyCard = ({
         index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
       )}
     >
-      {/* Text Section */}
-      <div className="w-full lg:w-1/2 h-full flex items-center justify-center p-8 lg:p-16 relative">
-        <div className="max-w-xl flex flex-col items-start text-left">
+      {/* Text Section - Mobile: Vertically centered, Left aligned, Padded top */}
+      <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex items-center justify-center px-6 pb-6 pt-24 lg:p-16 relative">
+        <div className="max-w-xl flex flex-col items-start text-left w-full">
           {item.pillColor ? (
             <h2
               className={cn(
-                "text-3xl font-bold px-4 py-2 rounded-xl inline-block mb-6",
+                "text-2xl lg:text-3xl font-bold px-3 py-1 lg:px-4 lg:py-2 rounded-xl inline-block mb-3 lg:mb-6",
                 item.pillColor
               )}
             >
               {item.title}
             </h2>
           ) : (
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+            <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-4 lg:mb-6">
               {item.title}
             </h2>
           )}
 
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base lg:text-lg text-muted-foreground leading-relaxed line-clamp-3 lg:line-clamp-none">
             {item.description}
           </p>
 
           {item.bullets && (
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-4 lg:mt-8 space-y-2 lg:space-y-3">
               {item.bullets.map((bullet, idx) => (
                 <li
                   key={idx}
-                  className="flex items-center gap-3 text-muted-foreground"
+                  className="flex items-center gap-2 lg:gap-3 text-muted-foreground"
                 >
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                    <CustomCheckIcon className="w-3.5 h-3.5" />
+                  <div className="flex-shrink-0 w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                    <CustomCheckIcon className="w-3 h-3 lg:w-3.5 lg:h-3.5" />
                   </div>
-                  <span className="text-sm font-medium leading-tight">{bullet}</span>
+                  <span className="text-xs lg:text-sm font-medium leading-tight">{bullet}</span>
                 </li>
               ))}
             </ul>
           )}
 
           {item.cta && (
-            <div className="mt-10">
+            <div className="mt-6 lg:mt-10">
               <Link
                 href={item.cta.href}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 rounded-full bg-primary text-primary-foreground text-sm lg:text-base font-medium hover:opacity-90 transition-opacity"
               >
                 {item.cta.label}
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3 h-3 lg:w-4 lg:h-4" />
               </Link>
             </div>
           )}
@@ -133,7 +133,7 @@ const StickyCard = ({
       {/* Image Section */}
       <div
         className={cn(
-          "w-full lg:w-1/2 h-full overflow-hidden bg-muted",
+          "w-full lg:w-1/2 h-1/2 lg:h-full overflow-hidden bg-muted",
           contentClassName
         )}
       >
