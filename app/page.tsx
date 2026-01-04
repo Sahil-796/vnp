@@ -9,16 +9,19 @@ import FAQSection from "@/components/FAQSection";
 export default function Page() {
   return (
     <div>
-
       <div className="max-w-[85vw] mx-auto mt-24">
         <Hero />
-        <Services />
+      </div>
+
+      <Services />
+
+      <div className="max-w-[85vw] mx-auto">
         <WhyChooseUs />
         <Testimonials />
         <FAQSection />
       </div>
-      <div>
 
+      <div>
         <Footer />
       </div>
     </div>
