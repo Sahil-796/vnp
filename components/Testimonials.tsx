@@ -99,7 +99,7 @@ export default function Testimonials() {
   return (
     <section
       aria-labelledby="testimonials-heading"
-      className="bg-transparent pb-24 relative overflow-hidden"
+      className="bg-transparent pb-8 relative overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 50, rotate: -2 }}
