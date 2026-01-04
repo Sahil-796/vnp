@@ -15,6 +15,22 @@ interface ContentItem {
   cardGradient?: string;
 }
 
+// Custom Check Icon Component
+const CustomCheckIcon = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M20 6L9 17l-5-5" />
+  </svg>
+);
+
 const StickyCard = ({
   item,
   index,
@@ -91,10 +107,10 @@ const StickyCard = ({
                   key={idx}
                   className="flex items-center gap-3 text-muted-foreground"
                 >
-                  <div className="p-1 rounded-full bg-primary/10 text-primary">
-                    <Check className="w-3 h-3" />
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                    <CustomCheckIcon className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-sm font-medium">{bullet}</span>
+                  <span className="text-sm font-medium leading-tight">{bullet}</span>
                 </li>
               ))}
             </ul>
