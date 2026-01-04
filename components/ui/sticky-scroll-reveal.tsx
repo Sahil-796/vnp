@@ -27,21 +27,26 @@ const StickyCard = ({
   scrollYProgress: MotionValue<number>;
   contentClassName?: string;
 }) => {
-  const start = index / cardLength;
-  const end = (index + 1) / cardLength;
+  // N = cardLength.
+  // We have N-1 transitions (Card 0->1, 1->2, ... N-2->N-1).
+  // We want the transitions to take up most of the scroll space, and the last card to have a shorter static phase.
+  // By dividing by (cardLength - alpha), we extend the range of each index so they consume more space.
+  const calibration = 0.7; // How much of the last card's "slot" to remove. 0.7 means last slot is 30% of normal.
+  const totalUnits = cardLength - calibration;
+
+  const start = index / totalUnits;
+  const end = (index + 1) / totalUnits;
 
   // Dynamic transform based on index
   const y = useTransform(scrollYProgress, [start, end], ["0%", "-100%"]);
 
-  // Last card behavior: let it slide up too or stay?
-  // If we want it to stay, we check index.
-  // Standard "stack reveal" usually has the last one stay or we scroll past it.
-  // If the container ends, and last card is at y=0, and we scroll past, it gets scrolled out by normal document flow (because the sticky container hits bottom).
-  // BUT the sticky container is h-screen.
-  // When scroll hits bottom of parent container (height N*100vh), the sticky container un-sticks and moves up.
-  // So the last card doesn't need to animate away. It moves away with the container.
-
   const isLast = index === cardLength - 1;
+  // If it's the last card, we don't transform it away, but we also don't need to worry about 'end' exceeding 1.
+  // The useTransform clamps values outside [start, end].
+  // However, since we condensed the range, 'end' for the last card would be > 1.
+  // e.g. for N=4, total=3.3. Last card start=3/3.3=0.9. End=4/3.3=1.2.
+  // So it effectively stays at 0% for 0.9->1.0 (which is the end of scroll).
+
   const yValue = isLast ? "0%" : y;
 
   return (
