@@ -12,6 +12,7 @@ interface ContentItem {
   pillColor?: string;
   bullets?: string[];
   cta?: { label: string; href: string };
+  cardGradient?: string;
 }
 
 const StickyCard = ({
@@ -56,7 +57,8 @@ const StickyCard = ({
         zIndex: cardLength - index,
       }}
       className={cn(
-        "absolute inset-0 h-full w-full flex flex-col justify-center bg-background",
+        "absolute inset-0 h-full w-full flex flex-col justify-center",
+        item.cardGradient || "bg-background",
         index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
       )}
     >
