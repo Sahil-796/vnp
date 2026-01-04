@@ -66,7 +66,7 @@ export const WhyChooseUs = () => {
                     containerClassName="mb-16"
                 />
 
-                <div className="relative max-w-5xl mx-auto pt-10">
+                <div className="relative max-w-4xl mx-auto pt-10">
                     {/* Connecting String Line (Desktop Only) - Aligned to Content */}
                     <div className="absolute inset-0 hidden lg:block pointer-events-none -z-10">
                         <svg
@@ -88,7 +88,7 @@ export const WhyChooseUs = () => {
                         </svg>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-10 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
                         {data.whyChooseUs.map((feature, index) => {
                             // @ts-ignore
                             const Icon = Icons[feature.title] || feature.icon;
@@ -97,39 +97,48 @@ export const WhyChooseUs = () => {
                                     key={index}
                                     initial={{ opacity: 0, y: 50, x: index % 2 === 0 ? -50 : 50, rotate: index % 2 === 0 ? -2 : 2 }}
                                     whileInView={{ opacity: 1, y: 0, x: 0, rotate: index % 2 === 0 ? -2 : 2 }}
-                                    whileHover={{ y: -5, rotate: 0, transition: { duration: 0.3 } }}
                                     viewport={{ once: true, margin: "-50px" }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     className={cn(
-                                        "group relative flex flex-col items-start p-6 rounded-3xl bg-white dark:bg-card border border-border/50 shadow-md hover:shadow-xl",
-                                        "overflow-hidden",
+                                        "group relative flex flex-col items-start p-6 rounded-[2rem] border-[6px] border-white shadow-xl hover:shadow-2xl transition-all duration-300",
+                                        feature.color, // Use pastel color as the main card background
                                         index % 2 === 1 ? "lg:mt-12" : ""
                                     )}
                                 >
-                                    {/* Ambient Background Gradient (derived from feature color) */}
-                                    <div className={cn(
-                                        "absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-transparent to-transparent opacity-20 rounded-full blur-3xl group-hover:opacity-40 transition-opacity duration-500",
-                                        feature.color.replace('bg-', 'from-') // Hacky but works if colors are standard bg-*-100
-                                    )} />
-
-                                    {/* Icon Container */}
-                                    <div className={cn(
-                                        "relative mb-6 p-4 rounded-2xl shadow-sm group-hover:scale-110 transition-transform duration-500",
-                                        feature.color // Use the light color for background
-                                    )}>
-                                        <Icon className={cn("w-8 h-8", feature.iconColor)} />
+                                    {/* Decorative Pin */}
+                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                                        <div className="relative">
+                                            {/* Pin Head */}
+                                            <div className={cn(
+                                                "w-8 h-8 rounded-full shadow-lg flex items-center justify-center border-2 border-white/50 z-10",
+                                                feature.iconColor.includes("yellow") ? "bg-yellow-600" :
+                                                    feature.iconColor.includes("purple") ? "bg-purple-600" :
+                                                        feature.iconColor.includes("pink") ? "bg-pink-600" :
+                                                            feature.iconColor.includes("blue") ? "bg-blue-600" :
+                                                                feature.iconColor.includes("green") ? "bg-green-600" :
+                                                                    feature.iconColor.includes("orange") ? "bg-orange-600" : "bg-secondary"
+                                            )}>
+                                                <div className="w-3 h-3 rounded-full bg-white/30" />
+                                            </div>
+                                            {/* Pin Needle/Shadow illusion */}
+                                        </div>
                                     </div>
 
-                                    <h3 className="text-2xl font-bold text-foreground mb-3 tracking-tight group-hover:text-primary transition-colors duration-300">
+                                    {/* Icon - Simplified, no container */}
+                                    <div className="relative mb-4">
+                                        <Icon className={cn("w-10 h-10", feature.iconColor)} />
+                                    </div>
+
+                                    <h3 className="text-xl font-bold text-slate-800 mb-2 tracking-tight">
                                         {feature.title}
                                     </h3>
 
-                                    <p className="text-muted-foreground leading-relaxed text-base">
+                                    <p className="text-slate-600 leading-relaxed text-sm font-medium">
                                         {feature.description}
                                     </p>
 
-                                    {/* Decorative arrow/line on hover */}
-                                    <div className="mt-6 w-12 h-1 rounded-full bg-border group-hover:w-full group-hover:bg-secondary transition-all duration-500" />
+                                    {/* Decorative arrow/line on hover - kept but made subtle */}
+                                    <div className="mt-4 w-12 h-1 rounded-full bg-slate-800/20 group-hover:w-full group-hover:bg-primary transition-all duration-500" />
                                 </motion.div>
                             );
                         })}
