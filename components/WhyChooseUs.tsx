@@ -31,7 +31,7 @@ export const WhyChooseUs = () => {
                                 strokeWidth="3"
                                 strokeDasharray="10 10"
                                 initial={{ strokeDashoffset: 0 }}
-                                animate={{ strokeDashoffset: -20 }}
+                                animate={{ strokeDashoffset: 20 }}
                                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                                 className="opacity-50"
                             />
