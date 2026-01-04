@@ -48,7 +48,7 @@ export const Navbar = () => {
           : "bg-transparent py-4",
       )}
     >
-      <header className="flex items-center justify-between container mx-auto">
+      <header className="flex items-center justify-between container mx-auto px-6 md:px-10">
         <Link href="/" className="relative z-10">
           <motion.div
             initial={{
