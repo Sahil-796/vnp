@@ -23,7 +23,7 @@ export const SectionTitle = ({
       )}
     >
       {/* Subtle background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 bg-primary/10 blur-[60px] rounded-full -z-10 pointer-events-none" />
+
 
       <h2
         id={id}
