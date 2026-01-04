@@ -11,6 +11,8 @@ import { FlowButton } from "./ui/flow-button";
 import { TextRollLink } from "./ui/text-roll-link";
 import { Button } from "./ui/button";
 
+import GlassSurface from "@/components/GlassSurface";
+
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -43,14 +45,38 @@ export const Navbar = () => {
     <div
       className={cn(
         "fixed z-50 w-full top-0 left-0 transition-all duration-500 ease-in-out",
-        isScrolled
-          ? "bg-background/80 backdrop-blur-xl shadow-sm py-2"
-          : "bg-transparent py-4",
+        isScrolled ? "py-2" : "py-4"
       )}
     >
       <header className="flex items-center justify-between container mx-auto px-6 md:px-10">
-        <Link href="/" className="relative z-10">
+        <Link
+          href="/"
+          className={cn(
+            "relative z-10 transition-all duration-500 flex items-center justify-center",
+            isScrolled
+              ? "px-5 py-2" // Removed bg/border classes, kept padding
+              : "px-0 py-0"
+          )}
+        >
+          {/* Glass Background */}
+          <div className={cn(
+            "absolute inset-0 -z-10 transition-opacity duration-500",
+            isScrolled ? "opacity-100" : "opacity-0"
+          )}>
+            {isScrolled && (
+              <GlassSurface
+                width="100%"
+                height="100%"
+                borderRadius={40}
+                blur={10}
+                opacity={0.6}
+                borderWidth={0.5}
+              />
+            )}
+          </div>
+
           <motion.div
+            className="relative z-10"
             initial={{
               x: -100,
               opacity: 0,
@@ -77,14 +103,36 @@ export const Navbar = () => {
         <Dialog.Root modal={false} open={isOpen} onOpenChange={setIsOpen}>
           <Dialog.Trigger asChild>
             <motion.button
-              className="p-2 group outline-none cursor-pointer"
+              className={cn(
+                "group outline-none cursor-pointer transition-all duration-500 relative flex items-center justify-center",
+                isScrolled
+                  ? "p-3" // Removed bg/border classes, kept padding
+                  : "p-2"
+              )}
               aria-label="Open menu"
               initial="initial"
               animate={isHovered ? "hover" : "animate"}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <motion.div className="flex flex-col gap-1.5 items-end">
+              {/* Glass Background for Menu */}
+              <div className={cn(
+                "absolute inset-0 -z-10 transition-opacity duration-500",
+                isScrolled ? "opacity-100" : "opacity-0"
+              )}>
+                {isScrolled && (
+                  <GlassSurface
+                    width="100%"
+                    height="100%"
+                    borderRadius={99}
+                    blur={10}
+                    opacity={0.6}
+                    borderWidth={0.5}
+                  />
+                )}
+              </div>
+
+              <motion.div className="flex flex-col gap-1.5 items-end relative z-10">
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}

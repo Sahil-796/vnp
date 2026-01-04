@@ -22,8 +22,6 @@ export const SectionTitle = ({
         containerClassName,
       )}
     >
-      {/* Subtle background glow */}
-
 
       <h2
         id={id}
