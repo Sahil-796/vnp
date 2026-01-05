@@ -43,6 +43,7 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                         >
                             <div
                                 onMouseEnter={() => setActiveIndex(index)}
+                                onClick={() => setActiveIndex(index === activeIndex ? null : index)}
                                 className="cursor-pointer py-8 md:py-12 px-5 md:px-10 transition-colors duration-300"
                             >
                                 <div className="flex flex-col md:flex-row gap-5 md:gap-10 items-start">
