@@ -23,7 +23,7 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
     const [activeIndex, setActiveIndex] = useState<number | null>(1); // Default to 2nd item open as per design
 
     return (
-        <div className="w-full max-w-5xl mx-auto px-4 md:px-6 pb-24">
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-8 pb-32">
             <div
                 className="flex flex-col"
                 onMouseLeave={() => setActiveIndex(null)}
@@ -43,12 +43,12 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                         >
                             <div
                                 onMouseEnter={() => setActiveIndex(index)}
-                                className="cursor-pointer py-8 px-4 md:px-8 transition-colors duration-300"
+                                className="cursor-pointer py-8 md:py-12 px-5 md:px-10 transition-colors duration-300"
                             >
-                                <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+                                <div className="flex flex-col md:flex-row gap-5 md:gap-10 items-start">
                                     {/* Number */}
-                                    <div className="flex-shrink-0 pt-1">
-                                        <span className="text-sm font-medium text-muted-foreground">
+                                    <div className="flex-shrink-0 pt-2">
+                                        <span className="text-base md:text-lg font-medium text-muted-foreground/70">
                                             {indexStr}
                                         </span>
                                     </div>
@@ -56,15 +56,15 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                                     {/* Content */}
                                     <div className="flex-grow w-full">
                                         {/* Header: Title + Bullets */}
-                                        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 w-full">
-                                            <h3 className="text-2xl md:text-4xl font-light text-foreground">
+                                        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-5 w-full">
+                                            <h3 className="text-3xl md:text-[2.75rem] font-light text-foreground tracking-tight leading-tight">
                                                 {service.title}
                                             </h3>
 
 
-                                            <div className="hidden md:flex flex-wrap gap-2 md:gap-3 text-sm text-gray-500 font-normal mt-2 md:mt-0">
+                                            <div className="hidden md:flex flex-wrap gap-3 md:gap-4 text-sm md:text-base text-muted-foreground/60 font-medium mt-2 md:mt-0">
                                                 {!isActive && service.bullets?.map((bullet, idx) => (
-                                                    <span key={idx} className="after:content-['•'] after:ml-2 last:after:content-none whitespace-nowrap">
+                                                    <span key={idx} className="after:content-['•'] after:ml-3 last:after:content-none whitespace-nowrap">
                                                         {bullet}
                                                     </span>
                                                 ))}
@@ -78,26 +78,26 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                                                     initial={{ height: 0, opacity: 0 }}
                                                     animate={{ height: "auto", opacity: 1 }}
                                                     exit={{ height: 0, opacity: 0 }}
-                                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                                                     className="overflow-hidden"
                                                 >
-                                                    <div className="pt-4 md:pt-6 max-w-3xl">
-                                                        <div className="flex flex-wrap gap-2 mb-4 text-sm text-muted-foreground/80 font-normal">
+                                                    <div className="pt-5 md:pt-8 max-w-4xl">
+                                                        <div className="flex flex-wrap gap-3 mb-5 text-sm md:text-base text-muted-foreground/80 font-normal">
                                                             {service.bullets?.map((bullet, idx) => (
-                                                                <span key={idx} className="after:content-['•'] after:ml-2 last:after:content-none whitespace-nowrap">
+                                                                <span key={idx} className="after:content-['•'] after:ml-3 last:after:content-none whitespace-nowrap">
                                                                     {bullet}
                                                                 </span>
                                                             ))}
                                                         </div>
 
-                                                        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mb-6">
+                                                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-8 font-light">
                                                             {service.desc}
                                                         </p>
 
                                                         {service.cta && (
                                                             <Link
                                                                 href={service.cta.href}
-                                                                className="inline-flex items-center justify-center px-6 py-2 text-xs font-medium tracking-widest uppercase border border-foreground rounded-full hover:bg-foreground hover:text-background transition-colors"
+                                                                className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold tracking-widest uppercase border-2 border-foreground rounded-full hover:bg-foreground hover:text-background transition-colors"
                                                             >
                                                                 {service.cta.label}
                                                             </Link>
