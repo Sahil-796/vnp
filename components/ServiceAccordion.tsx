@@ -45,7 +45,7 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                                 <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                                     {/* Number */}
                                     <div className="flex-shrink-0 pt-2">
-                                        <span className="text-sm font-medium text-gray-500 font-mono">
+                                        <span className="text-sm font-medium text-gray-500">
                                             {indexStr}
                                         </span>
                                     </div>
