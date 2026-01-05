@@ -67,7 +67,7 @@ export const data = {
       description:
         "We leverage over 15 years of experience to deliver high-quality, tailored solutions for every client.",
       icon: Award,
-      iconColor: "text-slate-700",
+      iconColor: "text-yellow-600",
       color: "#F7F3E8", // Pastel Yellow/Beige
       pinColor: "bg-yellow-600",
       iconBg: "bg-yellow-200",
@@ -78,7 +78,7 @@ export const data = {
       description:
         "Each solution is personalized, ensuring that your business gets the exact tools it needs to succeed.",
       icon: Zap,
-      iconColor: "text-slate-700",
+      iconColor: "text-purple-600",
       color: "#EBE8F3", // Pastel Purple
       pinColor: "bg-purple-600",
       iconBg: "bg-purple-200",
@@ -89,7 +89,7 @@ export const data = {
       description:
         "We prioritize your satisfaction and aim to exceed your expectations in every project we take on.",
       icon: Users,
-      iconColor: "text-slate-700",
+      iconColor: "text-pink-600",
       color: "#F9EDF0", // Pastel Pink
       pinColor: "bg-pink-600",
       iconBg: "bg-pink-200",
@@ -100,7 +100,7 @@ export const data = {
       description:
         "We stay ahead of the curve, implementing the latest technologies to keep your business on the cutting edge.",
       icon: Lightbulb,
-      iconColor: "text-slate-700",
+      iconColor: "text-blue-600",
       color: "#CDE1E4", // Pastel Blue
       pinColor: "bg-blue-600",
       iconBg: "bg-blue-200",
@@ -111,7 +111,7 @@ export const data = {
       description:
         "We understand that businesses change, and we offer solutions that can adapt to your evolving needs.",
       icon: Settings,
-      iconColor: "text-slate-700",
+      iconColor: "text-green-600",
       color: "#D6E3D6", // Pastel Green
       pinColor: "bg-green-600",
       iconBg: "bg-green-200",
@@ -122,7 +122,7 @@ export const data = {
       description:
         "We are committed to delivering solutions that meet the highest standards of quality, ensuring long-term success.",
       icon: BarChart3,
-      iconColor: "text-slate-700",
+      iconColor: "text-orange-600",
       color: "#F3EBE8", // Pastel Orange
       pinColor: "bg-orange-600",
       iconBg: "bg-orange-200",
