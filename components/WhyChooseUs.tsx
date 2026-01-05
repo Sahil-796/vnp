@@ -101,9 +101,9 @@ export const WhyChooseUs = () => {
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     className={cn(
                                         "group relative flex flex-col items-start p-6 rounded-[2rem] border-[6px] border-white shadow-xl hover:shadow-2xl transition-all duration-300",
-                                        feature.color, // Use pastel color as the main card background
                                         index % 2 === 1 ? "lg:mt-12" : ""
                                     )}
+                                    style={{ backgroundColor: feature.color }}
                                 >
                                     {/* Decorative Pin */}
                                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
@@ -111,12 +111,8 @@ export const WhyChooseUs = () => {
                                             {/* Pin Head */}
                                             <div className={cn(
                                                 "w-8 h-8 rounded-full shadow-lg flex items-center justify-center border-2 border-white/50 z-10",
-                                                feature.iconColor.includes("yellow") ? "bg-yellow-600" :
-                                                    feature.iconColor.includes("purple") ? "bg-purple-600" :
-                                                        feature.iconColor.includes("pink") ? "bg-pink-600" :
-                                                            feature.iconColor.includes("blue") ? "bg-blue-600" :
-                                                                feature.iconColor.includes("green") ? "bg-green-600" :
-                                                                    feature.iconColor.includes("orange") ? "bg-orange-600" : "bg-secondary"
+                                                // @ts-ignore
+                                                feature.pinColor || "bg-secondary"
                                             )}>
                                                 <div className="w-3 h-3 rounded-full bg-white/30" />
                                             </div>

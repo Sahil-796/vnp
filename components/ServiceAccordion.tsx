@@ -37,7 +37,7 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                             key={index}
                             className={cn(
                                 "group border-b border-border last:border-b-0",
-                                !isActive && "bg-transparent hover:bg-accent/50"
+                                !isActive && "bg-transparent"
                             )}
                             style={{ backgroundColor: isActive && service.bgColor ? service.bgColor : undefined }}
                         >
