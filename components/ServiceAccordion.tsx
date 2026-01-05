@@ -12,6 +12,7 @@ interface ServiceItem {
     bullets?: string[];
     cta?: { label: string; href: string };
     imgsrc?: string;
+    bgColor?: string;
 }
 
 interface ServiceAccordionProps {
@@ -33,8 +34,9 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                             key={index}
                             className={cn(
                                 "group border-b border-gray-200 dark:border-gray-800 last:border-b-0",
-                                isActive ? "bg-stone-50/80 dark:bg-stone-900/10" : "bg-transparent hover:bg-gray-50 dark:hover:bg-gray-900/20"
+                                !isActive && "bg-transparent hover:bg-gray-50 dark:hover:bg-gray-900/20"
                             )}
+                            style={{ backgroundColor: isActive && service.bgColor ? service.bgColor : undefined }}
                         >
                             <div
                                 onMouseEnter={() => setActiveIndex(index)}
@@ -56,25 +58,7 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                                                 {service.title}
                                             </h3>
 
-                                            {/* Show bullets in header when collapsed OR expanded?
-                          Image shows bullets in header for collapsed items (01, 03, 04).
-                          Image shows bullets in detailed view for expanded item (02).
-                          Let's hide bullets in header if active, show if inactive?
-                          Actually image 01 shows "Saas Platform...", 03 shows "Net Core...", 04 shows "Testing...".
-                          02 expanded has title "UX Design", then "UX Audit... " below title.
-                          So it seems they are always there below the title?
-                          
-                          Wait, in the image:
-                          01 Product Design
-                             Saas Platform - Web...
-                          
-                          02 UX Design
-                             UX Audit - Analysis...
-                             [Description]
-                             [Button]
 
-                          So the summary bullets are always there.
-                      */}
                                             <div className="hidden md:flex flex-wrap gap-2 md:gap-3 text-sm text-gray-500 font-normal mt-2 md:mt-0">
                                                 {!isActive && service.bullets?.map((bullet, idx) => (
                                                     <span key={idx} className="after:content-['•'] after:ml-2 last:after:content-none whitespace-nowrap">

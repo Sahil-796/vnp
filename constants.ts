@@ -28,7 +28,8 @@ export const data = {
         imgsrc: "/process-1.png", // Keeping placeholders for now, though design doesn't explicitly show images in the list view the same way
         pillColor: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
         bullets: ["Saas Platform", "Web Platform", "Mobile App"],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" }
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#CDE1E4"
       },
       {
         title: "UX Design",
@@ -36,7 +37,8 @@ export const data = {
         imgsrc: "/process-2.png",
         pillColor: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
         bullets: ["UX Audit", "Analysis", "Research"],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" }
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#FCFDF6"
       },
       {
         title: "Development",
@@ -44,7 +46,8 @@ export const data = {
         imgsrc: "/process-3.png",
         pillColor: "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
         bullets: ["Net Core", "PHP", "React", "Node.js", "Angular"],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" }
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#F9EDF0"
       },
       {
         title: "Quality Assurance",
@@ -52,7 +55,8 @@ export const data = {
         imgsrc: "/process-4.png",
         pillColor: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
         bullets: ["Testing", "Planning, creating following KPI's", "Documentation"],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" }
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#D6E3D6"
       },
     ],
   },
