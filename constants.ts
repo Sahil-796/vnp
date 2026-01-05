@@ -23,36 +23,36 @@ export const data = {
     desc: "We offer a comprehensive suite of tools designed to streamline your workflow and enhance collaboration. Discover how we can help you achieve more.",
     content: [
       {
-        title: "Collaborative Editing",
-        desc: "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
-        imgsrc: "/process-1.png",
+        title: "Product design",
+        desc: "We create visually compelling and user-friendly websites that reflect your brand's identity and engage your target audience. Our designs are tailored to provide seamless navigation and a memorable user experience.",
+        imgsrc: "/process-1.png", // Keeping placeholders for now, though design doesn't explicitly show images in the list view the same way
         pillColor: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
-        bullets: ["Real-time sync across devices", "Automatic conflict resolution", "Team commenting system"],
-        cta: { label: "Try Editor", href: "/editor" }
+        bullets: ["Saas Platform", "Web Platform", "Mobile App"],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" }
       },
       {
-        title: "Real time changes",
-        desc: "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project.",
+        title: "UX Design",
+        desc: "We create visually compelling and user-friendly websites that reflect your brand's identity and engage your target audience. Our designs are tailored to provide seamless navigation and a memorable user experience.",
         imgsrc: "/process-2.png",
         pillColor: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
-        bullets: ["Instant live preview", "Smart auto-save capability", "Change tracking log"],
-        cta: { label: "See Live Demo", href: "/live" }
+        bullets: ["UX Audit", "Analysis", "Research"],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" }
       },
       {
-        title: "Version control",
-        desc: "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates.",
+        title: "Development",
+        desc: "We build robust and scalable applications using the latest technologies. Our development team ensures high performance and security for your digital products.",
         imgsrc: "/process-3.png",
         pillColor: "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-        bullets: ["Detailed history tracking", "One-click rollback", "Branch comparison tools"],
-        cta: { label: "View History", href: "/history" }
+        bullets: ["Net Core", "PHP", "React", "Node.js", "Angular"],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" }
       },
       {
-        title: "Running out of content",
-        desc: "Say goodbye to writer's block. Our AI-powered tools generate creative content ideas and drafts in seconds, helping you keep your content calendar full and engaging.",
+        title: "Quality Assurance",
+        desc: "We ensure your software is bug-free and performs optimally. Our QA team conducts rigorous testing to guarantee a smooth user experience.",
         imgsrc: "/process-4.png",
         pillColor: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
-        bullets: ["AI-powered generation", "Smart content planning", "Trend analysis insights"],
-        cta: { label: "Generate Now", href: "/generate" }
+        bullets: ["Testing", "Planning, creating following KPI's", "Documentation"],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" }
       },
     ],
   },
