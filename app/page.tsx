@@ -13,7 +13,9 @@ export default function Page() {
         <Hero />
       </div>
 
-      <Services />
+      <div className="max-w-[85vw] mx-auto">
+        <Services />
+      </div>
 
       <div className="max-w-[85vw] mx-auto">
         <WhyChooseUs />

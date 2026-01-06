@@ -1,51 +1,76 @@
-"use client";
-import Image from "next/image";
-import { StickyScroll } from "./ui/sticky-scroll-reveal";
-import SectionTitle from "./SectionTitle";
-
-import { data } from "@/constants";
+import { Timeline } from "@/components/ui/timeline";
+import { SectionTitle } from "@/components/SectionTitle";
 
 export function Services() {
-  const content = data.services.content.map((item) => {
-    let cardGradient = "bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-900 dark:to-background"; // fallback
-    if (item.pillColor.includes("blue")) {
-      cardGradient = "bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-950 dark:via-gray-900 dark:to-background";
-    } else if (item.pillColor.includes("emerald")) {
-      cardGradient = "bg-gradient-to-br from-emerald-100 via-emerald-50 to-white dark:from-emerald-950 dark:via-gray-900 dark:to-background";
-    } else if (item.pillColor.includes("orange")) {
-      cardGradient = "bg-gradient-to-br from-orange-100 via-orange-50 to-white dark:from-orange-950 dark:via-gray-900 dark:to-background";
-    } else if (item.pillColor.includes("purple")) {
-      cardGradient = "bg-gradient-to-br from-purple-100 via-purple-50 to-white dark:from-purple-950 dark:via-gray-900 dark:to-background";
-    }
-
-    return {
-      title: item.title,
-      description: item.desc,
-      pillColor: item.pillColor,
-      bullets: item.bullets,
-      cta: item.cta,
-      cardGradient,
+  const data = [
+    {
+      id: "resume-building",
+      title: "Resume Building",
       content: (
-        <div className="flex h-full w-full items-center justify-center">
-          <Image
-            src={item.imgsrc}
-            width={300}
-            height={300}
-            className="h-full w-full object-cover"
-            alt={item.title}
-          />
+        <div>
+          <p className="mb-8 text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal">
+            We craft professional, ATS-optimized resumes that showcase your true potential. Our experts analyze your career history to highlight your strongest achievements, ensuring you stand out in the competitive job market.
+          </p>
+          <div className="grid grid-cols-1 gap-4">
+            <img
+              src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop"
+              alt="Resume Building"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
         </div>
       ),
-    };
-  });
-
+    },
+    {
+      id: "career-counseling",
+      title: "Career Counseling",
+      content: (
+        <div>
+          <p className="mb-8 text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal">
+            Navigate your professional journey with confidence. Our personalized career counseling sessions help you identify your strengths, set achievable goals, and create a roadmap for long-term success.
+          </p>
+          <div className="grid grid-cols-1 gap-4">
+            <img
+              src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop"
+              alt="Career Counseling"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "interview-prep",
+      title: "Interview Prep",
+      content: (
+        <div>
+          <p className="mb-8 text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal">
+            Ace your next interview with our comprehensive preparation services. From mock interviews to behavioral question strategies, we provide the feedback and practice you need to make a lasting impression.
+          </p>
+          <div className="grid grid-cols-1 gap-4">
+            <img
+              src="https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop"
+              alt="Interview Preparation"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
   return (
-    <div className="w-full relative pt-24">
+    <div className="w-full relative overflow-clip">
       <SectionTitle
-        title={data.services.title}
-        description={data.services.desc}
+        title="Our Services"
+        description="We offer a wide range of services to help you achieve your career goals."
       />
-      <StickyScroll content={content} />
+      <Timeline data={data} />
     </div>
   );
 }
