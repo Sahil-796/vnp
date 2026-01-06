@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ServiceItem {
     title: string;
@@ -20,123 +20,99 @@ interface ServiceAccordionProps {
 }
 
 export function ServiceAccordion({ services }: ServiceAccordionProps) {
-    const [activeIndex, setActiveIndex] = useState<number | null>(1); // Default to 2nd item open as per design
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    // Transform vertical scroll to horizontal translation
+    // Start with first card at right edge, then move left as user scrolls
+    const x = useTransform(scrollYProgress, [0, 1], ["calc(100vw - 450px)", "-100%"]);
 
     return (
-        <div className="w-full max-w-6xl mx-auto px-4 md:px-8 pb-32">
-            <div
-                className="flex flex-col"
-                onMouseLeave={() => setActiveIndex(null)}
-            >
-                {services.map((service, index) => {
-                    const isActive = index === activeIndex;
-                    const indexStr = (index + 1).toString().padStart(2, "0");
+        <div
+            ref={containerRef}
+            className="relative w-full h-[150vh] pb-24"
+        >
+            <div className="sticky top-[20vh] overflow-hidden">
+                {/* Horizontal Scroll Container - driven by vertical scroll */}
+                <motion.div
+                    className="flex gap-6"
+                    style={{ x }}
+                >
+                    {services.map((service, index) => {
+                        const indexStr = (index + 1).toString().padStart(2, "0");
 
-                    return (
-                        <div
-                            key={index}
-                            className={cn(
-                                "group border-b border-border last:border-b-0",
-                                !isActive && "bg-transparent"
-                            )}
-                            style={{ backgroundColor: isActive && service.bgColor ? service.bgColor : undefined }}
-                        >
-                            <div
-                                onMouseEnter={() => setActiveIndex(index)}
-                                onClick={() => setActiveIndex(index === activeIndex ? null : index)}
-                                className="cursor-pointer py-8 md:py-12 px-5 md:px-10 transition-colors duration-300"
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="group relative w-[320px] md:w-[400px] flex-shrink-0 rounded-3xl overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500"
+                                style={{ backgroundColor: service.bgColor || undefined }}
                             >
-                                <div className="flex flex-col md:flex-row gap-5 md:gap-10 items-start">
-                                    {/* Number */}
-                                    <div className="flex-shrink-0 pt-2">
-                                        <span className="text-base md:text-lg font-medium text-muted-foreground/70">
-                                            {indexStr}
-                                        </span>
+                                {/* Card Image */}
+                                {service.imgsrc && (
+                                    <div className="relative h-48 md:h-56 w-full overflow-hidden">
+                                        <Image
+                                            src={service.imgsrc}
+                                            alt={service.title}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                                     </div>
+                                )}
 
-                                    {/* Content */}
-                                    <div className="flex-grow w-full">
-                                        {/* Header: Title + Bullets */}
-                                        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-5 w-full overflow-hidden">
-                                            <div className="overflow-hidden flex-shrink min-w-0 relative">
-                                                <motion.h3
-                                                    className="text-3xl md:text-[2.75rem] font-light text-foreground tracking-tight leading-tight whitespace-nowrap inline-flex"
-                                                    animate={isActive ? { x: [0, -300] } : { x: 0 }}
-                                                    transition={isActive ? {
-                                                        x: {
-                                                            duration: 6,
-                                                            repeat: Infinity,
-                                                            ease: "linear"
-                                                        }
-                                                    } : { duration: 0.3 }}
+                                {/* Card Content */}
+                                <div className="p-6 md:p-8">
+                                    {/* Number Badge */}
+                                    <span className="text-sm font-medium text-primary/70 mb-3 block">
+                                        {indexStr}
+                                    </span>
+
+                                    {/* Title */}
+                                    <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-tight leading-tight mb-4 group-hover:text-primary transition-colors duration-300">
+                                        {service.title}
+                                    </h3>
+
+                                    {/* Bullets */}
+                                    {service.bullets && (
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {service.bullets.map((bullet, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="text-xs font-medium text-muted-foreground/70 bg-secondary/20 px-3 py-1 rounded-full"
                                                 >
-                                                    <span>{service.title}</span>
-                                                    {isActive && <span className="mx-12">•</span>}
-                                                    {isActive && <span>{service.title}</span>}
-                                                    {isActive && <span className="mx-12">•</span>}
-                                                    {isActive && <span>{service.title}</span>}
-                                                    {isActive && <span className="mx-12">•</span>}
-                                                    {isActive && <span>{service.title}</span>}
-                                                    {isActive && <span className="mx-12">•</span>}
-                                                    {isActive && <span>{service.title}</span>}
-                                                    {isActive && <span className="mx-12">•</span>}
-                                                    {isActive && <span>{service.title}</span>}
-                                                    {isActive && <span className="mx-12">•</span>}
-                                                    {isActive && <span>{service.title}</span>}
-                                                </motion.h3>
-                                            </div>
-
-
-                                            <div className="hidden md:flex flex-wrap gap-3 md:gap-4 text-sm md:text-base text-muted-foreground/60 font-medium mt-2 md:mt-0 flex-shrink-0">
-                                                {!isActive && service.bullets?.map((bullet, idx) => (
-                                                    <span key={idx} className="after:content-['•'] after:ml-3 last:after:content-none whitespace-nowrap">
-                                                        {bullet}
-                                                    </span>
-                                                ))}
-                                            </div>
+                                                    {bullet}
+                                                </span>
+                                            ))}
                                         </div>
+                                    )}
 
-                                        {/* Expanded Content */}
-                                        <AnimatePresence>
-                                            {isActive && (
-                                                <motion.div
-                                                    initial={{ height: 0, opacity: 0 }}
-                                                    animate={{ height: "auto", opacity: 1 }}
-                                                    exit={{ height: 0, opacity: 0 }}
-                                                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                                    className="overflow-hidden"
-                                                >
-                                                    <div className="pt-5 md:pt-8 max-w-4xl">
-                                                        <div className="flex flex-wrap gap-3 mb-5 text-sm md:text-base text-muted-foreground/80 font-normal">
-                                                            {service.bullets?.map((bullet, idx) => (
-                                                                <span key={idx} className="after:content-['•'] after:ml-3 last:after:content-none whitespace-nowrap">
-                                                                    {bullet}
-                                                                </span>
-                                                            ))}
-                                                        </div>
+                                    {/* Description */}
+                                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-6 font-light line-clamp-3">
+                                        {service.desc}
+                                    </p>
 
-                                                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-8 font-light">
-                                                            {service.desc}
-                                                        </p>
-
-                                                        {service.cta && (
-                                                            <Link
-                                                                href={service.cta.href}
-                                                                className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold tracking-widest uppercase border-2 border-foreground rounded-full hover:bg-foreground hover:text-background transition-colors"
-                                                            >
-                                                                {service.cta.label}
-                                                            </Link>
-                                                        )}
-                                                    </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </div>
+                                    {/* CTA */}
+                                    {service.cta && (
+                                        <Link
+                                            href={service.cta.href}
+                                            className="inline-flex items-center justify-center px-6 py-2.5 text-xs font-semibold tracking-widest uppercase border border-foreground/50 rounded-full hover:bg-foreground hover:text-background transition-colors duration-300"
+                                        >
+                                            {service.cta.label}
+                                        </Link>
+                                    )}
                                 </div>
-                            </div>
-                        </div>
-                    );
-                })}
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
             </div>
         </div>
     );
