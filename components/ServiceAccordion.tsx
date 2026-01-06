@@ -57,13 +57,37 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                                     {/* Content */}
                                     <div className="flex-grow w-full">
                                         {/* Header: Title + Bullets */}
-                                        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-5 w-full">
-                                            <h3 className="text-3xl md:text-[2.75rem] font-light text-foreground tracking-tight leading-tight">
-                                                {service.title}
-                                            </h3>
+                                        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-5 w-full overflow-hidden">
+                                            <div className="overflow-hidden flex-shrink min-w-0 relative">
+                                                <motion.h3
+                                                    className="text-3xl md:text-[2.75rem] font-light text-foreground tracking-tight leading-tight whitespace-nowrap inline-flex"
+                                                    animate={isActive ? { x: [0, -300] } : { x: 0 }}
+                                                    transition={isActive ? {
+                                                        x: {
+                                                            duration: 6,
+                                                            repeat: Infinity,
+                                                            ease: "linear"
+                                                        }
+                                                    } : { duration: 0.3 }}
+                                                >
+                                                    <span>{service.title}</span>
+                                                    {isActive && <span className="mx-12">•</span>}
+                                                    {isActive && <span>{service.title}</span>}
+                                                    {isActive && <span className="mx-12">•</span>}
+                                                    {isActive && <span>{service.title}</span>}
+                                                    {isActive && <span className="mx-12">•</span>}
+                                                    {isActive && <span>{service.title}</span>}
+                                                    {isActive && <span className="mx-12">•</span>}
+                                                    {isActive && <span>{service.title}</span>}
+                                                    {isActive && <span className="mx-12">•</span>}
+                                                    {isActive && <span>{service.title}</span>}
+                                                    {isActive && <span className="mx-12">•</span>}
+                                                    {isActive && <span>{service.title}</span>}
+                                                </motion.h3>
+                                            </div>
 
 
-                                            <div className="hidden md:flex flex-wrap gap-3 md:gap-4 text-sm md:text-base text-muted-foreground/60 font-medium mt-2 md:mt-0">
+                                            <div className="hidden md:flex flex-wrap gap-3 md:gap-4 text-sm md:text-base text-muted-foreground/60 font-medium mt-2 md:mt-0 flex-shrink-0">
                                                 {!isActive && service.bullets?.map((bullet, idx) => (
                                                     <span key={idx} className="after:content-['•'] after:ml-3 last:after:content-none whitespace-nowrap">
                                                         {bullet}
