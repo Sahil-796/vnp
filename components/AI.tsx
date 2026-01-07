@@ -41,9 +41,16 @@ export function ExpandableChatDemo() {
     scrollToBottom();
   }, [messages]);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e as any);
+    }
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
     setInput("");
@@ -105,9 +112,9 @@ export function ExpandableChatDemo() {
         icon={<Bot className="h-6 w-6" />}
       >
         <ExpandableChatHeader className="flex-col text-center justify-center">
-          <h1 className="text-xl font-semibold">Chat with AI ✨</h1>
+          <h1 className="text-xl font-semibold">Vision and Path AI</h1>
           <p className="text-sm text-muted-foreground">
-            Ask me anything about the components
+            Ask me anything about the company
           </p>
         </ExpandableChatHeader>
 
@@ -215,11 +222,17 @@ export function ExpandableChatDemo() {
             <ChatInput
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
+              onKeyDown={handleKeyDown}
+              placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
               className="min-h-12 resize-none rounded-lg bg-background border-0 p-3 shadow-none focus-visible:ring-0"
             />
             <div className="flex items-center p-3 pt-0 justify-between">
-              <Button type="submit" size="sm" className="ml-auto gap-1.5">
+              <Button
+                type="submit"
+                size="sm"
+                className="ml-auto gap-1.5"
+                disabled={isLoading}
+              >
                 Send Message
                 <CornerDownLeft className="size-3.5" />
               </Button>
