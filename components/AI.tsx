@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect, useRef } from "react";
 import { Send, Bot, Paperclip, Mic, CornerDownLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +16,8 @@ import {
   ExpandableChatFooter,
 } from "@/components/ui/expandable-chat";
 import { ChatMessageList } from "@/components/ui/chat-message-list";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export function ExpandableChatDemo() {
   const [messages, setMessages] = useState([
@@ -28,6 +30,16 @@ export function ExpandableChatDemo() {
 
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatBodyRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -58,18 +70,22 @@ export function ExpandableChatDemo() {
       });
 
       const data = await response.json();
+      const aiResponse =
+        data.response || "Sorry, I couldn't generate a response.";
 
-      // Add AI response to the chat
+      // Add AI response immediately to the chat
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now() + 1,
-          content: data.response || "Sorry, I couldn't generate a response.",
+          content: aiResponse,
           sender: "ai",
         },
       ]);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error calling AI API:", error);
+      setIsLoading(false);
       setMessages((prev) => [
         ...prev,
         {
@@ -78,8 +94,6 @@ export function ExpandableChatDemo() {
           sender: "ai",
         },
       ]);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -97,7 +111,7 @@ export function ExpandableChatDemo() {
           </p>
         </ExpandableChatHeader>
 
-        <ExpandableChatBody>
+        <ExpandableChatBody ref={chatBodyRef}>
           <ChatMessageList>
             {messages.map((message) => (
               <ChatBubble
@@ -116,7 +130,65 @@ export function ExpandableChatDemo() {
                 <ChatBubbleMessage
                   variant={message.sender === "user" ? "sent" : "received"}
                 >
-                  {message.content}
+                  {message.sender === "ai" ? (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        p: ({ children }) => (
+                          <p className="mb-2 last:mb-0">{children}</p>
+                        ),
+                        ul: ({ children }) => (
+                          <ul className="mb-2 ml-4 list-disc">{children}</ul>
+                        ),
+                        ol: ({ children }) => (
+                          <ol className="mb-2 ml-4 list-decimal">{children}</ol>
+                        ),
+                        li: ({ children }) => (
+                          <li className="mb-1">{children}</li>
+                        ),
+                        code: ({ node, ...props }) => {
+                          return (
+                            <code className="bg-muted px-1 py-0.5 rounded text-sm">
+                              {props.children}
+                            </code>
+                          );
+                        },
+                        pre: ({ children }) => (
+                          <pre className="bg-muted p-2 rounded my-2 overflow-x-auto">
+                            {children}
+                          </pre>
+                        ),
+                        h1: ({ children }) => (
+                          <h1 className="text-lg font-bold mb-2">{children}</h1>
+                        ),
+                        h2: ({ children }) => (
+                          <h2 className="text-base font-bold mb-2">
+                            {children}
+                          </h2>
+                        ),
+                        h3: ({ children }) => (
+                          <h3 className="text-sm font-bold mb-1">{children}</h3>
+                        ),
+                        a: ({ children, href }) => (
+                          <a
+                            href={href}
+                            className="text-primary underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {children}
+                          </a>
+                        ),
+                        strong: ({ children }) => (
+                          <strong className="font-semibold">{children}</strong>
+                        ),
+                      }}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  ) : (
+                    message.content
+                  )}
                 </ChatBubbleMessage>
               </ChatBubble>
             ))}
@@ -131,6 +203,7 @@ export function ExpandableChatDemo() {
                 <ChatBubbleMessage isLoading />
               </ChatBubble>
             )}
+            <div ref={messagesEndRef} />
           </ChatMessageList>
         </ExpandableChatBody>
 
