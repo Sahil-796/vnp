@@ -9,7 +9,7 @@ export const Logo = ({ className }: LogoProps) => {
   return (
     <div
     >
-      <Image src="/logo.png" height={50} width={50} alt="Logo" />
+      <Image src="/logo.png" height={75} width={75} alt="Logo" />
     </div>
   );
 };

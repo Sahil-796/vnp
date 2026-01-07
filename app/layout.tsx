@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import { ExpandableChat } from "@/components/ui/expandable-chat";
+import { ExpandableChatDemo } from "@/components/AI";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -17,12 +19,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Vision and Path",
-  description: "Vision and Path is a platform for creating and sharing vision and path documents.",
-  keywords: ["vision", "path", "document", "platform"],
+  description: "Vision and Path",
+  keywords: ["vision", "path", "platform"],
 
   openGraph: {
     title: "Vision and Path",
-    description: "Vision and Path is a platform for creating and sharing vision and path documents.",
+    description: "Vision and Path",
     url: "https://visionandpath.com",
     siteName: "Vision and Path",
     images: [
@@ -53,6 +55,10 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <div className="h-150 relative">
+        <ExpandableChatDemo />
+        
+        </div>
       </body>
     </html>
   );

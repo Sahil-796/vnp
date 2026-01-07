@@ -18,7 +18,7 @@ export const SectionTitle = ({
   return (
     <div
       className={cn(
-        "relative flex flex-col items-center justify-center max-w-4xl mx-auto mb-20 md:mb-24 pt-10",
+        "relative flex flex-col items-center justify-center max-w-4xl mx-auto pt-10",
         containerClassName,
       )}
     >

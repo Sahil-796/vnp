@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
 import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
-import HowWeHelp from "@/components/HowWeHelp";
 import FAQSection from "@/components/FAQSection";
 
 export default function Page() {
@@ -13,7 +12,9 @@ export default function Page() {
         <Hero />
       </div>
 
-      <Services />
+      <div className="max-w-[85vw] mx-auto">
+        <Services />
+      </div>
 
       <div className="max-w-[85vw] mx-auto">
         <WhyChooseUs />
