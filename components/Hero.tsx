@@ -7,7 +7,7 @@ import { data } from "@/constants";
 
 const Hero = () => {
   return (
-    <div className="relative mb-48 md:mb-64">
+    <div className="relative mb-48 md:mb-32">
       <div className="relative overflow-hidden rounded-3xl md:rounded-4xl shadow-2xl">
         <div className="rounded-3xl md:rounded-4xl overflow-hidden relative h-[85vh] md:h-[70vh] w-full">
           <Image
@@ -77,23 +77,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6, type: "spring", bounce: 0.3 }}
-        className="absolute h-auto min-h-[15vh] md:min-h-[20vh] w-[90vw] md:w-[60vw] -bottom-36 md:-bottom-42 left-1/2 -translate-x-1/2 rounded-3xl md:rounded-4xl bg-background/80 backdrop-blur-lg border border-border shadow-2xl flex flex-col gap-4 md:gap-6 items-center justify-center p-6 md:p-8 z-20"
-      >
-        <p className="text-center text-base md:text-2xl font-medium text-foreground max-w-3xl leading-relaxed relative z-10">
-          {data.hero.desc}
-        </p>
-        <CtaButton
-          variant="default"
-          size="lg"
-          className="bg-gray-500 hover:bg-gray-600 relative z-10 rounded-full text-sm md:text-base h-10 md:h-12 px-6 md:px-8 transition-all duration-300 cursor-pointer"
-        >
-          {data.hero.ctad}
-        </CtaButton>
-      </motion.div>
     </div>
   );
 };
