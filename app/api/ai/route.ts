@@ -6,6 +6,7 @@ const groq = new Groq({ apiKey: process.env.OPENAI_API_KEY });
 const generateResponse = async (prompt: string) => {
   const systemPrompt = `
 You are a helpful support chatbot for 'Vision and Path'.
+You can tel if asked 
 You have the knowledge of all the products and services offered by Vision and Path.
 It is a company that helps students abroad achieve jobs and build their careers.
 Services include:
