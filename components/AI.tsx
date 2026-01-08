@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent, useEffect, useRef } from "react";
-import { Send, Bot, Paperclip, Mic, CornerDownLeft } from "lucide-react";
+import { Send, ArrowUp, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   ChatBubble,
@@ -18,6 +18,7 @@ import {
 import { ChatMessageList } from "@/components/ui/chat-message-list";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import Image from "next/image";
 
 export function ExpandableChatDemo() {
   const [messages, setMessages] = useState([
@@ -109,9 +110,28 @@ export function ExpandableChatDemo() {
       <ExpandableChat
         size="lg"
         position="bottom-right"
-        icon={<Bot className="h-6 w-6" />}
+        icon={
+          <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-lg">
+            <Image
+              src="/ai-avatar.png"
+              alt="AI Assistant"
+              width={64}
+              height={64}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        }
       >
-        <ExpandableChatHeader className="flex-col text-center justify-center">
+        <ExpandableChatHeader className="flex-col text-center justify-center gap-1">
+          <div className="w-12 h-12 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
+            <Image
+              src="/ai-avatar.png"
+              alt="AI Assistant"
+              width={48}
+              height={48}
+              className="object-cover w-full h-full"
+            />
+          </div>
           <h1 className="text-xl font-semibold">Vision and Path AI</h1>
           <p className="text-sm text-muted-foreground">
             Ask me anything about the company
@@ -129,13 +149,16 @@ export function ExpandableChatDemo() {
                   className="h-8 w-8 shrink-0"
                   src={
                     message.sender === "user"
-                      ? "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&q=80&crop=faces&fit=crop"
-                      : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&q=80&crop=faces&fit=crop"
+                      ? "/user-avatar.png"
+                      : "/ai-avatar.png"
                   }
                   fallback={message.sender === "user" ? "US" : "AI"}
                 />
                 <ChatBubbleMessage
                   variant={message.sender === "user" ? "sent" : "received"}
+                  className={
+                    message.sender === "user" ? "rounded-3xl" : "rounded-3xl"
+                  }
                 >
                   {message.sender === "ai" ? (
                     <ReactMarkdown
@@ -204,10 +227,10 @@ export function ExpandableChatDemo() {
               <ChatBubble variant="received">
                 <ChatBubbleAvatar
                   className="h-8 w-8 shrink-0"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&q=80&crop=faces&fit=crop"
+                  src="/ai-avatar.png"
                   fallback="AI"
                 />
-                <ChatBubbleMessage isLoading />
+                <ChatBubbleMessage isLoading className="rounded-3xl" />
               </ChatBubble>
             )}
             <div ref={messagesEndRef} />
@@ -217,24 +240,23 @@ export function ExpandableChatDemo() {
         <ExpandableChatFooter>
           <form
             onSubmit={handleSubmit}
-            className="relative rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring p-1"
+            className="relative rounded-2xl border bg-background focus-within:ring-2 focus-within:ring-ring transition-all"
           >
-            <ChatInput
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
-              className="min-h-12 resize-none rounded-lg bg-background border-0 p-3 shadow-none focus-visible:ring-0"
-            />
-            <div className="flex items-center p-3 pt-0 justify-between">
+            <div className="flex items-center gap-2 p-2">
+              <ChatInput
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type your message..."
+                className="min-h-12 resize-none rounded-2xl bg-background border-0 p-3 shadow-none focus-visible:ring-0 flex-1"
+              />
               <Button
                 type="submit"
-                size="sm"
-                className="ml-auto gap-1.5"
-                disabled={isLoading}
+                size="icon"
+                className="h-12 w-12 rounded-full shrink-0 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isLoading || !input.trim()}
               >
-                Send Message
-                <CornerDownLeft className="size-3.5" />
+                <ArrowUp className="h-5 w-5" />
               </Button>
             </div>
           </form>

@@ -29,14 +29,14 @@ export function ChatBubble({
     >
       {children}
     </div>
-  )
+  );
 }
 
 interface ChatBubbleMessageProps {
-  variant?: "sent" | "received"
-  isLoading?: boolean
-  className?: string
-  children?: React.ReactNode
+  variant?: "sent" | "received";
+  isLoading?: boolean;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 export function ChatBubbleMessage({
@@ -49,8 +49,9 @@ export function ChatBubbleMessage({
     <div
       className={cn(
         "rounded-lg p-3",
-        variant === "sent" ? "bg-primary text-primary-foreground" : "bg-muted",
-        className
+
+        variant === "sent" ? "bg-primary text-primary-foreground" : "bg-white-400",
+        className,
       )}
     >
       {isLoading ? (
@@ -68,6 +69,7 @@ interface ChatBubbleAvatarProps {
   src?: string
   fallback?: string
   className?: string
+
 }
 
 export function ChatBubbleAvatar({
@@ -80,13 +82,14 @@ export function ChatBubbleAvatar({
       {src && <AvatarImage src={src} />}
       <AvatarFallback>{fallback}</AvatarFallback>
     </Avatar>
-  )
+
+  );
 }
 
 interface ChatBubbleActionProps {
-  icon?: React.ReactNode
-  onClick?: () => void
-  className?: string
+  icon?: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
 }
 
 export function ChatBubbleAction({
@@ -103,7 +106,7 @@ export function ChatBubbleAction({
     >
       {icon}
     </Button>
-  )
+  );
 }
 
 export function ChatBubbleActionWrapper({
@@ -117,5 +120,5 @@ export function ChatBubbleActionWrapper({
     <div className={cn("flex items-center gap-1 mt-2", className)}>
       {children}
     </div>
-  )
+  );
 }
