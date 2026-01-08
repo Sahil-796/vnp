@@ -55,10 +55,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
-        <div className="h-150 relative">
         <ExpandableChatDemo />
-        
-        </div>
       </body>
     </html>
   );
