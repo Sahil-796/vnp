@@ -23,36 +23,48 @@ export const data = {
     desc: "We offer a comprehensive suite of tools designed to streamline your workflow and enhance collaboration. Discover how we can help you achieve more.",
     content: [
       {
-        title: "Collaborative Editing",
-        desc: "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
-        imgsrc: "/process-1.png",
-        pillColor: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
-        bullets: ["Real-time sync across devices", "Automatic conflict resolution", "Team commenting system"],
-        cta: { label: "Try Editor", href: "/editor" }
+        title: "Product design",
+        desc: "We create visually compelling and user-friendly websites that reflect your brand's identity and engage your target audience. Our designs are tailored to provide seamless navigation and a memorable user experience.",
+        imgsrc: "/process-1.png", // Keeping placeholders for now, though design doesn't explicitly show images in the list view the same way
+        pillColor:
+          "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
+        bullets: ["Saas Platform", "Web Platform", "Mobile App"],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#CDE1E4",
       },
       {
-        title: "Real time changes",
-        desc: "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project.",
+        title: "UX Design",
+        desc: "We create visually compelling and user-friendly websites that reflect your brand's identity and engage your target audience. Our designs are tailored to provide seamless navigation and a memorable user experience.",
         imgsrc: "/process-2.png",
-        pillColor: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
-        bullets: ["Instant live preview", "Smart auto-save capability", "Change tracking log"],
-        cta: { label: "See Live Demo", href: "/live" }
+        pillColor:
+          "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
+        bullets: ["UX Audit", "Analysis", "Research"],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#FCFDF6",
       },
       {
-        title: "Version control",
-        desc: "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates.",
+        title: "Development",
+        desc: "We build robust and scalable applications using the latest technologies. Our development team ensures high performance and security for your digital products.",
         imgsrc: "/process-3.png",
-        pillColor: "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-        bullets: ["Detailed history tracking", "One-click rollback", "Branch comparison tools"],
-        cta: { label: "View History", href: "/history" }
+        pillColor:
+          "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+        bullets: ["Net Core", "PHP", "React", "Node.js", "Angular"],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#F9EDF0",
       },
       {
-        title: "Running out of content",
-        desc: "Say goodbye to writer's block. Our AI-powered tools generate creative content ideas and drafts in seconds, helping you keep your content calendar full and engaging.",
+        title: "Quality Assurance",
+        desc: "We ensure your software is bug-free and performs optimally. Our QA team conducts rigorous testing to guarantee a smooth user experience.",
         imgsrc: "/process-4.png",
-        pillColor: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
-        bullets: ["AI-powered generation", "Smart content planning", "Trend analysis insights"],
-        cta: { label: "Generate Now", href: "/generate" }
+        pillColor:
+          "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+        bullets: [
+          "Testing",
+          "Planning, creating following KPI's",
+          "Documentation",
+        ],
+        cta: { label: "DISCUSS PROJECT", href: "/contact" },
+        bgColor: "#D6E3D6",
       },
     ],
   },
@@ -64,7 +76,8 @@ export const data = {
         "We leverage over 15 years of experience to deliver high-quality, tailored solutions for every client.",
       icon: Award,
       iconColor: "text-yellow-600",
-      color: "bg-yellow-100",
+      color: "#F7F3E8", // Pastel Yellow/Beige
+      pinColor: "bg-yellow-600",
       iconBg: "bg-yellow-200",
       shadow: "shadow-[0_10px_40px_-15px_rgba(234,179,8,0.2)]",
     },
@@ -74,7 +87,8 @@ export const data = {
         "Each solution is personalized, ensuring that your business gets the exact tools it needs to succeed.",
       icon: Zap,
       iconColor: "text-purple-600",
-      color: "bg-purple-100",
+      color: "#EBE8F3", // Pastel Purple
+      pinColor: "bg-purple-600",
       iconBg: "bg-purple-200",
       shadow: "shadow-[0_10px_40px_-15px_rgba(147,51,234,0.2)]",
     },
@@ -84,7 +98,8 @@ export const data = {
         "We prioritize your satisfaction and aim to exceed your expectations in every project we take on.",
       icon: Users,
       iconColor: "text-pink-600",
-      color: "bg-pink-100",
+      color: "#F9EDF0", // Pastel Pink
+      pinColor: "bg-pink-600",
       iconBg: "bg-pink-200",
       shadow: "shadow-[0_10px_40px_-15px_rgba(236,72,153,0.2)]",
     },
@@ -94,7 +109,8 @@ export const data = {
         "We stay ahead of the curve, implementing the latest technologies to keep your business on the cutting edge.",
       icon: Lightbulb,
       iconColor: "text-blue-600",
-      color: "bg-blue-100",
+      color: "#CDE1E4", // Pastel Blue
+      pinColor: "bg-blue-600",
       iconBg: "bg-blue-200",
       shadow: "shadow-[0_10px_40px_-15px_rgba(37,99,235,0.2)]",
     },
@@ -104,7 +120,8 @@ export const data = {
         "We understand that businesses change, and we offer solutions that can adapt to your evolving needs.",
       icon: Settings,
       iconColor: "text-green-600",
-      color: "bg-green-100",
+      color: "#D6E3D6", // Pastel Green
+      pinColor: "bg-green-600",
       iconBg: "bg-green-200",
       shadow: "shadow-[0_10px_40px_-15px_rgba(22,163,74,0.2)]",
     },
@@ -114,7 +131,8 @@ export const data = {
         "We are committed to delivering solutions that meet the highest standards of quality, ensuring long-term success.",
       icon: BarChart3,
       iconColor: "text-orange-600",
-      color: "bg-orange-100",
+      color: "#F3EBE8", // Pastel Orange
+      pinColor: "bg-orange-600",
       iconBg: "bg-orange-200",
       shadow: "shadow-[0_10px_40px_-15px_rgba(234,88,12,0.2)]",
     },
@@ -195,98 +213,122 @@ export const data = {
       "web-dev": "Web Development",
       "mobile-dev": "Mobile Development",
       "ui-ux": "UI/UX Design",
-      "copywriting": "Copywriting"
+      copywriting: "Copywriting",
     },
     faqData: {
       "web-dev": [
         {
           question: "What is web development?",
-          answer: "Web development is the process of building and maintaining websites. It involves a combination of client-side and server-side programming, database management, and other web-related technologies."
+          answer:
+            "Web development is the process of building and maintaining websites. It involves a combination of client-side and server-side programming, database management, and other web-related technologies.",
         },
         {
-          question: "What programming languages are essential for web development?",
-          answer: "Essential languages for web development include HTML, CSS, and JavaScript for front-end development. For back-end development, popular languages include Python, Ruby, PHP, Java, and Node.js."
+          question:
+            "What programming languages are essential for web development?",
+          answer:
+            "Essential languages for web development include HTML, CSS, and JavaScript for front-end development. For back-end development, popular languages include Python, Ruby, PHP, Java, and Node.js.",
         },
         {
-          question: "What's the difference between front-end and back-end development?",
-          answer: "Front-end development focuses on the user interface and user experience of a website, while back-end development deals with server-side logic, databases, and application integration."
+          question:
+            "What's the difference between front-end and back-end development?",
+          answer:
+            "Front-end development focuses on the user interface and user experience of a website, while back-end development deals with server-side logic, databases, and application integration.",
         },
         {
           question: "How long does it typically take to develop a website?",
-          answer: "The time to develop a website can vary greatly depending on its complexity. A simple static website might take a few days, while a complex web application could take several months or even years."
+          answer:
+            "The time to develop a website can vary greatly depending on its complexity. A simple static website might take a few days, while a complex web application could take several months or even years.",
         },
         {
           question: "What is responsive web design?",
-          answer: "Responsive web design is an approach to web design that makes web pages render well on a variety of devices and window or screen sizes. It ensures that websites are accessible and visually appealing across different platforms."
-        }
+          answer:
+            "Responsive web design is an approach to web design that makes web pages render well on a variety of devices and window or screen sizes. It ensures that websites are accessible and visually appealing across different platforms.",
+        },
       ],
       "mobile-dev": [
         {
           question: "What is mobile development?",
-          answer: "Mobile development is the process of creating software applications that run on mobile devices such as smartphones and tablets. It involves designing, coding, and testing applications for mobile operating systems like iOS and Android."
+          answer:
+            "Mobile development is the process of creating software applications that run on mobile devices such as smartphones and tablets. It involves designing, coding, and testing applications for mobile operating systems like iOS and Android.",
         },
         {
-          question: "What's the difference between native and cross-platform mobile development?",
-          answer: "Native development involves building separate apps for each platform using platform-specific languages (Swift for iOS, Java/Kotlin for Android). Cross-platform development uses frameworks like React Native or Flutter to build a single codebase that works on multiple platforms."
+          question:
+            "What's the difference between native and cross-platform mobile development?",
+          answer:
+            "Native development involves building separate apps for each platform using platform-specific languages (Swift for iOS, Java/Kotlin for Android). Cross-platform development uses frameworks like React Native or Flutter to build a single codebase that works on multiple platforms.",
         },
         {
           question: "What are some popular mobile app development frameworks?",
-          answer: "Popular mobile app development frameworks include React Native, Flutter, Xamarin, Ionic, and NativeScript. Each has its own strengths and is suited for different types of projects."
+          answer:
+            "Popular mobile app development frameworks include React Native, Flutter, Xamarin, Ionic, and NativeScript. Each has its own strengths and is suited for different types of projects.",
         },
         {
           question: "How do you ensure mobile app security?",
-          answer: "Mobile app security involves practices such as secure coding, data encryption, secure authentication methods, regular security audits, and staying up-to-date with the latest security patches and best practices."
+          answer:
+            "Mobile app security involves practices such as secure coding, data encryption, secure authentication methods, regular security audits, and staying up-to-date with the latest security patches and best practices.",
         },
         {
           question: "What is the typical mobile app development lifecycle?",
-          answer: "The typical mobile app development lifecycle includes stages such as planning, design, development, testing, deployment, and maintenance. It often follows an iterative process with continuous updates and improvements."
-        }
+          answer:
+            "The typical mobile app development lifecycle includes stages such as planning, design, development, testing, deployment, and maintenance. It often follows an iterative process with continuous updates and improvements.",
+        },
       ],
       "ui-ux": [
         {
           question: "What is UI/UX design?",
-          answer: "UI (User Interface) design focuses on the visual elements of a digital product, while UX (User Experience) design deals with the overall feel and functionality of the product. Together, they aim to create products that are both visually appealing and easy to use."
+          answer:
+            "UI (User Interface) design focuses on the visual elements of a digital product, while UX (User Experience) design deals with the overall feel and functionality of the product. Together, they aim to create products that are both visually appealing and easy to use.",
         },
         {
           question: "What's the difference between UI and UX design?",
-          answer: "UI design focuses on the look and layout of a product's interface, including colors, typography, and visual elements. UX design is broader, encompassing the entire user journey and how users interact with the product."
+          answer:
+            "UI design focuses on the look and layout of a product's interface, including colors, typography, and visual elements. UX design is broader, encompassing the entire user journey and how users interact with the product.",
         },
         {
           question: "What tools do UI/UX designers commonly use?",
-          answer: "Common tools for UI/UX design include Sketch, Figma, Adobe XD, InVision, and Protopie for design and prototyping. Research and testing tools might include UserTesting, Hotjar, and Optimal Workshop."
+          answer:
+            "Common tools for UI/UX design include Sketch, Figma, Adobe XD, InVision, and Protopie for design and prototyping. Research and testing tools might include UserTesting, Hotjar, and Optimal Workshop.",
         },
         {
           question: "What is a user persona?",
-          answer: "A user persona is a fictional representation of your ideal user or customer. It's based on user research and includes details about the persona's background, goals, challenges, and behaviors. Personas help guide design decisions by keeping the focus on the end-user."
+          answer:
+            "A user persona is a fictional representation of your ideal user or customer. It's based on user research and includes details about the persona's background, goals, challenges, and behaviors. Personas help guide design decisions by keeping the focus on the end-user.",
         },
         {
           question: "What is the importance of user testing in UI/UX design?",
-          answer: "User testing is crucial in UI/UX design as it provides direct feedback from actual users. It helps identify usability issues, validate design decisions, and ensure that the product meets user needs and expectations."
-        }
+          answer:
+            "User testing is crucial in UI/UX design as it provides direct feedback from actual users. It helps identify usability issues, validate design decisions, and ensure that the product meets user needs and expectations.",
+        },
       ],
-      "copywriting": [
+      copywriting: [
         {
           question: "What is copywriting?",
-          answer: "Copywriting is the act of writing text for the purpose of advertising or other forms of marketing. The product, called copy, is written content that aims to increase brand awareness and ultimately persuade a person or group to take a particular action."
+          answer:
+            "Copywriting is the act of writing text for the purpose of advertising or other forms of marketing. The product, called copy, is written content that aims to increase brand awareness and ultimately persuade a person or group to take a particular action.",
         },
         {
-          question: "What's the difference between copywriting and content writing?",
-          answer: "While both involve writing, copywriting is specifically aimed at persuasion and driving action (like making a purchase), while content writing is more focused on informing, educating, or entertaining the reader."
+          question:
+            "What's the difference between copywriting and content writing?",
+          answer:
+            "While both involve writing, copywriting is specifically aimed at persuasion and driving action (like making a purchase), while content writing is more focused on informing, educating, or entertaining the reader.",
         },
         {
           question: "What are some key elements of effective copywriting?",
-          answer: "Key elements of effective copywriting include understanding the target audience, crafting compelling headlines, focusing on benefits rather than features, using persuasive language, and including a clear call-to-action."
+          answer:
+            "Key elements of effective copywriting include understanding the target audience, crafting compelling headlines, focusing on benefits rather than features, using persuasive language, and including a clear call-to-action.",
         },
         {
           question: "How important is SEO in copywriting?",
-          answer: "SEO (Search Engine Optimization) is very important in copywriting, especially for digital content. It helps ensure that your copy reaches your target audience by making it more visible in search engine results. This involves using relevant keywords, creating quality content, and following SEO best practices."
+          answer:
+            "SEO (Search Engine Optimization) is very important in copywriting, especially for digital content. It helps ensure that your copy reaches your target audience by making it more visible in search engine results. This involves using relevant keywords, creating quality content, and following SEO best practices.",
         },
         {
           question: "What is a call-to-action (CTA) in copywriting?",
-          answer: "A call-to-action (CTA) is a prompt in your copy that tells the reader what to do next. It's usually a command verb like 'Buy Now,' 'Sign Up,' or 'Learn More.' An effective CTA is clear, compelling, and creates a sense of urgency."
-        }
-      ]
-    }
+          answer:
+            "A call-to-action (CTA) is a prompt in your copy that tells the reader what to do next. It's usually a command verb like 'Buy Now,' 'Sign Up,' or 'Learn More.' An effective CTA is clear, compelling, and creates a sense of urgency.",
+        },
+      ],
+    },
   },
 
   footer: {
