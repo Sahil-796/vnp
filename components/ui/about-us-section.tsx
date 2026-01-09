@@ -4,29 +4,67 @@ import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import {
-  Pen,
-  PaintBucket,
-  Home,
-  Ruler,
-  PenTool,
-  Building2,
-  Award,
-  Users,
-  Calendar,
-  CheckCircle,
-  Sparkles,
-  Star,
   ArrowRight,
   Zap,
 } from "lucide-react"
 import { data } from "@/constants"
 import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion"
 
+// Custom SVG Icons
+const Icons = {
+  Interior: (props: any) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <path d="M3 21h18M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7" />
+      <path d="M19 10a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2" strokeOpacity="0.5" />
+      <path d="M9 12v-1a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" />
+      <circle cx="12" cy="5" r="2" fill="currentColor" fillOpacity="0.1" />
+    </svg>
+  ),
+  Exterior: (props: any) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="currentColor" fillOpacity="0.05" />
+      <path d="M9 22V12h6v10" />
+      <path d="M18 6L21 9M3 9l3-3" strokeOpacity="0.5" />
+    </svg>
+  ),
+  Design: (props: any) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <path d="M12 2L2 12l10 10 10-10L12 2z" strokeOpacity="0.5" />
+      <path d="M12 6L6 12l6 6 6-6-6-6z" fill="currentColor" fillOpacity="0.1" />
+      <path d="M12 2v20M2 12h20" strokeWidth="1" strokeDasharray="2 2" />
+    </svg>
+  ),
+  Decoration: (props: any) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z" fill="currentColor" fillOpacity="0.1" />
+      <path d="M9 22h6" strokeWidth="2" />
+      <path d="M12 6v4" strokeLinecap="round" />
+      <path d="M8 8l1 1M16 8l-1 1" />
+    </svg>
+  ),
+  Planning: (props: any) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" fill="currentColor" fillOpacity="0.05" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" strokeOpacity="0.5" />
+      <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" strokeWidth="2" />
+    </svg>
+  ),
+  Execution: (props: any) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeOpacity="0.5" />
+      <path d="M22 4L12 14.01l-3-3" strokeWidth="2" />
+      <circle cx="12" cy="12" r="6" fill="currentColor" fillOpacity="0.1" />
+    </svg>
+  ),
+}
+
 export default function AboutUsSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1 })
-  const isStatsInView = useInView(statsRef, { once: false, amount: 0.3 })
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 })
+  const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 })
 
   // Parallax effect for decorative elements
   const { scrollYProgress } = useScroll({
@@ -86,7 +124,7 @@ export default function AboutUsSection() {
       >
         <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
           <motion.span
-            className="text-primary font-medium mb-2 flex items-center gap-2"
+            className="text-muted-foreground text-sm font-medium mb-2 flex items-center gap-2"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -94,9 +132,9 @@ export default function AboutUsSection() {
             <Zap className="w-4 h-4" />
             {hero.badge}
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-light mb-4 text-center">{hero.title}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 text-center">{hero.title}</h2>
           <motion.div
-            className="w-24 h-1 bg-primary"
+            className="w-24 h-1 bg-secondary"
             initial={{ width: 0 }}
             animate={{ width: 96 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -112,20 +150,23 @@ export default function AboutUsSection() {
           <div className="space-y-16">
             {features
               .filter((feature) => feature.position === "left")
-              .map((feature, index) => (
-                <ServiceItem
-                  key={`left-${index}`}
-                  icon={<feature.icon className="w-6 h-6" />}
-                  secondaryIcon={
-                    <feature.secondaryIcon className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />
-                  }
-                  title={feature.title}
-                  description={feature.description}
-                  variants={itemVariants}
-                  delay={index * 0.2}
-                  direction="left"
-                />
-              ))}
+              .map((feature, index) => {
+                // @ts-ignore
+                const Icon = Icons[feature.title] || feature.icon
+                return (
+                  <ServiceItem
+                    key={`left-${index}`}
+                    icon={<Icon className="w-6 h-6" />}
+                    title={feature.title}
+                    description={feature.description}
+                    iconBg={feature.iconBg}
+                    iconColor={feature.iconColor}
+                    variants={itemVariants}
+                    delay={index * 0.2}
+                    direction="left"
+                  />
+                )
+              })}
           </div>
 
           {/* Center Image */}
@@ -193,20 +234,23 @@ export default function AboutUsSection() {
           <div className="space-y-16">
             {features
               .filter((feature) => feature.position === "right")
-              .map((feature, index) => (
-                <ServiceItem
-                  key={`right-${index}`}
-                  icon={<feature.icon className="w-6 h-6" />}
-                  secondaryIcon={
-                    <feature.secondaryIcon className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />
-                  }
-                  title={feature.title}
-                  description={feature.description}
-                  variants={itemVariants}
-                  delay={index * 0.2}
-                  direction="right"
-                />
-              ))}
+              .map((feature, index) => {
+                // @ts-ignore
+                const Icon = Icons[feature.title] || feature.icon
+                return (
+                  <ServiceItem
+                    key={`right-${index}`}
+                    icon={<Icon className="w-6 h-6" />}
+                    title={feature.title}
+                    description={feature.description}
+                    iconBg={feature.iconBg}
+                    iconColor={feature.iconColor}
+                    variants={itemVariants}
+                    delay={index * 0.2}
+                    direction="right"
+                  />
+                )
+              })}
           </div>
         </div>
 
@@ -254,9 +298,10 @@ export default function AboutUsSection() {
 
 interface ServiceItemProps {
   icon: React.ReactNode
-  secondaryIcon?: React.ReactNode
   title: string
   description: string
+  iconBg?: string
+  iconColor?: string
   variants: {
     hidden: { opacity: number; y?: number }
     visible: { opacity: number; y?: number; transition: { duration: number; ease: string } }
@@ -265,7 +310,16 @@ interface ServiceItemProps {
   direction: "left" | "right"
 }
 
-function ServiceItem({ icon, secondaryIcon, title, description, variants, delay, direction }: ServiceItemProps) {
+function ServiceItem({
+  icon,
+  title,
+  description,
+  iconBg,
+  iconColor,
+  variants,
+  delay,
+  direction,
+}: ServiceItemProps) {
   return (
     <motion.div
       className="flex flex-col group"
@@ -280,11 +334,10 @@ function ServiceItem({ icon, secondaryIcon, title, description, variants, delay,
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className="text-primary bg-primary/10 p-3 rounded-lg transition-colors duration-300 group-hover:bg-primary/20 relative"
-          whileHover={{ rotate: [0, -10, 10, -5, 0], transition: { duration: 0.5 } }}
+          className={`p-3 rounded-lg transition-colors duration-300 relative ${iconBg || "bg-primary/10"} ${iconColor || "text-primary"
+            }`}
         >
           {icon}
-          {secondaryIcon}
         </motion.div>
         <h3 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors duration-300">
           {title}
@@ -321,7 +374,7 @@ interface StatCounterProps {
 
 function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
   const countRef = useRef(null)
-  const isInView = useInView(countRef, { once: false })
+  const isInView = useInView(countRef, { once: true })
   const [hasAnimated, setHasAnimated] = useState(false)
 
   const springValue = useSpring(0, {

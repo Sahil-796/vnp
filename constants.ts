@@ -12,9 +12,6 @@ import {
   PenTool,
   Building2,
   Calendar,
-  CheckCircle,
-  Sparkles,
-  Star,
   TrendingUp,
 } from "lucide-react";
 
@@ -345,51 +342,57 @@ export const data = {
     features: [
       {
         icon: Pen,
-        secondaryIcon: Sparkles,
         title: "Interior",
         description:
           "Transform your living spaces with our expert interior design services. We blend functionality and aesthetics to create spaces that reflect your unique style and personality.",
         position: "left",
+        iconBg: "bg-purple-100 dark:bg-purple-900/20",
+        iconColor: "text-purple-600",
       },
       {
         icon: Home,
-        secondaryIcon: CheckCircle,
         title: "Exterior",
         description:
           "Make a lasting impression with stunning exterior designs that enhance curb appeal and create harmonious connections between architecture and landscape.",
         position: "left",
+        iconBg: "bg-green-100 dark:bg-green-900/20",
+        iconColor: "text-green-600",
       },
       {
         icon: PenTool,
-        secondaryIcon: Star,
         title: "Design",
         description:
           "Our innovative design process combines creativity with practicality, resulting in spaces that are both beautiful and functional for everyday living.",
         position: "left",
+        iconBg: "bg-blue-100 dark:bg-blue-900/20",
+        iconColor: "text-blue-600",
       },
       {
         icon: PaintBucket,
-        secondaryIcon: Sparkles,
         title: "Decoration",
         description:
           "Elevate your space with our curated decoration services. From color schemes to textiles and accessories, we perfect every detail to bring your vision to life.",
         position: "right",
+        iconBg: "bg-pink-100 dark:bg-pink-900/20",
+        iconColor: "text-pink-600",
       },
       {
         icon: Ruler,
-        secondaryIcon: CheckCircle,
         title: "Planning",
         description:
           "Our meticulous planning process ensures every project runs smoothly from concept to completion, with careful attention to timelines, budgets, and requirements.",
         position: "right",
+        iconBg: "bg-orange-100 dark:bg-orange-900/20",
+        iconColor: "text-orange-600",
       },
       {
         icon: Building2,
-        secondaryIcon: Star,
         title: "Execution",
         description:
           "Watch your dream space come to life through our flawless execution. Our skilled team handles every aspect of implementation with precision and care.",
         position: "right",
+        iconBg: "bg-yellow-100 dark:bg-yellow-900/20",
+        iconColor: "text-yellow-600",
       },
     ],
     stats: [
