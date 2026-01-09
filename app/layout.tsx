@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { ExpandableChat } from "@/components/ui/expandable-chat";
 import { ExpandableChatDemo } from "@/components/AI";
+import Footer from "@/components/Footer";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <ExpandableChatDemo />
+        <Footer />
       </body>
     </html>
   );
