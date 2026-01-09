@@ -20,51 +20,25 @@ export const data = {
 
   services: {
     title: "Our Services",
-    desc: "We offer a comprehensive suite of tools designed to streamline your workflow and enhance collaboration. Discover how we can help you achieve more.",
+    desc: "We offer a wide range of services to help you achieve your career goals.",
     content: [
       {
-        title: "Product design",
-        desc: "We create visually compelling and user-friendly websites that reflect your brand's identity and engage your target audience. Our designs are tailored to provide seamless navigation and a memorable user experience.",
-        imgsrc: "/process-1.png", // Keeping placeholders for now, though design doesn't explicitly show images in the list view the same way
-        pillColor:
-          "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
-        bullets: ["Saas Platform", "Web Platform", "Mobile App"],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" },
-        bgColor: "#CDE1E4",
+        title: "Resume Building",
+        desc: "We craft professional, ATS-optimized resumes that showcase your true potential. Our experts analyze your career history to highlight your strongest achievements, ensuring you stand out in the competitive job market.",
+        imgsrc:
+          "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop",
       },
       {
-        title: "UX Design",
-        desc: "We create visually compelling and user-friendly websites that reflect your brand's identity and engage your target audience. Our designs are tailored to provide seamless navigation and a memorable user experience.",
-        imgsrc: "/process-2.png",
-        pillColor:
-          "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
-        bullets: ["UX Audit", "Analysis", "Research"],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" },
-        bgColor: "#FCFDF6",
+        title: "Career Counseling",
+        desc: "Navigate your professional journey with confidence. Our personalized career counseling sessions help you identify your strengths, set achievable goals, and create a roadmap for long-term success.",
+        imgsrc:
+          "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop",
       },
       {
-        title: "Development",
-        desc: "We build robust and scalable applications using the latest technologies. Our development team ensures high performance and security for your digital products.",
-        imgsrc: "/process-3.png",
-        pillColor:
-          "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-        bullets: ["Net Core", "PHP", "React", "Node.js", "Angular"],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" },
-        bgColor: "#F9EDF0",
-      },
-      {
-        title: "Quality Assurance",
-        desc: "We ensure your software is bug-free and performs optimally. Our QA team conducts rigorous testing to guarantee a smooth user experience.",
-        imgsrc: "/process-4.png",
-        pillColor:
-          "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
-        bullets: [
-          "Testing",
-          "Planning, creating following KPI's",
-          "Documentation",
-        ],
-        cta: { label: "DISCUSS PROJECT", href: "/contact" },
-        bgColor: "#D6E3D6",
+        title: "Interview Prep",
+        desc: "Ace your next interview with our comprehensive preparation services. From mock interviews to behavioral question strategies, we provide the feedback and practice you need to make a lasting impression.",
+        imgsrc:
+          "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop",
       },
     ],
   },
