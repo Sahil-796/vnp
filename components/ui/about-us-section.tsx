@@ -18,8 +18,8 @@ import {
   Star,
   ArrowRight,
   Zap,
-  TrendingUp,
 } from "lucide-react"
+import { data } from "@/constants"
 import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion"
 
 export default function AboutUsSection() {
@@ -59,63 +59,8 @@ export default function AboutUsSection() {
     },
   }
 
-  const services = [
-    {
-      icon: <Pen className="w-6 h-6" />,
-      secondaryIcon: <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />,
-      title: "Interior",
-      description:
-        "Transform your living spaces with our expert interior design services. We blend functionality and aesthetics to create spaces that reflect your unique style and personality.",
-      position: "left",
-    },
-    {
-      icon: <Home className="w-6 h-6" />,
-      secondaryIcon: <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />,
-      title: "Exterior",
-      description:
-        "Make a lasting impression with stunning exterior designs that enhance curb appeal and create harmonious connections between architecture and landscape.",
-      position: "left",
-    },
-    {
-      icon: <PenTool className="w-6 h-6" />,
-      secondaryIcon: <Star className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />,
-      title: "Design",
-      description:
-        "Our innovative design process combines creativity with practicality, resulting in spaces that are both beautiful and functional for everyday living.",
-      position: "left",
-    },
-    {
-      icon: <PaintBucket className="w-6 h-6" />,
-      secondaryIcon: <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />,
-      title: "Decoration",
-      description:
-        "Elevate your space with our curated decoration services. From color schemes to textiles and accessories, we perfect every detail to bring your vision to life.",
-      position: "right",
-    },
-    {
-      icon: <Ruler className="w-6 h-6" />,
-      secondaryIcon: <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />,
-      title: "Planning",
-      description:
-        "Our meticulous planning process ensures every project runs smoothly from concept to completion, with careful attention to timelines, budgets, and requirements.",
-      position: "right",
-    },
-    {
-      icon: <Building2 className="w-6 h-6" />,
-      secondaryIcon: <Star className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />,
-      title: "Execution",
-      description:
-        "Watch your dream space come to life through our flawless execution. Our skilled team handles every aspect of implementation with precision and care.",
-      position: "right",
-    },
-  ]
+  const { hero, features, stats, cta } = data.aboutUs
 
-  const stats = [
-    { icon: <Award />, value: 150, label: "Projects Completed", suffix: "+" },
-    { icon: <Users />, value: 1200, label: "Happy Clients", suffix: "+" },
-    { icon: <Calendar />, value: 12, label: "Years Experience", suffix: "" },
-    { icon: <TrendingUp />, value: 98, label: "Satisfaction Rate", suffix: "%" },
-  ]
 
   return (
     <section
@@ -132,31 +77,6 @@ export default function AboutUsSection() {
         className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"
         style={{ y: y2, rotate: rotate2 }}
       />
-      <motion.div
-        className="absolute top-1/2 left-1/4 w-4 h-4 rounded-full bg-primary/30"
-        animate={{
-          y: [0, -15, 0],
-          opacity: [0.5, 1, 0.5],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 right-1/4 w-6 h-6 rounded-full bg-secondary/30"
-        animate={{
-          y: [0, 20, 0],
-          opacity: [0.5, 1, 0.5],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
 
       <motion.div
         className="container mx-auto max-w-6xl relative z-10"
@@ -172,9 +92,9 @@ export default function AboutUsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Zap className="w-4 h-4" />
-            DISCOVER OUR STORY
+            {hero.badge}
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-light mb-4 text-center">About Us</h2>
+          <h2 className="text-4xl md:text-5xl font-light mb-4 text-center">{hero.title}</h2>
           <motion.div
             className="w-24 h-1 bg-primary"
             initial={{ width: 0 }}
@@ -184,23 +104,23 @@ export default function AboutUsSection() {
         </motion.div>
 
         <motion.p className="text-center max-w-2xl mx-auto mb-16 text-muted-foreground" variants={itemVariants}>
-          We are a passionate team of designers and architects dedicated to creating beautiful, functional spaces that
-          inspire and elevate everyday living. With attention to detail and commitment to excellence, we transform
-          visions into reality.
+          {hero.description}
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           {/* Left Column */}
           <div className="space-y-16">
-            {services
-              .filter((service) => service.position === "left")
-              .map((service, index) => (
+            {features
+              .filter((feature) => feature.position === "left")
+              .map((feature, index) => (
                 <ServiceItem
                   key={`left-${index}`}
-                  icon={service.icon}
-                  secondaryIcon={service.secondaryIcon}
-                  title={service.title}
-                  description={service.description}
+                  icon={<feature.icon className="w-6 h-6" />}
+                  secondaryIcon={
+                    <feature.secondaryIcon className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />
+                  }
+                  title={feature.title}
+                  description={feature.description}
                   variants={itemVariants}
                   delay={index * 0.2}
                   direction="left"
@@ -271,15 +191,17 @@ export default function AboutUsSection() {
 
           {/* Right Column */}
           <div className="space-y-16">
-            {services
-              .filter((service) => service.position === "right")
-              .map((service, index) => (
+            {features
+              .filter((feature) => feature.position === "right")
+              .map((feature, index) => (
                 <ServiceItem
                   key={`right-${index}`}
-                  icon={service.icon}
-                  secondaryIcon={service.secondaryIcon}
-                  title={service.title}
-                  description={service.description}
+                  icon={<feature.icon className="w-6 h-6" />}
+                  secondaryIcon={
+                    <feature.secondaryIcon className="w-4 h-4 absolute -top-1 -right-1 text-muted-foreground" />
+                  }
+                  title={feature.title}
+                  description={feature.description}
                   variants={itemVariants}
                   delay={index * 0.2}
                   direction="right"
@@ -299,7 +221,7 @@ export default function AboutUsSection() {
           {stats.map((stat, index) => (
             <StatCounter
               key={index}
-              icon={stat.icon}
+              icon={<stat.icon />}
               value={stat.value}
               label={stat.label}
               suffix={stat.suffix}
@@ -316,13 +238,13 @@ export default function AboutUsSection() {
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <div className="flex-1">
-            <h3 className="text-2xl font-medium mb-2">Ready to transform your space?</h3>
-            <p className="text-muted-foreground">Let's create something beautiful together.</p>
+            <h3 className="text-2xl font-medium mb-2">{cta.title}</h3>
+            <p className="text-muted-foreground">{cta.description}</p>
           </div>
           <motion.button
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg flex items-center gap-2 font-medium transition-colors"
           >
-            Get Started <ArrowRight className="w-4 h-4" />
+            {cta.buttonText} <ArrowRight className="w-4 h-4" />
           </motion.button>
         </motion.div>
       </motion.div>
