@@ -15,7 +15,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-export const data = {
+export const landingPageData = {
   hero: {
     titlep1: "Career guidance that",
     titlep2: "moves you forward",
@@ -314,8 +314,8 @@ export const data = {
   },
 
   footer: {
-    titlep1: "Elevating Digital",
-    titlep2: "Experiences",
+    titlep1: "Vision & Path",
+    titlep2: "",
     address: "123 Innovation Drive, Tech City, CA 94043",
     phone: "+1 (555) 123-4567",
     companyLinks: [
@@ -331,80 +331,85 @@ export const data = {
     ],
     copyright: "Copyright © 2025 Vision & Path. All Rights Reserved.",
   },
+};
 
-  aboutUs: {
-    hero: {
-      badge: "DISCOVER OUR STORY",
-      title: "About Us",
+export const aboutPageData = {
+  hero: {
+    badge: "DISCOVER OUR STORY",
+    title: "About Us",
+    description:
+      "We are a passionate team of designers and architects dedicated to creating beautiful, functional spaces that inspire and elevate everyday living. With attention to detail and commitment to excellence, we transform visions into reality.",
+  },
+  features: [
+    {
+      icon: Pen,
+      title: "Interior",
       description:
-        "We are a passionate team of designers and architects dedicated to creating beautiful, functional spaces that inspire and elevate everyday living. With attention to detail and commitment to excellence, we transform visions into reality.",
+        "Transform your living spaces with our expert interior design services. We blend functionality and aesthetics to create spaces that reflect your unique style and personality.",
+      position: "left",
+      iconBg: "bg-purple-100 dark:bg-purple-900/20",
+      iconColor: "text-purple-600",
     },
-    features: [
-      {
-        icon: Pen,
-        title: "Interior",
-        description:
-          "Transform your living spaces with our expert interior design services. We blend functionality and aesthetics to create spaces that reflect your unique style and personality.",
-        position: "left",
-        iconBg: "bg-purple-100 dark:bg-purple-900/20",
-        iconColor: "text-purple-600",
-      },
-      {
-        icon: Home,
-        title: "Exterior",
-        description:
-          "Make a lasting impression with stunning exterior designs that enhance curb appeal and create harmonious connections between architecture and landscape.",
-        position: "left",
-        iconBg: "bg-green-100 dark:bg-green-900/20",
-        iconColor: "text-green-600",
-      },
-      {
-        icon: PenTool,
-        title: "Design",
-        description:
-          "Our innovative design process combines creativity with practicality, resulting in spaces that are both beautiful and functional for everyday living.",
-        position: "left",
-        iconBg: "bg-blue-100 dark:bg-blue-900/20",
-        iconColor: "text-blue-600",
-      },
-      {
-        icon: PaintBucket,
-        title: "Decoration",
-        description:
-          "Elevate your space with our curated decoration services. From color schemes to textiles and accessories, we perfect every detail to bring your vision to life.",
-        position: "right",
-        iconBg: "bg-pink-100 dark:bg-pink-900/20",
-        iconColor: "text-pink-600",
-      },
-      {
-        icon: Ruler,
-        title: "Planning",
-        description:
-          "Our meticulous planning process ensures every project runs smoothly from concept to completion, with careful attention to timelines, budgets, and requirements.",
-        position: "right",
-        iconBg: "bg-orange-100 dark:bg-orange-900/20",
-        iconColor: "text-orange-600",
-      },
-      {
-        icon: Building2,
-        title: "Execution",
-        description:
-          "Watch your dream space come to life through our flawless execution. Our skilled team handles every aspect of implementation with precision and care.",
-        position: "right",
-        iconBg: "bg-yellow-100 dark:bg-yellow-900/20",
-        iconColor: "text-yellow-600",
-      },
-    ],
-    stats: [
-      { icon: Award, value: 150, label: "Projects Completed", suffix: "+" },
-      { icon: Users, value: 1200, label: "Happy Clients", suffix: "+" },
-      { icon: Calendar, value: 12, label: "Years Experience", suffix: "" },
-      { icon: TrendingUp, value: 98, label: "Satisfaction Rate", suffix: "%" },
-    ],
-    cta: {
-      title: "Ready to transform your space?",
-      description: "Let's create something beautiful together.",
-      buttonText: "Get Started",
+    {
+      icon: Home,
+      title: "Exterior",
+      description:
+        "Make a lasting impression with stunning exterior designs that enhance curb appeal and create harmonious connections between architecture and landscape.",
+      position: "left",
+      iconBg: "bg-green-100 dark:bg-green-900/20",
+      iconColor: "text-green-600",
     },
+    {
+      icon: PenTool,
+      title: "Design",
+      description:
+        "Our innovative design process combines creativity with practicality, resulting in spaces that are both beautiful and functional for everyday living.",
+      position: "left",
+      iconBg: "bg-blue-100 dark:bg-blue-900/20",
+      iconColor: "text-blue-600",
+    },
+    {
+      icon: PaintBucket,
+      title: "Decoration",
+      description:
+        "Elevate your space with our curated decoration services. From color schemes to textiles and accessories, we perfect every detail to bring your vision to life.",
+      position: "right",
+      iconBg: "bg-pink-100 dark:bg-pink-900/20",
+      iconColor: "text-pink-600",
+    },
+    {
+      icon: Ruler,
+      title: "Planning",
+      description:
+        "Our meticulous planning process ensures every project runs smoothly from concept to completion, with careful attention to timelines, budgets, and requirements.",
+      position: "right",
+      iconBg: "bg-orange-100 dark:bg-orange-900/20",
+      iconColor: "text-orange-600",
+    },
+    {
+      icon: Building2,
+      title: "Execution",
+      description:
+        "Watch your dream space come to life through our flawless execution. Our skilled team handles every aspect of implementation with precision and care.",
+      position: "right",
+      iconBg: "bg-yellow-100 dark:bg-yellow-900/20",
+      iconColor: "text-yellow-600",
+    },
+  ],
+  stats: [
+    { icon: Award, value: 150, label: "Projects Completed", suffix: "+" },
+    { icon: Users, value: 1200, label: "Happy Clients", suffix: "+" },
+    { icon: Calendar, value: 12, label: "Years Experience", suffix: "" },
+    { icon: TrendingUp, value: 98, label: "Satisfaction Rate", suffix: "%" },
+  ],
+  cta: {
+    title: "Ready to transform your space?",
+    description: "Let's create something beautiful together.",
+    buttonText: "Get Started",
+  },
+  centerImage: {
+    src: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcontent.imageresizer.com%2Fimages%2Fmemes%2Fgiga-chad-meme-2.jpg&f=1&nofb=1&ipt=4e05823b396caf9d0ca231beeafab284f07dbafe4a4e2793685dadf909d5ea6a",
+    alt: "Image of Aayush",
+    badge: "Aayush (CEO)",
   },
 };

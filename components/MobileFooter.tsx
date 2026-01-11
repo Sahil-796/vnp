@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Logo } from "./Logo";
 import Link from "next/link";
-import { data } from "@/constants";
+import { landingPageData } from "@/constants";
 
 export const MobileFooter = () => {
     return (
@@ -28,16 +28,16 @@ export const MobileFooter = () => {
 
                         <div className="flex flex-col gap-4">
                             <h3 className="text-2xl font-bold tracking-tight leading-tight">
-                                {data.footer.titlep1}
+                                {landingPageData.footer.titlep1}
                                 <br />
-                                {data.footer.titlep2}
+                                {landingPageData.footer.titlep2}
                             </h3>
                             <div className="flex flex-col gap-1 mt-2">
                                 <p className="text-sm font-medium opacity-70">
-                                    {data.footer.address}
+                                    {landingPageData.footer.address}
                                 </p>
                                 <p className="text-sm font-medium opacity-70">
-                                    {data.footer.phone}
+                                    {landingPageData.footer.phone}
                                 </p>
                             </div>
                         </div>
@@ -50,7 +50,7 @@ export const MobileFooter = () => {
                                 Company
                             </h4>
                             <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
-                                {data.footer.companyLinks.map((link) => (
+                                {landingPageData.footer.companyLinks.map((link) => (
                                     <Link
                                         key={link.label}
                                         href={link.href}
@@ -67,7 +67,7 @@ export const MobileFooter = () => {
                                 Social Media
                             </h4>
                             <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
-                                {data.footer.socialLinks.map((link) => (
+                                {landingPageData.footer.socialLinks.map((link) => (
                                     <Link
                                         key={link.label}
                                         href={link.href}
@@ -84,7 +84,7 @@ export const MobileFooter = () => {
                 {/* Bottom Content - Copyright */}
                 <div className="w-full mt-12 relative z-20 border-t border-foreground pt-6 bg-transparent">
                     <p className="text-xs font-medium opacity-60">
-                        {data.footer.copyright}
+                        {landingPageData.footer.copyright}
                     </p>
                 </div>
             </div>

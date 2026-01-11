@@ -4,7 +4,7 @@ import type React from "react";
 
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Zap } from "lucide-react";
-import { data } from "@/constants";
+import { aboutPageData } from "@/constants";
 import {
   motion,
   useScroll,
@@ -157,7 +157,7 @@ export default function AboutUsSection() {
     },
   };
 
-  const { hero, features, stats, cta } = data.aboutUs;
+  const { hero, features, stats, cta, centerImage } = aboutPageData;
 
   return (
     <section
@@ -248,8 +248,8 @@ export default function AboutUsSection() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcontent.imageresizer.com%2Fimages%2Fmemes%2Fgiga-chad-meme-2.jpg&f=1&nofb=1&ipt=4e05823b396caf9d0ca231beeafab284f07dbafe4a4e2793685dadf909d5ea6a"
-                  alt="Modern House"
+                  src={centerImage.src}
+                  alt={centerImage.alt}
                   className="w-full h-full object-cover"
                 />
                 <motion.div
@@ -262,7 +262,7 @@ export default function AboutUsSection() {
                     className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium"
                     whileTap={{ scale: 0.95 }}
                   >
-                    Akshay Vyeos (CEO)
+                    {centerImage.badge}
                   </motion.button>
                 </motion.div>
               </motion.div>
@@ -391,8 +391,8 @@ function ServiceItem({
       >
         <motion.div
           className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
-              ? "bg-primary/10 text-primary"
-              : "bg-secondary/10 text-secondary"
+            ? "bg-primary/10 text-primary"
+            : "bg-secondary/10 text-secondary"
             }`}
         >
           {icon}

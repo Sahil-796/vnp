@@ -4,7 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import SectionTitle from "./SectionTitle";
-import { data } from "@/constants";
+import { landingPageData } from "@/constants";
 
 // Custom SVG Icons
 const Icons = {
@@ -165,7 +165,7 @@ export const WhyChooseUs = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
-            {data.whyChooseUs.map((feature, index) => {
+            {landingPageData.whyChooseUs.map((feature, index) => {
               // @ts-ignore
               const Icon = Icons[feature.title] || feature.icon;
               return (

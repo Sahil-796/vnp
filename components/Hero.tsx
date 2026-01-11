@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CtaButton } from "@/components/ui/cta-button";
-import { data } from "@/constants";
+import { landingPageData } from "@/constants";
 
 const Hero = () => {
   return (
@@ -28,10 +28,10 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">
-              {data.hero.titlep1}
+              {landingPageData.hero.titlep1}
               <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/70">
-                {data.hero.titlep2}
+                {landingPageData.hero.titlep2}
               </span>
             </h1>
           </motion.div>
@@ -42,7 +42,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 md:mb-8 font-medium max-w-sm md:max-w-lg leading-relaxed drop-shadow-sm"
           >
-            {data.hero.subtitle}
+            {landingPageData.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -55,7 +55,7 @@ const Hero = () => {
               variant="default"
               className="rounded-full text-base md:text-lg h-12 md:h-14 px-6 md:px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
-              {data.hero.ctap}
+              {landingPageData.hero.ctap}
             </CtaButton>
           </motion.div>
         </div>

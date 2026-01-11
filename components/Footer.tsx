@@ -5,7 +5,7 @@ import { DotGrid } from "@/components/ui/dot-grid";
 import { Logo } from "./Logo";
 import Link from "next/link";
 import { MobileFooter } from "./MobileFooter";
-import { data } from "@/constants";
+import { landingPageData } from "@/constants";
 
 const Footer = () => {
   return (
@@ -36,16 +36,16 @@ const Footer = () => {
 
                 <div className="flex flex-col gap-4">
                   <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
-                    {data.footer.titlep1}
+                    {landingPageData.footer.titlep1}
                     <br />
-                    {data.footer.titlep2}
+                    {landingPageData.footer.titlep2}
                   </h3>
                   <div className="flex flex-col gap-1 mt-2">
                     <p className="text-sm md:text-base font-medium opacity-70">
-                      {data.footer.address}
+                      {landingPageData.footer.address}
                     </p>
                     <p className="text-sm md:text-base font-medium opacity-70">
-                      {data.footer.phone}
+                      {landingPageData.footer.phone}
                     </p>
                   </div>
                 </div>
@@ -58,7 +58,7 @@ const Footer = () => {
                     Company
                   </h4>
                   <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
-                    {data.footer.companyLinks.map((link) => (
+                    {landingPageData.footer.companyLinks.map((link) => (
                       <Link
                         key={link.label}
                         href={link.href}
@@ -75,7 +75,7 @@ const Footer = () => {
                     Social Media
                   </h4>
                   <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
-                    {data.footer.socialLinks.map((link) => (
+                    {landingPageData.footer.socialLinks.map((link) => (
                       <Link
                         key={link.label}
                         href={link.href}
@@ -91,7 +91,7 @@ const Footer = () => {
 
             <div className="w-full md:w-1/3 mt-12 md:mt-0 relative z-20 border-t border-foreground pt-6 md:pt-8 bg-transparent">
               <p className="text-xs md:text-sm font-medium opacity-60 md:opacity-100">
-                {data.footer.copyright}
+                {landingPageData.footer.copyright}
               </p>
             </div>
           </div>
