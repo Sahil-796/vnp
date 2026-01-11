@@ -226,11 +226,10 @@ export default function AboutUsSection() {
                     icon={<Icon className="w-6 h-6" />}
                     title={feature.title}
                     description={feature.description}
-                    iconBg={feature.iconBg}
-                    iconColor={feature.iconColor}
                     variants={itemVariants}
                     delay={index * 0.2}
                     direction="left"
+                    variant={index % 2 !== 0 ? "primary" : "secondary"}
                   />
                 );
               })}
@@ -308,11 +307,10 @@ export default function AboutUsSection() {
                     icon={<Icon className="w-6 h-6" />}
                     title={feature.title}
                     description={feature.description}
-                    iconBg={feature.iconBg}
-                    iconColor={feature.iconColor}
                     variants={itemVariants}
                     delay={index * 0.2}
                     direction="right"
+                    variant={index % 2 === 0 ? "primary" : "secondary"}
                   />
                 );
               })}
@@ -363,22 +361,20 @@ interface ServiceItemProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  iconBg?: string;
-  iconColor?: string;
   variants: Variants;
   delay: number;
   direction: "left" | "right";
+  variant?: "primary" | "secondary";
 }
 
 function ServiceItem({
   icon,
   title,
   description,
-  iconBg,
-  iconColor,
   variants,
   delay,
   direction,
+  variant = "primary",
 }: ServiceItemProps) {
   return (
     <motion.div
@@ -394,9 +390,10 @@ function ServiceItem({
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className={`p-3 rounded-lg transition-colors duration-300 relative ${iconBg || "bg-primary/10"} ${
-            iconColor || "text-primary"
-          }`}
+          className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
+              ? "bg-primary/10 text-primary"
+              : "bg-secondary/10 text-secondary"
+            }`}
         >
           {icon}
         </motion.div>
