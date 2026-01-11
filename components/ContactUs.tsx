@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MoveRight } from "lucide-react";
+import { MessageCircle, MoveRight } from "lucide-react";
 import { InlineWidget } from "react-calendly";
-import { SectionTitle } from "@/components/SectionTitle";
 import { contactPageData } from "@/constants";
 import { cn } from "@/lib/utils";
+import { PageTitle } from "./PageTitle";
 
 // Custom Designer Icons
 const Icons = {
@@ -78,10 +78,12 @@ export const ContactUs = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <SectionTitle
+                    <PageTitle
                         title={contactPageData.header.title}
                         description={contactPageData.header.description}
-                        containerClassName="mb-16"
+                        className="mb-16"
+                        badge="HAVE A CHAT WITH US"
+                        icon={MessageCircle}
                     />
                 </motion.div>
 

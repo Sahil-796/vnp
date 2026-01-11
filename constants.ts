@@ -417,24 +417,28 @@ export const aboutPageData = {
 export const contactPageData = {
   header: {
     title: "Contact Us",
-    description: "Get in touch with us to start your journey.",
+    description:
+      "We'd love to hear from you. Whether you have a question about our services, want to discuss a potential project, or just want to say hello, we're here to help you start your journey.",
   },
   contactInfo: [
     {
       title: "Email Us",
-      description: "Our friendly team is here to help.",
+      description:
+        "Drop us a line anytime. Our friendly team is ready to answer your questions and provide the support you need.",
       value: "hello@visionandpath.com",
       link: "mailto:hello@visionandpath.com",
     },
     {
       title: "Visit Us",
-      description: "Come say hello at our office HQ.",
+      description:
+        "Come say hello at our headquarters. We believe in face-to-face connections and would love to welcome you to our office.",
       value: "123 Innovation Drive, Tech City, CA 94043",
       link: "https://maps.google.com",
     },
     {
       title: "Call Us",
-      description: "Mon-Fri from 8am to 5pm.",
+      description:
+        "Prefer to talk? Give us a call. We are available Monday to Friday from 8am to 5pm to discuss your needs.",
       value: "+1 (555) 123-4567",
       link: "tel:+15551234567",
     },

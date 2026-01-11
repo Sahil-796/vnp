@@ -1,18 +1,19 @@
 "use client";
 
-import type React from "react";
-
-import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Zap } from "lucide-react";
-import { aboutPageData } from "@/constants";
 import {
   motion,
-  useScroll,
-  useTransform,
   useInView,
+  useScroll,
   useSpring,
-  Variants,
+  useTransform,
+  type Variants,
 } from "framer-motion";
+import { ArrowRight, Zap } from "lucide-react";
+import Image from "next/image"; // Added this import
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
+import { PageTitle } from "@/components/PageTitle";
+import { aboutPageData } from "@/constants";
 
 // Custom SVG Icons
 const Icons = {
@@ -24,6 +25,7 @@ const Icons = {
       strokeWidth="1.5"
       {...props}
     >
+      <title>Interior Design</title>
       <path d="M3 21h18M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7" />
       <path d="M19 10a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2" strokeOpacity="0.5" />
       <path d="M9 12v-1a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" />
@@ -38,6 +40,7 @@ const Icons = {
       strokeWidth="1.5"
       {...props}
     >
+      <title>Exterior Design</title>
       <path
         d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
         fill="currentColor"
@@ -55,6 +58,7 @@ const Icons = {
       strokeWidth="1.5"
       {...props}
     >
+      <title>Design Planning</title>
       <path d="M12 2L2 12l10 10 10-10L12 2z" strokeOpacity="0.5" />
       <path d="M12 6L6 12l6 6 6-6-6-6z" fill="currentColor" fillOpacity="0.1" />
       <path d="M12 2v20M2 12h20" strokeWidth="1" strokeDasharray="2 2" />
@@ -68,6 +72,7 @@ const Icons = {
       strokeWidth="1.5"
       {...props}
     >
+      <title>Decoration</title>
       <path
         d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"
         fill="currentColor"
@@ -86,6 +91,7 @@ const Icons = {
       strokeWidth="1.5"
       {...props}
     >
+      <title>Project Planning</title>
       <rect
         x="3"
         y="4"
@@ -113,6 +119,7 @@ const Icons = {
       strokeWidth="1.5"
       {...props}
     >
+      <title>Execution</title>
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeOpacity="0.5" />
       <path d="M22 4L12 14.01l-3-3" strokeWidth="2" />
       <circle cx="12" cy="12" r="6" fill="currentColor" fillOpacity="0.1" />
@@ -181,36 +188,13 @@ export default function AboutUsSection() {
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <motion.div
-          className="flex flex-col items-center mb-6"
+        <PageTitle
+          badge={hero.badge}
+          title={hero.title}
+          description={hero.description}
           variants={itemVariants}
-        >
-          <motion.span
-            className="text-muted-foreground text-sm font-medium mb-2 flex items-center gap-2"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Zap className="w-4 h-4" />
-            {hero.badge}
-          </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 text-center">
-            {hero.title}
-          </h2>
-          <motion.div
-            className="w-24 h-1 bg-secondary"
-            initial={{ width: 0 }}
-            animate={{ width: 96 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          ></motion.div>
-        </motion.div>
-
-        <motion.p
-          className="text-center max-w-2xl mx-auto mb-16 text-muted-foreground"
-          variants={itemVariants}
-        >
-          {hero.description}
-        </motion.p>
+          icon={Zap}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           {/* Left Column */}
@@ -222,7 +206,7 @@ export default function AboutUsSection() {
                   Icons[feature.title as keyof typeof Icons] || feature.icon;
                 return (
                   <ServiceItem
-                    key={`left-${index}`}
+                    key={feature.title}
                     icon={<Icon className="w-6 h-6" />}
                     title={feature.title}
                     description={feature.description}
@@ -251,6 +235,8 @@ export default function AboutUsSection() {
                   src={centerImage.src}
                   alt={centerImage.alt}
                   className="w-full h-full object-cover"
+                  width={400}
+                  height={500}
                 />
                 <motion.div
                   className="absolute inset-0 flex items-end justify-center p-4"
@@ -300,10 +286,11 @@ export default function AboutUsSection() {
             {features
               .filter((feature) => feature.position === "right")
               .map((feature, index) => {
-                const Icon = Icons[feature.title as keyof typeof Icons] || feature.icon;
+                const Icon =
+                  Icons[feature.title as keyof typeof Icons] || feature.icon;
                 return (
                   <ServiceItem
-                    key={`right-${index}`}
+                    key={feature.title}
                     icon={<Icon className="w-6 h-6" />}
                     title={feature.title}
                     description={feature.description}
@@ -327,7 +314,7 @@ export default function AboutUsSection() {
         >
           {stats.map((stat, index) => (
             <StatCounter
-              key={index}
+              key={stat.label}
               icon={<stat.icon />}
               value={stat.value}
               label={stat.label}
