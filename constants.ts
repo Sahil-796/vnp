@@ -1,18 +1,18 @@
 import {
-  Lightbulb,
-  Settings,
-  Users,
-  Zap,
-  BarChart3,
   Award,
-  Pen,
-  PaintBucket,
-  Home,
-  Ruler,
-  PenTool,
+  BarChart3,
   Building2,
   Calendar,
+  Home,
+  Lightbulb,
+  PaintBucket,
+  Pen,
+  PenTool,
+  Ruler,
+  Settings,
   TrendingUp,
+  Users,
+  Zap,
 } from "lucide-react";
 
 export const landingPageData = {
@@ -412,4 +412,32 @@ export const aboutPageData = {
     alt: "Image of Aayush",
     badge: "Aayush (CEO)",
   },
+};
+
+export const contactPageData = {
+  header: {
+    title: "Contact Us",
+    description: "Get in touch with us to start your journey.",
+  },
+  contactInfo: [
+    {
+      title: "Email Us",
+      description: "Our friendly team is here to help.",
+      value: "hello@visionandpath.com",
+      link: "mailto:hello@visionandpath.com",
+    },
+    {
+      title: "Visit Us",
+      description: "Come say hello at our office HQ.",
+      value: "123 Innovation Drive, Tech City, CA 94043",
+      link: "https://maps.google.com",
+    },
+    {
+      title: "Call Us",
+      description: "Mon-Fri from 8am to 5pm.",
+      value: "+1 (555) 123-4567",
+      link: "tel:+15551234567",
+    },
+  ],
+  calendlyUrl: "https://calendly.com/rudranpatel0980/vp", // Placeholder
 };
