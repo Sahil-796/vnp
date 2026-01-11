@@ -218,7 +218,8 @@ export default function AboutUsSection() {
             {features
               .filter((feature) => feature.position === "left")
               .map((feature, index) => {
-                const Icon = Icons[feature.title as keyof typeof Icons] || feature.icon;
+                const Icon =
+                  Icons[feature.title as keyof typeof Icons] || feature.icon;
                 return (
                   <ServiceItem
                     key={`left-${index}`}
@@ -248,7 +249,7 @@ export default function AboutUsSection() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.CNOfLuAD_Av57Q__T3lEkwHaHa%3Fpid%3DApi&f=1&ipt=052d355d3e27cf54f9eece19cdfcabc654073ef9007d2aecf11abdd209eaab9e&ipo=images"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcontent.imageresizer.com%2Fimages%2Fmemes%2Fgiga-chad-meme-2.jpg&f=1&nofb=1&ipt=4e05823b396caf9d0ca231beeafab284f07dbafe4a4e2793685dadf909d5ea6a"
                   alt="Modern House"
                   className="w-full h-full object-cover"
                 />
@@ -393,8 +394,9 @@ function ServiceItem({
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className={`p-3 rounded-lg transition-colors duration-300 relative ${iconBg || "bg-primary/10"} ${iconColor || "text-primary"
-            }`}
+          className={`p-3 rounded-lg transition-colors duration-300 relative ${iconBg || "bg-primary/10"} ${
+            iconColor || "text-primary"
+          }`}
         >
           {icon}
         </motion.div>
