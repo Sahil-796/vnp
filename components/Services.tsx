@@ -1,9 +1,9 @@
 import { Timeline } from "@/components/ui/timeline";
 import { SectionTitle } from "@/components/SectionTitle";
-import { data as constantsData } from "../constants";
+import { landingPageData } from "../constants";
 
 export function Services() {
-  const data = constantsData.services.content.map((service, index) => ({
+  const data = landingPageData.services.content.map((service, index) => ({
     id: String(index),
     title: service.title,
     content: (
@@ -27,8 +27,8 @@ export function Services() {
   return (
     <div className="w-full relative overflow-clip">
       <SectionTitle
-        title={constantsData.services.title}
-        description={constantsData.services.desc}
+        title={landingPageData.services.title}
+        description={landingPageData.services.desc}
       />
       <Timeline data={data} />
     </div>

@@ -1,8 +1,8 @@
 import { FAQ } from '@/components/ui/faq-tabs'
-import { data } from '@/constants';
+import { landingPageData } from '@/constants';
 
 const FAQSection = () => {
-  const allFaqs = Object.values(data.faq.faqData).flat();
+  const allFaqs = Object.values(landingPageData.faq.faqData).flat();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -26,8 +26,8 @@ const FAQSection = () => {
       <FAQ
         title="Frequently Asked Questions"
         subtitle="Let's answer some questions"
-        categories={data.faq.categories}
-        faqData={data.faq.faqData}
+        categories={landingPageData.faq.categories}
+        faqData={landingPageData.faq.faqData}
       />
     </div>
   );

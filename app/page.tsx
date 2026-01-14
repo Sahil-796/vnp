@@ -22,9 +22,6 @@ export default function Page() {
         <FAQSection />
       </div>
 
-      <div>
-        <Footer />
-      </div>
     </div>
   );
 }

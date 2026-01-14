@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionTitle from "./SectionTitle";
-import { data } from "@/constants";
+import { landingPageData } from "@/constants";
 
 interface Testimonial {
   text: string;
@@ -13,7 +13,7 @@ interface Testimonial {
   role: string;
 }
 
-const testimonials: Testimonial[] = data.testimonials.content;
+const testimonials: Testimonial[] = landingPageData.testimonials.content;
 
 const firstColumn = testimonials.slice(0, 3);
 const secondColumn = testimonials.slice(3, 6);
@@ -113,8 +113,8 @@ export default function Testimonials() {
         className="container px-4 z-10 mx-auto"
       >
         <SectionTitle
-          title={data.testimonials.title}
-          description={data.testimonials.desc}
+          title={landingPageData.testimonials.title}
+          description={landingPageData.testimonials.desc}
           id="testimonials-heading"
         />
 
