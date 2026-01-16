@@ -35,18 +35,21 @@ export const landingPageData = {
         desc: "We craft professional, ATS-optimized resumes that showcase your true potential. Our experts analyze your career history to highlight your strongest achievements, ensuring you stand out in the competitive job market.",
         imgsrc:
           "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Get Your Resume Review",
       },
       {
         title: "Career Counseling",
         desc: "Navigate your professional journey with confidence. Our personalized career counseling sessions help you identify your strengths, set achievable goals, and create a roadmap for long-term success.",
         imgsrc:
           "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Book a Session",
       },
       {
         title: "Interview Prep",
         desc: "Ace your next interview with our comprehensive preparation services. From mock interviews to behavioral question strategies, we provide the feedback and practice you need to make a lasting impression.",
         imgsrc:
           "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Start Practicing",
       },
     ],
   },
@@ -444,4 +447,50 @@ export const contactPageData = {
     },
   ],
   calendlyUrl: "https://calendly.com/rudranpatel0980/vp", // Placeholder
+};
+
+export const servicesPageData = {
+  header: {
+    badge: "WHAT WE OFFER",
+    title: "Our Services",
+    description: "We offer a wide range of services to help you achieve your career goals. Discover how we can help you move forward.",
+  },
+  content: [
+    {
+      title: "Resume Building",
+      desc: "Your resume is often the first impression you make on a potential employer. We craft professional, ATS-optimized resumes that showcase your true potential.",
+      features: [
+        "Expert analysis of your career history to highlight achievements",
+        "Modern formatting and keyword optimization for ATS compliance",
+        "Compelling storytelling to present your professional journey",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Get Your Resume Review",
+    },
+    {
+      title: "Career Counseling",
+      desc: "Navigate your professional journey with confidence. Our personalized career counseling sessions help you identify your strengths and set achievable goals.",
+      features: [
+        "Personalized roadmap designed for your long-term success",
+        "Actionable advice for recent graduates and career pivoters",
+        "1-on-1 mentorship tailored to your unique aspirations",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Book a Session",
+    },
+    {
+      title: "Interview Prep",
+      desc: "Ace your next interview with our comprehensive preparation services. From mock interviews to behavioral question strategies, we provide the practice you need.",
+      features: [
+        "Simulated real-world interview scenarios",
+        "Refining answers to common and tough behavioral questions",
+        "Guidance on communication, body language, and negotiation",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Start Practicing",
+    },
+  ],
 };
