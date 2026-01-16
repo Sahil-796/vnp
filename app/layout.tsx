@@ -19,7 +19,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vision and Path",
+  title: {
+    template: "VP | %s",
+    default: "Vision and Path",
+  },
   description: "Vision and Path",
   keywords: ["vision", "path", "platform"],
 
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.png",
   },
 };
 
