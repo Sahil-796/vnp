@@ -1,13 +1,90 @@
 "use client";
 
+import { useRef } from "react";
 import { servicesPageData } from "@/constants";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { PageTitle } from "./PageTitle";
-import { Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
+
+const AnimatedCheckIcon = ({ color }: { color?: string }) => {
+    return (
+        <div
+            className={cn(
+                "rounded-full p-0.5 relative",
+                "bg-black/5 dark:bg-white/10",
+            )}
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={cn("w-4 h-4", color || "text-primary")}
+            >
+                <motion.path
+                    d="M20 6L9 17l-5-5"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                />
+            </svg>
+        </div>
+    );
+};
+
+// Helper: Magnetic Button
+const MagneticButton = ({ children, className, ...props }: any) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };
+    const springX = useSpring(x, springConfig);
+    const springY = useSpring(y, springConfig);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!ref.current) return;
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = ref.current.getBoundingClientRect();
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+        // Pull the button towards the mouse (max 15px)
+        x.set((clientX - centerX) / 4);
+        y.set((clientY - centerY) / 4);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ x: springX, y: springY }}
+            className="inline-block"
+        >
+            <Button className={className} {...props}>
+                {children}
+            </Button>
+        </motion.div>
+    );
+};
+
+// Noise Texture (SVG Data URI)
+const noiseTexture = {
+    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")`,
+};
 
 export function ServicesList() {
     const { content, header } = servicesPageData;
@@ -22,7 +99,7 @@ export function ServicesList() {
                 className="mb-24"
             />
 
-            <div className="flex flex-col gap-24">
+            <div className="flex flex-col gap-12">
                 {content.map((service, index) => {
                     const isEven = index % 2 === 0;
 
@@ -34,26 +111,43 @@ export function ServicesList() {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
                             className={cn(
-                                "flex flex-col md:flex-row gap-8 md:gap-16 items-center",
-                                !isEven && "md:flex-row-reverse"
+                                "rounded-3xl transition-all duration-300 relative overflow-hidden",
+                                service.color?.bg || "bg-card",
+                                "flex flex-col md:flex-row items-stretch",
+                                !isEven && "md:flex-row-reverse",
                             )}
                         >
+                            {/* Noise Overlay */}
+                            <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay" style={noiseTexture} />
+
                             {/* Image Section */}
-                            <div className="w-full md:w-1/2 relative group">
-                                <div className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3 transition-transform duration-300 group-hover:rotate-0" />
-                                <div className="relative h-[300px] md:h-[400px] w-full overflow-hidden rounded-2xl shadow-xl">
+                            <div className="w-full md:w-1/2 relative group min-h-[300px] md:min-h-[400px]">
+                                <div
+                                    className={cn(
+                                        "absolute inset-0 transform rotate-3 transition-transform duration-300 group-hover:rotate-0 opacity-60",
+                                        service.color?.blob || "bg-primary/10"
+                                    )}
+                                />
+
+                                {/* Image Container - Remove rounding and shadow */}
+                                <div className="absolute inset-0 w-full h-full">
                                     <Image
                                         src={service.imgsrc}
                                         alt={service.title}
                                         fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                 </div>
                             </div>
 
                             {/* Content Section */}
-                            <div className="w-full md:w-1/2 flex flex-col gap-6">
-                                <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+                            <div className="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-12 gap-6 z-10">
+                                <h3
+                                    className={cn(
+                                        "text-3xl md:text-4xl font-bold",
+                                        service.color?.accent || "text-foreground",
+                                    )}
+                                >
                                     {service.title}
                                 </h3>
                                 <p className="text-lg text-muted-foreground leading-relaxed">
@@ -63,8 +157,11 @@ export function ServicesList() {
                                 {/* Features List */}
                                 <ul className="space-y-3">
                                     {service.features?.map((feature, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-muted-foreground/90">
-                                            <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                                        <li
+                                            key={i}
+                                            className="flex items-start gap-3 text-muted-foreground/90"
+                                        >
+                                            <AnimatedCheckIcon color={service.color?.accent} />
                                             <span className="leading-tight">{feature}</span>
                                         </li>
                                     ))}
@@ -72,13 +169,13 @@ export function ServicesList() {
 
                                 <div className="pt-2">
                                     <Link href="/contact">
-                                        <Button
+                                        <MagneticButton
                                             size="lg"
-                                            className="group text-base font-semibold px-8 py-6 rounded-full shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-1"
+                                            className="group text-base font-semibold px-8 py-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
                                         >
                                             {service.ctaText || "Get Started"}
                                             <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                                        </Button>
+                                        </MagneticButton>
                                     </Link>
                                 </div>
                             </div>

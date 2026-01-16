@@ -467,6 +467,11 @@ export const servicesPageData = {
       imgsrc:
         "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop",
       ctaText: "Get Your Resume Review",
+      color: {
+        bg: "bg-stone-100 dark:bg-stone-900/20",
+        accent: "text-stone-700 dark:text-stone-300",
+        blob: "bg-stone-200 dark:bg-stone-800/40",
+      },
     },
     {
       title: "Career Counseling",
@@ -479,6 +484,11 @@ export const servicesPageData = {
       imgsrc:
         "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop",
       ctaText: "Book a Session",
+      color: {
+        bg: "bg-emerald-50 dark:bg-emerald-950/20",
+        accent: "text-emerald-700 dark:text-emerald-400",
+        blob: "bg-emerald-200 dark:bg-emerald-900/40",
+      },
     },
     {
       title: "Interview Prep",
@@ -491,6 +501,11 @@ export const servicesPageData = {
       imgsrc:
         "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop",
       ctaText: "Start Practicing",
+      color: {
+        bg: "bg-rose-50 dark:bg-rose-950/20",
+        accent: "text-rose-700 dark:text-rose-400",
+        blob: "bg-rose-200 dark:bg-rose-900/40",
+      },
     },
   ],
 };
