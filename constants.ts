@@ -507,5 +507,56 @@ export const servicesPageData = {
         blob: "bg-rose-200 dark:bg-rose-900/40",
       },
     },
+    {
+      title: "LinkedIn Optimization",
+      desc: "Transform your LinkedIn profile into a powerful magnet for recruiters and opportunities. We help you build a professional brand that stands out.",
+      features: [
+        "Headline and summary optimization for maximum visibility",
+        "Strategic keyword placement to appear in recruiter searches",
+        "Guidance on networking and content creation strategies",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Optimize Profile",
+      color: {
+        bg: "bg-indigo-50 dark:bg-indigo-950/20",
+        accent: "text-indigo-700 dark:text-indigo-400",
+        blob: "bg-indigo-200 dark:bg-indigo-900/40",
+      },
+    },
+    {
+      title: "Job Search Strategy",
+      desc: "Stop applying aimlessly. We help you create a targeted job search strategy to find the hidden opportunities that match your career goals.",
+      features: [
+        "Identifying target companies and roles aligned with your values",
+        "Strategies for accessing the hidden job market",
+        "Techniques for effective networking and cold outreach",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Plan Your Search",
+      color: {
+        bg: "bg-amber-50 dark:bg-amber-950/20",
+        accent: "text-amber-700 dark:text-amber-400",
+        blob: "bg-amber-100 dark:bg-amber-900/40",
+      },
+    },
+    {
+      title: "Personal Branding",
+      desc: "Define who you are as a professional. We help you articulate your unique value proposition and build a consistent brand across all platforms.",
+      features: [
+        "Defining your unique professional value proposition",
+        "Consistent visual and tonal identity across platforms",
+        "Content strategy to establish thought leadership",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop",
+      ctaText: "Build Your Brand",
+      color: {
+        bg: "bg-sky-50 dark:bg-sky-950/20",
+        accent: "text-sky-700 dark:text-sky-400",
+        blob: "bg-sky-200 dark:bg-sky-900/40",
+      },
+    },
   ],
 };

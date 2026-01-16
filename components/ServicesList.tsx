@@ -99,7 +99,7 @@ export function ServicesList() {
                 className="mb-24"
             />
 
-            <div className="flex flex-col gap-12">
+            <div className="flex flex-col gap-8">
                 {content.map((service, index) => {
                     const isEven = index % 2 === 0;
 
@@ -121,7 +121,7 @@ export function ServicesList() {
                             <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay" style={noiseTexture} />
 
                             {/* Image Section */}
-                            <div className="w-full md:w-1/2 relative group min-h-[300px] md:min-h-[400px]">
+                            <div className="w-full md:w-1/2 relative group min-h-[250px] md:min-h-[320px]">
                                 <div
                                     className={cn(
                                         "absolute inset-0 transform rotate-3 transition-transform duration-300 group-hover:rotate-0 opacity-60",
@@ -129,7 +129,7 @@ export function ServicesList() {
                                     )}
                                 />
 
-                                {/* Image Container - Remove rounding and shadow */}
+                                {/* Image Container */}
                                 <div className="absolute inset-0 w-full h-full">
                                     <Image
                                         src={service.imgsrc}
@@ -141,25 +141,25 @@ export function ServicesList() {
                             </div>
 
                             {/* Content Section */}
-                            <div className="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-12 gap-6 z-10">
+                            <div className="w-full md:w-1/2 flex flex-col justify-center p-6 md:p-10 gap-4 z-10">
                                 <h3
                                     className={cn(
-                                        "text-3xl md:text-4xl font-bold",
+                                        "text-2xl md:text-3xl font-bold",
                                         service.color?.accent || "text-foreground",
                                     )}
                                 >
                                     {service.title}
                                 </h3>
-                                <p className="text-lg text-muted-foreground leading-relaxed">
+                                <p className="text-base text-muted-foreground leading-relaxed">
                                     {service.desc}
                                 </p>
 
                                 {/* Features List */}
-                                <ul className="space-y-3">
+                                <ul className="space-y-2">
                                     {service.features?.map((feature, i) => (
                                         <li
                                             key={i}
-                                            className="flex items-start gap-3 text-muted-foreground/90"
+                                            className="flex items-start gap-3 text-muted-foreground/90 text-sm md:text-base"
                                         >
                                             <AnimatedCheckIcon color={service.color?.accent} />
                                             <span className="leading-tight">{feature}</span>
@@ -170,11 +170,10 @@ export function ServicesList() {
                                 <div className="pt-2">
                                     <Link href="/contact">
                                         <MagneticButton
-                                            size="lg"
-                                            className="group text-base font-semibold px-8 py-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
+                                            className="group text-sm font-semibold px-5 py-2.5 h-auto rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
                                         >
                                             {service.ctaText || "Get Started"}
-                                            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                                            <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                                         </MagneticButton>
                                     </Link>
                                 </div>
