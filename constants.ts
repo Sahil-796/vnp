@@ -69,14 +69,14 @@ export const landingPageData = {
   },
 
   whyChooseUs: {
-    title: "Why Choose Us?",
+    title: "Why Choose Us for Your Career Success?",
     description:
-      "Here's why businesses choose us to handle their digital needs",
+      "Discover why top professionals trust us for career advancement, job placement, and professional development solutions",
     content: [
       {
-        title: "Expertise",
+        title: "Proven Career Placement Expertise",
         description:
-          "We leverage over 15 years of experience to deliver high-quality, tailored solutions for every client.",
+          "With our experts having years of experience in job placement and career consulting, we deliver personalized employment solutions that accelerate your professional growth.",
         icon: Award,
         iconColor: "text-yellow-600",
         color: "#F7F3E8", // Pastel Yellow/Beige
@@ -85,9 +85,9 @@ export const landingPageData = {
         shadow: "shadow-[0_10px_40px_-15px_rgba(234,179,8,0.2)]",
       },
       {
-        title: "Custom Solutions",
+        title: "Personalized Career Roadmaps",
         description:
-          "Each solution is personalized, ensuring that your business gets the exact tools it needs to succeed.",
+          "Tailored job search strategies and career development plans designed specifically for your skills, goals, and target industry opportunities.",
         icon: Zap,
         iconColor: "text-purple-600",
         color: "#EBE8F3", // Pastel Purple
@@ -96,9 +96,9 @@ export const landingPageData = {
         shadow: "shadow-[0_10px_40px_-15px_rgba(147,51,234,0.2)]",
       },
       {
-        title: "Customer-Focused",
+        title: "Candidate-Centric Approach",
         description:
-          "We prioritize your satisfaction and aim to exceed your expectations in every project we take on.",
+          "Your career success is our priority. We provide dedicated support, interview coaching, and resume optimization to exceed your professional aspirations.",
         icon: Users,
         iconColor: "text-pink-600",
         color: "#F9EDF0", // Pastel Pink
@@ -107,9 +107,9 @@ export const landingPageData = {
         shadow: "shadow-[0_10px_40px_-15px_rgba(236,72,153,0.2)]",
       },
       {
-        title: "Innovation",
+        title: "Cutting-Edge Recruitment Technology",
         description:
-          "We stay ahead of the curve, implementing the latest technologies to keep your business on the cutting edge.",
+          "Leveraging advanced AI-powered job matching, applicant tracking systems, and market analytics to connect you with premier employment opportunities faster.",
         icon: Lightbulb,
         iconColor: "text-blue-600",
         color: "#CDE1E4", // Pastel Blue
@@ -118,9 +118,9 @@ export const landingPageData = {
         shadow: "shadow-[0_10px_40px_-15px_rgba(37,99,235,0.2)]",
       },
       {
-        title: "Flexibility",
+        title: "Flexible Career Solutions",
         description:
-          "We understand that businesses change, and we offer solutions that can adapt to your evolving needs.",
+          "Whether seeking full-time positions, contract roles, remote work, or career transitions, we adapt our job placement services to your evolving professional needs.",
         icon: Settings,
         iconColor: "text-green-600",
         color: "#D6E3D6", // Pastel Green
@@ -129,9 +129,9 @@ export const landingPageData = {
         shadow: "shadow-[0_10px_40px_-15px_rgba(22,163,74,0.2)]",
       },
       {
-        title: "Quality Commitment",
+        title: "Guaranteed Quality Placements",
         description:
-          "We are committed to delivering solutions that meet the highest standards of quality, ensuring long-term success.",
+          "Committed to matching you with top employers and high-quality career opportunities that ensure long-term job satisfaction and professional advancement.",
         icon: BarChart3,
         iconColor: "text-orange-600",
         color: "#F3EBE8", // Pastel Orange
@@ -143,71 +143,71 @@ export const landingPageData = {
   },
 
   testimonials: {
-    title: "What our users say",
-    desc: "Discover how thousands of teams streamline their operations with our platform.",
+    title: "Success Stories from Our Placed Candidates",
+    desc: "Discover how thousands of professionals landed their dream jobs and accelerated their careers with our expert job placement services.",
     content: [
       {
-        text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
+        text: "This career placement service transformed my job search journey. Within 3 weeks, I landed my dream role at a Fortune 500 company. Their resume optimization and interview coaching were game-changers!",
         image:
           "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Briana Patton",
-        role: "Operations Manager",
+        name: "Sarah Mitchell",
+        role: "Senior Software Engineer",
       },
       {
-        text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
+        text: "After struggling with my job search for months, their personalized career consulting helped me secure multiple offers. The professional network connections and industry insights were invaluable.",
         image:
           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Bilal Ahmed",
-        role: "IT Manager",
+        name: "Rajesh Kumar",
+        role: "IT Director",
       },
       {
-        text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
+        text: "The recruitment team provided exceptional support throughout my career transition. From resume building to salary negotiation, they guided me every step, landing me a 40% salary increase!",
         image:
           "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Saman Malik",
-        role: "Customer Support Lead",
+        name: "Priya Sharma",
+        role: "Customer Success Manager",
       },
       {
-        text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
+        text: "Their job placement expertise and employer partnerships helped me transition from startup to enterprise. The professional development resources and career coaching exceeded all expectations.",
         image:
           "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Omar Raza",
-        role: "CEO",
+        name: "Michael Johnson",
+        role: "Product Manager",
       },
       {
-        text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
+        text: "Outstanding career placement service! Their AI-powered job matching connected me with roles perfectly aligned with my skills. Secured my ideal position in just 2 weeks with competitive compensation.",
         image:
           "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Zainab Hussain",
-        role: "Project Manager",
+        name: "Emily Chen",
+        role: "Senior Project Manager",
       },
       {
-        text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
+        text: "The employment services exceeded my expectations. Their industry expertise, interview preparation, and LinkedIn profile optimization helped me land multiple job offers from top tech companies.",
         image:
           "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Aliza Khan",
-        role: "Business Analyst",
+        name: "Ankit Patel",
+        role: "Data Analyst",
       },
       {
-        text: "Our business functions improved with a user-friendly design and positive customer feedback.",
+        text: "Thanks to their career advancement strategies and professional networking events, I successfully pivoted my career into digital marketing. The personalized job search support was phenomenal!",
         image:
           "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Farhan Siddiqui",
+        name: "David Rodriguez",
         role: "Marketing Director",
       },
       {
-        text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
+        text: "They understood my career goals perfectly and connected me with premium employment opportunities. The dedicated career coach and recruitment specialists made my job placement seamless and stress-free.",
         image:
           "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Sana Sheikh",
-        role: "Sales Manager",
+        name: "Neha Gupta",
+        role: "Sales Director",
       },
       {
-        text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
+        text: "Using their professional job placement services, I secured a remote position with excellent work-life balance. Their career counseling and employer connections significantly boosted my job search success.",
         image:
           "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150",
-        name: "Hassan Ali",
-        role: "E-commerce Manager",
+        name: "James Anderson",
+        role: "E-commerce Specialist",
       },
     ],
   },
