@@ -14,6 +14,7 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { PageTitle } from "@/components/PageTitle";
 import { aboutPageData } from "@/constants";
+import { CtaButton } from "@/components/ui/cta-button";
 
 // Custom SVG Icons
 const Icons = {
@@ -335,9 +336,9 @@ export default function AboutUsSection() {
             <h3 className="text-2xl font-medium mb-2">{cta.title}</h3>
             <p className="text-muted-foreground">{cta.description}</p>
           </div>
-          <motion.button className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg flex items-center gap-2 font-medium transition-colors">
-            {cta.buttonText} <ArrowRight className="w-4 h-4" />
-          </motion.button>
+          <CtaButton className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl flex items-center gap-2 font-medium transition-colors">
+            {cta.buttonText}
+          </CtaButton>
         </motion.div>
       </motion.div>
     </section>
