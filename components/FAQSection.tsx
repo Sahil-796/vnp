@@ -24,8 +24,8 @@ const FAQSection = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <FAQ
-        title="Frequently Asked Questions"
-        subtitle="Let's answer some questions"
+        title={landingPageData.faq.title}
+        subtitle={landingPageData.faq.subtitle}
         categories={landingPageData.faq.categories}
         faqData={landingPageData.faq.faqData}
       />

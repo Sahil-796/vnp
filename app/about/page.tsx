@@ -1,9 +1,11 @@
 import AboutUsSection from "@/components/ui/about-us-section";
 import type { Metadata } from "next";
 
+import { aboutPageData } from "@/constants";
+
 export const metadata: Metadata = {
-  title: "About",
-  description: "Learn more about Vision and Path.",
+  title: aboutPageData.metadata.title,
+  description: aboutPageData.metadata.description,
 };
 
 const page = () => {

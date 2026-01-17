@@ -402,7 +402,7 @@ function ServiceItem({
         animate={{ opacity: 0 }}
       >
         <span className="flex items-center gap-1">
-          Learn more <ArrowRight className="w-3 h-3" />
+          {aboutPageData.labels.learnMore} <ArrowRight className="w-3 h-3" />
         </span>
       </motion.div>
     </motion.div>

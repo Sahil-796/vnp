@@ -137,8 +137,8 @@ export const WhyChooseUs = () => {
     <section className="relative py-24 overflow-hidden bg-background">
       <div className="container px-4 mx-auto relative z-10">
         <SectionTitle
-          title="Why Choose Us?"
-          description="Here's why businesses choose us to handle their digital needs"
+          title={landingPageData.whyChooseUs.title}
+          description={landingPageData.whyChooseUs.description}
           containerClassName="mb-16"
         />
 
@@ -165,7 +165,7 @@ export const WhyChooseUs = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
-            {landingPageData.whyChooseUs.map((feature, index) => {
+            {landingPageData.whyChooseUs.content.map((feature, index) => {
               // @ts-ignore
               const Icon = Icons[feature.title] || feature.icon;
               return (

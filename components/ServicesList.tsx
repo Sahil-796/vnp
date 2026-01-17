@@ -203,7 +203,7 @@ export function ServicesList() {
                                                 <MagneticButton
                                                     className="group text-sm font-semibold px-5 py-2.5 h-auto rounded-lg shadow-md transition-all duration-300 hover:shadow-lg bg-primary text-primary-foreground flex items-center w-fit"
                                                 >
-                                                    {service.ctaText || "Get Started"}
+                                                    {service.ctaText || servicesPageData.labels.getStarted}
                                                     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                                                 </MagneticButton>
                                             </div>

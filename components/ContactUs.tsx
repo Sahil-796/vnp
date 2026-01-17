@@ -82,7 +82,7 @@ export const ContactUs = () => {
                         title={contactPageData.header.title}
                         description={contactPageData.header.description}
                         className="mb-16"
-                        badge="HAVE A CHAT WITH US"
+                        badge={contactPageData.header.badge}
                         icon={MessageCircle}
                     />
                 </motion.div>
