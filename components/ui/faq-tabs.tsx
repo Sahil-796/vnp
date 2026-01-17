@@ -40,7 +40,9 @@ export const FAQ = ({
       )}
       {...props}
     >
-      <SectionTitle title={title} description={subtitle} />
+      <div className='mb-12'>
+        <SectionTitle title={title} description={subtitle} />
+      </div>
       <FAQTabs
         categories={categories}
         selected={selectedCategory}
