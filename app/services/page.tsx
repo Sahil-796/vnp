@@ -1,9 +1,11 @@
 import { ServicesList } from "@/components/ServicesList";
 import type { Metadata } from "next";
 
+import { servicesPageData } from "@/constants";
+
 export const metadata: Metadata = {
-    title: "Services",
-    description: "Explore our comprehensive range of services designed to help you succeed.",
+    title: servicesPageData.metadata.title,
+    description: servicesPageData.metadata.description,
 };
 
 export default function ServicesPage() {

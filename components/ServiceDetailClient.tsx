@@ -19,7 +19,7 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
                     <Link href="/services">
                         <Button variant="ghost" className="gap-2 pl-0 hover:pl-2 transition-all">
                             <ArrowLeft className="w-4 h-4" />
-                            Back to Services
+                            {servicesPageData.labels.backToServices}
                         </Button>
                     </Link>
                 </div>
@@ -44,7 +44,7 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
                         <div className="flex gap-4">
                             <Link href="/contact">
                                 <Button size="lg" className="rounded-full text-lg px-8 py-6">
-                                    {service.ctaText || "Get Started"}
+                                    {service.ctaText || servicesPageData.labels.getStarted}
                                 </Button>
                             </Link>
                         </div>
@@ -77,7 +77,7 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
                         className={cn("p-8 rounded-3xl", service.color?.bg)}
                     >
                         <h2 className={cn("text-2xl font-bold mb-6", service.color?.accent)}>
-                            Key Benefits
+                            {servicesPageData.labels.keyBenefits}
                         </h2>
                         <ul className="space-y-4">
                             {(service.details?.benefits || service.features)?.map((benefit, i) => (
@@ -97,7 +97,7 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="border border-border p-8 rounded-3xl"
                     >
-                        <h2 className="text-2xl font-bold mb-6">How It Works</h2>
+                        <h2 className="text-2xl font-bold mb-6">{servicesPageData.labels.howItWorks}</h2>
                         <div className="space-y-8">
                             {(service.details?.process || []).map((step, i) => (
                                 <div key={i} className="flex gap-4">
@@ -108,7 +108,7 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
                                         {i + 1}
                                     </div>
                                     <div>
-                                        <p className="font-semibold text-lg">Step {i + 1}</p>
+                                        <p className="font-semibold text-lg">{servicesPageData.labels.step} {i + 1}</p>
                                         <p className="text-muted-foreground">{step}</p>
                                     </div>
                                 </div>
