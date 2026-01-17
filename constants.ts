@@ -28,31 +28,46 @@ export const landingPageData = {
 
   services: {
     title: "Our Services",
-    desc: "We offer a wide range of services to help you achieve your career goals.",
+    desc: "We provide career-focused services designed to guide, support, and accelerate your professional growth.",
     content: [
       {
-        title: "Resume Building",
-        desc: "We craft professional, ATS-optimized resumes that showcase your true potential. Our experts analyze your career history to highlight your strongest achievements, ensuring you stand out in the competitive job market.",
+        title: "Personalized Career Assessment",
+        desc: "Understand your strengths, interests, and career direction with a detailed assessment. Gain clarity and make informed decisions about your future with expert guidance.",
         imgsrc:
-          "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop",
-        ctaText: "Get Your Resume Review",
+          "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Start Assessment",
       },
       {
-        title: "Career Counseling",
-        desc: "Navigate your professional journey with confidence. Our personalized career counseling sessions help you identify your strengths, set achievable goals, and create a roadmap for long-term success.",
+        title: "Goal Setting & Action Planning",
+        desc: "Turn your ambitions into achievable goals. We help you build a clear, structured career roadmap so you can stay focused and make consistent progress.",
         imgsrc:
-          "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop",
-        ctaText: "Book a Session",
+          "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Create Your Plan",
       },
       {
-        title: "Interview Prep",
-        desc: "Ace your next interview with our comprehensive preparation services. From mock interviews to behavioral question strategies, we provide the feedback and practice you need to make a lasting impression.",
+        title: "Skill Development",
+        desc: "Build in-demand technical and soft skills through guided learning programs. Strengthen your profile and stay competitive in today’s evolving job market.",
         imgsrc:
-          "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Explore Programs",
+      },
+      {
+        title: "Interview Preparation",
+        desc: "Prepare confidently with mock interviews, real-world questions, and personalized feedback. Improve communication, structure better answers, and perform at your best.",
+        imgsrc:
+          "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop",
         ctaText: "Start Practicing",
+      },
+      {
+        title: "Job Search Strategies",
+        desc: "Learn proven strategies for finding opportunities, networking effectively, and applying smartly. Increase your chances of getting hired faster.",
+        imgsrc:
+          "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Improve Your Search",
       },
     ],
   },
+
 
   whyChooseUs: {
     title: "Why Choose Us?",
@@ -467,221 +482,198 @@ export const contactPageData = {
   calendlyUrl: "https://calendly.com/rudranpatel0980/vp", // Placeholder
 };
 
-export const servicesPageData = {
-  header: {
-    badge: "WHAT WE OFFER",
-    title: "Our Services",
-    description: "We offer a wide range of services to help you achieve your career goals. Discover how we can help you move forward.",
-  },
-  labels: {
-    backToServices: "Back to Services",
-    getStarted: "Get Started",
-    keyBenefits: "Key Benefits",
-    howItWorks: "How It Works",
-    step: "Step",
-  },
-  metadata: {
-    title: "Services",
-    description: "Explore our comprehensive range of services designed to help you succeed.",
-  },
-  content: [
-    {
-      title: "Resume Building",
-      slug: "resume-building",
-      desc: "Your resume is often the first impression you make on a potential employer. We craft professional, ATS-optimized resumes that showcase your true potential.",
-      details: {
-        longDescription: "Stand out in a crowded job market with a resume that tells your unique professional story. Our Resume Building service goes beyond simple formatting; we analyze your career trajectory, identify your key achievements, and present them in a compelling narrative that resonates with recruiters and hiring managers. We ensure your document is not only visually appealing but also optimized for Applicant Tracking Systems (ATS) to maximize your chances of getting noticed.",
-        benefits: [
-          "Increased interview callback rates",
-          "ATS-compliant formatting ensuring deliverability",
-          "Clear and concise articulation of your value proposition",
-          "Tailored content for your target industry and role"
-        ],
-        process: [
-          "Initial consultation to understand your career goals",
-          "In-depth analysis of your existing resume and experience",
-          "Drafting a new, optimized resume with keyword targeting",
-          "Final review and refinements based on your feedback"
-        ]
-      },
-      features: [
-        "Expert analysis of your career history to highlight achievements",
-        "Modern formatting and keyword optimization for ATS compliance",
-        "Compelling storytelling to present your professional journey",
-      ],
-      imgsrc:
-        "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop",
-      ctaText: "Get Your Resume Review",
-      color: {
-        bg: "bg-stone-100 dark:bg-stone-900/20",
-        accent: "text-stone-700 dark:text-stone-300",
-        blob: "bg-stone-200 dark:bg-stone-800/40",
-      },
-    },
-    {
-      title: "Career Counseling",
-      slug: "career-counseling",
-      desc: "Navigate your professional journey with confidence. Our personalized career counseling sessions help you identify your strengths and set achievable goals.",
-      details: {
-        longDescription: "Feeling stuck or unsure about your next career move? Our Career Counseling service provides you with the clarity and direction you need. We work one-on-one with you to assess your skills, interests, and values to build a personalized roadmap for success. Whether you are a recent graduate, looking for a career pivot, or aiming for a promotion, our expert counselors offer actionable advice and support to help you achieve your professional aspirations.",
-        benefits: [
-          "Clarity on your career path and long-term goals",
-          "Identification of your unique strengths and transferrable skills",
-          "Strategies to overcome career obstacles and burnout",
-          "Confidence to make informed career decisions"
-        ],
-        process: [
-          "skills and interest assessment",
-          "one-on-one coaching sessions",
-          "Goal setting and action planning",
-          "Ongoing support and accountability"
-        ]
-      },
-      features: [
-        "Personalized roadmap designed for your long-term success",
-        "Actionable advice for recent graduates and career pivoters",
-        "1-on-1 mentorship tailored to your unique aspirations",
-      ],
-      imgsrc:
-        "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop",
-      ctaText: "Book a Session",
-      color: {
-        bg: "bg-emerald-50 dark:bg-emerald-950/20",
-        accent: "text-emerald-700 dark:text-emerald-400",
-        blob: "bg-emerald-200 dark:bg-emerald-900/40",
-      },
-    },
-    {
-      title: "Interview Prep",
-      slug: "interview-prep",
-      desc: "Ace your next interview with our comprehensive preparation services. From mock interviews to behavioral question strategies, we provide the practice you need.",
-      details: {
-        longDescription: "Nervous about your upcoming interview? Our Interview Prep service helps you walk into the room with confidence. We conduct realistic mock interviews tailored to the role you are applying for and provide detailed feedback on your answers, body language, and delivery. Learn how to tackle tough behavioral questions using the STAR method and effectively communicate your value to potential employers.",
-        benefits: [
-          "Reduced interview anxiety and increased confidence",
-          "Mastery of the STAR method for behavioral questions",
-          "Polished and professional communication skills",
-          "Ability to handle difficult questions with ease"
-        ],
-        process: [
-          "Review of job description and company research",
-          "Mock interview simulation with role-specific questions",
-          "Detailed performance feedback and coaching",
-          "Salary negotiation strategies"
-        ]
-      },
-      features: [
-        "Simulated real-world interview scenarios",
-        "Refining answers to common and tough behavioral questions",
-        "Guidance on communication, body language, and negotiation",
-      ],
-      imgsrc:
-        "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop",
-      ctaText: "Start Practicing",
-      color: {
-        bg: "bg-rose-50 dark:bg-rose-950/20",
-        accent: "text-rose-700 dark:text-rose-400",
-        blob: "bg-rose-200 dark:bg-rose-900/40",
-      },
-    },
-    {
-      title: "LinkedIn Optimization",
-      slug: "linkedin-optimization",
-      desc: "Transform your LinkedIn profile into a powerful magnet for recruiters and opportunities. We help you build a professional brand that stands out.",
-      details: {
-        longDescription: "Your LinkedIn profile is your 24/7 digital resume. Our LinkedIn Optimization service ensures you are making the best impression online. We optimize your headline, summary, and experience sections with relevant keywords to increase your visibility in search results. Additionally, we provide guidance on how to effectively network and engage with content to build your professional brand and attract new opportunities.",
-        benefits: [
-          "Increased visibility to recruiters and hiring managers",
-          "A professional and credible online presence",
-          "Expanded professional network and connections",
-          "Inbound job opportunities coming to you"
-        ],
-        process: [
-          "Audit of your current LinkedIn profile",
-          "Keyword research and optimization strategy",
-          "Rewrite of headline, summary, and experience sections",
-          "Guide on networking best practices"
-        ]
-      },
-      features: [
-        "Headline and summary optimization for maximum visibility",
-        "Strategic keyword placement to appear in recruiter searches",
-        "Guidance on networking and content creation strategies",
-      ],
-      imgsrc:
-        "https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=2070&auto=format&fit=crop",
-      ctaText: "Optimize Profile",
-      color: {
-        bg: "bg-indigo-50 dark:bg-indigo-950/20",
-        accent: "text-indigo-700 dark:text-indigo-400",
-        blob: "bg-indigo-200 dark:bg-indigo-900/40",
-      },
-    },
-    {
-      title: "Job Search Strategy",
-      slug: "job-search-strategy",
-      desc: "Stop applying aimlessly. We help you create a targeted job search strategy to find the hidden opportunities that match your career goals.",
-      details: {
-        longDescription: "Applying to hundreds of jobs online with no response? It's time for a smarter approach. Our Job Search Strategy service helps you tap into the hidden job market where most opportunities exist. We help you identify target companies that align with your values, create a networking plan, and craft effective outreach messages to get you in front of decision-makers.",
-        benefits: [
-          "Access to unadvertised job opportunities",
-          "More efficient use of your time and energy",
-          "Higher response rate from applications",
-          "Targeted approach aligned with your career goals"
-        ],
-        process: [
-          "Defining your ideal role and target companies",
-          "Developing a strategic networking plan",
-          "Crafting cold outreach templates and scripts",
-          "Tracking and analyzing your search progress"
-        ]
-      },
-      features: [
-        "Identifying target companies and roles aligned with your values",
-        "Strategies for accessing the hidden job market",
-        "Techniques for effective networking and cold outreach",
-      ],
-      imgsrc:
-        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
-      ctaText: "Plan Your Search",
-      color: {
-        bg: "bg-amber-50 dark:bg-amber-950/20",
-        accent: "text-amber-700 dark:text-amber-400",
-        blob: "bg-amber-100 dark:bg-amber-900/40",
-      },
-    },
-    {
-      title: "Personal Branding",
-      slug: "personal-branding",
-      desc: "Define who you are as a professional. We help you articulate your unique value proposition and build a consistent brand across all platforms.",
-      details: {
-        longDescription: "In today's digital world, your personal brand is your reputation. Our Personal Branding service helps you take control of your narrative. We work with you to define your unique value proposition, expertise, and voice. From your social media presence to your professional portfolio, we ensure that every touchpoint consistently reflects who you are and what you stand for.",
-        benefits: [
-          "Established authority and thought leadership in your field",
-          "Consistent and memorable professional identity",
-          "Increased trust and credibility with your audience",
-          "Attraction of career opportunities aligned with your brand"
-        ],
-        process: [
-          "Brand discovery workshop to define your UVP",
-          "Creation of visual and tonal brand guidelines",
-          "Content strategy for thought leadership",
-          "Cross-platform profile optimization"
-        ]
-      },
-      features: [
-        "Defining your unique professional value proposition",
-        "Consistent visual and tonal identity across platforms",
-        "Content strategy to establish thought leadership",
-      ],
-      imgsrc:
-        "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop",
-      ctaText: "Build Your Brand",
-      color: {
-        bg: "bg-sky-50 dark:bg-sky-950/20",
-        accent: "text-sky-700 dark:text-sky-400",
-        blob: "bg-sky-200 dark:bg-sky-900/40",
-      },
-    },
-  ],
-};
+// export const servicesPageData = {
+//   header: {
+//     badge: "WHAT WE OFFER",
+//     title: "Our Services",
+//     description: "We offer a wide range of services to help you achieve your career goals. Discover how we can help you move forward.",
+//   },
+//   labels: {
+//     backToServices: "Back to Services",
+//     getStarted: "Get Started",
+//     keyBenefits: "Key Benefits",
+//     howItWorks: "How It Works",
+//     step: "Step",
+//   },
+//   metadata: {
+//     title: "Services",
+//     description: "Explore our comprehensive range of services designed to help you succeed.",
+//   },
+//   content: [
+//     {
+//       title: "Career Assessment",
+//       slug: "career-assessment",
+//       desc: "Gain clarity on your strengths, interests, and ideal career direction through structured expert assessment.",
+//       details: {
+//         longDescription:
+//           "Our Career Assessment service helps you deeply understand your personality, strengths, interests, and aspirations. Through guided evaluation and expert feedback, you gain clarity on which career paths align best with you, allowing you to make confident and informed decisions.",
+//         benefits: [
+//           "Clear understanding of strengths and interests",
+//           "Better career clarity and direction",
+//           "Reduced confusion about future choices",
+//           "More confident career decisions"
+//         ],
+//         process: [
+//           "Assessment of skills, interests, and goals",
+//           "One-on-one discussion with expert",
+//           "Personalized insights and recommendations",
+//           "Clear next steps for growth"
+//         ]
+//       },
+//       features: [
+//         "Personalized evaluation tailored to your profile",
+//         "Expert guidance for clarity and direction",
+//         "Actionable recommendations for improvement"
+//       ],
+//       imgsrc:
+//         "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2070&auto=format&fit=crop",
+//       ctaText: "Start Assessment",
+//       color: {
+//         bg: "bg-violet-50 dark:bg-violet-950/20",
+//         accent: "text-violet-700 dark:text-violet-400",
+//         blob: "bg-violet-200 dark:bg-violet-900/40",
+//       },
+//     },
+    
+//     {
+//       title: "Goal Setting & Action Planning",
+//       slug: "goal-setting",
+//       desc: "Turn your ambitions into clear, achievable goals with a structured action plan designed for progress.",
+//       details: {
+//         longDescription:
+//           "Many people struggle not because they lack potential, but because they lack structure. Our Goal Setting & Action Planning service helps you define meaningful goals and break them into clear, actionable steps so you stay focused and make consistent progress.",
+//         benefits: [
+//           "Clear short-term and long-term goals",
+//           "Stronger focus and motivation",
+//           "Structured roadmap for success",
+//           "Better accountability and consistency"
+//         ],
+//         process: [
+//           "Understanding your current situation",
+//           "Defining realistic career goals",
+//           "Breaking goals into actionable steps",
+//           "Tracking progress and refining approach"
+//         ]
+//       },
+//       features: [
+//         "Personalized career roadmap",
+//         "Step-by-step execution plan",
+//         "Practical strategies for consistency"
+//       ],
+//       imgsrc:
+//         "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5?q=80&w=2070&auto=format&fit=crop",
+//       ctaText: "Create Your Plan",
+//       color: {
+//         bg: "bg-teal-50 dark:bg-teal-950/20",
+//         accent: "text-teal-700 dark:text-teal-400",
+//         blob: "bg-teal-200 dark:bg-teal-900/40",
+//       },
+//     },
+    
+//     {
+//       title: "Skill Development",
+//       slug: "skill-development",
+//       desc: "Build high-impact technical and soft skills that improve your employability and long-term career growth.",
+//       details: {
+//         longDescription:
+//           "The modern job market rewards continuous learning. Our Skill Development service helps you identify your skill gaps and focus on the most relevant skills for your career goals. You receive guidance on what to learn, how to improve, and how to apply those skills effectively.",
+//         benefits: [
+//           "Improved employability",
+//           "Stronger professional confidence",
+//           "Better alignment with industry needs",
+//           "Long-term career growth"
+//         ],
+//         process: [
+//           "Identifying current skill gaps",
+//           "Selecting high-impact skills to focus on",
+//           "Guided learning direction",
+//           "Tracking improvement and progress"
+//         ]
+//       },
+//       features: [
+//         "Career-focused skill guidance",
+//         "Support for both technical and soft skills",
+//         "Structured improvement approach"
+//       ],
+//       imgsrc:
+//         "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+//       ctaText: "Explore Skills",
+//       color: {
+//         bg: "bg-cyan-50 dark:bg-cyan-950/20",
+//         accent: "text-cyan-700 dark:text-cyan-400",
+//         blob: "bg-cyan-200 dark:bg-cyan-900/40",
+//       },
+//     },
+    
+//     {
+//       title: "Advanced Interview Coaching",
+//       slug: "advanced-interview-coaching",
+//       desc: "Refine your communication, storytelling, and confidence for high-stakes and competitive interviews.",
+//       details: {
+//         longDescription:
+//           "This service is designed for candidates aiming for highly competitive roles. We focus on advanced answer refinement, storytelling techniques, executive presence, and high-level communication so you stand out strongly in interviews.",
+//         benefits: [
+//           "Sharper and more impactful answers",
+//           "Higher confidence under pressure",
+//           "Stronger communication and presence",
+//           "Better performance in competitive interviews"
+//         ],
+//         process: [
+//           "Evaluation of your current interview performance",
+//           "Advanced mock interview sessions",
+//           "Detailed feedback and refinement",
+//           "Coaching on delivery and presence"
+//         ]
+//       },
+//       features: [
+//         "High-quality mock interviews",
+//         "Deep personalized feedback",
+//         "Focused improvement on delivery and impact"
+//       ],
+//       imgsrc:
+//         "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop",
+//       ctaText: "Upgrade Coaching",
+//       color: {
+//         bg: "bg-fuchsia-50 dark:bg-fuchsia-950/20",
+//         accent: "text-fuchsia-700 dark:text-fuchsia-400",
+//         blob: "bg-fuchsia-200 dark:bg-fuchsia-900/40",
+//       },
+//     },
+    
+//     {
+//       title: "Smart Job Search Systems",
+//       slug: "job-search-systems",
+//       desc: "Build a repeatable, strategic system for finding opportunities instead of randomly applying.",
+//       details: {
+//         longDescription:
+//           "Most people fail at job searching because they lack a system. This service helps you design a structured job search approach — targeting the right companies, improving outreach, and building pipelines that consistently generate interviews.",
+//         benefits: [
+//           "Higher quality job opportunities",
+//           "Reduced wasted effort on random applications",
+//           "More interview callbacks",
+//           "Better control over your job search"
+//         ],
+//         process: [
+//           "Understanding your ideal roles",
+//           "Designing a personalized job search system",
+//           "Improving outreach and applications",
+//           "Tracking and optimizing results"
+//         ]
+//       },
+//       features: [
+//         "System-based job search approach",
+//         "Strategic targeting instead of mass applying",
+//         "Higher efficiency and better outcomes"
+//       ],
+//       imgsrc:
+//         "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
+//       ctaText: "Build Your System",
+//       color: {
+//         bg: "bg-lime-50 dark:bg-lime-950/20",
+//         accent: "text-lime-700 dark:text-lime-400",
+//         blob: "bg-lime-200 dark:bg-lime-900/40",
+//       },
+//     },
+
+//   ],
+// };
