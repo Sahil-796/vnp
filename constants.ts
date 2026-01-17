@@ -32,6 +32,7 @@ export const landingPageData = {
     content: [
       {
         title: "Resume Building",
+        slug: "resume-building",
         desc: "We craft professional, ATS-optimized resumes that showcase your true potential. Our experts analyze your career history to highlight your strongest achievements, ensuring you stand out in the competitive job market.",
         imgsrc:
           "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop",
@@ -39,6 +40,7 @@ export const landingPageData = {
       },
       {
         title: "Career Counseling",
+        slug: "career-counseling",
         desc: "Navigate your professional journey with confidence. Our personalized career counseling sessions help you identify your strengths, set achievable goals, and create a roadmap for long-term success.",
         imgsrc:
           "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop",
@@ -46,6 +48,7 @@ export const landingPageData = {
       },
       {
         title: "Interview Prep",
+        slug: "interview-prep",
         desc: "Ace your next interview with our comprehensive preparation services. From mock interviews to behavioral question strategies, we provide the feedback and practice you need to make a lasting impression.",
         imgsrc:
           "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=2070&auto=format&fit=crop",
