@@ -141,8 +141,8 @@ export function ServicesList() {
                                     <div className="relative flex flex-col items-stretch h-full">
                                         {/* Image Section */}
                                         <div className={cn(
-                                            "group overflow w-full shrink-0",
-                                            isLarge ? "h-64 md:absolute md:top-0 md:right-0 md:bottom-0 md:w-1/2 md:h-full z-0" : "h-56 relative"
+                                            "group overflow-hidden w-full shrink-0",
+                                            isLarge ? "h-56 md:absolute md:top-0 md:right-0 md:bottom-0 md:w-1/2 md:h-full z-0" : "h-48 relative"
                                         )}>
                                             <div
                                                 className={cn(
@@ -162,14 +162,14 @@ export function ServicesList() {
 
                                         {/* Content Section */}
                                         <div className={cn(
-                                            "flex flex-col p-6 gap-4 z-10 relative flex-grow",
-                                            isLarge && "md:w-1/2 md:p-10 md:justify-center"
+                                            "flex flex-col p-5 gap-3 z-10 relative flex-grow",
+                                            isLarge && "md:w-1/2 md:p-8 md:justify-center"
                                         )}>
                                             <div className="flex-grow">
                                                 <h3
                                                     className={cn(
                                                         "font-bold mb-2",
-                                                        isLarge ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
+                                                        isLarge ? "text-xl md:text-2xl" : "text-lg md:text-xl",
                                                         service.color?.accent || "text-foreground",
                                                     )}
                                                 >
