@@ -213,125 +213,123 @@ export const landingPageData = {
   },
 
   faq: {
-    title: "Frequently Asked Questions",
-    subtitle: "Let's answer some questions",
+    title: "Frequently Asked Questions About Job Placement Services",
+    subtitle: "Everything you need to know about landing your dream job",
     categories: {
-      "web-dev": "Web Development",
-      "mobile-dev": "Mobile Development",
-      "ui-ux": "UI/UX Design",
-      copywriting: "Copywriting",
+      "job-search": "Job Search & Placement",
+      "career-services": "Career Services",
+      "resume-interview": "Resume & Interview Prep",
+      "salary-benefits": "Salary & Benefits",
     },
     faqData: {
-      "web-dev": [
+      "job-search": [
         {
-          question: "What is web development?",
+          question: "How does your job placement service work?",
           answer:
-            "Web development is the process of building and maintaining websites. It involves a combination of client-side and server-side programming, database management, and other web-related technologies.",
+            "Our job placement service connects qualified candidates with top employers through personalized career matching, resume optimization, and direct employer partnerships. We assess your skills, experience, and career goals to match you with relevant job opportunities that align with your professional aspirations and salary expectations.",
         },
         {
-          question:
-            "What programming languages are essential for web development?",
+          question: "How long does it typically take to get placed in a job?",
           answer:
-            "Essential languages for web development include HTML, CSS, and JavaScript for front-end development. For back-end development, popular languages include Python, Ruby, PHP, Java, and Node.js.",
+            "Job placement timelines vary based on your industry, experience level, and job market conditions. On average, our candidates receive job offers within 2-6 weeks. We expedite the process through our extensive employer network, professional resume services, and interview coaching to help you land your dream job faster.",
         },
         {
-          question:
-            "What's the difference between front-end and back-end development?",
+          question: "What types of jobs and industries do you specialize in?",
           answer:
-            "Front-end development focuses on the user interface and user experience of a website, while back-end development deals with server-side logic, databases, and application integration.",
+            "We specialize in placing candidates across multiple industries including technology, finance, healthcare, marketing, sales, operations, and management. Our job placement services cover entry-level positions, mid-career roles, senior management, and executive positions in both Fortune 500 companies and high-growth startups.",
         },
         {
-          question: "How long does it typically take to develop a website?",
+          question: "Do you charge candidates for job placement services?",
           answer:
-            "The time to develop a website can vary greatly depending on its complexity. A simple static website might take a few days, while a complex web application could take several months or even years.",
+            "Our job placement services are completely free for job seekers. We partner with employers who compensate us for successful placements. You receive professional career coaching, resume optimization, interview preparation, and job matching services at no cost while we help you advance your career.",
         },
         {
-          question: "What is responsive web design?",
+          question: "What is your job placement success rate?",
           answer:
-            "Responsive web design is an approach to web design that makes web pages render well on a variety of devices and window or screen sizes. It ensures that websites are accessible and visually appealing across different platforms.",
+            "We maintain an 85% job placement success rate within 90 days for active candidates. Our high success rate is achieved through personalized career counseling, extensive employer partnerships, professional development resources, and ongoing support throughout your entire job search journey until you secure your ideal position.",
         },
       ],
-      "mobile-dev": [
+      "career-services": [
         {
-          question: "What is mobile development?",
+          question: "What career counseling services do you provide?",
           answer:
-            "Mobile development is the process of creating software applications that run on mobile devices such as smartphones and tablets. It involves designing, coding, and testing applications for mobile operating systems like iOS and Android.",
+            "Our comprehensive career counseling includes one-on-one career coaching, skills assessment, career path planning, industry insights, professional development guidance, and personalized job search strategies. We help you identify your strengths, set achievable career goals, and create actionable plans for professional growth and advancement.",
         },
         {
           question:
-            "What's the difference between native and cross-platform mobile development?",
+            "Can you help with career transitions and industry changes?",
           answer:
-            "Native development involves building separate apps for each platform using platform-specific languages (Swift for iOS, Java/Kotlin for Android). Cross-platform development uses frameworks like React Native or Flutter to build a single codebase that works on multiple platforms.",
+            "Absolutely! We specialize in career transition services for professionals changing industries or roles. Our career coaches provide skills gap analysis, transferable skills identification, industry research, networking strategies, and targeted training recommendations to successfully pivot your career into new fields and opportunities.",
         },
         {
-          question: "What are some popular mobile app development frameworks?",
+          question: "Do you offer remote job placement services?",
           answer:
-            "Popular mobile app development frameworks include React Native, Flutter, Xamarin, Ionic, and NativeScript. Each has its own strengths and is suited for different types of projects.",
+            "Yes, we actively place candidates in remote, hybrid, and flexible work arrangements. Our extensive network includes employers offering work-from-home opportunities, remote-first positions, and location-independent careers across various industries, giving you access to global job opportunities and improved work-life balance.",
         },
         {
-          question: "How do you ensure mobile app security?",
+          question: "How do you match candidates with the right companies?",
           answer:
-            "Mobile app security involves practices such as secure coding, data encryption, secure authentication methods, regular security audits, and staying up-to-date with the latest security patches and best practices.",
+            "We use advanced AI-powered matching algorithms combined with personalized career counseling to align your skills, experience, values, and career goals with company culture, job requirements, and growth opportunities. Our recruitment specialists conduct in-depth assessments to ensure optimal employer-candidate fit for long-term career success.",
         },
         {
-          question: "What is the typical mobile app development lifecycle?",
+          question: "What ongoing support do you provide after job placement?",
           answer:
-            "The typical mobile app development lifecycle includes stages such as planning, design, development, testing, deployment, and maintenance. It often follows an iterative process with continuous updates and improvements.",
-        },
-      ],
-      "ui-ux": [
-        {
-          question: "What is UI/UX design?",
-          answer:
-            "UI (User Interface) design focuses on the visual elements of a digital product, while UX (User Experience) design deals with the overall feel and functionality of the product. Together, they aim to create products that are both visually appealing and easy to use.",
-        },
-        {
-          question: "What's the difference between UI and UX design?",
-          answer:
-            "UI design focuses on the look and layout of a product's interface, including colors, typography, and visual elements. UX design is broader, encompassing the entire user journey and how users interact with the product.",
-        },
-        {
-          question: "What tools do UI/UX designers commonly use?",
-          answer:
-            "Common tools for UI/UX design include Sketch, Figma, Adobe XD, InVision, and Protopie for design and prototyping. Research and testing tools might include UserTesting, Hotjar, and Optimal Workshop.",
-        },
-        {
-          question: "What is a user persona?",
-          answer:
-            "A user persona is a fictional representation of your ideal user or customer. It's based on user research and includes details about the persona's background, goals, challenges, and behaviors. Personas help guide design decisions by keeping the focus on the end-user.",
-        },
-        {
-          question: "What is the importance of user testing in UI/UX design?",
-          answer:
-            "User testing is crucial in UI/UX design as it provides direct feedback from actual users. It helps identify usability issues, validate design decisions, and ensure that the product meets user needs and expectations.",
+            "We provide continuous career support including onboarding assistance, 90-day follow-ups, performance coaching, salary negotiation guidance for future roles, and career advancement planning. Our commitment extends beyond initial placement to ensure your long-term professional success and job satisfaction.",
         },
       ],
-      copywriting: [
+      "resume-interview": [
         {
-          question: "What is copywriting?",
+          question: "Do you provide professional resume writing services?",
           answer:
-            "Copywriting is the act of writing text for the purpose of advertising or other forms of marketing. The product, called copy, is written content that aims to increase brand awareness and ultimately persuade a person or group to take a particular action.",
+            "Yes, our expert resume writers create ATS-optimized, professionally formatted resumes that highlight your achievements, skills, and experience. We provide resume optimization, cover letter writing, LinkedIn profile enhancement, and portfolio development to maximize your visibility to recruiters and hiring managers in your target industry.",
+        },
+        {
+          question: "How do you prepare candidates for job interviews?",
+          answer:
+            "Our comprehensive interview preparation includes mock interviews, behavioral question coaching, technical interview practice, company research guidance, and personalized feedback. We teach proven interview techniques, help you craft compelling stories, and build confidence to excel in phone screens, video interviews, and in-person meetings.",
+        },
+        {
+          question: "What is ATS optimization and why is it important?",
+          answer:
+            "ATS (Applicant Tracking System) optimization ensures your resume passes through automated screening software used by 90% of employers. We format your resume with proper keywords, relevant skills, and structured content so it ranks highly in ATS systems, significantly increasing your chances of getting noticed by recruiters and landing interviews.",
+        },
+        {
+          question: "Can you help optimize my LinkedIn profile for job search?",
+          answer:
+            "Our LinkedIn optimization services include professional headline creation, compelling summary writing, experience highlighting, skills endorsements, recommendation strategies, and networking tips. An optimized LinkedIn profile increases recruiter visibility by 40%, generates more job opportunities, and establishes your professional brand in your industry.",
+        },
+        {
+          question: "What interview questions should I prepare for?",
+          answer:
+            "We prepare you for common interview questions including behavioral (STAR method), situational, technical, competency-based, and culture-fit questions. Our interview coaching covers questions about strengths/weaknesses, career goals, conflict resolution, leadership examples, and salary expectations tailored to your specific industry and target role.",
+        },
+      ],
+      "salary-benefits": [
+        {
+          question: "Do you provide salary negotiation assistance?",
+          answer:
+            "Yes, our career coaches provide expert salary negotiation strategies, market salary research, compensation benchmarking, and negotiation scripts. We help you understand your market value, confidently discuss compensation packages, negotiate benefits, sign-on bonuses, stock options, and secure offers that reflect your worth and experience.",
         },
         {
           question:
-            "What's the difference between copywriting and content writing?",
+            "What is the average salary increase through your services?",
           answer:
-            "While both involve writing, copywriting is specifically aimed at persuasion and driving action (like making a purchase), while content writing is more focused on informing, educating, or entertaining the reader.",
+            "Candidates using our job placement and salary negotiation services achieve an average salary increase of 15-40% compared to their previous positions. We leverage market data, employer insights, and proven negotiation techniques to help you maximize your earning potential and secure competitive compensation packages.",
         },
         {
-          question: "What are some key elements of effective copywriting?",
+          question: "How do you determine fair market value for a position?",
           answer:
-            "Key elements of effective copywriting include understanding the target audience, crafting compelling headlines, focusing on benefits rather than features, using persuasive language, and including a clear call-to-action.",
+            "We use comprehensive salary databases, industry reports, location-based cost of living analysis, years of experience, skill level assessment, and current market demand to determine fair compensation. Our data-driven approach ensures you understand competitive salary ranges and benefits packages for your target role and location.",
         },
         {
-          question: "How important is SEO in copywriting?",
+          question: "Can you help negotiate benefits beyond base salary?",
           answer:
-            "SEO (Search Engine Optimization) is very important in copywriting, especially for digital content. It helps ensure that your copy reaches your target audience by making it more visible in search engine results. This involves using relevant keywords, creating quality content, and following SEO best practices.",
+            "Absolutely! We assist with negotiating comprehensive benefits including health insurance, retirement plans (401k matching), paid time off, flexible work arrangements, professional development budgets, performance bonuses, stock options, relocation assistance, and other perks that enhance your total compensation package.",
         },
         {
-          question: "What is a call-to-action (CTA) in copywriting?",
+          question: "What should I know about job offer evaluation?",
           answer:
-            "A call-to-action (CTA) is a prompt in your copy that tells the reader what to do next. It's usually a command verb like 'Buy Now,' 'Sign Up,' or 'Learn More.' An effective CTA is clear, compelling, and creates a sense of urgency.",
+            "Proper job offer evaluation involves analyzing total compensation (base salary, bonuses, equity), benefits quality, career growth opportunities, company culture, work-life balance, commute/remote options, and long-term career prospects. We provide detailed offer analysis and comparison tools to help you make informed decisions about your career moves.",
         },
       ],
     },
