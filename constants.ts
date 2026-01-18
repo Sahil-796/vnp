@@ -239,14 +239,14 @@ export const landingPageData = {
             "We specialize in placing candidates across multiple industries including technology, finance, healthcare, marketing, sales, operations, and management. Our job placement services cover entry-level positions, mid-career roles, senior management, and executive positions in both Fortune 500 companies and high-growth startups.",
         },
         {
-          question: "Do you charge candidates for job placement services?",
+          question: "Do you charge for job placement services?",
           answer:
-            "Our job placement services are completely free for job seekers. We partner with employers who compensate us for successful placements. You receive professional career coaching, resume optimization, interview preparation, and job matching services at no cost while we help you advance your career.",
+            "Our job placement services will be bringing value to you & your profile, So you have to provide some value(service charge) to receive some value anywhere you go to get professional services. You will receive professional career coaching, ATS optimization, interview preparation, and job mapping services at no cost while we help you advance your career.",
         },
         {
           question: "What is your job placement success rate?",
           answer:
-            "We maintain an 85% job placement success rate within 90 days for active candidates. Our high success rate is achieved through personalized career counseling, extensive employer partnerships, professional development resources, and ongoing support throughout your entire job search journey until you secure your ideal position.",
+            "We maintain an 95% job placement success rate within 2-6 weeks for active candidates. Our high success rate is achieved through personalized career counseling, extensive employer partnerships, professional development resources, and ongoing support throughout your entire job search journey until you secure your ideal position.",
         },
       ],
       "career-services": [
@@ -279,9 +279,9 @@ export const landingPageData = {
       ],
       "resume-interview": [
         {
-          question: "Do you provide professional resume writing services?",
+          question: "How will the resume services help ?",
           answer:
-            "Yes, our expert resume writers create ATS-optimized, professionally formatted resumes that highlight your achievements, skills, and experience. We provide resume optimization, cover letter writing, LinkedIn profile enhancement, and portfolio development to maximize your visibility to recruiters and hiring managers in your target industry.",
+            "We have experts who have worked on ATS portals of our Direct Clients who will create ATS-optimized, professionally formatted resumes that highlight your achievements, skills, and experience with enhanced ATS Score to maximize your visibility to recruiters and hiring managers in your target industry.",
         },
         {
           question: "How do you prepare candidates for job interviews?",
@@ -419,12 +419,12 @@ export const aboutPageData = {
     },
   ],
   stats: [
-    { icon: Award, value: 2500, label: "Successful Placements", suffix: "+" },
-    { icon: Users, value: 5000, label: "Career Clients", suffix: "+" },
-    { icon: Calendar, value: 15, label: "Years Experience", suffix: "+" },
+    { icon: Award, value: 1500, label: "Successful Placements", label2: "", suffix: "+" },
+    { icon: Users, value: 500, label: "Direct Clients", label2: "(Including Fortune 500 companies)", suffix: "+" },
+    { icon: Calendar, value: 10, label: "Years Experience", suffix: "+" },
     {
       icon: TrendingUp,
-      value: 85,
+      value: 95,
       label: "Placement Success Rate",
       suffix: "%",
     },
