@@ -18,7 +18,7 @@ const Footer = () => {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/hero-footer.png"
+              src="/new-hero.jpg"
               alt="background"
               fill
               className="object-cover opacity-80"
