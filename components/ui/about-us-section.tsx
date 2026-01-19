@@ -305,6 +305,8 @@ export default function AboutUsSection() {
           </div>
         </div>
 
+        
+
         {/* Stats Section */}
         <motion.div
           ref={statsRef}
