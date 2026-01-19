@@ -17,8 +17,6 @@ const Hero = () => {
             className="object-cover"
             priority
           />
-          {/* Contrast Overlay */}
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent z-0" /> */}
         </div>
 
         <div className="absolute top-[20%] md:top-1/2 left-6 md:left-24 md:-translate-y-1/2 z-10 max-w-xl md:max-w-2xl lg:max-w-3xl">
@@ -64,7 +62,7 @@ const Hero = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="absolute h-[40vh] md:h-[50vh] lg:h-[60vh] w-auto bottom-0 right-0 md:-right-6 lg:-right-12 z-0 md:z-10 pointer-events-none"
+          className="absolute h-[40vh] md:h-[50vh] lg:h-[60vh] w-auto -bottom-10 right-0 md:-right-6 lg:-right-12 z-0 md:z-10 pointer-events-none"
         >
           <Image
             src="/hero-man.png"
