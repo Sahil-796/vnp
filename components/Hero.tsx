@@ -11,7 +11,7 @@ const Hero = () => {
       <div className="relative overflow-hidden rounded-3xl md:rounded-4xl shadow-2xl">
         <div className="rounded-3xl md:rounded-4xl overflow-hidden relative h-[85vh] md:h-[70vh] w-full">
           <Image
-            src="/hero-footer.png"
+            src="/new-hero.jpg"
             alt="background"
             fill
             className="object-cover"
@@ -27,10 +27,10 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight drop-shadow-md">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#173C72] mb-4 md:mb-6 leading-tight drop-shadow-md">
               {landingPageData.hero.titlep1}
               <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/70">
+              <span className=" text-[#173C72] bg-clip-text bg-linear-to-r from-primary to-primary/70">
                 {landingPageData.hero.titlep2}
               </span>
             </h1>
@@ -40,7 +40,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 md:mb-8 font-medium max-w-sm md:max-w-lg leading-relaxed drop-shadow-sm"
+            className="text-base sm:text-lg md:text-xl text-[#3A566D] mb-6 md:mb-8 font-medium max-w-sm md:max-w-lg leading-relaxed drop-shadow-sm"
           >
             {landingPageData.hero.subtitle}
           </motion.p>

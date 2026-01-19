@@ -318,7 +318,8 @@ export default function AboutUsSection() {
               key={stat.label}
               icon={<stat.icon />}
               value={stat.value}
-              label={stat.label}
+              label={stat.label }
+              label2={stat.label2 || ""}
               suffix={stat.suffix}
               delay={index * 0.1}
             />
@@ -414,11 +415,12 @@ interface StatCounterProps {
   icon: React.ReactNode;
   value: number;
   label: string;
+  label2: string;
   suffix: string;
   delay: number;
 }
 
-function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
+function StatCounter({ icon, value, label, label2, suffix, delay }: StatCounterProps) {
   const countRef = useRef(null);
   const isInView = useInView(countRef, { once: true });
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -469,6 +471,8 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
         <span>{suffix}</span>
       </motion.div>
       <p className="text-muted-foreground text-sm mt-1">{label}</p>
+      <p className="text-muted-foreground text-sm mt-1">{label2}</p>
+
       <motion.div className="w-10 h-0.5 bg-primary mt-3 group-hover:w-16 transition-all duration-300" />
     </motion.div>
   );

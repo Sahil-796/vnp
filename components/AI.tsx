@@ -132,7 +132,7 @@ export function ExpandableChatDemo() {
               className="object-cover w-full h-full"
             />
           </div>
-          <h1 className="text-xl font-semibold">Vision and Path AI</h1>
+          <h1 className="text-xl font-semibold">Pathfinder</h1>
           <p className="text-sm text-muted-foreground">
             Ask me anything about the company
           </p>
