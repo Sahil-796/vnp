@@ -189,13 +189,14 @@ export default function AboutUsSection() {
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <PageTitle
-          badge={hero.badge}
-          title={hero.title}
-          description={hero.description}
-          variants={itemVariants}
-          icon={Zap}
-        />
+        <motion.div variants={itemVariants}>
+          <PageTitle
+            badge={hero.badge}
+            title={hero.title}
+            description={hero.description}
+            icon={Zap}
+          />
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           {/* Left Column */}
@@ -304,7 +305,7 @@ export default function AboutUsSection() {
               })}
           </div>
         </div>
-        
+
         <div className="mt-24 space-y-12">
           <h3 className=" text-2xl font-semibold text-center mb-6">Where Our Students Work</h3>
           <Marquee reverse className="[--duration:20s]">
@@ -339,16 +340,16 @@ export default function AboutUsSection() {
 
         {/* Marquees Section */}
 
-          <div className="mt-24 space-y-12 ">
-            <h3 className="text-2xl font-semibold text-center mb-6">Industries We Serve</h3>
-            <Marquee className="[--duration:20s]">
-              {industries.map((industry) => (
-                <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-full text-secondary-foreground font-medium whitespace-nowrap">
-                  {industry}
-                </div>
-              ))}
-            </Marquee>
-          </div>
+        <div className="mt-24 space-y-12 ">
+          <h3 className="text-2xl font-semibold text-center mb-6">Industries We Serve</h3>
+          <Marquee className="[--duration:20s]">
+            {industries.map((industry) => (
+              <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-full text-secondary-foreground font-medium whitespace-nowrap">
+                {industry}
+              </div>
+            ))}
+          </Marquee>
+        </div>
 
 
         {/* CTA Section */}
@@ -437,11 +438,10 @@ function ServiceItem({
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className={`p-3 rounded-lg transition-colors duration-300 relative ${
-            variant === "primary"
+          className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
               ? "bg-primary/10 text-primary"
               : "bg-secondary/10 text-secondary"
-          }`}
+            }`}
         >
           {icon}
         </motion.div>
