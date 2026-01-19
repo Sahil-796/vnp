@@ -3,8 +3,6 @@
 import { useRef, useState } from "react";
 import { servicesPageData } from "@/constants";
 import { Button } from "@/components/ui/button";
-import { FlowButton } from "@/components/ui/flow-button";
-import { CtaButton } from "@/components/ui/cta-button";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -106,13 +104,19 @@ export function ServicesList() {
 
   return (
     <div className="w-full py-32">
-      <PageTitle
-        badge={header.badge}
-        title={header.title}
-        description={header.description}
-        icon={Sparkles}
-        className="mb-24"
-      />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <PageTitle
+          badge={header.badge}
+          title={header.title}
+          description={header.description}
+          icon={Sparkles}
+          className="mb-24"
+        />
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
         {content.map((service, index) => {

@@ -25,10 +25,10 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#173C72] mb-4 md:mb-6 leading-tight drop-shadow-md">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary mb-4 md:mb-6 leading-tight drop-shadow-md">
               {landingPageData.hero.titlep1}
               <br />
-              <span className=" text-[#173C72] bg-clip-text bg-linear-to-r from-primary to-primary/70">
+              <span className=" text-primary bg-clip-text bg-linear-to-r from-primary to-primary/70">
                 {landingPageData.hero.titlep2}
               </span>
             </h1>
@@ -50,7 +50,7 @@ const Hero = () => {
           >
             <CtaButton
               size="lg"
-              variant="default"
+              variant="secondary"
               className="rounded-2xl text-base md:text-lg h-12 md:h-14 px-6 md:px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               {landingPageData.hero.ctap}

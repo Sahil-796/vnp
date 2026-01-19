@@ -2,9 +2,9 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import SectionTitle from "./SectionTitle";
 import { landingPageData } from "@/constants";
+import { useInView } from "@/hooks/use-in-view";
 
 // Custom SVG Icons
 const Icons = {
@@ -132,6 +132,59 @@ const Icons = {
   ),
 };
 
+const FeatureCard = ({ feature, index }: { feature: any; index: number }) => {
+  const { ref, isInView } = useInView({ once: true, rootMargin: "-50px" });
+
+  // @ts-ignore
+  const Icon = Icons[feature.title] || feature.icon;
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "group relative flex flex-col items-start p-6 rounded-[2rem] border-[6px] border-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:rotate-0",
+        index % 2 === 1 ? "lg:mt-12 -rotate-4" : "rotate-4",
+        isInView
+          ? (index % 2 === 0 ? "animate-enter-left" : "animate-enter-right")
+          : "opacity-0"
+      )}
+      style={{
+        backgroundColor: feature.color,
+        animationDelay: `${index * 0.1}s`
+      }}
+    >
+      {/* Decorative Pin */}
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+        <div className="relative">
+          {/* Pin Head */}
+          <div
+            className={cn(
+              "w-8 h-8 rounded-full shadow-lg flex items-center justify-center border-2 border-white/50 z-10",
+              // @ts-ignore
+              feature.pinColor || "bg-secondary",
+            )}
+          >
+            <div className="w-3 h-3 rounded-full bg-white/30" />
+          </div>
+        </div>
+      </div>
+
+      {/* Icon - Simplified, no container */}
+      <div className="relative mb-4">
+        <Icon className={cn("w-10 h-10", feature.iconColor)} />
+      </div>
+
+      <h3 className="text-xl font-bold text-slate-800 mb-2 tracking-tight">
+        {feature.title}
+      </h3>
+
+      <p className="text-slate-600 leading-relaxed text-sm font-medium">
+        {feature.description}
+      </p>
+    </div>
+  );
+};
+
 export const WhyChooseUs = () => {
   return (
     <section className="relative py-24 overflow-hidden bg-background">
@@ -151,79 +204,20 @@ export const WhyChooseUs = () => {
               fill="none"
               preserveAspectRatio="none"
             >
-              <motion.path
+              <path
                 d="M230,100 C500,100 500,300 790,300 C500,300 500,500 230,500 C500,500 500,700 790,700 C500,700 500,900 230,900 C500,900 500,1100 790,1100"
                 stroke="var(--muted-foreground)"
                 strokeWidth="3"
                 strokeDasharray="10 10"
-                initial={{ strokeDashoffset: 0 }}
-                animate={{ strokeDashoffset: 20 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="opacity-50"
+                className="opacity-50 animate-dash"
               />
             </svg>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
-            {landingPageData.whyChooseUs.content.map((feature, index) => {
-              // @ts-ignore
-              const Icon = Icons[feature.title] || feature.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{
-                    opacity: 0,
-                    y: 50,
-                    x: index % 2 === 0 ? -50 : 50,
-                    rotate: index % 2 === 0 ? -4 : 4,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    x: 0,
-                    rotate: index % 2 === 0 ? -4 : 4,
-                  }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={cn(
-                    "group relative flex flex-col items-start p-6 rounded-[2rem] border-[6px] border-white shadow-xl hover:shadow-2xl transition-all duration-300",
-                    index % 2 === 1 ? "lg:mt-12 hover:-rotate-4" : "hover:rotate-4",
-                  )}
-                  style={{ backgroundColor: feature.color }}
-                >
-                  {/* Decorative Pin */}
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
-                    <div className="relative">
-                      {/* Pin Head */}
-                      <div
-                        className={cn(
-                          "w-8 h-8 rounded-full shadow-lg flex items-center justify-center border-2 border-white/50 z-10",
-                          // @ts-ignore
-                          feature.pinColor || "bg-secondary",
-                        )}
-                      >
-                        <div className="w-3 h-3 rounded-full bg-white/30" />
-                      </div>
-                      {/* Pin Needle/Shadow illusion */}
-                    </div>
-                  </div>
-
-                  {/* Icon - Simplified, no container */}
-                  <div className="relative mb-4">
-                    <Icon className={cn("w-10 h-10", feature.iconColor)} />
-                  </div>
-
-                  <h3 className="text-xl font-bold text-slate-800 mb-2 tracking-tight">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-slate-600 leading-relaxed text-sm font-medium">
-                    {feature.description}
-                  </p>
-
-                </motion.div>
-              );
-            })}
+            {landingPageData.whyChooseUs.content.map((feature, index) => (
+              <FeatureCard key={index} feature={feature} index={index} />
+            ))}
           </div>
         </div>
       </div>
