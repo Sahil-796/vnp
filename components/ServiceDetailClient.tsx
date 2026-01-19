@@ -4,6 +4,8 @@ import { Sparkles, ArrowLeft, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { FlowButton } from "@/components/ui/flow-button";
+import { CtaButton } from "@/components/ui/cta-button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { servicesPageData } from "@/constants";
@@ -17,10 +19,12 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
                 {/* Header / Nav */}
                 <div className="flex items-center gap-4">
                     <Link href="/services">
-                        <Button variant="ghost" className="gap-2 pl-0 hover:pl-2 transition-all">
-                            <ArrowLeft className="w-4 h-4" />
-                            {servicesPageData.labels.backToServices}
-                        </Button>
+                        <CtaButton className="rounded-xl gap-2">
+                            <span className="flex items-center gap-2">
+                                <ArrowLeft className="w-4 h-4" />
+                                {servicesPageData.labels.backToServices}
+                            </span>
+                        </CtaButton>
                     </Link>
                 </div>
 
@@ -43,9 +47,7 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
 
                         <div className="flex gap-4">
                             <Link href="/contact">
-                                <Button size="lg" className="rounded-full text-lg px-8 py-6">
-                                    {service.ctaText || servicesPageData.labels.getStarted}
-                                </Button>
+                                <FlowButton text={service.ctaText} />
                             </Link>
                         </div>
                     </motion.div>

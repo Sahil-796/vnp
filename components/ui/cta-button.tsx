@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface CtaButtonProps extends ButtonProps {
-    children: string; // Restrict to string for text roll effect
+    children: React.ReactNode;
 }
 
 const CtaButton = React.forwardRef<HTMLButtonElement, CtaButtonProps>(

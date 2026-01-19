@@ -41,7 +41,15 @@ If asked of internal information, respond with a message that you cannot answer.
 };
 
 export const POST = async (request: Request) => {
-  const { prompt } = await request.json();
-  const response = await generateResponse(prompt);
-  return NextResponse.json({ response });
+  try {
+    const {prompt} = await request.json();
+
+    if (!prompt) return NextResponse.json({ response: "Prompt is required." }, { status: 400 });
+
+    const response = await generateResponse(prompt);
+    return NextResponse.json({ response });
+  } catch (error) {
+    console.error("Error processing AI request:", error);
+    return NextResponse.json({ response: "Invalid request format." }, { status: 400 });
+  }
 };
