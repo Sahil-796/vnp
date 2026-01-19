@@ -103,10 +103,10 @@ export const Navbar = () => {
         {/* Desktop Navbar - Pill Shape */}
         <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
           <GlassSurface
-            borderRadius={999}
+            borderRadius={40}
             width="auto"
             height="auto"
-            blur={10}
+            blur={20}
             opacity={0.7}
             borderWidth={0.5}
             className="px-2 py-1.5"

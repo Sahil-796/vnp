@@ -304,8 +304,17 @@ export default function AboutUsSection() {
               })}
           </div>
         </div>
-
-
+        
+        <div className="mt-24 space-y-12">
+          <h3 className=" text-2xl font-semibold text-center mb-6">Where Our Students Work</h3>
+          <Marquee reverse className="[--duration:20s]">
+            {companies.map((company) => (
+              <div key={company} className="mx-4 px-6 py-3 bg-primary/10 rounded-full text-primary font-bold text-lg whitespace-nowrap">
+                {company}
+              </div>
+            ))}
+          </Marquee>
+        </div>
 
         {/* Stats Section */}
         <motion.div
@@ -329,8 +338,8 @@ export default function AboutUsSection() {
         </motion.div>
 
         {/* Marquees Section */}
-        <div className="mt-24 space-y-12">
-          <div>
+
+          <div className="mt-24 space-y-12 ">
             <h3 className="text-2xl font-semibold text-center mb-6">Industries We Serve</h3>
             <Marquee className="[--duration:20s]">
               {industries.map((industry) => (
@@ -341,17 +350,6 @@ export default function AboutUsSection() {
             </Marquee>
           </div>
 
-          <div>
-            <h3 className="text-2xl font-semibold text-center mb-6">Where Our Students Work</h3>
-            <Marquee reverse className="[--duration:20s]">
-              {companies.map((company) => (
-                <div key={company} className="mx-4 px-6 py-3 bg-primary/10 rounded-full text-primary font-bold text-lg whitespace-nowrap">
-                  {company}
-                </div>
-              ))}
-            </Marquee>
-          </div>
-        </div>
 
         {/* CTA Section */}
         <motion.div
@@ -439,10 +437,11 @@ function ServiceItem({
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
-            ? "bg-primary/10 text-primary"
-            : "bg-secondary/10 text-secondary"
-            }`}
+          className={`p-3 rounded-lg transition-colors duration-300 relative ${
+            variant === "primary"
+              ? "bg-primary/10 text-primary"
+              : "bg-secondary/10 text-secondary"
+          }`}
         >
           {icon}
         </motion.div>
@@ -480,7 +479,14 @@ interface StatCounterProps {
   delay: number;
 }
 
-function StatCounter({ icon, value, label, label2, suffix, delay }: StatCounterProps) {
+function StatCounter({
+  icon,
+  value,
+  label,
+  label2,
+  suffix,
+  delay,
+}: StatCounterProps) {
   const countRef = useRef(null);
   const isInView = useInView(countRef, { once: true });
   const [hasAnimated, setHasAnimated] = useState(false);
