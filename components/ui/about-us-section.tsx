@@ -171,7 +171,7 @@ export default function AboutUsSection() {
     <section
       id="about-section"
       ref={sectionRef}
-      className="w-full py-24 px-4 bg-background text-foreground overflow-hidden relative"
+      className="w-full py-32 px-4 bg-background text-foreground overflow-hidden relative"
     >
       {/* Decorative background elements */}
       <motion.div
