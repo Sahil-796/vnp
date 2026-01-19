@@ -58,59 +58,6 @@
   --spacing: 0.25rem;
 }
 
-.dark {
-  --background: oklch(0.2204 0.0198 275.8439);
-  --foreground: oklch(0.9366 0.0129 266.6974);
-  --card: oklch(0.2703 0.0407 281.3036);
-  --card-foreground: oklch(0.9366 0.0129 266.6974);
-  --popover: oklch(0.2703 0.0407 281.3036);
-  --popover-foreground: oklch(0.9097 0.1440 95.1120);
-  --primary: oklch(0.4815 0.1178 263.3758);
-  --primary-foreground: oklch(0.9097 0.1440 95.1120);
-  --secondary: oklch(0.9097 0.1440 95.1120);
-  --secondary-foreground: oklch(0.2703 0.0407 281.3036);
-  --muted: oklch(0.2424 0.0324 281.0890);
-  --muted-foreground: oklch(0.6243 0.0412 262.0375);
-  --accent: oklch(0.8469 0.0524 264.7751);
-  --accent-foreground: oklch(0.2204 0.0198 275.8439);
-  --destructive: oklch(0.5280 0.1200 357.1130);
-  --destructive-foreground: oklch(0.9097 0.1440 95.1120);
-  --border: oklch(0.3072 0.0287 281.7681);
-  --input: oklch(0.4815 0.1178 263.3758);
-  --ring: oklch(0.9097 0.1440 95.1120);
-  --chart-1: oklch(0.4815 0.1178 263.3758);
-  --chart-2: oklch(0.9097 0.1440 95.1120);
-  --chart-3: oklch(0.6896 0.0714 234.0387);
-  --chart-4: oklch(0.6243 0.0412 262.0375);
-  --chart-5: oklch(0.5280 0.1200 357.1130);
-  --sidebar: oklch(0.2703 0.0407 281.3036);
-  --sidebar-foreground: oklch(0.9366 0.0129 266.6974);
-  --sidebar-primary: oklch(0.4815 0.1178 263.3758);
-  --sidebar-primary-foreground: oklch(0.9097 0.1440 95.1120);
-  --sidebar-accent: oklch(0.9097 0.1440 95.1120);
-  --sidebar-accent-foreground: oklch(0.2703 0.0407 281.3036);
-  --sidebar-border: oklch(0.3072 0.0287 281.7681);
-  --sidebar-ring: oklch(0.9097 0.1440 95.1120);
-  --font-sans: Libre Baskerville, serif;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --radius: 0.5rem;
-  --shadow-x: 0;
-  --shadow-y: 1px;
-  --shadow-blur: 3px;
-  --shadow-spread: 0px;
-  --shadow-opacity: 0.1;
-  --shadow-color: oklch(0 0 0);
-  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
-  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
-  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
-  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -143,6 +90,19 @@
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
+
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 0;
+    }
+
+    to {
+      stroke-dashoffset: 20;
+    }
+  }
+
+  --animate-dash: dash 1s linear infinite;
+
   --color-sidebar-ring: var(--sidebar-ring);
 
   --font-sans: var(--font-sans);
@@ -162,22 +122,53 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
+
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
+
+  @keyframes enter-left {
+    from {
+      opacity: 0;
+      transform: translate(-50px, 50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes enter-right {
+    from {
+      opacity: 0;
+      transform: translate(50px, 50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  --animate-enter-left: enter-left 0.5s ease-out both;
+  --animate-enter-right: enter-right 0.5s ease-out both;
 }
 
 @layer base {
