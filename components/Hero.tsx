@@ -7,7 +7,7 @@ import { landingPageData } from "@/constants";
 
 const Hero = () => {
   return (
-    <div className="relative mb-48 md:mb-32">
+    <div className="relative mt-32 mb-48 md:mb-32">
       <div className="relative overflow-hidden rounded-3xl md:rounded-4xl shadow-2xl">
         <div className="rounded-3xl md:rounded-4xl overflow-hidden relative h-[85vh] md:h-[70vh] w-full">
           <Image

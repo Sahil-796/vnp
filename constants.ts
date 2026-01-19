@@ -336,20 +336,20 @@ export const landingPageData = {
   },
 
   footer: {
-    titlep1: "Vision & Path",
-    titlep2: "",
+    titlep1: "Vision",
+    titlep2: "& Path",
     address: "123 Innovation Drive, Tech City, CA 94043",
     phone: "+1 (555) 123-4567",
     companyLinks: [
       { label: "About", href: "/about" },
-      { label: "Blog", href: "/blog" },
-      { label: "Gallery", href: "/gallery" },
+      { label: "Services", href: "/services" },
       { label: "Contact", href: "/contact" },
     ],
     socialLinks: [
-      { label: "Facebook", href: "#" },
-      { label: "Instagram", href: "#" },
-      { label: "Twitter", href: "#" },
+      { label: "LinkedIn", href: "#" },
+      // { label: "Facebook", href: "#" },
+      // { label: "Instagram", href: "#" },
+      // { label: "Twitter", href: "#" },
     ],
     copyright: "Copyright © 2025 Vision & Path. All Rights Reserved.",
   },
@@ -419,8 +419,20 @@ export const aboutPageData = {
     },
   ],
   stats: [
-    { icon: Award, value: 1500, label: "Successful Placements", label2: "", suffix: "+" },
-    { icon: Users, value: 500, label: "Direct Clients", label2: "(Including Fortune 500 companies)", suffix: "+" },
+    {
+      icon: Award,
+      value: 1500,
+      label: "Successful Placements",
+      label2: "",
+      suffix: "+",
+    },
+    {
+      icon: Users,
+      value: 500,
+      label: "Direct Clients",
+      label2: "(Including Fortune 500 companies)",
+      suffix: "+",
+    },
     { icon: Calendar, value: 10, label: "Years Experience", suffix: "+" },
     {
       icon: TrendingUp,
