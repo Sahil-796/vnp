@@ -44,7 +44,7 @@ Core Responsibilities:
 
 1. Provide high-quality guidance on:
    - Career direction & decision making
-   - Resume improvement and ATS optimization
+   - ATS optimization and Resume improvement
    - Interview preparation (behavioral, technical, HR, salary)
    - Job search strategies and networking
    - Skill development and career growth

@@ -18,9 +18,9 @@ import {
 export const landingPageData = {
   hero: {
     titlep1: "Career guidance that",
-    titlep2: "moves you forward",
+    titlep2: "Leads to Real Career Growth",
     subtitle:
-      "Crafting superior experiences with precision and innovative design solutions.",
+      "Get the Right Career Advice from Industry Experts",
     ctap: "Get Started Now",
     desc: "Unlock the potential of your business with our comprehensive suite of tools designed to streamline your workflow and boost productivity.",
     ctad: "Learn More",
