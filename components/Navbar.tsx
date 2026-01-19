@@ -106,7 +106,7 @@ export const Navbar = () => {
             borderRadius={40}
             width="auto"
             height="auto"
-            blur={20}
+            blur={40}
             opacity={0.7}
             borderWidth={0.5}
             className="px-2 py-1.5"
@@ -116,7 +116,7 @@ export const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-5 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/10 rounded-full transition-all duration-300"
+                  className="px-5 py-2 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full transition-all duration-300"
                 >
                   {item.name}
                 </Link>
