@@ -122,13 +122,13 @@ export const Navbar = () => {
                     href={item.href}
                     className={cn(
                       "px-5 py-2 text-base font-medium rounded-full transition-colors duration-300 relative z-10",
-                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                      isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="navbar-pill"
-                        className="absolute inset-0 bg-primary/10 rounded-full -z-10 backdrop-blur-sm border border-white/5 shadow-sm"
+                        className="absolute inset-0 bg-primary rounded-full -z-10 backdrop-blur-sm border border-white/5 shadow-sm"
                         transition={{
                           type: "spring",
                           stiffness: 400,
