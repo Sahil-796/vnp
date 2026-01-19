@@ -10,6 +10,7 @@ import { X } from "lucide-react";
 import { FlowButton } from "./ui/flow-button";
 import { TextRollLink } from "./ui/text-roll-link";
 import { Button } from "./ui/button";
+import { usePathname } from "next/navigation";
 
 import GlassSurface from "@/components/GlassSurface";
 
@@ -17,6 +18,7 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const pathname = usePathname();
 
   const menuItems = [
     { name: "Home", href: "/" },
@@ -54,7 +56,7 @@ export const Navbar = () => {
           className={cn(
             "relative z-10 transition-all duration-500 flex items-center justify-center",
             isScrolled
-              ? "px-5 py-2" // Removed bg/border classes, kept padding
+              ? "px-5 py-2"
               : "px-0 py-0"
           )}
         >
@@ -106,21 +108,38 @@ export const Navbar = () => {
             borderRadius={40}
             width="auto"
             height="auto"
-            blur={40}
-            opacity={0.7}
+            blur={8}
+            opacity={0.2}
             borderWidth={0.5}
-            className="px-2 py-1.5"
+            className="p-1"
           >
-            <nav className="flex items-center gap-1">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="px-5 py-2 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full transition-all duration-300"
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <nav className="flex items-center gap-1 relative">
+              {menuItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "px-5 py-2 text-base font-medium rounded-full transition-colors duration-300 relative z-10",
+                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="navbar-pill"
+                        className="absolute inset-0 bg-primary/10 rounded-full -z-10 backdrop-blur-sm border border-white/5 shadow-sm"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30
+                        }}
+                      />
+                    )}
+                    {item.name}
+                  </Link>
+                );
+              })}
             </nav>
           </GlassSurface>
         </div>
@@ -140,7 +159,7 @@ export const Navbar = () => {
                 className={cn(
                   "group outline-none cursor-pointer transition-all duration-500 relative flex items-center justify-center",
                   isScrolled
-                    ? "p-3" // Removed bg/border classes, kept padding
+                    ? "p-3"
                     : "p-2"
                 )}
                 aria-label="Open menu"
@@ -187,7 +206,7 @@ export const Navbar = () => {
                           },
                         },
                         hover: {
-                          x: i === 0 ? 0 : i === 1 ? -8 : -16, // Move left to simulate left alignment (32px container)
+                          x: i === 0 ? 0 : i === 1 ? -8 : -16,
                           opacity: 1,
                           skewX: 15,
                           transition: {
