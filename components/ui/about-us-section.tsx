@@ -171,7 +171,7 @@ export default function AboutUsSection() {
     <section
       id="about-section"
       ref={sectionRef}
-      className="w-full py-24 px-4 bg-background text-foreground overflow-hidden relative"
+      className="w-full py-32 px-4 bg-background text-foreground overflow-hidden relative"
     >
       {/* Decorative background elements */}
       <motion.div
@@ -304,6 +304,17 @@ export default function AboutUsSection() {
               })}
           </div>
         </div>
+        
+        <div className="mt-24 space-y-12">
+          <h3 className=" text-2xl font-semibold text-center mb-6">Where Our Students Work</h3>
+          <Marquee reverse className="[--duration:20s]">
+            {companies.map((company) => (
+              <div key={company} className="mx-4 px-6 py-3 bg-primary/10 rounded-full text-primary font-bold text-lg whitespace-nowrap">
+                {company}
+              </div>
+            ))}
+          </Marquee>
+        </div>
 
         {/* Stats Section */}
         <motion.div
@@ -318,13 +329,27 @@ export default function AboutUsSection() {
               key={stat.label}
               icon={<stat.icon />}
               value={stat.value}
-              label={stat.label }
+              label={stat.label}
               label2={stat.label2 || ""}
               suffix={stat.suffix}
               delay={index * 0.1}
             />
           ))}
         </motion.div>
+
+        {/* Marquees Section */}
+
+          <div className="mt-24 space-y-12 ">
+            <h3 className="text-2xl font-semibold text-center mb-6">Industries We Serve</h3>
+            <Marquee className="[--duration:20s]">
+              {industries.map((industry) => (
+                <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-full text-secondary-foreground font-medium whitespace-nowrap">
+                  {industry}
+                </div>
+              ))}
+            </Marquee>
+          </div>
+
 
         {/* CTA Section */}
         <motion.div
@@ -345,6 +370,39 @@ export default function AboutUsSection() {
     </section>
   );
 }
+
+const industries = [
+  "Information Technology",
+  "Finance & Banking",
+  "Healthcare",
+  "Education",
+  "E-commerce",
+  "Manufacturing",
+  "Consulting",
+  "Media & Entertainment",
+  "Telecommunications",
+  "Energy",
+];
+
+const companies = [
+  "Google",
+  "Meta",
+  "Amazon",
+  "Microsoft",
+  "Apple",
+  "Netflix",
+  "Tesla",
+  "Adobe",
+  "Salesforce",
+  "Oracle",
+  "IBM",
+  "Intel",
+  "Goldman Sachs",
+  "JPMorgan Chase",
+  "McKinsey & Company",
+];
+
+import { Marquee } from "./marquee";
 
 interface ServiceItemProps {
   icon: React.ReactNode;
@@ -379,10 +437,11 @@ function ServiceItem({
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
-            ? "bg-primary/10 text-primary"
-            : "bg-secondary/10 text-secondary"
-            }`}
+          className={`p-3 rounded-lg transition-colors duration-300 relative ${
+            variant === "primary"
+              ? "bg-primary/10 text-primary"
+              : "bg-secondary/10 text-secondary"
+          }`}
         >
           {icon}
         </motion.div>
@@ -420,7 +479,14 @@ interface StatCounterProps {
   delay: number;
 }
 
-function StatCounter({ icon, value, label, label2, suffix, delay }: StatCounterProps) {
+function StatCounter({
+  icon,
+  value,
+  label,
+  label2,
+  suffix,
+  delay,
+}: StatCounterProps) {
   const countRef = useRef(null);
   const isInView = useInView(countRef, { once: true });
   const [hasAnimated, setHasAnimated] = useState(false);

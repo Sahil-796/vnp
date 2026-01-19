@@ -69,12 +69,35 @@ export function ExpandableChatDemo() {
     setIsLoading(true);
 
     try {
+      // Chat History: Maintain a conversation window of the last 5 messages
+      // This provides context for more natural, coherent conversations
+      // while keeping token usage reasonable
+      const currentMessages = [
+        ...messages,
+        {
+          id: Date.now(),
+          content: userMessage,
+          sender: "user",
+        },
+      ];
+
+      // Take the last 5 messages (exclude the initial greeting if more than 5)
+      const recentMessages = currentMessages.slice(-5);
+
+      // Format messages for API (convert to role-based format)
+      const formattedMessages = recentMessages
+        .filter((msg) => msg.sender !== "ai" || msg.id !== 1) // Exclude initial greeting
+        .map((msg) => ({
+          role: msg.sender === "user" ? "user" : "assistant",
+          content: msg.content,
+        }));
+
       const response = await fetch("/api/ai", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ prompt: userMessage }),
+        body: JSON.stringify({ messages: formattedMessages }),
       });
 
       const data = await response.json();
@@ -161,63 +184,97 @@ export function ExpandableChatDemo() {
                   }
                 >
                   {message.sender === "ai" ? (
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        p: ({ children }) => (
-                          <p className="mb-2 last:mb-0">{children}</p>
-                        ),
-                        ul: ({ children }) => (
-                          <ul className="mb-2 ml-4 list-disc">{children}</ul>
-                        ),
-                        ol: ({ children }) => (
-                          <ol className="mb-2 ml-4 list-decimal">{children}</ol>
-                        ),
-                        li: ({ children }) => (
-                          <li className="mb-1">{children}</li>
-                        ),
-                        code: ({ node, ...props }) => {
-                          return (
-                            <code className="bg-muted px-1 py-0.5 rounded text-sm">
-                              {props.children}
-                            </code>
-                          );
-                        },
-                        pre: ({ children }) => (
-                          <pre className="bg-muted p-2 rounded my-2 overflow-x-auto">
-                            {children}
-                          </pre>
-                        ),
-                        h1: ({ children }) => (
-                          <h1 className="text-lg font-bold mb-2">{children}</h1>
-                        ),
-                        h2: ({ children }) => (
-                          <h2 className="text-base font-bold mb-2">
-                            {children}
-                          </h2>
-                        ),
-                        h3: ({ children }) => (
-                          <h3 className="text-sm font-bold mb-1">{children}</h3>
-                        ),
-                        a: ({ children, href }) => (
-                          <a
-                            href={href}
-                            className="text-primary underline"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {children}
-                          </a>
-                        ),
-                        strong: ({ children }) => (
-                          <strong className="font-semibold">{children}</strong>
-                        ),
-                      }}
-                    >
-                      {message.content}
-                    </ReactMarkdown>
+                    <div className="prose prose-sm max-w-none dark:prose-invert">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          p: ({ children }) => (
+                            <p className="mb-3 last:mb-0 leading-relaxed whitespace-pre-wrap wrap-break-word">
+                              {children}
+                            </p>
+                          ),
+                          ul: ({ children }) => (
+                            <ul className="mb-3 ml-5 list-disc space-y-1.5 leading-relaxed">
+                              {children}
+                            </ul>
+                          ),
+                          ol: ({ children }) => (
+                            <ol className="mb-3 ml-5 list-decimal space-y-1.5 leading-relaxed">
+                              {children}
+                            </ol>
+                          ),
+                          li: ({ children }) => (
+                            <li className="pl-1 leading-relaxed">{children}</li>
+                          ),
+                          code: ({ node, ...props }) => {
+                            const isInline =
+                              !node?.position ||
+                              typeof props.children === "string";
+                            return isInline ? (
+                              <code className="bg-muted/60 px-1.5 py-0.5 rounded text-sm font-mono wrap-break-word">
+                                {props.children}
+                              </code>
+                            ) : (
+                              <code className="block bg-muted/60 p-2 rounded text-sm font-mono overflow-x-auto whitespace-pre">
+                                {props.children}
+                              </code>
+                            );
+                          },
+                          pre: ({ children }) => (
+                            <pre className="bg-muted/60 p-3 rounded-lg my-3 overflow-x-auto">
+                              {children}
+                            </pre>
+                          ),
+                          h1: ({ children }) => (
+                            <h1 className="text-lg font-bold mb-2.5 mt-4 first:mt-0 leading-tight">
+                              {children}
+                            </h1>
+                          ),
+                          h2: ({ children }) => (
+                            <h2 className="text-base font-bold mb-2 mt-3 first:mt-0 leading-tight">
+                              {children}
+                            </h2>
+                          ),
+                          h3: ({ children }) => (
+                            <h3 className="text-sm font-bold mb-1.5 mt-2 first:mt-0 leading-tight">
+                              {children}
+                            </h3>
+                          ),
+                          a: ({ children, href }) => (
+                            <a
+                              href={href}
+                              className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors wrap-break-word"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {children}
+                            </a>
+                          ),
+                          strong: ({ children }) => (
+                            <strong className="font-semibold text-foreground">
+                              {children}
+                            </strong>
+                          ),
+                          em: ({ children }) => (
+                            <em className="italic">{children}</em>
+                          ),
+                          blockquote: ({ children }) => (
+                            <blockquote className="border-l-4 border-muted-foreground/30 pl-4 my-3 italic text-muted-foreground">
+                              {children}
+                            </blockquote>
+                          ),
+                          hr: () => (
+                            <hr className="my-4 border-muted-foreground/20" />
+                          ),
+                        }}
+                      >
+                        {message.content}
+                      </ReactMarkdown>
+                    </div>
                   ) : (
-                    message.content
+                    <div className="whitespace-pre-wrap wrap-break-word">
+                      {message.content}
+                    </div>
                   )}
                 </ChatBubbleMessage>
               </ChatBubble>

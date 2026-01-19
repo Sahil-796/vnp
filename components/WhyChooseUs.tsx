@@ -175,19 +175,19 @@ export const WhyChooseUs = () => {
                     opacity: 0,
                     y: 50,
                     x: index % 2 === 0 ? -50 : 50,
-                    rotate: index % 2 === 0 ? -2 : 2,
+                    rotate: index % 2 === 0 ? -4 : 4,
                   }}
                   whileInView={{
                     opacity: 1,
                     y: 0,
                     x: 0,
-                    rotate: index % 2 === 0 ? -2 : 2,
+                    rotate: index % 2 === 0 ? -4 : 4,
                   }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={cn(
                     "group relative flex flex-col items-start p-6 rounded-[2rem] border-[6px] border-white shadow-xl hover:shadow-2xl transition-all duration-300",
-                    index % 2 === 1 ? "lg:mt-12" : "",
+                    index % 2 === 1 ? "lg:mt-12 hover:-rotate-4" : "hover:rotate-4",
                   )}
                   style={{ backgroundColor: feature.color }}
                 >
@@ -221,8 +221,6 @@ export const WhyChooseUs = () => {
                     {feature.description}
                   </p>
 
-                  {/* Decorative arrow/line on hover - kept but made subtle */}
-                  <div className="mt-4 w-12 h-1 rounded-full bg-slate-800/20 group-hover:w-full group-hover:bg-primary transition-all duration-500" />
                 </motion.div>
               );
             })}

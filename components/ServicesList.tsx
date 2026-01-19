@@ -105,7 +105,7 @@ export function ServicesList() {
   const { content, header } = servicesPageData;
 
   return (
-    <div className="w-full py-24">
+    <div className="w-full py-32">
       <PageTitle
         badge={header.badge}
         title={header.title}
@@ -179,11 +179,11 @@ export function ServicesList() {
                     {/* Content Section */}
                     <div
                       className={cn(
-                        "flex flex-col p-5 gap-3 z-10 relative flex-grow",
+                        "flex flex-col p-5 gap-3 z-10 relative flex-1",
                         isLarge && "md:w-1/2 md:p-8 md:justify-center",
                       )}
                     >
-                      <div className="flex-grow">
+                      <div className="flex-1">
                         <h3
                           className={cn(
                             "font-bold mb-2",

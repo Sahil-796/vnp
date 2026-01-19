@@ -14,7 +14,7 @@ type ServiceType = (typeof servicesPageData.content)[number];
 
 export function ServiceDetailClient({ service }: { service: ServiceType }) {
     return (
-        <div className="min-h-screen py-24 px-4 sm:px-8">
+        <div className="min-h-screen py-32 px-4 sm:px-8">
             <div className="max-w-7xl mx-auto space-y-12">
                 {/* Header / Nav */}
                 <div className="flex items-center gap-4">
