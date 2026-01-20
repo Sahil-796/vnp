@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { PageTitle } from "@/components/PageTitle";
 import { aboutPageData } from "@/constants";
 import { CtaButton } from "@/components/ui/cta-button";
+import ClientsSection from "@/components/ClientsSection";
 
 // Custom SVG Icons
 const Icons = {
@@ -233,10 +234,10 @@ export default function AboutUsSection() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <img
-                  src={centerImage.src}
-                  alt={centerImage.alt}
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/logo.png"
+                  alt="Vision and Path"
+                  className="w-full h-full py-12 object-cover"
                   width={400}
                   height={500}
                 />
@@ -250,7 +251,7 @@ export default function AboutUsSection() {
                     className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium"
                     whileTap={{ scale: 0.95 }}
                   >
-                    {centerImage.badge}
+                    Vision and Path
                   </motion.button>
                 </motion.div>
               </motion.div>
@@ -306,15 +307,8 @@ export default function AboutUsSection() {
           </div>
         </div>
 
-        <div className="mt-24 space-y-12">
-          <h3 className=" text-2xl font-semibold text-center mb-6">Where Our Students Work</h3>
-          <Marquee reverse className="[--duration:20s]">
-            {companies.map((company) => (
-              <div key={company} className="mx-4 px-6 py-3 bg-primary/10 rounded-full text-primary font-bold text-lg whitespace-nowrap">
-                {company}
-              </div>
-            ))}
-          </Marquee>
+        <div className="mt-18">
+          <ClientsSection />
         </div>
 
         {/* Stats Section */}
@@ -344,7 +338,7 @@ export default function AboutUsSection() {
           <h3 className="text-2xl font-semibold text-center mb-6">Industries We Serve</h3>
           <Marquee className="[--duration:20s]">
             {industries.map((industry) => (
-              <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-full text-secondary-foreground font-medium whitespace-nowrap">
+              <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-xl text-secondary-foreground font-medium whitespace-nowrap">
                 {industry}
               </div>
             ))}
@@ -439,8 +433,8 @@ function ServiceItem({
       >
         <motion.div
           className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
-              ? "bg-primary/10 text-primary"
-              : "bg-secondary/10 text-secondary"
+            ? "bg-primary/10 text-primary"
+            : "bg-secondary/10 text-secondary"
             }`}
         >
           {icon}
