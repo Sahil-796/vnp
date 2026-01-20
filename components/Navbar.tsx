@@ -62,7 +62,7 @@ export const Navbar = () => {
         >
           {/* Glass Background - Mobile Only/Scrolled */}
           <div className={cn(
-            "absolute inset-0 -z-10 transition-opacity duration-500 md:hidden",
+            "absolute inset-0 -z-10 transition-opacity duration-500",
             isScrolled ? "opacity-100" : "opacity-0"
           )}>
             {isScrolled && (
@@ -246,7 +246,7 @@ export const Navbar = () => {
                       href={item.href}
                       onClick={handleLinkClick}
                       className="overflow-hidden"
-                      textClassName="font-serif text-5xl md:text-7xl font-medium text-muted-foreground group-hover:text-primary duration-300 tracking-tight block pb-1"
+                      textClassName="text-5xl md:text-7xl font-medium text-muted-foreground group-hover:text-primary duration-300 tracking-tight block pb-1"
                       style={{ transitionDelay: `${i * 50}ms` }}
                     >
                       {item.name}
