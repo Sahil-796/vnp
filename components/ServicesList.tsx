@@ -103,7 +103,7 @@ export function ServicesList() {
   const { content, header } = servicesPageData;
 
   return (
-    <div className="w-full py-32">
+    <div className="w-full py-32 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -160,7 +160,7 @@ export function ServicesList() {
                       className={cn(
                         "group overflow-hidden w-full shrink-0",
                         isLarge
-                          ? "h-56 md:absolute md:top-0 md:right-0 md:bottom-0 md:w-1/2 md:h-full z-0"
+                          ? "h-48 relative md:absolute md:top-0 md:right-0 md:bottom-0 md:w-1/2 md:h-full z-0"
                           : "h-48 relative",
                       )}
                     >

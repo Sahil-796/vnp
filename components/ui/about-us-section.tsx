@@ -8,7 +8,7 @@ import {
   useTransform,
   type Variants,
 } from "framer-motion";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, Link, Zap } from "lucide-react";
 import Image from "next/image"; // Added this import
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -185,7 +185,7 @@ export default function AboutUsSection() {
       />
 
       <motion.div
-        className="container mx-auto max-w-6xl relative z-10"
+        className="px-4 container mx-auto max-w-6xl relative z-10"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
@@ -456,9 +456,9 @@ function ServiceItem({
         initial={{ opacity: 0 }}
         animate={{ opacity: 0 }}
       >
-        <span className="flex items-center gap-1">
+        <Link href="/contact" className="flex items-center gap-1">
           {aboutPageData.labels.learnMore} <ArrowRight className="w-3 h-3" />
-        </span>
+        </Link>
       </motion.div>
     </motion.div>
   );
