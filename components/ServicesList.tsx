@@ -28,7 +28,7 @@ const AnimatedCheckIcon = ({ color }: { color?: string }) => {
     <div
       className={cn(
         "rounded-full p-0.5 relative",
-        "bg-black/5 dark:bg-white/10",
+        "bg-black/5",
       )}
     >
       <svg

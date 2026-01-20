@@ -50,7 +50,6 @@ const Hero = () => {
           >
             <CtaButton
               size="lg"
-              variant="secondary"
               className="rounded-2xl text-base md:text-lg h-12 md:h-14 px-6 md:px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               {landingPageData.hero.ctap}
@@ -74,7 +73,6 @@ const Hero = () => {
           />
         </motion.div>
       </div>
-
     </div>
   );
 };

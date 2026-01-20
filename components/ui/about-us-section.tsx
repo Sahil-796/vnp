@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { PageTitle } from "@/components/PageTitle";
 import { aboutPageData } from "@/constants";
 import { CtaButton } from "@/components/ui/cta-button";
+import ClientsSection from "@/components/ClientsSection";
 
 // Custom SVG Icons
 const Icons = {
@@ -306,15 +307,8 @@ export default function AboutUsSection() {
           </div>
         </div>
 
-        <div className="mt-24 space-y-12">
-          <h3 className=" text-2xl font-semibold text-center mb-6">Where Our Students Work</h3>
-          <Marquee reverse className="[--duration:20s]">
-            {companies.map((company) => (
-              <div key={company} className="mx-4 px-6 py-3 bg-primary/10 rounded-full text-primary font-bold text-lg whitespace-nowrap">
-                {company}
-              </div>
-            ))}
-          </Marquee>
+        <div className="mt-24">
+          <ClientsSection />
         </div>
 
         {/* Stats Section */}
@@ -439,8 +433,8 @@ function ServiceItem({
       >
         <motion.div
           className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
-              ? "bg-primary/10 text-primary"
-              : "bg-secondary/10 text-secondary"
+            ? "bg-primary/10 text-primary"
+            : "bg-secondary/10 text-secondary"
             }`}
         >
           {icon}

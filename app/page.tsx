@@ -1,10 +1,9 @@
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
 import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import FAQSection from "@/components/FAQSection";
-import ClientsSection from "@/components/ClientsSection";
+import { LogoCloud } from "@/components/ui/logo-cloud-2";
 import { Metadata } from "next";
 
 const siteUrl = "https://visionandpath.com";
@@ -136,8 +135,12 @@ export default function Page() {
         <Hero />
       </div>
 
-      <ClientsSection />
-
+      <div className="mb-12 md:mb-24 max-w-[85vw] mx-auto">
+        <p className="text-center text-muted-foreground mb-8 text-sm font-semibold uppercase tracking-widest">
+          Trusted by Top Innovators
+        </p>
+        <LogoCloud />
+      </div>
       <div className="max-w-[85vw] mx-auto">
         <Services />
       </div>

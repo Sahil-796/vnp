@@ -29,7 +29,7 @@ export default function ClientsSection() {
                                     src={client.src}
                                     alt={client.name}
                                     fill
-                                    className="object-contain mix-blend-multiply dark:mix-blend-screen"
+                                    className="object-contain mix-blend-multiply"
                                 />
                             </div>
                         ))}
