@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CtaButton } from "@/components/ui/cta-button";
 import { landingPageData } from "@/constants";
-
+import Link from "next/link";
 const Hero = () => {
   return (
     <div className="relative mt-32 mb-48 md:mb-32">
@@ -48,12 +48,14 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <CtaButton
-              size="lg"
-              className="rounded-2xl text-base md:text-lg h-12 md:h-14 px-6 md:px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
-            >
-              {landingPageData.hero.ctap}
-            </CtaButton>
+            <Link href="/contact">
+              <CtaButton
+                size="lg"
+                className="rounded-2xl text-base md:text-lg h-12 md:h-14 px-6 md:px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                {landingPageData.hero.ctap}
+              </CtaButton>
+            </Link>
           </motion.div>
         </div>
 

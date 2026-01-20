@@ -338,7 +338,7 @@ export default function AboutUsSection() {
           <h3 className="text-2xl font-semibold text-center mb-6">Industries We Serve</h3>
           <Marquee className="[--duration:20s]">
             {industries.map((industry) => (
-              <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-full text-secondary-foreground font-medium whitespace-nowrap">
+              <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-xl text-secondary-foreground font-medium whitespace-nowrap">
                 {industry}
               </div>
             ))}
