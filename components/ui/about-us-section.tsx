@@ -307,7 +307,7 @@ export default function AboutUsSection() {
           </div>
         </div>
 
-        <div className="mt-24">
+        <div className="mt-18">
           <ClientsSection />
         </div>
 

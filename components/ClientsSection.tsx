@@ -13,7 +13,7 @@ const clients = [
 
 export default function ClientsSection() {
     return (
-        <section className="pb-12 md:pb-16 bg-background/50">
+        <section className="bg-background/50">
             <div className="container px-4 md:px-6 mx-auto">
                 <p className="text-center text-muted-foreground mb-8 text-sm font-semibold uppercase tracking-widest">
                     Trusted by Top Giants
