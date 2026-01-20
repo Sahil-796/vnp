@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: "Vision and Path - Expert Job Placement & Career Services",
   },
   description:
-    "Transform your career with Vision and Path's professional job placement services. Get expert career coaching, resume optimization, interview preparation, and connect with top employers. 85% placement success rate.",
+    "Transform your career with Vision and Path's professional job placement services. Get expert career coaching, resume optimization, interview preparation, and connect with top employers.",
   keywords: [
     "job placement services",
     "career coaching",
