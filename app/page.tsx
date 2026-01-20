@@ -4,7 +4,6 @@ import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import FAQSection from "@/components/FAQSection";
 import { LogoCloud } from "@/components/ui/logo-cloud-2";
-import { Metadata } from "next";
 
 const siteUrl = "https://www.visionandpath.com";
 
