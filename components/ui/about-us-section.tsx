@@ -234,10 +234,10 @@ export default function AboutUsSection() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <img
-                  src={centerImage.src}
-                  alt={centerImage.alt}
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/logo.png"
+                  alt="Vision and Path"
+                  className="w-full h-full py-12 object-cover"
                   width={400}
                   height={500}
                 />
@@ -251,7 +251,7 @@ export default function AboutUsSection() {
                     className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium"
                     whileTap={{ scale: 0.95 }}
                   >
-                    {centerImage.badge}
+                    Vision and Path
                   </motion.button>
                 </motion.div>
               </motion.div>
