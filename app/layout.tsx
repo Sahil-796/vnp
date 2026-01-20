@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { ExpandableChat } from "@/components/ui/expandable-chat";
 import { ExpandableChatDemo } from "@/components/AI";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -130,6 +131,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Analytics />
         <ExpandableChatDemo />
         <Footer />
       </body>
