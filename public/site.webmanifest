@@ -1,6 +1,13 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Vision and Path - Career Services",
+  "short_name": "VP Career",
+  "description": "Expert job placement services, career coaching, and professional development to accelerate your career success",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -13,9 +20,49 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "categories": [
+    "business",
+    "education",
+    "productivity"
+  ],
+  "shortcuts": [
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "View our career services",
+      "url": "/services",
+      "icons": [
+        {
+          "src": "/favicon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch with us",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/favicon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
 }

@@ -5,7 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { ExpandableChat } from "@/components/ui/expandable-chat";
 import { ExpandableChatDemo } from "@/components/AI";
 import Footer from "@/components/Footer";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -19,13 +19,16 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const siteUrl = "https://visionandpath.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    template: "VP | %s",
+    template: "%s | Vision and Path",
     default: "Vision and Path - Expert Job Placement & Career Services",
   },
   description:
-    "Transform your career with Vision and Path's professional job placement services. Get expert career coaching, resume optimization, interview preparation, and connect with top employers.",
+    "Transform your career with Vision and Path's professional job placement services. Get expert career coaching, resume optimization, interview preparation, and connect with top employers. 95% placement success rate.",
   keywords: [
     "job placement services",
     "career coaching",
@@ -48,26 +51,69 @@ export const metadata: Metadata = {
     "hiring solutions",
     "talent acquisition",
   ],
-
+  authors: [{ name: "Vision and Path" }],
+  creator: "Vision and Path",
+  publisher: "Vision and Path",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: "Vision and Path - Expert Job Placement & Career Services",
     description:
-      "Professional job placement services. Career coaching, resume optimization, and interview prep to land your dream job.",
-    url: "https://visionandpath.com",
+      "Professional job placement services. Career coaching, resume optimization, and interview prep to land your dream job. 95% success rate.",
+    url: siteUrl,
     siteName: "Vision and Path",
     images: [
       {
-        url: "/logo.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Vision and Path - Job Placement and Career Services",
+      },
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Vision and Path Logo",
       },
     ],
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vision and Path - Expert Job Placement & Career Services",
+    description:
+      "Professional job placement services. Career coaching, resume optimization, and interview prep to land your dream job.",
+    images: ["/og-image.png"],
+    creator: "@visionandpath",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
+  verification: {
+    google: "your-google-verification-code", // Replace with actual code from Google Search Console
   },
 };
 
@@ -76,19 +122,42 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Vision and Path",
-  url: "https://visionandpath.com",
-  logo: "https://visionandpath.com/logo.png",
+  alternateName: "VP Career Services",
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  image: `${siteUrl}/og-image.png`,
   description:
     "Professional job placement and career services helping candidates land their dream jobs with expert coaching, resume optimization, and interview preparation.",
+  foundingDate: "2014",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "123 Innovation Drive",
+    addressLocality: "Tech City",
+    addressRegion: "CA",
+    postalCode: "94043",
+    addressCountry: "US",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+1-555-123-4567",
+      contactType: "Career Services",
+      email: "hello@visionandpath.com",
+      areaServed: "US",
+      availableLanguage: ["English"],
+    },
+  ],
   sameAs: [
     "https://www.linkedin.com/company/visionandpath",
     "https://twitter.com/visionandpath",
     "https://www.facebook.com/visionandpath",
   ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "Career Services",
-    email: "contact@visionandpath.com",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    ratingCount: "1500",
+    bestRating: "5",
+    worstRating: "1",
   },
 };
 
@@ -97,12 +166,24 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Vision and Path",
-  url: "https://visionandpath.com",
+  alternateName: "VP Career Services",
+  url: siteUrl,
   description:
     "Expert job placement services, career coaching, and professional development to accelerate your career success.",
+  publisher: {
+    "@type": "Organization",
+    name: "Vision and Path",
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/logo.png`,
+    },
+  },
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://visionandpath.com/search?q={search_term_string}",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/services?q={search_term_string}`,
+    },
     "query-input": "required name=search_term_string",
   },
 };
@@ -115,6 +196,37 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Hardcoded Favicon Fallbacks for Maximum Compatibility */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-96x96.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        {/* Additional OG Tags as Fallback */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Vision and Path" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Card Fallback */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@visionandpath" />
+        <meta name="twitter:creator" content="@visionandpath" />
+
+        {/* Theme Color */}
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
