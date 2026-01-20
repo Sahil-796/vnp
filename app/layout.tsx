@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "Vision and Path | %s",
+    template: "VP | %s",
     default: "Vision and Path - Expert Job Placement & Career Services",
   },
   description:

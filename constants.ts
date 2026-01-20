@@ -452,7 +452,7 @@ export const aboutPageData = {
     badge: "Aayush (CEO & Founder)",
   },
   metadata: {
-    title: "About Us - Professional Job Placement & Career Services",
+    title: "About Us",
     description:
       "Learn how Vision and Path helps professionals land dream jobs through expert career coaching, resume optimization, and proven placement strategies. 15+ years experience, 85% success rate.",
   },

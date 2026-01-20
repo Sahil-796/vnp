@@ -7,7 +7,7 @@ import FAQSection from "@/components/FAQSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Professional Job Placement Services | Career Coaching & Resume Help",
+  title: "Vision and Path",
   description:
     "Land your dream job with Vision and Path's expert job placement services. Get personalized career coaching, ATS-optimized resume writing, interview preparation, and salary negotiation support. 85% success rate in 90 days.",
   openGraph: {
