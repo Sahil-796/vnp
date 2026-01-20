@@ -2,7 +2,7 @@ import { ServicesList } from "@/components/ServicesList";
 import type { Metadata } from "next";
 import { servicesPageData } from "@/constants";
 
-const siteUrl = "https://visionandpath.com";
+const siteUrl = "https://www.visionandpath.com";
 
 export const metadata: Metadata = {
   title: servicesPageData.metadata.title,

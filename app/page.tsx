@@ -7,7 +7,7 @@ import FAQSection from "@/components/FAQSection";
 import ClientsSection from "@/components/ClientsSection";
 import { Metadata } from "next";
 
-const siteUrl = "https://visionandpath.com";
+const siteUrl = "https://www.visionandpath.com";
 
 export const metadata: Metadata = {
   title: "Expert Job Placement & Career Services",

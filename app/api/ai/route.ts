@@ -38,7 +38,7 @@ IMPORTANT CONTACT INFORMATION:
 - Email: ${contactPageData.contactInfo[0].value}
 - Address: ${contactPageData.contactInfo[1].value}
 - Phone: ${contactPageData.contactInfo[2].value}
-- Website: visionandpath.com
+- Website: www.visionandpath.com
 
 Core Responsibilities:
 

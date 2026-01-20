@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://visionandpath.com";
+const siteUrl = "https://www.visionandpath.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -133,16 +133,16 @@ const organizationSchema = {
   foundingDate: "2014",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "123 Innovation Drive",
-    addressLocality: "Tech City",
-    addressRegion: "CA",
-    postalCode: "94043",
+    streetAddress: "5900 Balcones Dr",
+    addressLocality: "Laredo",
+    addressRegion: "TX",
+    postalCode: "78046",
     addressCountry: "US",
   },
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+1-555-123-4567",
+      telephone: "+1-210-530-1296",
       contactType: "Career Services",
       email: "hello@visionandpath.com",
       areaServed: "US",
@@ -157,6 +157,7 @@ const organizationSchema = {
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
+    reviewCount: "500",
     bestRating: "5",
     worstRating: "1",
   },

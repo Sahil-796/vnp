@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ServiceDetailClient } from "@/components/ServiceDetailClient";
 import { Metadata } from "next";
 
-const siteUrl = "https://visionandpath.com";
+const siteUrl = "https://www.visionandpath.com";
 
 // Service-specific metadata mapping
 const serviceMetadata: Record<

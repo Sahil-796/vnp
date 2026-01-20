@@ -19,8 +19,7 @@ export const landingPageData = {
   hero: {
     titlep1: "Career guidance that",
     titlep2: "Leads to Real Career Growth",
-    subtitle:
-      "Get the Right Career Advice from Industry Experts",
+    subtitle: "Get the Right Career Advice from Industry Experts",
     ctap: "Get Started Now",
     desc: "Unlock the potential of your business with our comprehensive suite of tools designed to streamline your workflow and boost productivity.",
     ctad: "Learn More",
@@ -338,8 +337,8 @@ export const landingPageData = {
   footer: {
     titlep1: "Vision",
     titlep2: "& Path",
-    address: "123 Innovation Drive, Tech City, CA 94043",
-    phone: "+1 (555) 123-4567",
+    address: "5900 Balcones Dr, Laredo, Texas 78046, United States",
+    phone: "+1 (210) 530-1296",
     companyLinks: [
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
@@ -485,15 +484,15 @@ export const contactPageData = {
       title: "Visit Us",
       description:
         "Come say hello at our headquarters. We believe in face-to-face connections and would love to welcome you to our office.",
-      value: "123 Innovation Drive, Tech City, CA 94043",
+      value: "5900 Balcones Dr, Laredo, Texas 78046, United States",
       link: "https://maps.google.com",
     },
     {
       title: "Call Us",
       description:
         "Prefer to talk? Give us a call. We are available Monday to Friday from 8am to 5pm to discuss your needs.",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+1 (210) 530-1296",
+      link: "tel:+12105301296",
     },
   ],
   calendlyUrl: "https://calendly.com/rudranpatel0980/vp", // Placeholder

@@ -2,7 +2,7 @@ import { ContactUs } from "@/components/ContactUs";
 import type { Metadata } from "next";
 import { contactPageData } from "@/constants";
 
-const siteUrl = "https://visionandpath.com";
+const siteUrl = "https://www.visionandpath.com";
 
 export const metadata: Metadata = {
   title: contactPageData.metadata.title,
@@ -81,7 +81,7 @@ const contactPageSchema = {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+1-555-123-4567",
+        telephone: "+1-210-530-1296",
         contactType: "Career Services",
         email: "hello@visionandpath.com",
         areaServed: "US",

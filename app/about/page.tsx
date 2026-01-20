@@ -2,7 +2,7 @@ import AboutUsSection from "@/components/ui/about-us-section";
 import type { Metadata } from "next";
 import { aboutPageData } from "@/constants";
 
-const siteUrl = "https://visionandpath.com";
+const siteUrl = "https://www.visionandpath.com";
 
 export const metadata: Metadata = {
   title: aboutPageData.metadata.title,
