@@ -4,65 +4,8 @@ import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import FAQSection from "@/components/FAQSection";
 import { LogoCloud } from "@/components/ui/logo-cloud-2";
-import { Metadata } from "next";
 
-const siteUrl = "https://visionandpath.com";
-
-export const metadata: Metadata = {
-  title: "Expert Job Placement & Career Services",
-  description:
-    "Land your dream job with Vision and Path's comprehensive career services. Get personalized career coaching, ATS-optimized resume writing, interview preparation, skill development, goal setting, and professional job placement support tailored to your career goals.",
-  keywords: [
-    "job placement",
-    "career services",
-    "career coaching",
-    "resume writing",
-    "interview preparation",
-    "job search",
-    "career counseling",
-    "employment services",
-    "professional development",
-    "career assessment",
-    "salary negotiation",
-    "job matching",
-  ],
-  openGraph: {
-    title:
-      "Professional Job Placement Services | Career Coaching & Resume Help",
-    description:
-      "Transform your career with expert career coaching, resume optimization, interview preparation, skill development, and personalized job placement services designed to accelerate your professional success.",
-    url: siteUrl,
-    siteName: "Vision and Path",
-    images: [
-      {
-        url: `${siteUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "Vision and Path - Professional Job Placement Services",
-        type: "image/png",
-      },
-      {
-        url: `${siteUrl}/logo.png`,
-        width: 800,
-        height: 600,
-        alt: "Vision and Path Logo",
-        type: "image/png",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Professional Job Placement Services | Vision and Path",
-    description:
-      "Transform your career with expert career coaching, resume optimization, interview preparation, skill development, and personalized job placement services designed to accelerate your professional success.",
-    images: [`${siteUrl}/og-image.png`],
-    site: "@visionandpath",
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
-};
+const siteUrl = "https://www.visionandpath.com";
 
 // FAQ Schema for home page
 const faqSchema = {
