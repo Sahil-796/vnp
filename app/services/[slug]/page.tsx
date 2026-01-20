@@ -29,7 +29,7 @@ const serviceMetadata: Record<
       "career planning assessment",
     ],
     ogDescription:
-      "Discover your professional strengths with our comprehensive career assessment services. Get clarity on your ideal career path with expert guidance.",
+      "Discover your professional strengths with our comprehensive career assessment services. Get clarity on your ideal career path with expert guidance and personalized insights.",
   },
   "goal-setting": {
     keywords: [
@@ -145,6 +145,7 @@ export async function generateMetadata({
   const canonicalUrl = `${siteUrl}/services/${slug}`;
   const serviceKeywords = serviceMetadata[slug]?.keywords || [];
   const ogDescription = serviceMetadata[slug]?.ogDescription || service.desc;
+  const ogImageUrl = service.imgsrc || `${siteUrl}/og-image.png`;
 
   return {
     title: service.title,
@@ -165,16 +166,18 @@ export async function generateMetadata({
       siteName: "Vision and Path",
       images: [
         {
-          url: service.imgsrc || "/og-image.png",
+          url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: service.title,
+          alt: `${service.title} - Vision and Path Career Services`,
+          type: "image/png",
         },
         {
-          url: "/logo.png",
+          url: `${siteUrl}/logo.png`,
           width: 800,
           height: 600,
           alt: "Vision and Path Logo",
+          type: "image/png",
         },
       ],
       locale: "en_US",
@@ -184,8 +187,9 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${service.title} | Vision and Path`,
       description: ogDescription,
-      images: [service.imgsrc || "/og-image.png"],
+      images: [ogImageUrl],
       creator: "@visionandpath",
+      site: "@visionandpath",
     },
     alternates: {
       canonical: canonicalUrl,

@@ -11,7 +11,7 @@ const siteUrl = "https://visionandpath.com";
 export const metadata: Metadata = {
   title: "Expert Job Placement & Career Services",
   description:
-    "Land your dream job with Vision and Path's expert job placement services. Get personalized career coaching, ATS-optimized resume writing, interview preparation, and salary negotiation support. 95% success rate in 90 days.",
+    "Land your dream job with Vision and Path's comprehensive career services. Get personalized career coaching, ATS-optimized resume writing, interview preparation, skill development, goal setting, and professional job placement support tailored to your career goals.",
   keywords: [
     "job placement",
     "career services",
@@ -30,15 +30,23 @@ export const metadata: Metadata = {
     title:
       "Professional Job Placement Services | Career Coaching & Resume Help",
     description:
-      "Land your dream job with expert career coaching, resume optimization, and interview prep. 95% success rate.",
+      "Transform your career with expert career coaching, resume optimization, interview preparation, skill development, and personalized job placement services designed to accelerate your professional success.",
     url: siteUrl,
     siteName: "Vision and Path",
     images: [
       {
-        url: "/og-image.png",
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Vision and Path - Professional Job Placement Services",
+        type: "image/png",
+      },
+      {
+        url: `${siteUrl}/logo.png`,
+        width: 800,
+        height: 600,
+        alt: "Vision and Path Logo",
+        type: "image/png",
       },
     ],
     type: "website",
@@ -47,8 +55,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Professional Job Placement Services | Vision and Path",
     description:
-      "Land your dream job with expert career coaching, resume optimization, and interview prep. 95% success rate.",
-    images: ["/og-image.png"],
+      "Transform your career with expert career coaching, resume optimization, interview preparation, skill development, and personalized job placement services designed to accelerate your professional success.",
+    images: [`${siteUrl}/og-image.png`],
+    site: "@visionandpath",
   },
   alternates: {
     canonical: siteUrl,
@@ -65,15 +74,15 @@ const faqSchema = {
       name: "How does your job placement service work?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our job placement service connects qualified candidates with top employers through personalized career matching, resume optimization, and direct employer partnerships. We assess your skills, experience, and career goals to match you with relevant job opportunities.",
+        text: "Our comprehensive job placement service connects qualified candidates with top employers through personalized career matching, resume optimization, and strategic employer partnerships. We assess your skills, experience, and career goals to match you with relevant opportunities that align with your professional aspirations.",
       },
     },
     {
       "@type": "Question",
-      name: "What is your job placement success rate?",
+      name: "What types of career services do you offer?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We maintain a 95% job placement success rate within 2-6 weeks for active candidates through personalized career counseling, extensive employer partnerships, and ongoing support throughout your entire job search journey.",
+        text: "We offer a comprehensive range of career services including personalized career assessment, goal setting and action planning, skill development programs, professional interview preparation, job search strategies, ATS-optimized resume building, and dedicated job placement support tailored to your unique career path.",
       },
     },
     {
@@ -81,7 +90,7 @@ const faqSchema = {
       name: "Do you charge for job placement services?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our job placement services provide professional value to enhance your career profile, so there is a service charge for our comprehensive career coaching, ATS optimization, interview preparation, and job mapping services.",
+        text: "Our job placement services provide professional value to enhance your career profile. We offer various service packages including comprehensive career coaching, ATS optimization, interview preparation, and personalized job placement support designed to deliver measurable results for your career advancement.",
       },
     },
     {
@@ -89,7 +98,7 @@ const faqSchema = {
       name: "How long does it take to get placed in a job?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "On average, our candidates receive job offers within 2-6 weeks. We expedite the process through our extensive employer network, professional resume services, and interview coaching to help you land your dream job faster.",
+        text: "Job placement timelines vary based on your industry, experience level, and job market conditions. We work diligently to expedite your job search through our extensive employer network, professional resume services, strategic interview coaching, and personalized career guidance throughout the entire process.",
       },
     },
   ],

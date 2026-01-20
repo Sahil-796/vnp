@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     default: "Vision and Path - Expert Job Placement & Career Services",
   },
   description:
-    "Transform your career with Vision and Path's professional job placement services. Get expert career coaching, resume optimization, interview preparation, and connect with top employers. 95% placement success rate.",
+    "Transform your career with Vision and Path's comprehensive career services. Expert career coaching, resume optimization, interview preparation, skill development, and personalized job placement support to help you achieve your professional goals.",
   keywords: [
     "job placement services",
     "career coaching",
@@ -62,21 +62,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vision and Path - Expert Job Placement & Career Services",
     description:
-      "Professional job placement services. Career coaching, resume optimization, and interview prep to land your dream job. 95% success rate.",
+      "Comprehensive career services including professional job placement, career coaching, resume optimization, interview preparation, and skill development to accelerate your career success.",
     url: siteUrl,
     siteName: "Vision and Path",
     images: [
       {
-        url: "/og-image.png",
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Vision and Path - Job Placement and Career Services",
+        type: "image/png",
       },
       {
-        url: "/logo.png",
+        url: `${siteUrl}/logo.png`,
         width: 800,
         height: 600,
         alt: "Vision and Path Logo",
+        type: "image/png",
       },
     ],
     locale: "en_US",
@@ -86,9 +88,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vision and Path - Expert Job Placement & Career Services",
     description:
-      "Professional job placement services. Career coaching, resume optimization, and interview prep to land your dream job.",
-    images: ["/og-image.png"],
+      "Comprehensive career services including professional job placement, career coaching, resume optimization, interview preparation, and skill development to accelerate your career success.",
+    images: [`${siteUrl}/og-image.png`],
     creator: "@visionandpath",
+    site: "@visionandpath",
   },
   robots: {
     index: true,
@@ -154,8 +157,7 @@ const organizationSchema = {
   ],
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    ratingCount: "1500",
+    ratingValue: "4.8",
     bestRating: "5",
     worstRating: "1",
   },
@@ -212,15 +214,45 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Additional OG Tags as Fallback */}
+        {/* Additional OG Tags as Fallback for WhatsApp/Telegram */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Vision and Path" />
         <meta property="og:locale" content="en_US" />
+        <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+        <meta
+          property="og:image:secure_url"
+          content={`${siteUrl}/og-image.png`}
+        />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:image:alt"
+          content="Vision and Path - Job Placement and Career Services"
+        />
+        <meta property="og:url" content={siteUrl} />
+        <meta
+          property="og:title"
+          content="Vision and Path - Expert Job Placement & Career Services"
+        />
+        <meta
+          property="og:description"
+          content="Comprehensive career services including professional job placement, career coaching, resume optimization, interview preparation, and skill development to accelerate your career success."
+        />
 
         {/* Twitter Card Fallback */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@visionandpath" />
         <meta name="twitter:creator" content="@visionandpath" />
+        <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+        <meta
+          name="twitter:title"
+          content="Vision and Path - Expert Job Placement & Career Services"
+        />
+        <meta
+          name="twitter:description"
+          content="Comprehensive career services including professional job placement, career coaching, resume optimization, interview preparation, and skill development to accelerate your career success."
+        />
 
         {/* Theme Color */}
         <meta name="theme-color" content="#ffffff" />

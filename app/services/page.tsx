@@ -28,16 +28,18 @@ export const metadata: Metadata = {
     siteName: "Vision and Path",
     images: [
       {
-        url: "/og-image.png",
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Vision and Path Services - Career Coaching & Job Placement",
+        type: "image/png",
       },
       {
-        url: "/logo.png",
+        url: `${siteUrl}/logo.png`,
         width: 800,
         height: 600,
         alt: "Vision and Path Logo",
+        type: "image/png",
       },
     ],
     locale: "en_US",
@@ -47,8 +49,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${servicesPageData.metadata.title} | Vision and Path`,
     description: servicesPageData.metadata.description,
-    images: ["/og-image.png"],
+    images: [`${siteUrl}/og-image.png`],
     creator: "@visionandpath",
+    site: "@visionandpath",
   },
   alternates: {
     canonical: `${siteUrl}/services`,
