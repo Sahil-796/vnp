@@ -4,6 +4,7 @@ import Testimonials from "@/components/Testimonials";
 import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import FAQSection from "@/components/FAQSection";
+import ClientsSection from "@/components/ClientsSection";
 import { Metadata } from "next";
 
 const siteUrl = "https://visionandpath.com";
@@ -134,6 +135,8 @@ export default function Page() {
       <div className="max-w-[85vw] mx-auto mt-24">
         <Hero />
       </div>
+
+      <ClientsSection />
 
       <div className="max-w-[85vw] mx-auto">
         <Services />

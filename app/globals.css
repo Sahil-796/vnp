@@ -143,6 +143,9 @@
     }
   }
 
+  --animate-marquee: marquee var(--duration) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
   @keyframes enter-left {
     from {
       opacity: 0;
