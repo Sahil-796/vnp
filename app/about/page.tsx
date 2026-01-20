@@ -24,7 +24,7 @@ const aboutPageSchema = {
     "@type": "Organization",
     name: "Vision and Path",
     description:
-      "Professional job placement and career services with 15+ years experience and 85% placement success rate.",
+      "Professional job placement and career services.",
     numberOfEmployees: {
       "@type": "QuantitativeValue",
       value: 50,

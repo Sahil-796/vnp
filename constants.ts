@@ -454,7 +454,7 @@ export const aboutPageData = {
   metadata: {
     title: "About Us",
     description:
-      "Learn how Vision and Path helps professionals land dream jobs through expert career coaching, resume optimization, and proven placement strategies. 15+ years experience, 85% success rate.",
+      "Learn how Vision and Path helps professionals land dream jobs through expert career coaching, resume optimization, and proven placement strategies.",
   },
   labels: {
     learnMore: "Learn more",

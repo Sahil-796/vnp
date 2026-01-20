@@ -9,12 +9,12 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Vision and Path",
   description:
-    "Land your dream job with Vision and Path's expert job placement services. Get personalized career coaching, ATS-optimized resume writing, interview preparation, and salary negotiation support. 85% success rate in 90 days.",
+    "Land your dream job with Vision and Path's expert job placement services. Get personalized career coaching, ATS-optimized resume writing, interview preparation, and salary negotiation support.",
   openGraph: {
     title:
       "Professional Job Placement Services | Career Coaching & Resume Help",
     description:
-      "Land your dream job with expert career coaching, resume optimization, and interview prep. 85% success rate.",
+      "Land your dream job with expert career coaching, resume optimization, and interview prep.",
   },
 };
 
