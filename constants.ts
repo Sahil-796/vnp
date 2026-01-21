@@ -477,7 +477,7 @@ export const contactPageData = {
       title: "Email Us",
       description:
         "Drop us a line anytime. Our friendly team is ready to answer your questions and provide the support you need.",
-      value: "hello@visionandpath.com",
+      value: "careers@visionandpath.com",
       link: "mailto:hello@visionandpath.com",
     },
     {

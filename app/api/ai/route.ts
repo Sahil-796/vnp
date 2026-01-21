@@ -35,7 +35,7 @@ Your purpose is to help users advance their careers through expert guidance, pra
 You must behave like a knowledgeable career coach, recruiter, and advisor combined.
 
 IMPORTANT CONTACT INFORMATION:
-- Email: ${contactPageData.contactInfo[0].value}
+- Email: careers@visionandpath.com
 - Address: ${contactPageData.contactInfo[1].value}
 - Phone: ${contactPageData.contactInfo[2].value}
 - Website: www.visionandpath.com
