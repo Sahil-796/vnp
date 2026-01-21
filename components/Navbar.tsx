@@ -103,47 +103,57 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Navbar - Pill Shape */}
-        <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-          <GlassSurface
-            borderRadius={40}
-            width="auto"
-            height="auto"
-            blur={8}
-            opacity={0.2}
-            borderWidth={0.5}
-            className="p-1"
-          >
-            <nav className="flex items-center gap-1 relative">
-              {menuItems.map((item) => {
-                const isActive = pathname === item.href;
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={cn(
-                      "px-5 py-2 text-base font-medium rounded-full transition-colors duration-300 relative z-10",
-                      isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                    )}
+        {/* Desktop Navbar - Pill Shape */}
+        {/* Desktop Navbar - Pill Shape */}
+                <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                  <GlassSurface
+                    borderRadius={40}
+                    width="auto"
+                    height="auto"
+                    blur={8}
+                    opacity={0.2}
+                    borderWidth={0.5}
+                    className="p-1"
                   >
-                    {isActive && (
-                      <motion.div
-                        layoutId="navbar-pill"
-                        className="absolute inset-0 bg-primary rounded-full -z-10 backdrop-blur-sm border border-white/5 shadow-sm"
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 30
-                        }}
-                      />
-                    )}
-                    {item.name}
-                  </Link>
-                );
-              })}
-            </nav>
-          </GlassSurface>
-        </div>
-
+                    <nav className="flex items-center gap-1 relative">
+                      {menuItems.map((item) => {
+                        const isActive = pathname === item.href;
+                        return (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className={cn(
+                              "px-5 py-2 text-base font-medium rounded-full transition-colors duration-300 relative z-10",
+                              isActive ? "text-black" : "text-muted-foreground hover:text-foreground"
+                            )}
+                          >
+                            {isActive && (
+                              <motion.div
+                                layoutId="navbar-pill"
+                                className="absolute inset-0 rounded-full -z-10 backdrop-blur-md"
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 200,
+                                  damping: 20,
+                                  mass: 1.2,
+                                  bounce: 0.4,
+                                  velocity: 2
+                                }}
+                                style={{
+                                  background: "rgba(255, 255, 255, 0.1)",
+                                  border: "1px solid rgba(255, 255, 255, 0.18)",
+                                  boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.3)",
+                                }}
+                              />
+                            )}
+                            
+                            {item.name}
+                          </Link>
+                        );
+                      })}
+                    </nav>
+                  </GlassSurface>
+                </div>
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <Link href="/contact">

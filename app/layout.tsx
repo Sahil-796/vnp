@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
+import {Navbar}  from "@/components/Navbar";
 import { ExpandableChatDemo } from "@/components/AI";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
