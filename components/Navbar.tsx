@@ -47,7 +47,7 @@ export const Navbar = () => {
     <div
       className={cn(
         "fixed z-50 w-full top-0 left-0 transition-all duration-500 ease-in-out",
-        isScrolled ? "py-2" : "py-4"
+        isScrolled ? "py-2" : "py-4",
       )}
     >
       <header className="flex items-center justify-between container mx-auto px-6 md:px-10 relative">
@@ -55,16 +55,16 @@ export const Navbar = () => {
           href="/"
           className={cn(
             "relative z-10 transition-all duration-500 flex items-center justify-center",
-            isScrolled
-              ? "px-5 py-2"
-              : "px-0 py-0"
+            isScrolled ? "px-5 py-2" : "px-0 py-0",
           )}
         >
           {/* Glass Background - Mobile Only/Scrolled */}
-          <div className={cn(
-            "absolute inset-0 -z-10 transition-opacity duration-500",
-            isScrolled ? "opacity-100" : "opacity-0"
-          )}>
+          <div
+            className={cn(
+              "absolute inset-0 -z-10 transition-opacity duration-500",
+              isScrolled ? "opacity-100" : "opacity-0",
+            )}
+          >
             {isScrolled && (
               <GlassSurface
                 width="100%"
@@ -105,55 +105,58 @@ export const Navbar = () => {
         {/* Desktop Navbar - Pill Shape */}
         {/* Desktop Navbar - Pill Shape */}
         {/* Desktop Navbar - Pill Shape */}
-                <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                  <GlassSurface
-                    borderRadius={40}
-                    width="auto"
-                    height="auto"
-                    blur={8}
-                    opacity={0.2}
-                    borderWidth={0.5}
-                    className="p-1"
+        <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+          <GlassSurface
+            borderRadius={40}
+            width="auto"
+            height="auto"
+            blur={8}
+            opacity={0.2}
+            borderWidth={0.5}
+            className="p-1"
+          >
+            <nav className="flex items-center gap-16 relative px-8">
+              {menuItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "px-5 py-2 text-md font-medium rounded-full transition-colors duration-299 relative z-10",
+                      isActive
+                        ? "text-black"
+                        : "text-muted-foreground hover:text-foreground",
+                    )}
                   >
-                    <nav className="flex items-center gap-1 relative">
-                      {menuItems.map((item) => {
-                        const isActive = pathname === item.href;
-                        return (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className={cn(
-                              "px-5 py-2 text-base font-medium rounded-full transition-colors duration-300 relative z-10",
-                              isActive ? "text-black" : "text-muted-foreground hover:text-foreground"
-                            )}
-                          >
-                            {isActive && (
-                              <motion.div
-                                layoutId="navbar-pill"
-                                className="absolute inset-0 rounded-full -z-10 backdrop-blur-md"
-                                transition={{
-                                  type: "spring",
-                                  stiffness: 200,
-                                  damping: 20,
-                                  mass: 1.2,
-                                  bounce: 0.4,
-                                  velocity: 2
-                                }}
-                                style={{
-                                  background: "rgba(255, 255, 255, 0.1)",
-                                  border: "1px solid rgba(255, 255, 255, 0.18)",
-                                  boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.3)",
-                                }}
-                              />
-                            )}
-                            
-                            {item.name}
-                          </Link>
-                        );
-                      })}
-                    </nav>
-                  </GlassSurface>
-                </div>
+                    {isActive && (
+                      <motion.div
+                        layoutId="navbar-pill"
+                        className="absolute inset-0 rounded-full -z-10 backdrop-blur-md"
+                        transition={{
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 20,
+                          mass: 1.2,
+                          bounce: 0.4,
+                          velocity: 2,
+                        }}
+                        style={{
+                          background: "rgba(255, 255, 255, 0.1)",
+                          border: "1px solid rgba(255, 255, 255, 0.18)",
+                          boxShadow:
+                            "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.3)",
+                        }}
+                      />
+                    )}
+
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </nav>
+          </GlassSurface>
+        </div>
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <Link href="/contact">
@@ -168,9 +171,7 @@ export const Navbar = () => {
               <motion.button
                 className={cn(
                   "group outline-none cursor-pointer transition-all duration-500 relative flex items-center justify-center",
-                  isScrolled
-                    ? "p-3"
-                    : "p-2"
+                  isScrolled ? "p-3" : "p-2",
                 )}
                 aria-label="Open menu"
                 initial="initial"
@@ -179,10 +180,12 @@ export const Navbar = () => {
                 onMouseLeave={() => setIsHovered(false)}
               >
                 {/* Glass Background for Menu */}
-                <div className={cn(
-                  "absolute inset-0 -z-10 transition-opacity duration-500",
-                  isScrolled ? "opacity-100" : "opacity-0"
-                )}>
+                <div
+                  className={cn(
+                    "absolute inset-0 -z-10 transition-opacity duration-500",
+                    isScrolled ? "opacity-100" : "opacity-0",
+                  )}
+                >
                   {isScrolled && (
                     <GlassSurface
                       width="100%"
