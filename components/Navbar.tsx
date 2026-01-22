@@ -133,13 +133,15 @@ export const Navbar = () => {
                       <motion.div
                         layoutId="navbar-pill"
                         className="absolute inset-0 rounded-full -z-10 backdrop-blur-md"
+                        animate={{ scale: [1, 1.5, 1] }}
                         transition={{
-                          type: "spring",
-                          stiffness: 200,
-                          damping: 20,
-                          mass: 1.2,
-                          bounce: 0.4,
-                          velocity: 2,
+                          scale: { duration: 0.35, ease: "easeInOut" },
+                          layout: {
+                            delay: 0.2,
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 25,
+                          },
                         }}
                         style={{
                           background: "rgba(255, 255, 255, 0.1)",
