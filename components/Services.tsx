@@ -9,7 +9,7 @@ export function Services() {
     id: String(index),
     title: service.title,
     content: (
-      <div>
+      <div key={index}>
         <p className="mb-8 text-muted-foreground text-xs md:text-sm font-normal">
           {service.desc}
         </p>
