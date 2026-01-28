@@ -2,7 +2,8 @@ import { ServicesList } from "@/components/ServicesList";
 import type { Metadata } from "next";
 import { servicesPageData } from "@/constants";
 
-const siteUrl = "https://www.visionandpath.com";
+const siteUrl = "https://visionandpath.com";
+const ogImageVersion = "v2";
 
 export const metadata: Metadata = {
   title: servicesPageData.metadata.title,
@@ -28,17 +29,10 @@ export const metadata: Metadata = {
     siteName: "Vision and Path",
     images: [
       {
-        url: `${siteUrl}/og-image.png`,
+        url: `${siteUrl}/og-image.png?${ogImageVersion}`,
         width: 1200,
         height: 630,
         alt: "Vision and Path Services - Career Coaching & Job Placement",
-        type: "image/png",
-      },
-      {
-        url: `${siteUrl}/logo.png`,
-        width: 800,
-        height: 600,
-        alt: "Vision and Path Logo",
         type: "image/png",
       },
     ],
@@ -49,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${servicesPageData.metadata.title} | Vision and Path`,
     description: servicesPageData.metadata.description,
-    images: [`${siteUrl}/og-image.png`],
+    images: [`${siteUrl}/og-image.png?${ogImageVersion}`],
     creator: "@visionandpath",
     site: "@visionandpath",
   },

@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { ServiceDetailClient } from "@/components/ServiceDetailClient";
 import { Metadata } from "next";
 
-const siteUrl = "https://www.visionandpath.com";
+const siteUrl = "https://visionandpath.com";
+const ogImageVersion = "v2";
 
 // Service-specific metadata mapping
 const serviceMetadata: Record<
@@ -145,13 +146,14 @@ export async function generateMetadata({
   const canonicalUrl = `${siteUrl}/services/${slug}`;
   const serviceKeywords = serviceMetadata[slug]?.keywords || [];
   const ogDescription = serviceMetadata[slug]?.ogDescription || service.desc;
-  const ogImageUrl = service.imgsrc || `${siteUrl}/og-image.png`;
+  const ogImageUrl = `${siteUrl}/og-image.png?${ogImageVersion}`;
 
   return {
     title: service.title,
     description: service.desc,
     keywords: [
       ...serviceKeywords,
+      "Vision and Path",
       "vision and path",
       "career services",
       "professional development",
@@ -170,13 +172,6 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: `${service.title} - Vision and Path Career Services`,
-          type: "image/png",
-        },
-        {
-          url: `${siteUrl}/logo.png`,
-          width: 800,
-          height: 600,
-          alt: "Vision and Path Logo",
           type: "image/png",
         },
       ],
