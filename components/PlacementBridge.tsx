@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Handshake } from "lucide-react";
 import Image from "next/image";
 
 const companies = [
@@ -25,7 +26,7 @@ export const PlacementBridge = () => {
     <section className="py-24 overflow-hidden bg-background/50">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
             From Learning to Leading
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -84,7 +85,7 @@ export const PlacementBridge = () => {
               <defs>
                 <linearGradient id="bridgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.4" />
-                  <stop offset="50%" stopColor="var(--chart-3)" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="var(--secondary)" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="var(--chart-1)" stopOpacity="0.4" />
                 </linearGradient>
               </defs>
@@ -122,7 +123,7 @@ export const PlacementBridge = () => {
                         />
                         
                         {/* Animated Particles */}
-                        <circle r="0.8" fill="var(--primary)">
+                        <circle r="0.8" fill="var(--secondary)">
                            <animateMotion 
                                 dur={`${4 + i * 0.5}s`}
                                 repeatCount="indefinite"
@@ -140,10 +141,16 @@ export const PlacementBridge = () => {
               <line x1="45" y1="50" x2="55" y2="50" stroke="url(#bridgeGradient)" strokeWidth="0.8" />
 
               {/* Central Hub Decorative Elements */}
-              <circle cx="50" cy="50" r="3" fill="var(--background)" stroke="url(#bridgeGradient)" strokeWidth="1" className="z-10" />
-              <circle cx="50" cy="50" r="8" stroke="url(#bridgeGradient)" strokeWidth="0.1" strokeDasharray="1 1" fill="none" className="animate-spin-slow origin-center" />
+              <circle cx="50" cy="50" r="8" stroke="url(#bridgeGradient)" strokeWidth="0.15" strokeDasharray="1 1" fill="none" className="animate-spin-slow origin-center" />
 
             </svg>
+
+            {/* Center Icon */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="h-12 w-12 rounded-full bg-secondary/15 border border-secondary/40 shadow-md flex items-center justify-center">
+                <Handshake className="h-5 w-5 text-secondary" />
+              </div>
+            </div>
           </div>
 
           {/* Right Column: Companies */}
@@ -170,7 +177,7 @@ export const PlacementBridge = () => {
             </div>
              {/* Label below column with spacing */}
              <div className="hidden md:block text-center mt-8">
-                <h3 className="font-bold text-chart-5 uppercase tracking-widest text-sm">Careers</h3>
+                <h3 className="font-bold text-chart-5 uppercase tracking-widest text-sm text-secondary">Careers</h3>
             </div>
           </div>
 
