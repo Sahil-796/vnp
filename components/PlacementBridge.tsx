@@ -137,11 +137,33 @@ export const PlacementBridge = () => {
                 );
               })}
               {/* Central baseline (split) */}
-              <line x1="0" y1="50" x2="45" y2="50" stroke="var(--secondary)" strokeOpacity="0.5" strokeWidth="0.3" />
-              <line x1="55" y1="50" x2="100" y2="50" stroke="var(--secondary)" strokeOpacity="0.5" strokeWidth="0.3" />
+              <motion.line
+                x1="0"
+                y1="50"
+                x2="45"
+                y2="50"
+                stroke="var(--secondary)"
+                strokeOpacity="0.5"
+                strokeWidth="0.3"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.2 }}
+              />
+              <motion.line
+                x1="55"
+                y1="50"
+                x2="100"
+                y2="50"
+                stroke="var(--secondary)"
+                strokeOpacity="0.5"
+                strokeWidth="0.3"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.2 }}
+              />
 
               {/* Central Hub Decorative Elements */}
-              <circle cx="50" cy="50" r="8" stroke="var(--secondary)" strokeWidth="0.15" strokeDasharray="1 1" fill="none" className="animate-spin origin-center " />
+              <circle cx="50" cy="50" r="8" stroke="var(--secondary)" strokeWidth="0.15" strokeDasharray="1 1" fill="none" />
 
             </svg>
             {/* Center Icon */}
@@ -176,7 +198,7 @@ export const PlacementBridge = () => {
             </div>
              {/* Label below column with spacing */}
              <div className="hidden md:block text-center mt-8">
-                <h3 className="font-bold text-chart-5 uppercase tracking-widest text-sm text-secondary">Careers</h3>
+                <h3 className="font-bold text-primary uppercase tracking-widest text-sm">Careers</h3>
             </div>
           </div>
 
