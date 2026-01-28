@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Handshake } from "lucide-react";
 import Image from "next/image";
 import SectionTitle from "@/components/SectionTitle";
 
@@ -76,8 +75,14 @@ export const PlacementBridge = () => {
           <div className="md:hidden order-2 flex items-center justify-center relative my-2">
             <div className="h-px w-3/4 bg-secondary/40" />
             <div className="absolute">
-              <div className="h-10 w-10 rounded-full bg-secondary/15 border border-secondary/40 shadow-md flex items-center justify-center">
-                <Handshake className="h-4 w-4 text-secondary" />
+              <div className="h-12 w-12 rounded-full bg-background border border-secondary/40 shadow-lg flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="Vision and Path"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
@@ -174,10 +179,16 @@ export const PlacementBridge = () => {
               <circle cx="50" cy="50" r="8" stroke="var(--secondary)" strokeWidth="0.15" strokeDasharray="1 1" fill="none" />
 
             </svg>
-            {/* Center Icon */}
+            {/* Center Logo */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="h-12 w-12 rounded-full bg-secondary/15 border border-secondary/40 shadow-md flex items-center justify-center">
-                <Handshake className="h-5 w-5 text-secondary" />
+              <div className="h-16 w-16 rounded-full bg-background border border-secondary/40 shadow-lg flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="Vision and Path"
+                  width={56}
+                  height={56}
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { X, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -65,15 +65,16 @@ const ExpandableChat: React.FC<ExpandableChatProps> = ({
           className,
         )}
       >
-        {children}
+        {/* Mobile close button - fixed to safe area at top */}
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-2 right-2 sm:hidden"
+          className="absolute top-4 right-4 sm:hidden z-50 bg-background/80 backdrop-blur-sm rounded-full"
           onClick={toggleChat}
         >
-          <X className="h-4 w-4" />
+          <X className="h-5 w-5" />
         </Button>
+        {children}
       </div>
       <ExpandableChatToggle
         icon={icon}
@@ -130,27 +131,65 @@ const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
   isOpen,
   toggleChat,
   ...props
-}) => (
-  <Button
-    variant="default"
-    onClick={toggleChat}
-    className={cn(
-      "w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:scale-110 transition-all duration-300 ease-in-out overflow-hidden p-0",
-      isOpen && "rotate-0 scale-100",
-      !isOpen && "rotate-0 scale-100 hover:rotate-6",
-      className,
-    )}
-    {...props}
-  >
-    {isOpen ? (
-      <X className="h-6 w-6 transition-transform duration-300" />
-    ) : (
-      icon || (
-        <MessageCircle className="h-6 w-6 transition-transform duration-300" />
-      )
-    )}
-  </Button>
-);
+}) => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    // Show popup after 3 seconds if chat is not open and not dismissed
+    const timer = setTimeout(() => {
+      if (!isOpen && !dismissed) {
+        setShowPopup(true);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [isOpen, dismissed]);
+
+  // Hide popup when chat opens
+  useEffect(() => {
+    if (isOpen) {
+      setShowPopup(false);
+      setDismissed(true);
+    }
+  }, [isOpen]);
+
+  return (
+    <div className="relative">
+      {/* Popup message */}
+      {showPopup && !isOpen && (
+        <div 
+          className="absolute bottom-2 right-20 cursor-pointer"
+          onClick={toggleChat}
+        >
+          <div className="bg-primary text-primary-foreground px-4 py-2.5 rounded-full shadow-lg whitespace-nowrap text-sm font-medium hover:scale-105 transition-transform">
+            Hey, how may I help you? 👋
+          </div>
+        </div>
+      )}
+      
+      <Button
+        variant="default"
+        onClick={toggleChat}
+        className={cn(
+          "w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:scale-110 transition-all duration-300 ease-in-out overflow-hidden p-0",
+          isOpen && "rotate-0 scale-100 hidden sm:flex",
+          !isOpen && "rotate-0 scale-100 hover:rotate-6",
+          className,
+        )}
+        {...props}
+      >
+        {isOpen ? (
+          <X className="h-6 w-6 transition-transform duration-300" />
+        ) : (
+          icon || (
+            <MessageCircle className="h-6 w-6 transition-transform duration-300" />
+          )
+        )}
+      </Button>
+    </div>
+  );
+};
 
 ExpandableChatToggle.displayName = "ExpandableChatToggle";
 

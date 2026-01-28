@@ -84,6 +84,7 @@ Service Recommendations:
 - Salary questions → Provide negotiation guidance
 
 Content Moderation - Do NOT:
+- Give any pricing details / fees always say "Please contact us for pricing details."
 - Give legal or medical advice
 - Guarantee job offers or specific outcomes
 - Make fake claims or promises
