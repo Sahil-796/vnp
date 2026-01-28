@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Handshake } from "lucide-react";
 import Image from "next/image";
+import SectionTitle from "@/components/SectionTitle";
 
 const companies = [
   { name: "Google", src: "/google.jpg" },
@@ -23,16 +24,13 @@ const students = [
 
 export const PlacementBridge = () => {
   return (
-    <section className="py-24 overflow-hidden bg-background/50">
+    <section className="py-12 overflow-hidden bg-background/50">
       <div className="container px-4 md:px-6 mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-            From Learning to Leading
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Our placement program bridges the gap between ambitious talent and
-            world-class organizations.
-          </p>
+        <div className="mb-16">
+          <SectionTitle
+            title="From Learning to Leading"
+            description="Our placement program bridges the gap between ambitious talent and world-class organizations."
+          />
         </div>
 
         <div className="flex flex-col md:flex-row items-stretch justify-center h-[650px] w-full max-w-6xl mx-auto relative px-4">
