@@ -136,15 +136,14 @@ export const PlacementBridge = () => {
                     </g>
                 );
               })}
-              
-              {/* Central Bridge Connection (The missing line) */}
-              <line x1="45" y1="50" x2="55" y2="50" stroke="url(#bridgeGradient)" strokeWidth="0.8" />
+              {/* Central baseline (split) */}
+              <line x1="0" y1="50" x2="45" y2="50" stroke="var(--secondary)" strokeOpacity="0.5" strokeWidth="0.3" />
+              <line x1="55" y1="50" x2="100" y2="50" stroke="var(--secondary)" strokeOpacity="0.5" strokeWidth="0.3" />
 
               {/* Central Hub Decorative Elements */}
-              <circle cx="50" cy="50" r="8" stroke="url(#bridgeGradient)" strokeWidth="0.15" strokeDasharray="1 1" fill="none" className="animate-spin-slow origin-center" />
+              <circle cx="50" cy="50" r="8" stroke="var(--secondary)" strokeWidth="0.15" strokeDasharray="1 1" fill="none" className="animate-spin origin-center " />
 
             </svg>
-
             {/* Center Icon */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="h-12 w-12 rounded-full bg-secondary/15 border border-secondary/40 shadow-md flex items-center justify-center">
