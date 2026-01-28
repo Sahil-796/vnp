@@ -3,9 +3,7 @@ import Testimonials from "@/components/Testimonials";
 import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import FAQSection from "@/components/FAQSection";
-import { LogoCloud } from "@/components/ui/logo-cloud-2";
-
-// FAQ Schema for home page (must match visible FAQ content!)
+import { PlacementBridge } from "@/components/PlacementBridge";
 
 export default function Page() {
   return (
@@ -16,11 +14,8 @@ export default function Page() {
         <Hero />
       </div>
 
-      <div className="mb-12 md:mb-24 max-w-[85vw] mx-auto">
-        <p className="text-center text-muted-foreground mb-8 text-sm font-semibold uppercase tracking-widest">
-          Trusted by Top Innovators
-        </p>
-        <LogoCloud />
+      <div className="max-w-[85vw] mx-auto">
+        <PlacementBridge />
       </div>
 
       <div className="max-w-[85vw] mx-auto">
