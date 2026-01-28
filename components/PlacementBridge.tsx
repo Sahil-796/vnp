@@ -33,11 +33,11 @@ export const PlacementBridge = () => {
           />
         </div>
 
-        <div className="flex flex-col md:flex-row items-stretch justify-center h-[650px] w-full max-w-6xl mx-auto relative px-4">
+        <div className="flex flex-col md:flex-row items-stretch justify-center w-full max-w-6xl mx-auto relative px-4 gap-10 md:gap-0 md:h-[650px]">
           
           {/* Left Column: Students */}
-          <div className="w-full md:w-48 flex flex-col z-20 md:py-8 order-1 h-full">
-            <div className="flex-1 flex flex-col justify-between items-center bg-transparent">
+          <div className="w-full md:w-48 flex flex-col z-20 md:py-8 order-1 md:h-full">
+            <div className="flex-1 flex flex-row md:flex-col flex-wrap md:flex-nowrap justify-center md:justify-between items-center gap-4 md:gap-0 bg-transparent">
                 {students.map((student, idx) => (
                 <motion.div
                     key={idx}
@@ -67,8 +67,18 @@ export const PlacementBridge = () => {
                 ))}
             </div>
             {/* Label below column with spacing */}
-            <div className="hidden md:block text-center mt-8">
+            <div className="text-center mt-4 md:mt-8">
                 <h3 className="font-bold text-primary uppercase tracking-widest text-sm">Talent</h3>
+            </div>
+          </div>
+
+          {/* Mobile Connector */}
+          <div className="md:hidden order-2 flex items-center justify-center relative my-2">
+            <div className="h-px w-3/4 bg-secondary/40" />
+            <div className="absolute">
+              <div className="h-10 w-10 rounded-full bg-secondary/15 border border-secondary/40 shadow-md flex items-center justify-center">
+                <Handshake className="h-4 w-4 text-secondary" />
+              </div>
             </div>
           </div>
 
@@ -173,8 +183,8 @@ export const PlacementBridge = () => {
           </div>
 
           {/* Right Column: Companies */}
-          <div className="w-full md:w-48 flex flex-col z-20 md:py-8 order-3 h-full">
-            <div className="flex-1 flex flex-col justify-between items-center">
+          <div className="w-full md:w-48 flex flex-col z-20 md:py-8 order-3 md:h-full">
+            <div className="flex-1 flex flex-row md:flex-col flex-wrap md:flex-nowrap justify-center md:justify-between items-center gap-4 md:gap-0">
                 {companies.map((company, idx) => (
                 <motion.div
                     key={idx}
@@ -195,8 +205,8 @@ export const PlacementBridge = () => {
                 ))}
             </div>
              {/* Label below column with spacing */}
-             <div className="hidden md:block text-center mt-8">
-                <h3 className="font-bold text-primary uppercase tracking-widest text-sm">Careers</h3>
+             <div className="text-center mt-4 md:mt-8">
+               <h3 className="font-bold text-primary uppercase tracking-widest text-sm">Careers</h3>
             </div>
           </div>
 
