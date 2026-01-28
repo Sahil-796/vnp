@@ -4,6 +4,7 @@ import { Services } from "@/components/Services";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import FAQSection from "@/components/FAQSection";
 import { LogoCloud } from "@/components/ui/logo-cloud-2";
+import { PlacementBridge } from "@/components/PlacementBridge";
 
 // FAQ Schema for home page (must match visible FAQ content!)
 
@@ -21,6 +22,10 @@ export default function Page() {
           Trusted by Top Innovators
         </p>
         <LogoCloud />
+      </div>
+
+      <div className="max-w-[85vw] mx-auto">
+        <PlacementBridge />
       </div>
 
       <div className="max-w-[85vw] mx-auto">

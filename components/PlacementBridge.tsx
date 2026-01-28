@@ -1,0 +1,181 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+
+const companies = [
+  { name: "Google", src: "/google.jpg" }, 
+  { name: "Microsoft", src: "/microsoft.png" },
+  { name: "Amazon", src: "/amazon.png" },
+  { name: "Nvidia", src: "/nvidia.png" },
+  { name: "Apple", src: "/apple.jpg" },
+];
+
+const students = [
+  { name: "Alex M.", role: "Full Stack", src: "https://api.dicebear.com/7.x/notionists/svg?seed=Alex" },
+  { name: "Sarah K.", role: "Data Scientist", src: "https://api.dicebear.com/7.x/notionists/svg?seed=Sarah" },
+  { name: "James R.", role: "Backend Dev", src: "https://api.dicebear.com/7.x/notionists/svg?seed=James" },
+  { name: "Emily T.", role: "Product Manager", src: "https://api.dicebear.com/7.x/notionists/svg?seed=Emily" },
+  { name: "Michael C.", role: "AI Engineer", src: "https://api.dicebear.com/7.x/notionists/svg?seed=Michael" },
+];
+
+export const PlacementBridge = () => {
+  return (
+    <section className="py-24 overflow-hidden bg-background/50">
+      <div className="container px-4 md:px-6 mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 mb-4">
+            From Learning to Leading
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Our placement program bridges the gap between ambitious talent and
+            world-class organizations.
+          </p>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-stretch justify-center h-[600px] w-full max-w-6xl mx-auto relative px-4">
+          
+          {/* Left Column: Students */}
+          <div className="w-full md:w-48 flex flex-col justify-between items-center z-20 md:py-8 order-1">
+             <div className="mb-4 text-center md:hidden">
+                <h3 className="font-bold text-blue-500 uppercase tracking-widest text-sm">Talent</h3>
+            </div>
+            {students.map((student, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="relative group cursor-pointer"
+              >
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-300"></div>
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-background bg-card shadow-xl">
+                  <Image
+                    src={student.src}
+                    alt={student.name}
+                    width={64}
+                    height={64}
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                {/* Floating Tooltip */}
+                <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-3 py-1.5 bg-card/90 backdrop-blur border rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 hidden md:block">
+                  <p className="font-semibold text-xs">{student.name}</p>
+                  <p className="text-[10px] text-muted-foreground">{student.role}</p>
+                </div>
+              </motion.div>
+            ))}
+             <div className="hidden md:block absolute bottom-0 left-0 w-48 text-center pb-2">
+                <h3 className="font-bold text-blue-500 uppercase tracking-widest text-sm">Talent</h3>
+            </div>
+          </div>
+
+          {/* Center Column: Bridge (SVG) */}
+          <div className="flex-1 relative hidden md:block order-2 mx-8">
+            <svg
+              className="absolute inset-0 w-full h-full text-foreground/20"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            >
+              <defs>
+                <linearGradient id="bridgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="rgb(37, 99, 235)" stopOpacity="0.4" /> {/* blue-600 */}
+                  <stop offset="50%" stopColor="rgb(168, 85, 247)" stopOpacity="0.8" /> {/* purple-500 */}
+                  <stop offset="100%" stopColor="rgb(236, 72, 153)" stopOpacity="0.4" /> {/* pink-500 */}
+                </linearGradient>
+              </defs>
+
+              {/* Connecting Lines */}
+              {students.map((_, i) => {
+                // Calculate Y positions as percentages
+                // We have 5 items over roughly 100% height.
+                // Assuming equal distribution with some padding.
+                // 10% top pad, 10% bottom pad. 80% distribution.
+                // 0: 10%, 1: 30%, 2: 50%, 3: 70%, 4: 90%
+                const yStart = 10 + i * 20;
+                const yEnd = 10 + i * 20;
+                
+                return (
+                    <g key={`path-${i}`}>
+                        {/* Left to Center */}
+                         <motion.path
+                          d={`M 0,${yStart} C 40,${yStart} 40,50 50,50`}
+                          fill="none"
+                          stroke="url(#bridgeGradient)"
+                          strokeWidth="0.4"
+                          initial={{ pathLength: 0, opacity: 0 }}
+                          whileInView={{ pathLength: 1, opacity: 1 }}
+                          transition={{ duration: 1.5, delay: i * 0.1 }}
+                        />
+                         {/* Center to Right */}
+                        <motion.path
+                          d={`M 50,50 C 60,50 60,${yEnd} 100,${yEnd}`}
+                          fill="none"
+                          stroke="url(#bridgeGradient)"
+                          strokeWidth="0.4"
+                          initial={{ pathLength: 0, opacity: 0 }}
+                          whileInView={{ pathLength: 1, opacity: 1 }}
+                          transition={{ duration: 1.5, delay: 0.8 + i * 0.1 }}
+                        />
+                        
+                        {/* Animated Particles */}
+                        <circle r="0.8" fill="rgb(168, 85, 247)">
+                           <animateMotion 
+                                dur={`${4 + i * 0.5}s`}
+                                repeatCount="indefinite"
+                                keyPoints="0;0.5;1"
+                                keyTimes="0;0.5;1"
+                                calcMode="spline"
+                                keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" 
+                                path={`M 0,${yStart} C 40,${yStart} 40,50 50,50 C 60,50 60,${yEnd} 100,${yEnd}`}
+                           />
+                        </circle>
+                    </g>
+                );
+              })}
+              
+              {/* Central Hub/Gateway Node */}
+              <circle cx="50" cy="50" r="2" fill="url(#bridgeGradient)" className="animate-pulse" />
+              <g className="animate-spin-slow" style={{ transformOrigin: '50% 50%' }}>
+                  <circle cx="50" cy="50" r="6" stroke="url(#bridgeGradient)" strokeWidth="0.2" strokeDasharray="2 2" fill="none" className="opacity-50" />
+              </g>
+
+            </svg>
+          </div>
+
+          {/* Right Column: Companies */}
+          <div className="w-full md:w-48 flex flex-col justify-between items-center z-20 md:py-8 order-3 mt-8 md:mt-0">
+             <div className="mb-4 text-center md:hidden">
+                <h3 className="font-bold text-pink-500 uppercase tracking-widest text-sm">Careers</h3>
+            </div>
+            {companies.map((company, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.1 + 0.5, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="relative group p-3 bg-white border rounded-xl shadow-sm w-32 md:w-40 flex items-center justify-center h-16 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                 <Image
+                    src={company.src}
+                    alt={company.name}
+                    width={100}
+                    height={40}
+                    className="object-contain max-h-12 w-auto"
+                  />
+              </motion.div>
+            ))}
+             <div className="hidden md:block absolute bottom-0 right-0 w-48 text-center pb-2">
+                <h3 className="font-bold text-pink-500 uppercase tracking-widest text-sm">Careers</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
