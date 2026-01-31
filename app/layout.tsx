@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
-import {Navbar}  from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 import { ExpandableChatDemo } from "@/components/AI";
 import Footer from "@/components/Footer";
-import { Analytics } from "@vercel/analytics/next";
+import { Navbar } from "@/components/Navbar";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -21,8 +21,9 @@ const geistMono = Geist_Mono({
 // ✅ Canonical domain (no www - consistent across all files)
 const siteUrl = "https://visionandpath.com";
 
-// Cache-busting version for OG image (update this when you change the og-image.png)
-const ogImageVersion = "v2";
+// Cache-busting version for OG image and logo (update this when you change images)
+const ogImageVersion = "v3";
+const logoVersion = "v2";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -43,7 +44,8 @@ export const metadata: Metadata = {
 
   title: {
     template: "%s | Vision and Path",
-    default: "Vision and Path | Expert Job Placement & Career Coaching Services",
+    default:
+      "Vision and Path | Expert Job Placement & Career Coaching Services",
   },
 
   description:
@@ -52,6 +54,13 @@ export const metadata: Metadata = {
   keywords: [
     "Vision and Path",
     "vision and path",
+    "visionandpath",
+    "vision & path",
+    "Vision and Path career services",
+    "Vision and Path job placement",
+    "Vision and Path Texas",
+    "Vision and Path Laredo",
+    "visionandpath.com",
     "job placement services",
     "career coaching",
     "resume optimization",
@@ -65,6 +74,9 @@ export const metadata: Metadata = {
     "job placement agency",
     "career guidance",
     "professional career coaching",
+    "VP Career Services",
+    "Texas job placement",
+    "Laredo career services",
   ],
 
   authors: [{ name: "Vision and Path", url: siteUrl }],
@@ -153,12 +165,13 @@ const organizationSchema = {
   url: siteUrl,
   logo: {
     "@type": "ImageObject",
-    url: `${siteUrl}/logo.png`,
+    url: `${siteUrl}/logo.png?${logoVersion}`,
     width: 512,
     height: 512,
   },
-  image: `${siteUrl}/og-image.png`,
-  description: "Expert job placement services, career coaching, and professional development to accelerate your career success.",
+  image: `${siteUrl}/og-image.png?${ogImageVersion}`,
+  description:
+    "Expert job placement services, career coaching, and professional development to accelerate your career success.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "5900 Balcones Dr",
@@ -174,9 +187,7 @@ const organizationSchema = {
     email: "careers@visionandpath.com",
     availableLanguage: ["English"],
   },
-  sameAs: [
-    "https://www.linkedin.com/company/visionandpath",
-  ],
+  sameAs: ["https://www.linkedin.com/company/visionandpath"],
 };
 
 const websiteSchema = {
@@ -268,12 +279,16 @@ export default function RootLayout({
       <head>
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="preconnect" href="https://images.unsplash.com" />
-        
+
         {/* DNS prefetch */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        
+
         {/* Structured data - Organization */}
         <script
           type="application/ld+json"
@@ -281,7 +296,7 @@ export default function RootLayout({
             __html: JSON.stringify(organizationSchema),
           }}
         />
-        
+
         {/* Structured data - Website */}
         <script
           type="application/ld+json"
@@ -289,7 +304,7 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
-        
+
         {/* Structured data - Local Business */}
         <script
           type="application/ld+json"
@@ -297,7 +312,7 @@ export default function RootLayout({
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
-        
+
         {/* Structured data - Breadcrumb */}
         <script
           type="application/ld+json"

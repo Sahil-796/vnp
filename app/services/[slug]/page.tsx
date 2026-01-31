@@ -1,10 +1,10 @@
-import { servicesPageData } from "@/constants";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ServiceDetailClient } from "@/components/ServiceDetailClient";
-import { Metadata } from "next";
+import { servicesPageData } from "@/constants";
 
 const siteUrl = "https://visionandpath.com";
-const ogImageVersion = "v2";
+const ogImageVersion = "v3";
 
 // Service-specific metadata mapping
 const serviceMetadata: Record<
@@ -231,7 +231,7 @@ export default async function ServicePage({
       "@type": "Organization",
       name: "Vision and Path",
       url: siteUrl,
-      logo: `${siteUrl}/logo.png`,
+      logo: `${siteUrl}/logo.png?v2`,
     },
     areaServed: {
       "@type": "Country",

@@ -1,9 +1,9 @@
-import AboutUsSection from "@/components/ui/about-us-section";
 import type { Metadata } from "next";
+import AboutUsSection from "@/components/ui/about-us-section";
 import { aboutPageData } from "@/constants";
 
 const siteUrl = "https://visionandpath.com";
-const ogImageVersion = "v2";
+const ogImageVersion = "v3";
 
 export const metadata: Metadata = {
   title: aboutPageData.metadata.title,
@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     "career development company",
     "job placement history",
     "career services expertise",
+    "Vision and Path",
+    "vision and path",
   ],
   openGraph: {
     title: `${aboutPageData.metadata.title} | Vision and Path`,

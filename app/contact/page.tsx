@@ -1,9 +1,9 @@
-import { ContactUs } from "@/components/ContactUs";
 import type { Metadata } from "next";
+import { ContactUs } from "@/components/ContactUs";
 import { contactPageData } from "@/constants";
 
 const siteUrl = "https://visionandpath.com";
-const ogImageVersion = "v2";
+const ogImageVersion = "v3";
 
 export const metadata: Metadata = {
   title: contactPageData.metadata.title,
@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     "schedule consultation",
     "career services email",
     "job placement phone",
+    "Vision and Path",
+    "vision and path",
   ],
   openGraph: {
     title: `${contactPageData.metadata.title} | Vision and Path`,
