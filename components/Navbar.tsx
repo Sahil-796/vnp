@@ -1,18 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Logo } from "./Logo";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
+import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import GlassSurface from "@/components/GlassSurface";
+import { cn } from "@/lib/utils";
+import { Logo } from "./Logo";
+import { Button } from "./ui/button";
 import { FlowButton } from "./ui/flow-button";
 import { TextRollLink } from "./ui/text-roll-link";
-import { Button } from "./ui/button";
-import { usePathname } from "next/navigation";
-
-import GlassSurface from "@/components/GlassSurface";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -71,8 +70,8 @@ export const Navbar = () => {
                 height="100%"
                 borderRadius={40}
                 blur={10}
-                opacity={0.6}
-                borderWidth={0.5}
+                opacity={0.5}
+                borderWidth={0.3}
               />
             )}
           </div>
@@ -103,19 +102,17 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Navbar - Pill Shape */}
-        {/* Desktop Navbar - Pill Shape */}
-        {/* Desktop Navbar - Pill Shape */}
         <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
           <GlassSurface
             borderRadius={40}
-            width="auto"
-            height="auto"
-            blur={8}
-            opacity={0.2}
-            borderWidth={0.5}
+            width="100%"
+            height="100%"
+            blur={10}
+            opacity={0.7}
+            borderWidth={1.2}
             className="p-1"
           >
-            <nav className="flex items-center gap-16 relative px-8">
+            <nav className="flex items-center gap-16 relative">
               {menuItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -123,7 +120,7 @@ export const Navbar = () => {
                     key={item.name}
                     href={item.href}
                     className={cn(
-                      "px-5 py-2 text-md font-medium rounded-full transition-colors duration-299 relative z-10",
+                      "px-5 py-2 text-lg font-medium rounded-full transition-colors duration-299 relative z-10",
                       isActive
                         ? "text-black"
                         : "text-muted-foreground hover:text-foreground",
@@ -194,8 +191,8 @@ export const Navbar = () => {
                       height="100%"
                       borderRadius={99}
                       blur={10}
-                      opacity={0.6}
-                      borderWidth={0.5}
+                      opacity={0.5}
+                      borderWidth={0.3}
                     />
                   )}
                 </div>
