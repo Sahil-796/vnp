@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { DotGrid } from "@/components/ui/dot-grid";
-import { Logo } from "./Logo";
 import Link from "next/link";
-import { MobileFooter } from "./MobileFooter";
+import { DotGrid } from "@/components/ui/dot-grid";
 import { landingPageData } from "@/constants";
+import { Logo } from "./Logo";
+import { MobileFooter } from "./MobileFooter";
 
 const Footer = () => {
   return (
@@ -21,6 +21,7 @@ const Footer = () => {
               src="/new-hero.jpg"
               alt="background"
               fill
+              sizes="(min-width: 768px) 100vw, 100vw"
               className="object-cover opacity-80"
               priority
             />

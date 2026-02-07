@@ -1,11 +1,12 @@
 "use client";
 import {
+  motion,
   useMotionValueEvent,
   useScroll,
   useTransform,
-  motion,
 } from "motion/react";
-import React, { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface TimelineEntry {
   id?: string;
@@ -23,7 +24,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       const rect = ref.current.getBoundingClientRect();
       setHeight(rect.height);
     }
-  }, [ref]);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -35,11 +36,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div
-      className="w-full bg-background "
+      className="relative w-full bg-background"
       ref={containerRef}
+      style={{ position: "relative" }}
     >
-
-
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
           <div
