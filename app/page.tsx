@@ -1,11 +1,60 @@
-import Hero from "@/components/Hero";
-import Testimonials from "@/components/Testimonials";
-import { Services } from "@/components/Services";
-import { WhyChooseUs } from "@/components/WhyChooseUs";
+import type { Metadata } from "next";
 import FAQSection from "@/components/FAQSection";
+import Hero from "@/components/Hero";
 import { PlacementBridge } from "@/components/PlacementBridge";
+import { Services } from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
+import { WhyChooseUs } from "@/components/WhyChooseUs";
 
 const siteUrl = "https://visionandpath.com";
+const ogImageVersion = "v3";
+
+export const metadata: Metadata = {
+  title: "Vision and Path | Career Coaching & Job Placement",
+  description:
+    "Expert career services including job placement, career coaching, resume optimization, interview preparation, and skill development.",
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": 200,
+    },
+  },
+  openGraph: {
+    title: "Vision and Path | Career Coaching & Job Placement",
+    description:
+      "Expert job placement, career coaching, resume optimization, interview preparation, and personalized career guidance.",
+    url: siteUrl,
+    siteName: "Vision and Path",
+    images: [
+      {
+        url: `${siteUrl}/og-image.png?${ogImageVersion}`,
+        width: 1200,
+        height: 630,
+        alt: "Vision and Path - Expert Career Services & Job Placement",
+        type: "image/png",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vision and Path | Career Coaching & Job Placement",
+    description:
+      "Expert job placement, career coaching, resume optimization, and interview preparation.",
+    images: [`${siteUrl}/og-image.png?${ogImageVersion}`],
+    creator: "@visionandpath",
+    site: "@visionandpath",
+  },
+};
 
 // Homepage-specific FAQ Schema for rich snippets - explicitly defined for Google validation
 const faqSchema = {
@@ -102,7 +151,8 @@ const serviceSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Career Assessment",
-          description: "Comprehensive career evaluation to identify strengths and ideal career paths",
+          description:
+            "Comprehensive career evaluation to identify strengths and ideal career paths",
         },
       },
       {
@@ -110,7 +160,8 @@ const serviceSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Job Placement",
-          description: "Expert job placement services connecting candidates with top employers",
+          description:
+            "Expert job placement services connecting candidates with top employers",
         },
       },
       {
@@ -118,7 +169,8 @@ const serviceSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Interview Preparation",
-          description: "Professional interview coaching with mock interviews and personalized feedback",
+          description:
+            "Professional interview coaching with mock interviews and personalized feedback",
         },
       },
       {
@@ -126,7 +178,8 @@ const serviceSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Resume Optimization",
-          description: "ATS-optimized resume writing and professional document creation",
+          description:
+            "ATS-optimized resume writing and professional document creation",
         },
       },
     ],
