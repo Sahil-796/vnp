@@ -1,11 +1,11 @@
+"use client";
+import { AnimatePresence, motion } from "framer-motion";
+import { Plus } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
-"use client"
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Plus } from 'lucide-react';
-import { cn } from '@/lib/utils';
-
-import SectionTitle from '../SectionTitle';
+import SectionTitle from "../SectionTitle";
 
 interface FAQItemType {
   question: string;
@@ -36,11 +36,11 @@ export const FAQ = ({
     <section
       className={cn(
         "relative overflow-hidden bg-background px-4 py-12 text-foreground",
-        className
+        className,
       )}
       {...props}
     >
-      <div className='mb-12'>
+      <div className="mb-12">
         <SectionTitle title={title} description={subtitle} />
       </div>
       <FAQTabs
@@ -48,25 +48,31 @@ export const FAQ = ({
         selected={selectedCategory}
         setSelected={setSelectedCategory}
       />
-      <FAQList
-        faqData={faqData}
-        selected={selectedCategory}
-      />
+      <FAQList faqData={faqData} selected={selectedCategory} />
     </section>
   );
 };
 
-const FAQTabs = ({ categories, selected, setSelected }: { categories: Record<string, string>; selected: string; setSelected: (key: string) => void }) => (
+const FAQTabs = ({
+  categories,
+  selected,
+  setSelected,
+}: {
+  categories: Record<string, string>;
+  selected: string;
+  setSelected: (key: string) => void;
+}) => (
   <div className="relative z-10 flex flex-wrap items-center justify-center gap-4">
     {Object.entries(categories).map(([key, label]) => (
       <button
+        type="button"
         key={key}
         onClick={() => setSelected(key)}
         className={cn(
-          "relative overflow-hidden whitespace-nowrap rounded-md border px-3 py-1.5 text-sm font-medium transition-colors duration-500",
+          "relative overflow-hidden whitespace-nowrap rounded-md border px-3 py-1.5 text-sm font-medium transition-colors duration-500 cursor-pointer",
           selected === key
             ? "border-primary text-background"
-            : "border-border bg-transparent text-muted-foreground hover:text-foreground"
+            : "border-border bg-transparent text-muted-foreground hover:text-foreground",
         )}
       >
         <span className="relative z-10">{label}</span>
@@ -86,7 +92,13 @@ const FAQTabs = ({ categories, selected, setSelected }: { categories: Record<str
   </div>
 );
 
-const FAQList = ({ faqData, selected }: { faqData: Record<string, FAQItemType[]>; selected: string }) => (
+const FAQList = ({
+  faqData,
+  selected,
+}: {
+  faqData: Record<string, FAQItemType[]>;
+  selected: string;
+}) => (
   <div className="mx-auto mt-12 max-w-3xl">
     <AnimatePresence mode="wait">
       {Object.entries(faqData).map(([category, questions]) => {
@@ -120,17 +132,18 @@ const FAQItem = ({ question, answer }: FAQItemType) => {
       animate={isOpen ? "open" : "closed"}
       className={cn(
         "rounded-xl border transition-colors",
-        isOpen ? "bg-muted/50" : "bg-card"
+        isOpen ? "bg-muted/50" : "bg-card",
       )}
     >
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between gap-4 p-4 text-left"
+        className="flex w-full items-center justify-between gap-4 p-4 text-left cursor-pointer"
       >
         <span
           className={cn(
             "text-lg font-medium transition-colors flex-1",
-            isOpen ? "text-foreground" : "text-muted-foreground"
+            isOpen ? "text-foreground" : "text-muted-foreground",
           )}
         >
           <h3 className="inline text-inherit font-inherit">{question}</h3>
@@ -145,7 +158,7 @@ const FAQItem = ({ question, answer }: FAQItemType) => {
           <Plus
             className={cn(
               "h-5 w-5 transition-colors",
-              isOpen ? "text-foreground" : "text-muted-foreground"
+              isOpen ? "text-foreground" : "text-muted-foreground",
             )}
           />
         </motion.span>
@@ -154,7 +167,7 @@ const FAQItem = ({ question, answer }: FAQItemType) => {
         initial={false}
         animate={{
           height: isOpen ? "auto" : "0px",
-          marginBottom: isOpen ? "16px" : "0px"
+          marginBottom: isOpen ? "16px" : "0px",
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="overflow-hidden px-4"

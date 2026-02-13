@@ -12,10 +12,10 @@ import { ArrowRight, Link, Zap } from "lucide-react";
 import Image from "next/image"; // Added this import
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
-import { PageTitle } from "@/components/PageTitle";
-import { aboutPageData } from "@/constants";
-import { CtaButton } from "@/components/ui/cta-button";
 import ClientsSection from "@/components/ClientsSection";
+import { PageTitle } from "@/components/PageTitle";
+import { CtaButton } from "@/components/ui/cta-button";
+import { aboutPageData } from "@/constants";
 
 // Custom SVG Icons
 const Icons = {
@@ -248,7 +248,7 @@ export default function AboutUsSection() {
                   transition={{ duration: 0.8, delay: 0.9 }}
                 >
                   <motion.button
-                    className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium"
+                    className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium cursor-pointer"
                     whileTap={{ scale: 0.95 }}
                   >
                     Vision and Path
