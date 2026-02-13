@@ -337,7 +337,7 @@ export const landingPageData = {
   footer: {
     titlep1: "Vision",
     titlep2: "& Path",
-    address: "5900 Balcones Dr, Laredo, Texas 78046, United States",
+    address: "30 N Gould St Ste R Sheridan, WY 82801 USA",
     phone: "+1 (210) 530-1296",
     companyLinks: [
       { label: "About", href: "/about" },
@@ -345,12 +345,15 @@ export const landingPageData = {
       { label: "Contact", href: "/contact" },
     ],
     socialLinks: [
-      { label: "LinkedIn", href: "#" },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/visionandpath.com",
+      },
       // { label: "Facebook", href: "#" },
       // { label: "Instagram", href: "#" },
       // { label: "Twitter", href: "#" },
     ],
-    copyright: "Copyright © 2025 Vision & Path. All Rights Reserved.",
+    copyright: "Copyright © 2026 Vision & Path. All Rights Reserved.",
   },
 };
 
@@ -484,7 +487,7 @@ export const contactPageData = {
       title: "Visit Us",
       description:
         "Come say hello at our headquarters. We believe in face-to-face connections and would love to welcome you to our office.",
-      value: "5900 Balcones Dr, Laredo, Texas 78046, United States",
+      value: "30 N Gould St Ste R Sheridan, WY 82801 USA",
       link: "https://maps.google.com",
     },
     {

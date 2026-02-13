@@ -166,7 +166,7 @@ export default function AboutUsSection() {
     },
   };
 
-  const { hero, features, stats, cta, centerImage } = aboutPageData;
+  const { hero, features, stats, cta } = aboutPageData;
 
   return (
     <section
@@ -335,16 +335,20 @@ export default function AboutUsSection() {
         {/* Marquees Section */}
 
         <div className="mt-24 space-y-12 ">
-          <h3 className="text-2xl font-semibold text-center mb-6">Industries We Serve</h3>
-          <Marquee className="[--duration:20s]">
+          <h3 className="text-2xl font-semibold text-center mb-6">
+            Industries We Serve
+          </h3>
+          <Marquee className="[--duration:45s]">
             {industries.map((industry) => (
-              <div key={industry} className="mx-4 px-6 py-3 bg-secondary rounded-xl text-secondary-foreground font-medium whitespace-nowrap">
+              <div
+                key={industry}
+                className="mx-4 px-6 py-3 bg-secondary rounded-xl text-secondary-foreground font-medium whitespace-nowrap"
+              >
                 {industry}
               </div>
             ))}
           </Marquee>
         </div>
-
 
         {/* CTA Section */}
         <motion.div
@@ -432,10 +436,11 @@ function ServiceItem({
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className={`p-3 rounded-lg transition-colors duration-300 relative ${variant === "primary"
-            ? "bg-primary/10 text-primary"
-            : "bg-secondary/10 text-secondary"
-            }`}
+          className={`p-3 rounded-lg transition-colors duration-300 relative ${
+            variant === "primary"
+              ? "bg-primary/10 text-primary"
+              : "bg-secondary/10 text-secondary"
+          }`}
         >
           {icon}
         </motion.div>
