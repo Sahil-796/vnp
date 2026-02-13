@@ -1,8 +1,8 @@
-import { Timeline } from "@/components/ui/timeline";
-import { SectionTitle } from "@/components/SectionTitle";
-import { landingPageData } from "../constants";
-import { CtaButton } from "@/components/ui/cta-button";
 import Link from "next/link";
+import { SectionTitle } from "@/components/SectionTitle";
+import { CtaButton } from "@/components/ui/cta-button";
+import { Timeline } from "@/components/ui/timeline";
+import { landingPageData } from "../constants";
 
 export function Services() {
   const data = landingPageData.services.content.map((service, index) => ({
@@ -22,7 +22,7 @@ export function Services() {
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-2xl"
           />
         </div>
-        <Link href={`/services/${(service as any).slug}`}>
+        <Link href={`/services/${service.slug}`}>
           <CtaButton variant="outline" className="rounded-full">
             Learn More
           </CtaButton>

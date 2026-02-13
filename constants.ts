@@ -31,6 +31,7 @@ export const landingPageData = {
     content: [
       {
         title: "Personalized Career Assessment",
+        slug: "career-assessment",
         desc: "Understand your strengths, interests, and career direction with a detailed assessment. Gain clarity and make informed decisions about your future with expert guidance.",
         imgsrc:
           "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2070&auto=format&fit=crop",
@@ -38,6 +39,7 @@ export const landingPageData = {
       },
       {
         title: "Goal Setting & Action Planning",
+        slug: "goal-setting",
         desc: "Turn your ambitions into achievable goals. We help you build a clear, structured career roadmap so you can stay focused and make consistent progress.",
         imgsrc:
           "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5?q=80&w=2070&auto=format&fit=crop",
@@ -45,13 +47,15 @@ export const landingPageData = {
       },
       {
         title: "Skill Development",
-        desc: "Build in-demand technical and soft skills through guided learning programs. Strengthen your profile and stay competitive in today’s evolving job market.",
+        slug: "skill-development",
+        desc: "Build in-demand technical and soft skills through guided learning programs. Strengthen your profile and stay competitive in today's evolving job market.",
         imgsrc:
           "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
         ctaText: "Explore Programs",
       },
       {
         title: "Interview Preparation",
+        slug: "interview-preparation",
         desc: "Prepare confidently with mock interviews, real-world questions, and personalized feedback. Improve communication, structure better answers, and perform at your best.",
         imgsrc:
           "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop",
@@ -59,6 +63,7 @@ export const landingPageData = {
       },
       {
         title: "Job Search Strategies",
+        slug: "job-search-strategies",
         desc: "Learn proven strategies for finding opportunities, networking effectively, and applying smartly. Increase your chances of getting hired faster.",
         imgsrc:
           "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
