@@ -503,7 +503,7 @@ export const contactPageData = {
       link: "tel:+12105301296",
     },
   ],
-  calendlyUrl: "https://calendly.com/rudranpatel0980/vp", // Placeholder
+  calendlyUrl: "https://calendly.com/aayushranpura2302/30min",
 };
 
 export const servicesPageData = {
