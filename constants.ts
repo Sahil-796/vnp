@@ -343,7 +343,7 @@ export const landingPageData = {
     titlep1: "Vision",
     titlep2: "& Path",
     address: "30 N Gould St Ste R Sheridan, WY 82801 USA",
-    phone: "+1 (210) 530-1296",
+    phone: "+1 (210) 538-1296",
     companyLinks: [
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
@@ -499,7 +499,7 @@ export const contactPageData = {
       title: "Call Us",
       description:
         "Prefer to talk? Give us a call. We are available Monday to Friday from 8am to 5pm to discuss your needs.",
-      value: "+1 (210) 530-1296",
+      value: "+1 (210) 538-1296",
       link: "tel:+12105301296",
     },
   ],
