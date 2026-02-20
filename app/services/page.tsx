@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ServicesList } from "@/components/ServicesList";
 import { servicesPageData } from "@/constants";
 
@@ -126,7 +127,9 @@ export default function Page() {
           __html: JSON.stringify(breadcrumbSchema),
         }}
       />
-      <ServicesList />
+      <Suspense>
+        <ServicesList />
+      </Suspense>
     </>
   );
 }
