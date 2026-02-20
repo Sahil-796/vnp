@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ContactUs } from "@/components/ContactUs";
 import { contactPageData } from "@/constants";
 
@@ -129,7 +130,9 @@ export default function Page() {
           __html: JSON.stringify(breadcrumbSchema),
         }}
       />
-      <ContactUs />
+      <Suspense fallback={null}>
+        <ContactUs />
+      </Suspense>
     </>
   );
 }
