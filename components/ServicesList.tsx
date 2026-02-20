@@ -115,6 +115,14 @@ const noiseTexture = {
 
 export function ServicesList() {
   const { content, header, softwareServices, labels } = servicesPageData;
+  const buildContactHref = (intent: string, packageName?: string) => ({
+    pathname: "/contact",
+    query: {
+      source: "services",
+      intent,
+      ...(packageName ? { package: packageName } : {}),
+    },
+  });
 
   return (
     <div className="w-full py-32 px-4">
@@ -301,12 +309,18 @@ export function ServicesList() {
                 {softwareServices.packageIntro}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/contact" className="inline-flex">
+                <Link
+                  href={buildContactHref("software-consultation")}
+                  className="inline-flex"
+                >
                   <Button className="rounded-lg">
                     Book a software consultation
                   </Button>
                 </Link>
-                <Link href="/contact" className="inline-flex">
+                <Link
+                  href={buildContactHref("software-pricing")}
+                  className="inline-flex"
+                >
                   <Button
                     variant="outline"
                     className="rounded-lg border-border bg-background/70"
@@ -358,7 +372,10 @@ export function ServicesList() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contact" className="inline-flex mt-6">
+                  <Link
+                    href={buildContactHref("specific-package", pkg.name)}
+                    className="inline-flex mt-6"
+                  >
                     <Button className="rounded-lg group-hover:bg-primary/90">
                       Discuss this package
                     </Button>
@@ -422,7 +439,10 @@ export function ServicesList() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/contact" className="inline-flex mt-5 w-full">
+                <Link
+                  href={buildContactHref("build-own-package")}
+                  className="inline-flex mt-5 w-full"
+                >
                   <Button className="w-full rounded-lg">
                     Build my package
                   </Button>
@@ -467,7 +487,10 @@ export function ServicesList() {
                   best-fit package and add-ons.
                 </p>
               </div>
-              <Link href="/contact" className="inline-flex">
+              <Link
+                href={buildContactHref("package-recommendation")}
+                className="inline-flex"
+              >
                 <Button className="rounded-lg">
                   Get package recommendation
                   <ArrowRight className="ml-2 h-4 w-4" />
