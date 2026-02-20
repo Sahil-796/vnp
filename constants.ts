@@ -519,6 +519,8 @@ export const servicesPageData = {
     keyBenefits: "Key Benefits",
     howItWorks: "How It Works",
     step: "Step",
+    careerDevelopmentTab: "Career Development",
+    softwareBuildingTab: "Software Building",
   },
   metadata: {
     title: "Services",
@@ -701,6 +703,152 @@ export const servicesPageData = {
       },
     },
   ],
+  softwareServices: {
+    title: "Software Services & Solutions",
+    description:
+      "We help businesses turn ideas into practical software solutions that save time, improve operations, and create a strong online presence.",
+    packageIntro:
+      "Choose one of our ready-made packages, add optional add-ons, or build your own package based on exactly what you need.",
+    packages: [
+      {
+        name: "Launch Presence Package",
+        subtitle: "Get online quickly with a conversion-focused foundation.",
+        idealFor:
+          "Founders, consultants, and small businesses launching online.",
+        includes: [
+          "Portfolio/personal website or business/company website",
+          "Landing page for a campaign or offer",
+          "Startup MVP website setup",
+          "Basic website redesign and modernization",
+          "Cloud deployment and hosting setup",
+        ],
+      },
+      {
+        name: "Business Apps Package",
+        subtitle: "Build secure internal tools and customer-facing workflows.",
+        idealFor:
+          "Teams that need portals, dashboards, and operational systems.",
+        includes: [
+          "Client portal or dashboard",
+          "Admin panel/internal operations tool",
+          "Booking and scheduling workflow",
+          "Role-based secure access control",
+          "Feature enhancements and stabilization",
+        ],
+      },
+      {
+        name: "Operations Automation Package",
+        subtitle: "Automate repetitive work and improve reporting visibility.",
+        idealFor: "Growing businesses optimizing day-to-day operations.",
+        includes: [
+          "Workflow and task automation",
+          "Report generation and data processing tools",
+          "Platform-to-platform integrations",
+          "Business dashboard and analytics reports",
+          "Long-term technical support planning",
+        ],
+      },
+      {
+        name: "Commerce & Growth Package",
+        subtitle:
+          "Run online sales with connected payments, tracking, and insights.",
+        idealFor:
+          "Businesses selling online or expanding digital revenue channels.",
+        includes: [
+          "Online store/e-commerce platform",
+          "Payment gateway integration",
+          "Billing, invoicing, and order tracking",
+          "Sales and performance analytics",
+          "Speed improvements and optimization",
+        ],
+      },
+    ],
+    addOns: [
+      "Bug fixes and maintenance retainer",
+      "Advanced performance optimization sprint",
+      "Priority feature enhancement queue",
+      "Dedicated cloud/devops support",
+      "Extra integrations with third-party platforms",
+      "Monthly analytics and reporting package",
+    ],
+    createYourOwn: {
+      title: "Create Your Own Package",
+      description:
+        "Pick only the services you need, combine related services into your own bundle, and scale as your requirements evolve.",
+      steps: [
+        "Choose your core service area (website, app, management system, automation, or e-commerce).",
+        "Select supporting services (integrations, analytics, deployment, maintenance).",
+        "Add optional add-ons for performance, support, and enhancements.",
+        "Start lean and expand into a larger package over time.",
+      ],
+      suggestedMixes: [
+        "MVP website + booking system + analytics dashboard",
+        "Client portal + CRM workflow + monthly maintenance",
+        "E-commerce store + payment setup + sales reporting",
+      ],
+    },
+    individualServices: [
+      {
+        category: "Websites & Online Presence",
+        items: [
+          "Portfolio and personal websites",
+          "Business and company websites",
+          "Landing pages for marketing campaigns",
+          "Startup MVP websites",
+          "Website redesigns and modernization",
+        ],
+      },
+      {
+        category: "Custom Web Applications",
+        items: [
+          "Client portals and dashboards",
+          "Admin panels and internal tools",
+          "SaaS platforms and subscription products",
+          "Booking and scheduling systems",
+          "Role-based secure platforms",
+        ],
+      },
+      {
+        category: "Management Systems",
+        items: [
+          "Inventory and stock management",
+          "School or college management systems",
+          "Employee and HR systems",
+          "Customer relationship (CRM) tools",
+          "Billing, invoicing, and order tracking",
+        ],
+      },
+      {
+        category: "Automation & Productivity",
+        items: [
+          "Converting processes into web apps",
+          "Workflow and task automation",
+          "Report generation systems",
+          "Data processing tools",
+          "Integration between multiple platforms",
+        ],
+      },
+      {
+        category: "Analytics & E-Commerce",
+        items: [
+          "Business dashboards and performance tracking",
+          "Sales and analytics reports",
+          "Online stores and e-commerce platforms",
+          "Payment gateway integration",
+        ],
+      },
+      {
+        category: "Support & Optimization",
+        items: [
+          "Speed improvements and upgrades",
+          "Bug fixes and maintenance",
+          "Feature enhancements",
+          "Cloud deployment and hosting setup",
+          "Long-term technical support",
+        ],
+      },
+    ],
+  },
   additionalServices: {
     title: "Additional Services",
     items: [
