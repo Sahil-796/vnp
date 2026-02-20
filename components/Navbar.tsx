@@ -2,7 +2,7 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -110,11 +110,83 @@ export const Navbar = () => {
             blur={10}
             opacity={0.7}
             borderWidth={1.2}
-            className="p-1"
+            className="p-1 overflow-visible"
           >
             <nav className="flex items-center gap-16 relative">
               {menuItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive =
+                  item.href === "/services"
+                    ? pathname.startsWith("/services")
+                    : pathname === item.href;
+
+                if (item.name === "Services") {
+                  return (
+                    <div key={item.name} className="relative group/services">
+                      <button
+                        type="button"
+                        className={cn(
+                          "px-5 py-2 text-lg font-medium rounded-full transition-colors duration-299 relative z-10 flex items-center gap-1.5",
+                          isActive
+                            ? "text-black"
+                            : "text-muted-foreground hover:text-foreground",
+                        )}
+                      >
+                        {isActive && (
+                          <motion.div
+                            layoutId="navbar-pill"
+                            className="absolute inset-0 rounded-full -z-10 backdrop-blur-md"
+                            animate={{ scale: [1, 1.5, 1] }}
+                            transition={{
+                              scale: { duration: 0.35, ease: "easeInOut" },
+                              layout: {
+                                delay: 0.2,
+                                type: "spring",
+                                stiffness: 200,
+                                damping: 25,
+                              },
+                            }}
+                            style={{
+                              background: "rgba(255, 255, 255, 0.1)",
+                              border: "1px solid rgba(255, 255, 255, 0.18)",
+                              boxShadow:
+                                "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.3)",
+                            }}
+                          />
+                        )}
+                        <span>Services</span>
+                        <ChevronDown
+                          className={cn(
+                            "h-4 w-4 transition-transform",
+                            "group-hover/services:rotate-180",
+                          )}
+                        />
+                      </button>
+
+                      <div
+                        className={cn(
+                          "absolute left-1/2 -translate-x-1/2 top-full pt-2 min-w-64 transition-all duration-150",
+                          "opacity-0 -translate-y-1 pointer-events-none group-hover/services:opacity-100 group-hover/services:translate-y-0 group-hover/services:pointer-events-auto",
+                        )}
+                      >
+                        <div className="rounded-2xl border border-border/60 bg-background/95 p-2 shadow-xl backdrop-blur">
+                          <Link
+                            href="/services?tab=career-development"
+                            className="block rounded-xl px-3 py-2.5 text-sm text-foreground hover:bg-muted"
+                          >
+                            Career Consultation
+                          </Link>
+                          <Link
+                            href="/services?tab=software-building"
+                            className="mt-1 block rounded-xl px-3 py-2.5 text-sm text-foreground hover:bg-muted"
+                          >
+                            Software Building
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.name}

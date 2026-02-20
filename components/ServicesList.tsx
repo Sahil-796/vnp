@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ComponentProps, ReactNode } from "react";
-import { useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -115,6 +116,32 @@ const noiseTexture = {
 
 export function ServicesList() {
   const { content, header, softwareServices, labels } = servicesPageData;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const resolvedTab = useMemo(() => {
+    const rawTab = searchParams.get("tab");
+    if (rawTab === "software-building") return "software-building";
+    if (rawTab === "career-consultation") return "career-development";
+    if (rawTab === "career-development") return "career-development";
+    return "career-development";
+  }, [searchParams]);
+
+  const [activeTab, setActiveTab] = useState<
+    "career-development" | "software-building"
+  >(resolvedTab);
+
+  useEffect(() => {
+    setActiveTab(resolvedTab);
+  }, [resolvedTab]);
+
+  const syncTabInUrl = (tab: "career-development" | "software-building") => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", tab);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   const buildContactHref = (intent: string, packageName?: string) => ({
     pathname: "/contact",
     query: {
@@ -141,7 +168,12 @@ export function ServicesList() {
       </motion.div>
 
       <Tabs
-        defaultValue="career-development"
+        value={activeTab}
+        onValueChange={(value) => {
+          const nextTab = value as "career-development" | "software-building";
+          setActiveTab(nextTab);
+          syncTabInUrl(nextTab);
+        }}
         className="max-w-7xl mx-auto px-4"
       >
         <TabsList className="mx-auto">
