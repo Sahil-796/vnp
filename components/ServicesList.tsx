@@ -1,14 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import {
-  ArrowRight,
-  Layers3,
-  PackageCheck,
-  Puzzle,
-  Sparkles,
-  Wrench,
-} from "lucide-react";
+import { ArrowRight, Layers3, Puzzle, Sparkles, Wrench } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -320,50 +313,6 @@ export function ServicesList() {
         </TabsContent>
 
         <TabsContent value="software-building" className="mt-10 space-y-10">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 md:p-10">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsl(var(--accent)/0.35),transparent_45%),radial-gradient(circle_at_bottom_left,hsl(var(--secondary)/0.45),transparent_55%)]" />
-            <div
-              className="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay z-0"
-              style={noiseTexture}
-            />
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-xs text-muted-foreground">
-                <PackageCheck className="h-3.5 w-3.5 text-primary" />
-                Built with package-first delivery
-              </div>
-              <h2 className="mt-4 text-2xl md:text-4xl font-bold tracking-tight">
-                {softwareServices.title}
-              </h2>
-              <p className="mt-3 text-muted-foreground text-base md:text-lg max-w-4xl">
-                {softwareServices.description}
-              </p>
-              <p className="mt-3 text-muted-foreground max-w-4xl">
-                {softwareServices.packageIntro}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href={buildContactHref("software-consultation")}
-                  className="inline-flex"
-                >
-                  <Button className="rounded-lg">
-                    Book a software consultation
-                  </Button>
-                </Link>
-                <Link
-                  href={buildContactHref("software-pricing")}
-                  className="inline-flex"
-                >
-                  <Button
-                    variant="outline"
-                    className="rounded-lg border-border bg-background/70"
-                  >
-                    Ask for pricing
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
           <div>
             <h3 className="text-xl md:text-2xl font-semibold mb-5 flex items-center gap-2">
               <Layers3 className="h-5 w-5 text-primary" />
