@@ -1,15 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { servicesPageData } from "@/constants";
-import { Button } from "@/components/ui/button";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { ComponentProps, ReactNode } from "react";
+import { useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { MagicCard } from "@/components/ui/magic-card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { servicesPageData } from "@/constants";
 import { cn } from "@/lib/utils";
 import { PageTitle } from "./PageTitle";
-import { Sparkles, ArrowRight } from "lucide-react";
-import { MagicCard } from "@/components/ui/magic-card";
-import { motion, useMotionValue, useSpring } from "framer-motion";
 
 // Map generic themes to Hex colors for MagicCard gradient
 const getGradientColor = (bgClass: string) => {
@@ -25,12 +27,7 @@ const getGradientColor = (bgClass: string) => {
 
 const AnimatedCheckIcon = ({ color }: { color?: string }) => {
   return (
-    <div
-      className={cn(
-        "rounded-full p-0.5 relative",
-        "bg-black/5",
-      )}
-    >
+    <div className={cn("rounded-full p-0.5 relative", "bg-black/5")}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -40,7 +37,9 @@ const AnimatedCheckIcon = ({ color }: { color?: string }) => {
         strokeLinecap="round"
         strokeLinejoin="round"
         className={cn("w-4 h-4", color || "text-primary")}
+        aria-hidden="true"
       >
+        <title>Check icon</title>
         <motion.path
           d="M20 6L9 17l-5-5"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -54,7 +53,15 @@ const AnimatedCheckIcon = ({ color }: { color?: string }) => {
 };
 
 // Helper: Magnetic Button
-const MagneticButton = ({ children, className, ...props }: any) => {
+type MagneticButtonProps = ComponentProps<typeof Button> & {
+  children: ReactNode;
+};
+
+const MagneticButton = ({
+  children,
+  className,
+  ...props
+}: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -100,7 +107,7 @@ const noiseTexture = {
 };
 
 export function ServicesList() {
-  const { content, header } = servicesPageData;
+  const { content, header, softwareServices, labels } = servicesPageData;
 
   return (
     <div className="w-full py-32 px-4">
@@ -114,145 +121,283 @@ export function ServicesList() {
           title={header.title}
           description={header.description}
           icon={Sparkles}
-          className="mb-24"
+          className="mb-10"
         />
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
-        {content.map((service, index) => {
-          const gradientColor = getGradientColor(service.color?.bg || "");
-          // Bento Grid Logic: 0, 3, 4 are Large (Span 2). 1, 2, 5 are Small (Span 1).
-          const isLarge = index === 0 || index === 3 || index === 4;
+      <Tabs
+        defaultValue="career-development"
+        className="max-w-7xl mx-auto px-4"
+      >
+        <TabsList className="mx-auto">
+          <TabsTrigger value="career-development">
+            {labels.careerDevelopmentTab}
+          </TabsTrigger>
+          <TabsTrigger value="software-building">
+            {labels.softwareBuildingTab}
+          </TabsTrigger>
+        </TabsList>
 
-          return (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className={cn(
-                "w-full h-full",
-                isLarge ? "md:col-span-2" : "md:col-span-1",
-              )}
-            >
-              <Link
-                href={`/services/${service.slug}`}
-                className="block w-full h-full"
-              >
-                <MagicCard
+        <TabsContent value="career-development" className="mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {content.map((service, index) => {
+              const gradientColor = getGradientColor(service.color?.bg || "");
+              const isLarge = index === 0 || index === 3 || index === 4;
+
+              return (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                   className={cn(
-                    "rounded-3xl transition-all duration-300 cursor-pointer group h-full overflow-hidden",
-                    service.color?.bg || "bg-card",
+                    "w-full h-full",
+                    isLarge ? "md:col-span-2" : "md:col-span-1",
                   )}
-                  gradientColor={gradientColor}
-                  gradientOpacity={0.4}
                 >
-                  {/* Noise Overlay */}
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay z-0"
-                    style={noiseTexture}
-                  />
-
-                  <div className="relative flex flex-col items-stretch h-full">
-                    {/* Image Section */}
-                    <div
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="block w-full h-full"
+                  >
+                    <MagicCard
                       className={cn(
-                        "group overflow-hidden w-full shrink-0",
-                        isLarge
-                          ? "h-48 relative md:absolute md:top-0 md:right-0 md:bottom-0 md:w-1/2 md:h-full z-0"
-                          : "h-48 relative",
+                        "rounded-3xl transition-all duration-300 cursor-pointer group h-full overflow-hidden",
+                        service.color?.bg || "bg-card",
                       )}
+                      gradientColor={gradientColor}
+                      gradientOpacity={0.4}
                     >
                       <div
-                        className={cn(
-                          "absolute inset-0 transform rotate-3 transition-transform duration-300 group-hover:rotate-0 opacity-60",
-                          service.color?.blob || "bg-primary/10",
-                        )}
+                        className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay z-0"
+                        style={noiseTexture}
                       />
-                      <div className="absolute inset-0 w-full h-full">
-                        <Image
-                          src={service.imgsrc}
-                          alt={service.title}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      </div>
-                    </div>
 
-                    {/* Content Section */}
-                    <div
-                      className={cn(
-                        "flex flex-col p-5 gap-3 z-10 relative flex-1",
-                        isLarge && "md:w-1/2 md:p-8 md:justify-center",
-                      )}
-                    >
-                      <div className="flex-1">
-                        <h3
+                      <div className="relative flex flex-col items-stretch h-full">
+                        <div
                           className={cn(
-                            "font-bold mb-2",
+                            "group overflow-hidden w-full shrink-0",
                             isLarge
-                              ? "text-xl md:text-2xl"
-                              : "text-lg md:text-xl",
-                            service.color?.accent || "text-foreground",
+                              ? "h-48 relative md:absolute md:top-0 md:right-0 md:bottom-0 md:w-1/2 md:h-full z-0"
+                              : "h-48 relative",
                           )}
                         >
-                          {service.title}
-                        </h3>
-                        <p
+                          <div
+                            className={cn(
+                              "absolute inset-0 transform rotate-3 transition-transform duration-300 group-hover:rotate-0 opacity-60",
+                              service.color?.blob || "bg-primary/10",
+                            )}
+                          />
+                          <div className="absolute inset-0 w-full h-full">
+                            <Image
+                              src={service.imgsrc}
+                              alt={service.title}
+                              fill
+                              className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                        </div>
+
+                        <div
                           className={cn(
-                            "text-muted-foreground leading-relaxed mb-4",
-                            isLarge ? "text-base" : "text-sm line-clamp-3",
+                            "flex flex-col p-5 gap-3 z-10 relative flex-1",
+                            isLarge && "md:w-1/2 md:p-8 md:justify-center",
                           )}
                         >
-                          {service.desc}
-                        </p>
+                          <div className="flex-1">
+                            <h3
+                              className={cn(
+                                "font-bold mb-2",
+                                isLarge
+                                  ? "text-xl md:text-2xl"
+                                  : "text-lg md:text-xl",
+                                service.color?.accent || "text-foreground",
+                              )}
+                            >
+                              {service.title}
+                            </h3>
+                            <p
+                              className={cn(
+                                "text-muted-foreground leading-relaxed mb-4",
+                                isLarge ? "text-base" : "text-sm line-clamp-3",
+                              )}
+                            >
+                              {service.desc}
+                            </p>
 
-                        {/* Features List */}
-                        <ul className="space-y-2 mb-4">
-                          {service.features
-                            ?.slice(0, isLarge ? 3 : 2)
-                            .map((feature, i) => (
-                              <li
-                                key={i}
-                                className={cn(
-                                  "flex items-start gap-2 text-muted-foreground/90",
-                                  isLarge
-                                    ? "text-sm md:text-base"
-                                    : "text-xs md:text-sm",
-                                )}
-                              >
-                                <AnimatedCheckIcon
-                                  color={service.color?.accent}
-                                />
-                                <span
-                                  className={cn(
-                                    "leading-tight",
-                                    !isLarge && "line-clamp-2",
-                                  )}
-                                >
-                                  {feature}
-                                </span>
-                              </li>
-                            ))}
-                        </ul>
-                      </div>
+                            <ul className="space-y-2 mb-4">
+                              {service.features
+                                ?.slice(0, isLarge ? 3 : 2)
+                                .map((feature) => (
+                                  <li
+                                    key={feature}
+                                    className={cn(
+                                      "flex items-start gap-2 text-muted-foreground/90",
+                                      isLarge
+                                        ? "text-sm md:text-base"
+                                        : "text-xs md:text-sm",
+                                    )}
+                                  >
+                                    <AnimatedCheckIcon
+                                      color={service.color?.accent}
+                                    />
+                                    <span
+                                      className={cn(
+                                        "leading-tight",
+                                        !isLarge && "line-clamp-2",
+                                      )}
+                                    >
+                                      {feature}
+                                    </span>
+                                  </li>
+                                ))}
+                            </ul>
+                          </div>
 
-                      <div className={cn("pt-2 mt-auto", isLarge && "mt-4")}>
-                        <MagneticButton className="group text-sm font-semibold px-5 py-2.5 h-auto rounded-lg shadow-md transition-all duration-300 hover:shadow-lg bg-primary text-primary-foreground flex items-center w-fit">
-                          {service.ctaText ||
-                            servicesPageData.labels.getStarted}
-                          <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                        </MagneticButton>
+                          <div
+                            className={cn("pt-2 mt-auto", isLarge && "mt-4")}
+                          >
+                            <MagneticButton className="group text-sm font-semibold px-5 py-2.5 h-auto rounded-lg shadow-md transition-all duration-300 hover:shadow-lg bg-primary text-primary-foreground flex items-center w-fit">
+                              {service.ctaText || labels.getStarted}
+                              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                            </MagneticButton>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </MagicCard>
-              </Link>
-            </motion.div>
-          );
-        })}
-      </div>
+                    </MagicCard>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </TabsContent>
+
+        <TabsContent value="software-building" className="mt-10 space-y-10">
+          <div className="rounded-3xl border border-border p-6 md:p-8 bg-card/70">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+              {softwareServices.title}
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg max-w-4xl">
+              {softwareServices.description}
+            </p>
+            <p className="text-muted-foreground mt-3">
+              {softwareServices.packageIntro}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl md:text-2xl font-semibold mb-5">
+              Package-Based Services
+            </h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {softwareServices.packages.map((pkg, index) => (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  viewport={{ once: true }}
+                  className="rounded-2xl border border-border p-6 bg-background"
+                >
+                  <h4 className="text-lg md:text-xl font-semibold">
+                    {pkg.name}
+                  </h4>
+                  <p className="text-sm md:text-base text-muted-foreground mt-2">
+                    {pkg.subtitle}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Ideal for: {pkg.idealFor}
+                  </p>
+                  <ul className="space-y-2 mt-4">
+                    {pkg.includes.map((item) => (
+                      <li
+                        key={`${pkg.name}-${item}`}
+                        className="flex items-start gap-2 text-sm md:text-base"
+                      >
+                        <AnimatedCheckIcon />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/contact" className="inline-flex mt-5">
+                    <Button className="rounded-lg">Discuss This Package</Button>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-border p-6 bg-muted/30">
+            <h3 className="text-xl font-semibold mb-4">Add-Ons</h3>
+            <div className="flex flex-wrap gap-2">
+              {softwareServices.addOns.map((addon) => (
+                <span
+                  key={addon}
+                  className="rounded-full border border-border bg-background px-3 py-1.5 text-sm"
+                >
+                  {addon}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-border p-6 md:p-8 bg-card">
+            <h3 className="text-xl md:text-2xl font-semibold mb-3">
+              {softwareServices.createYourOwn.title}
+            </h3>
+            <p className="text-muted-foreground mb-4">
+              {softwareServices.createYourOwn.description}
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <ul className="space-y-3">
+                {softwareServices.createYourOwn.steps.map((step) => (
+                  <li
+                    key={step}
+                    className="flex items-start gap-2 text-sm md:text-base"
+                  >
+                    <AnimatedCheckIcon />
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="rounded-xl border border-border p-4">
+                <p className="text-sm font-medium mb-3">Popular Custom Mixes</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {softwareServices.createYourOwn.suggestedMixes.map((mix) => (
+                    <li key={mix}>{mix}</li>
+                  ))}
+                </ul>
+                <Link href="/contact" className="inline-flex mt-4">
+                  <Button className="rounded-lg">Build My Package</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xl md:text-2xl font-semibold mb-5">
+              Individual Software Services
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {softwareServices.individualServices.map((group) => (
+                <div
+                  key={group.category}
+                  className="rounded-xl border border-border p-5 bg-background"
+                >
+                  <h4 className="text-base md:text-lg font-semibold mb-3">
+                    {group.category}
+                  </h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {group.items.map((item) => (
+                      <li key={`${group.category}-${item}`}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
