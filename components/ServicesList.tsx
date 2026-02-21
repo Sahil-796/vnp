@@ -148,7 +148,7 @@ export function ServicesList() {
   });
 
   return (
-    <div className="w-full py-32 px-4">
+    <div className="w-full pt-32 pb-8 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -447,52 +447,23 @@ export function ServicesList() {
             </div>
           </div>
 
-          <div>
-            <h3 className="text-xl md:text-2xl font-semibold mb-5 flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-primary" />
-              Individual Software Services
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {softwareServices.individualServices.map((group) => (
-                <div
-                  key={group.category}
-                  className="rounded-xl border border-border bg-background p-5 transition-colors hover:bg-muted/40"
-                >
-                  <h4 className="text-base md:text-lg font-semibold mb-3 text-foreground">
-                    {group.category}
-                  </h4>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {group.items.map((item) => (
-                      <li
-                        key={`${group.category}-${item}`}
-                        className="flex items-start gap-2"
-                      >
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+          <div className="mt-8 rounded-2xl border border-border bg-primary/10 p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <p className="text-lg font-semibold">Need a recommendation?</p>
+              <p className="text-sm text-muted-foreground">
+                Tell us your business stage and goals, and we will suggest the
+                best-fit package and add-ons.
+              </p>
             </div>
-            <div className="mt-8 rounded-2xl border border-border bg-primary/10 p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div>
-                <p className="text-lg font-semibold">Need a recommendation?</p>
-                <p className="text-sm text-muted-foreground">
-                  Tell us your business stage and goals, and we will suggest the
-                  best-fit package and add-ons.
-                </p>
-              </div>
-              <Link
-                href={buildContactHref("package-recommendation")}
-                className="inline-flex"
-              >
-                <Button className="rounded-lg">
-                  Get package recommendation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
+            <Link
+              href={buildContactHref("package-recommendation")}
+              className="inline-flex"
+            >
+              <Button className="rounded-lg">
+                Get package recommendation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </TabsContent>
       </Tabs>
