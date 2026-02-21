@@ -107,6 +107,9 @@ const noiseTexture = {
   backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")`,
 };
 
+const themePrimaryHex = "#3F4EA1";
+const themeSecondaryHex = "#E6C775";
+
 export function ServicesList() {
   const { content, header, softwareServices, labels } = servicesPageData;
   const router = useRouter();
@@ -326,41 +329,53 @@ export function ServicesList() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
                   viewport={{ once: true }}
-                  className="group rounded-2xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10"
+                  className="rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10"
+                  style={{ borderColor: themePrimaryHex }}
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <h4 className="text-lg md:text-xl font-semibold leading-tight">
-                      {pkg.name}
-                    </h4>
-                    <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
-                      Package
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base text-muted-foreground mt-2">
-                    {pkg.subtitle}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-3 rounded-md bg-muted px-3 py-2">
-                    Ideal for: {pkg.idealFor}
-                  </p>
-                  <ul className="space-y-2 mt-4">
-                    {pkg.includes.map((item) => (
-                      <li
-                        key={`${pkg.name}-${item}`}
-                        className="flex items-start gap-2 text-sm md:text-base"
-                      >
-                        <AnimatedCheckIcon />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={buildContactHref("specific-package", pkg.name)}
-                    className="inline-flex mt-6"
+                  <MagicCard
+                    className="rounded-[inherit] overflow-hidden bg-background p-6"
+                    gradientColor={themeSecondaryHex}
+                    gradientFrom={themePrimaryHex}
+                    gradientTo={themePrimaryHex}
+                    gradientSize={160}
+                    gradientOpacity={0.55}
                   >
-                    <Button className="rounded-lg group-hover:bg-primary/90">
-                      Discuss this package
-                    </Button>
-                  </Link>
+                    <div className="flex items-start justify-between gap-3">
+                      <h4 className="text-lg md:text-xl font-semibold leading-tight">
+                        {pkg.name}
+                      </h4>
+                      <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
+                        Package
+                      </span>
+                    </div>
+                    <p className="text-sm md:text-base text-muted-foreground mt-2">
+                      {pkg.subtitle}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-3 rounded-md bg-muted px-3 py-2">
+                      Ideal for: {pkg.idealFor}
+                    </p>
+                    <ul className="space-y-2 mt-4">
+                      {pkg.includes.map((item) => (
+                        <li
+                          key={`${pkg.name}-${item}`}
+                          className="flex items-start gap-2 text-sm md:text-base"
+                        >
+                          <AnimatedCheckIcon />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href={buildContactHref("specific-package", pkg.name)}
+                      className="inline-flex mt-6"
+                    >
+                      {" "}
+                      <MagneticButton className="flex items-center group text-sm font-semibold transition-all duration-300 bg-primary text-primary-foreground">
+                        Discuss this package
+                        <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                      </MagneticButton>{" "}
+                    </Link>
+                  </MagicCard>
                 </motion.div>
               ))}
             </div>
