@@ -116,7 +116,6 @@ const noiseTexture = {
   backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")`,
 };
 
-const themePrimaryHex = "#3F4EA1";
 const themeSecondaryHex = "#E6C775";
 
 export function ServicesList() {
@@ -348,32 +347,45 @@ export function ServicesList() {
                     viewport={{ once: true }}
                     className={cn(
                       "rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10",
-                      isCenter && "lg:scale-105 lg:-translate-y-2 z-10",
+                      isCenter &&
+                        "lg:scale-[1.07] lg:-translate-y-3 z-10 shadow-2xl shadow-secondary/30",
                     )}
-                    style={{ borderColor: themePrimaryHex }}
                   >
                     <MagicCard
                       className={cn(
-                        "rounded-[inherit] overflow-hidden bg-background p-6 md:p-7 h-full",
-                        isCenter ? "min-h-[620px]" : "min-h-[560px]",
+                        "rounded-[inherit] overflow-hidden p-6 md:p-7 h-full",
+                        isCenter ? "min-h-[500px]" : "min-h-[450px]",
+                        isCenter && "ring-1 ring-secondary/60",
                       )}
                       gradientColor={themeSecondaryHex}
                       gradientFrom={themeSecondaryHex}
                       gradientTo={themeSecondaryHex}
                       gradientSize={160}
-                      gradientOpacity={0.55}
+                      gradientOpacity={isCenter ? 0.75 : 0.55}
                     >
                       <div className="h-full flex flex-col">
-                        <div className="rounded-2xl border border-primary/30 bg-card/70 p-5 md:p-6">
+                        <div
+                          className={cn(
+                            "rounded-2xl border p-5 md:p-6",
+                            !isCenter
+                              ? "border-primary/30 bg-card/70"
+                              : "border-secondary/50 bg-gradient-to-br from-card via-card to-secondary/20 shadow-md shadow-secondary/20",
+                          )}
+                        >
                           <div className="flex items-start justify-between gap-3">
                             <div className="flex items-center gap-2">
-                              <PlanIcon className="h-5 w-5 text-primary" />
+                              <PlanIcon
+                                className={cn(
+                                  "h-5 w-5 text-primary",
+                                  isCenter && "text-secondary",
+                                )}
+                              />
                               <h4 className="text-base md:text-lg font-semibold leading-tight">
                                 {pkg.name}
                               </h4>
                             </div>
                             {pkg.popular && (
-                              <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+                              <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground shadow-sm shadow-secondary/60">
                                 Popular
                               </span>
                             )}
@@ -397,7 +409,12 @@ export function ServicesList() {
                           >
                             <Button
                               size="sm"
-                              className="w-full justify-center group text-sm font-semibold transition-all duration-300 bg-primary text-primary-foreground rounded-xl"
+                              className={cn(
+                                "w-full justify-center group text-sm font-semibold transition-all duration-300 rounded-xl",
+                                !isCenter
+                                  ? "bg-primary text-primary-foreground"
+                                  : "bg-secondary text-secondary-foreground shadow-md shadow-secondary/40 hover:bg-secondary/90",
+                              )}
                             >
                               Discuss this package
                             </Button>
