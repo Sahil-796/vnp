@@ -230,7 +230,58 @@ export default function AboutUsSection() {
               variants={itemVariants}
             >
               <CardContainer containerClassName="py-3">
-                <CardBody className="relative h-auto w-full">
+                <CardBody className="relative h-auto w-full overflow-visible border-4 border-muted rounded-md p-2">
+                  <CardItem
+                    translateZ={6}
+                    className="pointer-events-none absolute inset-0 -m-3 z-[-1]"
+                  >
+                    <motion.div
+                      className="h-full w-full"
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                    />
+                  </CardItem>
+
+                  <CardItem
+                    translateZ={18}
+                    className="pointer-events-none absolute -top-4 -right-8 w-16 h-16 rounded-full bg-primary/10"
+                  >
+                    <motion.div
+                      className="h-full w-full rounded-full"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, delay: 0.9 }}
+                      style={{ y: y1 }}
+                    />
+                  </CardItem>
+
+                  <CardItem
+                    translateZ={50}
+                    className="pointer-events-none absolute -bottom-6 -left-10 w-20 h-20 rounded-full bg-secondary/15"
+                  >
+                    <motion.div
+                      className="h-full w-full rounded-full"
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, delay: 1.1 }}
+                      style={{ y: y2 }}
+                    />
+                  </CardItem>
+
+                  <CardItem
+                    translateZ={50}
+                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary"
+                  >
+                    <span className="block h-full w-full rounded-full" />
+                  </CardItem>
+                  <CardItem
+                    translateZ={50}
+                    className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary"
+                  >
+                    <span className="block h-full w-full rounded-full" />
+                  </CardItem>
+
                   <CardItem
                     translateZ={26}
                     className="rounded-md overflow-hidden shadow-xl"
@@ -269,32 +320,6 @@ export default function AboutUsSection() {
                   </CardItem>
                 </CardBody>
               </CardContainer>
-              <motion.div
-                className="absolute inset-0 border-4 border-muted rounded-md -m-3 z-[-1]"
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              ></motion.div>
-
-              {/* Floating accent elements */}
-              <motion.div
-                className="absolute -top-4 -right-8 w-16 h-16 rounded-full bg-primary/10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.9 }}
-                style={{ y: y1 }}
-              ></motion.div>
-              <motion.div
-                className="absolute -bottom-6 -left-10 w-20 h-20 rounded-full bg-secondary/15"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1.1 }}
-                style={{ y: y2 }}
-              ></motion.div>
-
-              {/* Additional decorative elements */}
-              <motion.div className="absolute -top-10 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary"></motion.div>
-              <motion.div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary"></motion.div>
             </motion.div>
           </div>
 
@@ -429,7 +454,7 @@ function ServiceItem({
         className="w-full"
       >
         <CardBody className="h-auto w-full rounded-lg transition-colors duration-150 hover:bg-primary/5 p-5">
-          <CardItem translateZ={48} className="flex items-center gap-3 mb-3">
+          <CardItem translateZ={80} className="flex items-center gap-3 mb-3">
             <motion.div
               initial={{ x: direction === "left" ? -20 : 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -460,7 +485,7 @@ function ServiceItem({
           </CardItem>
 
           <CardItem
-            translateZ={32}
+            translateZ={50}
             className="text-sm text-muted-foreground leading-relaxed pl-12"
           >
             <motion.p
