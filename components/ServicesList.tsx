@@ -1,7 +1,16 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Layers3, Puzzle, Sparkles, Wrench } from "lucide-react";
+import {
+  ArrowRight,
+  BriefcaseBusiness,
+  Building2,
+  Layers3,
+  Puzzle,
+  Sparkles,
+  UserRound,
+  Wrench,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -321,63 +330,99 @@ export function ServicesList() {
               <Layers3 className="h-5 w-5 text-primary" />
               Package-Based Services
             </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {softwareServices.packages.map((pkg, index) => (
-                <motion.div
-                  key={pkg.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                  viewport={{ once: true }}
-                  className="rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10"
-                  style={{ borderColor: themePrimaryHex }}
-                >
-                  <MagicCard
-                    className="rounded-[inherit] overflow-hidden bg-background p-6"
-                    gradientColor={themeSecondaryHex}
-                    gradientFrom={themePrimaryHex}
-                    gradientTo={themePrimaryHex}
-                    gradientSize={160}
-                    gradientOpacity={0.55}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+              {softwareServices.packages.slice(0, 3).map((pkg, index) => {
+                const isCenter = index === 1;
+                const PlanIcon =
+                  index === 0
+                    ? UserRound
+                    : index === 1
+                      ? BriefcaseBusiness
+                      : Building2;
+                return (
+                  <motion.div
+                    key={pkg.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    viewport={{ once: true }}
+                    className={cn(
+                      "rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10",
+                      isCenter && "lg:scale-105 lg:-translate-y-2 z-10",
+                    )}
+                    style={{ borderColor: themePrimaryHex }}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <h4 className="text-lg md:text-xl font-semibold leading-tight">
-                        {pkg.name}
-                      </h4>
-                      <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
-                        Package
-                      </span>
-                    </div>
-                    <p className="text-sm md:text-base text-muted-foreground mt-2">
-                      {pkg.subtitle}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-3 rounded-md bg-muted px-3 py-2">
-                      Ideal for: {pkg.idealFor}
-                    </p>
-                    <ul className="space-y-2 mt-4">
-                      {pkg.includes.map((item) => (
-                        <li
-                          key={`${pkg.name}-${item}`}
-                          className="flex items-start gap-2 text-sm md:text-base"
-                        >
-                          <AnimatedCheckIcon />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href={buildContactHref("specific-package", pkg.name)}
-                      className="inline-flex mt-6"
+                    <MagicCard
+                      className={cn(
+                        "rounded-[inherit] overflow-hidden bg-background p-6 md:p-7 h-full",
+                        isCenter ? "min-h-[620px]" : "min-h-[560px]",
+                      )}
+                      gradientColor={themeSecondaryHex}
+                      gradientFrom={themeSecondaryHex}
+                      gradientTo={themeSecondaryHex}
+                      gradientSize={160}
+                      gradientOpacity={0.55}
                     >
-                      {" "}
-                      <MagneticButton className="flex items-center group text-sm font-semibold transition-all duration-300 bg-primary text-primary-foreground">
-                        Discuss this package
-                        <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                      </MagneticButton>{" "}
-                    </Link>
-                  </MagicCard>
-                </motion.div>
-              ))}
+                      <div className="h-full flex flex-col">
+                        <div className="rounded-2xl border border-primary/30 bg-card/70 p-5 md:p-6">
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex items-center gap-2">
+                              <PlanIcon className="h-5 w-5 text-primary" />
+                              <h4 className="text-base md:text-lg font-semibold leading-tight">
+                                {pkg.name}
+                              </h4>
+                            </div>
+                            {pkg.popular && (
+                              <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+                                Popular
+                              </span>
+                            )}
+                          </div>
+
+                          <p className="mt-5 text-[11px] uppercase tracking-wide text-muted-foreground">
+                            Starting from
+                          </p>
+                          <div className="mt-1 flex items-end justify-between gap-2">
+                            <p className="text-3xl md:text-4xl font-bold text-primary leading-none">
+                              {pkg.price}
+                            </p>
+                          </div>
+
+                          <Link
+                            href={buildContactHref(
+                              "specific-package",
+                              pkg.name,
+                            )}
+                            className="inline-flex mt-5 w-full"
+                          >
+                            <Button
+                              size="sm"
+                              className="w-full justify-center group text-sm font-semibold transition-all duration-300 bg-primary text-primary-foreground rounded-xl"
+                            >
+                              Discuss this package
+                            </Button>
+                          </Link>
+                        </div>
+
+                        <p className="text-xs text-muted-foreground mt-3 rounded-md bg-muted px-3 py-2">
+                          Ideal for: {pkg.idealFor}
+                        </p>
+                        <ul className="space-y-2 mt-5">
+                          {pkg.includes.map((item) => (
+                            <li
+                              key={`${pkg.name}-${item}`}
+                              className="flex items-start gap-2 text-xs md:text-sm"
+                            >
+                              <AnimatedCheckIcon />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </MagicCard>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
