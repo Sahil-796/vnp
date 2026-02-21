@@ -8,12 +8,14 @@ import {
   useTransform,
   type Variants,
 } from "framer-motion";
-import { ArrowRight, Link, Zap } from "lucide-react";
-import Image from "next/image"; // Added this import
+import { ArrowRight, Zap } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import ClientsSection from "@/components/ClientsSection";
 import { PageTitle } from "@/components/PageTitle";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { CtaButton } from "@/components/ui/cta-button";
 import { aboutPageData } from "@/constants";
 
@@ -383,24 +385,6 @@ const industries = [
   "Energy",
 ];
 
-const companies = [
-  "Google",
-  "Meta",
-  "Amazon",
-  "Microsoft",
-  "Apple",
-  "Netflix",
-  "Tesla",
-  "Adobe",
-  "Salesforce",
-  "Oracle",
-  "IBM",
-  "Intel",
-  "Goldman Sachs",
-  "JPMorgan Chase",
-  "McKinsey & Company",
-];
-
 import { Marquee } from "./marquee";
 
 interface ServiceItemProps {
@@ -427,44 +411,56 @@ function ServiceItem({
       className="flex flex-col group"
       variants={variants}
       transition={{ delay }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
-      <motion.div
-        className="flex items-center gap-3 mb-3"
-        initial={{ x: direction === "left" ? -20 : 20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: delay + 0.2 }}
+      <CardContainer
+        containerClassName="py-0 items-start justify-start"
+        className="w-full"
       >
-        <motion.div
-          className={`p-3 rounded-lg transition-colors duration-300 relative ${
-            variant === "primary"
-              ? "bg-primary/10 text-primary"
-              : "bg-secondary/10 text-secondary"
-          }`}
-        >
-          {icon}
-        </motion.div>
-        <h3 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors duration-300">
-          {title}
-        </h3>
-      </motion.div>
-      <motion.p
-        className="text-sm text-muted-foreground leading-relaxed pl-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: delay + 0.4 }}
-      >
-        {description}
-      </motion.p>
-      <motion.div
-        className="mt-3 pl-12 flex items-center text-primary text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0 }}
-      >
-        <Link href="/contact" className="flex items-center gap-1">
-          {aboutPageData.labels.learnMore} <ArrowRight className="w-3 h-3" />
-        </Link>
-      </motion.div>
+        <CardBody className="h-auto w-full rounded-lg transition-colors duration-150 hover:bg-primary/5 p-5">
+          <CardItem translateZ={48} className="flex items-center gap-3 mb-3">
+            <motion.div
+              initial={{ x: direction === "left" ? -20 : 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: delay + 0.2 }}
+              className={`flex items-center gap-3 ${
+                direction === "left" ? "origin-left" : "origin-right"
+              }`}
+            >
+              <div
+                className={`p-3 rounded-lg transition-colors duration-300 relative ${
+                  variant === "primary"
+                    ? "bg-primary/10 text-primary"
+                    : "bg-secondary/10 text-secondary"
+                }`}
+              >
+                {icon}
+              </div>
+              <h3
+                className={`text-xl font-medium text-foreground group-hover:text-primary transition-colors duration-300 ${
+                  variant === "primary"
+                    ? "group-hover:text-primary"
+                    : "group-hover:text-secondary"
+                }`}
+              >
+                {title}
+              </h3>
+            </motion.div>
+          </CardItem>
+
+          <CardItem
+            translateZ={32}
+            className="text-sm text-muted-foreground leading-relaxed pl-12"
+          >
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: delay + 0.4 }}
+            >
+              {description}
+            </motion.p>
+          </CardItem>
+        </CardBody>
+      </CardContainer>
     </motion.div>
   );
 }
