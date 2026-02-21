@@ -8,9 +8,8 @@ import {
   useTransform,
   type Variants,
 } from "framer-motion";
-import { ArrowRight, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import ClientsSection from "@/components/ClientsSection";
@@ -225,38 +224,51 @@ export default function AboutUsSection() {
           </div>
 
           {/* Center Image */}
-          <div className="flex justify-center items-center order-first md:order-none mb-8 md:mb-0">
+          <div className="flex justify-center items-center order-first md:order-0 mb-8 md:mb-0">
             <motion.div
               className="relative w-full max-w-xs"
               variants={itemVariants}
             >
-              <motion.div
-                className="rounded-md overflow-hidden shadow-xl"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                <Image
-                  src="/logo.png"
-                  alt="Vision and Path"
-                  className="w-full h-full py-12 object-cover"
-                  width={400}
-                  height={500}
-                />
-                <motion.div
-                  className="absolute inset-0 flex items-end justify-center p-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                >
-                  <motion.button
-                    className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium cursor-pointer"
-                    whileTap={{ scale: 0.95 }}
+              <CardContainer containerClassName="py-3">
+                <CardBody className="relative h-auto w-full">
+                  <CardItem
+                    translateZ={26}
+                    className="rounded-md overflow-hidden shadow-xl"
                   >
-                    Vision and Path
-                  </motion.button>
-                </motion.div>
-              </motion.div>
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                    >
+                      <Image
+                        src="/logo.png"
+                        alt="Vision and Path"
+                        className="w-full h-full py-12 object-cover"
+                        width={400}
+                        height={500}
+                      />
+                    </motion.div>
+                  </CardItem>
+
+                  <CardItem
+                    translateZ={100}
+                    className="absolute inset-0 flex items-end justify-center p-4"
+                  >
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.9 }}
+                    >
+                      <motion.button
+                        className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium cursor-pointer"
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Vision and Path
+                      </motion.button>
+                    </motion.div>
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
               <motion.div
                 className="absolute inset-0 border-4 border-muted rounded-md -m-3 z-[-1]"
                 initial={{ opacity: 0, scale: 1.1 }}
