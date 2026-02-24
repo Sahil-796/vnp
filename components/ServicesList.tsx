@@ -354,7 +354,7 @@ export function ServicesList() {
                     <MagicCard
                       className={cn(
                         "rounded-[inherit] overflow-hidden p-6 md:p-7 h-full",
-                        isCenter ? "min-h-[500px]" : "min-h-[450px]",
+                        isCenter ? "min-h-[420px]" : "min-h-[400px]",
                         isCenter && "ring-1 ring-secondary/60",
                       )}
                       gradientColor={themeSecondaryHex}
@@ -369,7 +369,7 @@ export function ServicesList() {
                             "rounded-2xl border p-5 md:p-6",
                             !isCenter
                               ? "border-primary/30 bg-card/70"
-                              : "border-secondary/50 bg-gradient-to-br from-card via-card to-secondary/20 shadow-md shadow-secondary/20",
+                              : "border-secondary/50 bg-linear-to-br from-card via-card to-secondary/20 shadow-md shadow-secondary/20",
                           )}
                         >
                           <div className="flex items-start justify-between gap-3">
@@ -391,14 +391,19 @@ export function ServicesList() {
                             )}
                           </div>
 
-                          <p className="mt-5 text-[11px] uppercase tracking-wide text-muted-foreground">
-                            Starting from
+                          <p
+                            className={cn(
+                              "mt-4 rounded-xl border px-3.5 py-2.5 text-sm leading-relaxed",
+                              !isCenter
+                                ? "border-primary/20 bg-primary/5 text-foreground/90"
+                                : "border-secondary/35 bg-secondary/10 text-foreground",
+                            )}
+                          >
+                            <span className="mr-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                              Ideal for:
+                            </span>
+                            {pkg.idealFor}
                           </p>
-                          <div className="mt-1 flex items-end justify-between gap-2">
-                            <p className="text-3xl md:text-4xl font-bold text-primary leading-none">
-                              {pkg.price}
-                            </p>
-                          </div>
 
                           <Link
                             href={buildContactHref(
@@ -421,9 +426,6 @@ export function ServicesList() {
                           </Link>
                         </div>
 
-                        <p className="text-xs text-muted-foreground mt-3 rounded-md bg-muted px-3 py-2">
-                          Ideal for: {pkg.idealFor}
-                        </p>
                         <ul className="space-y-2 mt-5">
                           {pkg.includes.map((item) => (
                             <li
