@@ -205,8 +205,6 @@ export const servicesPageData = {
       {
         name: "Launch Presence Package",
         subtitle: "Get online quickly with a conversion-focused foundation.",
-        price: "$199",
-        billing: "one-time",
         pdfUrl: "/pdfs/launch-presence-package.pdf",
         idealFor:
           "Founders, consultants, and small businesses launching online.",
@@ -221,8 +219,6 @@ export const servicesPageData = {
       {
         name: "Business Apps Package",
         subtitle: "Build secure internal tools and customer-facing workflows.",
-        price: "$599",
-        billing: "one-time",
         popular: true,
         pdfUrl: "/pdfs/business-apps-package.pdf",
         idealFor:
@@ -238,8 +234,6 @@ export const servicesPageData = {
       {
         name: "Operations Automation Package",
         subtitle: "Automate repetitive work and improve reporting visibility.",
-        price: "$399",
-        billing: "one-time",
         pdfUrl: "/pdfs/operations-automation-package.pdf",
         idealFor: "Growing businesses optimizing day-to-day operations.",
         includes: [
@@ -254,8 +248,6 @@ export const servicesPageData = {
         name: "Commerce & Growth Package",
         subtitle:
           "Run online sales with connected payments, tracking, and insights.",
-        price: "$199",
-        billing: "one-time",
         pdfUrl: "/pdfs/commerce-growth-package.pdf",
         idealFor:
           "Businesses selling online or expanding digital revenue channels.",

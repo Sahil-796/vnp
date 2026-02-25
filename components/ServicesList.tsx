@@ -5,14 +5,11 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   Building2,
-  Download,
-  ExternalLink,
   FileText,
   Layers3,
   Puzzle,
   Sparkles,
   UserRound,
-  Wrench,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,13 +17,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { servicesPageData } from "@/constants";
@@ -145,10 +135,6 @@ export function ServicesList() {
   const [activeTab, setActiveTab] = useState<
     "career-development" | "software-building"
   >(resolvedTab);
-  const [activePackagePdf, setActivePackagePdf] = useState<{
-    name: string;
-    url: string;
-  } | null>(null);
 
   useEffect(() => {
     setActiveTab(resolvedTab);
@@ -343,9 +329,8 @@ export function ServicesList() {
               <Layers3 className="h-5 w-5 text-primary" />
               Package-Based Services
             </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-              {softwareServices.packages.slice(0, 3).map((pkg, index) => {
-                const isCenter = index === 1;
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+              {softwareServices.packages.map((pkg, index) => {
                 const PlanIcon =
                   index === 0
                     ? UserRound
@@ -359,60 +344,28 @@ export function ServicesList() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.08 }}
                     viewport={{ once: true }}
-                    className={cn(
-                      "rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10",
-                      isCenter &&
-                        "lg:scale-[1.07] lg:-translate-y-3 z-10 shadow-2xl shadow-secondary/30",
-                    )}
+                    className="rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
                   >
                     <MagicCard
-                      className={cn(
-                        "rounded-[inherit] overflow-hidden p-6 md:p-7 h-full",
-                        isCenter ? "min-h-[420px]" : "min-h-[400px]",
-                        isCenter && "ring-1 ring-secondary/60",
-                      )}
+                      className="rounded-[inherit] overflow-hidden p-6 md:p-7 h-full min-h-[400px]"
                       gradientColor={themeSecondaryHex}
                       gradientFrom={themeSecondaryHex}
                       gradientTo={themeSecondaryHex}
                       gradientSize={160}
-                      gradientOpacity={isCenter ? 0.75 : 0.55}
+                      gradientOpacity={0.6}
                     >
                       <div className="h-full flex flex-col">
-                        <div
-                          className={cn(
-                            "rounded-2xl border p-5 md:p-6",
-                            !isCenter
-                              ? "border-primary/30 bg-card/70"
-                              : "border-secondary/50 bg-linear-to-br from-card via-card to-secondary/20 shadow-md shadow-secondary/20",
-                          )}
-                        >
+                        <div className="rounded-2xl border border-primary/30 bg-card/70 p-5 md:p-6">
                           <div className="flex items-start justify-between gap-3">
                             <div className="flex items-center gap-2">
-                              <PlanIcon
-                                className={cn(
-                                  "h-5 w-5 text-primary",
-                                  isCenter && "text-secondary",
-                                )}
-                              />
+                              <PlanIcon className="h-5 w-5 text-primary" />
                               <h4 className="text-base md:text-lg font-semibold leading-tight">
                                 {pkg.name}
                               </h4>
                             </div>
-                            {pkg.popular && (
-                              <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground shadow-sm shadow-secondary/60">
-                                Popular
-                              </span>
-                            )}
                           </div>
 
-                          <p
-                            className={cn(
-                              "mt-4 rounded-xl border px-3.5 py-2.5 text-sm leading-relaxed",
-                              !isCenter
-                                ? "border-primary/20 bg-primary/5 text-foreground/90"
-                                : "border-secondary/35 bg-secondary/10 text-foreground",
-                            )}
-                          >
+                          <p className="mt-4 rounded-xl border border-primary/20 bg-primary/5 px-3.5 py-2.5 text-sm leading-relaxed text-foreground/90">
                             <span className="mr-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                               Ideal for:
                             </span>
@@ -420,23 +373,20 @@ export function ServicesList() {
                           </p>
 
                           <Button
+                            asChild
                             type="button"
                             variant="outline"
-                            className={cn(
-                              "mt-3 w-full justify-center rounded-xl border-dashed text-sm font-medium hover:text-foreground",
-                              !isCenter
-                                ? "border-primary/35 hover:bg-primary/5"
-                                : "border-secondary/45 hover:bg-secondary/10",
-                            )}
-                            onClick={() =>
-                              setActivePackagePdf({
-                                name: pkg.name,
-                                url: pkg.pdfUrl,
-                              })
-                            }
+                            className="mt-3 w-full justify-center rounded-xl border-dashed border-primary/35 text-sm font-medium hover:bg-primary/5 hover:text-foreground"
                           >
-                            <FileText className="mr-2 h-4 w-4" />
-                            View package PDF
+                            <a
+                              href={pkg.pdfUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label={`Open ${pkg.name} PDF in a new tab`}
+                            >
+                              <FileText className="mr-2 h-4 w-4" />
+                              View package PDF
+                            </a>
                           </Button>
 
                           <Link
@@ -448,12 +398,7 @@ export function ServicesList() {
                           >
                             <Button
                               size="sm"
-                              className={cn(
-                                "w-full justify-center group text-sm font-semibold transition-all duration-300 rounded-xl",
-                                !isCenter
-                                  ? "bg-primary text-primary-foreground"
-                                  : "bg-secondary text-secondary-foreground shadow-md shadow-secondary/40 hover:bg-secondary/90",
-                              )}
+                              className="w-full justify-center group rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all duration-300"
                             >
                               Discuss this package
                             </Button>
@@ -476,26 +421,6 @@ export function ServicesList() {
                   </motion.div>
                 );
               })}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-border p-6 bg-muted/40">
-            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Wrench className="h-5 w-5 text-primary" />
-              Add-Ons
-            </h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Extend any package with focused improvements and ongoing support.
-            </p>
-            <div className="flex flex-wrap gap-2.5">
-              {softwareServices.addOns.map((addon) => (
-                <span
-                  key={addon}
-                  className="rounded-full border border-border bg-background px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-                >
-                  {addon}
-                </span>
-              ))}
             </div>
           </div>
 
@@ -565,58 +490,6 @@ export function ServicesList() {
           </div>
         </TabsContent>
       </Tabs>
-
-      <Dialog
-        open={Boolean(activePackagePdf)}
-        onOpenChange={(open) => {
-          if (!open) setActivePackagePdf(null);
-        }}
-      >
-        <DialogContent className="max-w-5xl p-0 overflow-hidden">
-          <DialogHeader className="p-5 pb-2 border-b">
-            <DialogTitle className="text-base md:text-lg">
-              {activePackagePdf?.name} PDF
-            </DialogTitle>
-            <DialogDescription>
-              Review the package details here, or open/download the PDF.
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="h-[68vh] w-full bg-muted/20">
-            {activePackagePdf ? (
-              <iframe
-                src={`${activePackagePdf.url}#view=FitH`}
-                title={`${activePackagePdf.name} PDF`}
-                className="h-full w-full"
-              />
-            ) : null}
-          </div>
-
-          <div className="flex items-center justify-end gap-2 p-4 border-t">
-            <Button asChild variant="outline" className="rounded-lg">
-              <a
-                href={activePackagePdf?.url}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Open PDF in new tab"
-              >
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Open in new tab
-              </a>
-            </Button>
-            <Button asChild className="rounded-lg">
-              <a
-                href={activePackagePdf?.url}
-                download
-                aria-label="Download package PDF"
-              >
-                <Download className="mr-2 h-4 w-4" />
-                Download PDF
-              </a>
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

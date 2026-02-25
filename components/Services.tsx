@@ -3,6 +3,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Timeline } from "@/components/ui/timeline";
 import { landingPageData } from "../constants";
+import Image from "next/image";
 
 export function Services() {
   const data = landingPageData.services.content.map((service, index) => ({
@@ -14,7 +15,7 @@ export function Services() {
           {service.desc}
         </p>
         <div className="grid grid-cols-1 gap-4 mb-6">
-          <img
+          <Image
             src={service.imgsrc}
             alt={service.title}
             width={500}
