@@ -5,6 +5,9 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   Building2,
+  Download,
+  ExternalLink,
+  FileText,
   Layers3,
   Puzzle,
   Sparkles,
@@ -17,6 +20,13 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { servicesPageData } from "@/constants";
@@ -135,6 +145,10 @@ export function ServicesList() {
   const [activeTab, setActiveTab] = useState<
     "career-development" | "software-building"
   >(resolvedTab);
+  const [activePackagePdf, setActivePackagePdf] = useState<{
+    name: string;
+    url: string;
+  } | null>(null);
 
   useEffect(() => {
     setActiveTab(resolvedTab);
@@ -405,6 +419,26 @@ export function ServicesList() {
                             {pkg.idealFor}
                           </p>
 
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className={cn(
+                              "mt-3 w-full justify-center rounded-xl border-dashed text-sm font-medium hover:text-foreground",
+                              !isCenter
+                                ? "border-primary/35 hover:bg-primary/5"
+                                : "border-secondary/45 hover:bg-secondary/10",
+                            )}
+                            onClick={() =>
+                              setActivePackagePdf({
+                                name: pkg.name,
+                                url: pkg.pdfUrl,
+                              })
+                            }
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View package PDF
+                          </Button>
+
                           <Link
                             href={buildContactHref(
                               "specific-package",
@@ -531,6 +565,58 @@ export function ServicesList() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <Dialog
+        open={Boolean(activePackagePdf)}
+        onOpenChange={(open) => {
+          if (!open) setActivePackagePdf(null);
+        }}
+      >
+        <DialogContent className="max-w-5xl p-0 overflow-hidden">
+          <DialogHeader className="p-5 pb-2 border-b">
+            <DialogTitle className="text-base md:text-lg">
+              {activePackagePdf?.name} PDF
+            </DialogTitle>
+            <DialogDescription>
+              Review the package details here, or open/download the PDF.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="h-[68vh] w-full bg-muted/20">
+            {activePackagePdf ? (
+              <iframe
+                src={`${activePackagePdf.url}#view=FitH`}
+                title={`${activePackagePdf.name} PDF`}
+                className="h-full w-full"
+              />
+            ) : null}
+          </div>
+
+          <div className="flex items-center justify-end gap-2 p-4 border-t">
+            <Button asChild variant="outline" className="rounded-lg">
+              <a
+                href={activePackagePdf?.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open PDF in new tab"
+              >
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Open in new tab
+              </a>
+            </Button>
+            <Button asChild className="rounded-lg">
+              <a
+                href={activePackagePdf?.url}
+                download
+                aria-label="Download package PDF"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Download PDF
+              </a>
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
