@@ -188,17 +188,17 @@ export default function AboutUsSection() {
 
             <motion.article
               variants={itemVariants}
-              className="magic-bento-card card--border-glow relative overflow-hidden rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/10 p-6 backdrop-blur-sm md:col-span-4"
+              className="magic-bento-card card--border-glow relative flex min-h-[240px] flex-col overflow-hidden rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/10 p-6 backdrop-blur-sm md:col-span-4"
             >
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                 Trusted by Tech Giants
               </p>
-              <div className="relative overflow-hidden rounded-2xl border border-secondary/25 bg-background/70 py-2">
-                <Marquee className="[--duration:30s] [--gap:2.5rem] md:[--gap:4rem]">
+              <div className="relative flex-1 overflow-hidden rounded-2xl border border-secondary/25 bg-background/70 py-2">
+                <Marquee className="h-full items-center [--duration:30s] [--gap:2.5rem] md:[--gap:4rem]">
                   {clients.map((client) => (
                     <div
                       key={client.name}
-                      className="relative flex h-12 w-28 items-center justify-center md:h-16 md:w-36"
+                      className="relative flex h-14 w-32 translate-y-1 items-center justify-center md:h-20 md:w-44"
                     >
                       <Image
                         src={client.src}
@@ -225,7 +225,6 @@ export default function AboutUsSection() {
                 <Marquee
                   vertical
                   className="h-full [--duration:24s] [--gap:0.75rem]"
-                  pauseOnHover
                   repeat={3}
                 >
                   {industries.map((industry) => (
