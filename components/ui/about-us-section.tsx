@@ -122,31 +122,50 @@ export default function AboutUsSection() {
 
           <motion.article
             variants={itemVariants}
-            className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-card via-card to-primary/10 p-8 backdrop-blur-sm md:col-span-3"
+            className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/15 via-card to-secondary/15 p-8 backdrop-blur-sm md:col-span-3"
           >
-            <div className="pointer-events-none absolute right-6 top-4 h-20 w-20 rounded-full border border-primary/30 bg-primary/10 blur-xl" />
-            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-              Numbers
-            </p>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              {stats.map((stat) => {
+            <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full border border-primary/30 bg-primary/10 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-10 -left-10 h-32 w-32 rounded-full border border-secondary/30 bg-secondary/10 blur-2xl" />
+            <div className="relative mb-6 rounded-2xl border border-primary/20 bg-background/70 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                Numbers
+              </p>
+              <p className="mt-2 text-lg font-semibold text-foreground">
+                Results that prove the process
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Real placement momentum across candidates and employers.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {stats.map((stat, index) => {
                 const Icon = stat.icon;
 
                 return (
                   <div
                     key={stat.label}
-                    className="rounded-2xl border border-primary/20 bg-background/70 p-4"
+                    className={`rounded-2xl border p-4 transition-transform duration-300 hover:-translate-y-1 ${
+                      index % 2 === 0
+                        ? "border-primary/30 bg-primary/10"
+                        : "border-secondary/30 bg-secondary/10"
+                    }`}
                   >
-                    <Icon className="h-4 w-4 text-primary" />
-                    <p className="mt-3 text-3xl font-bold text-foreground">
+                    <div className="mb-2 flex items-center justify-between">
+                      <Icon
+                        className={`h-4 w-4 ${
+                          index % 2 === 0 ? "text-primary" : "text-secondary"
+                        }`}
+                      />
+                    </div>
+                    <p className="mt-1 text-3xl font-bold leading-none text-foreground">
                       {stat.value}
                       {stat.suffix}
                     </p>
-                    <p className="mt-1 text-sm text-muted-foreground">
+                    <p className="mt-2 text-sm font-medium text-foreground/90">
                       {stat.label}
                     </p>
                     {stat.label2 ? (
-                      <p className="mt-1 text-xs text-muted-foreground/80">
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground/80">
                         {stat.label2}
                       </p>
                     ) : null}
@@ -181,45 +200,69 @@ export default function AboutUsSection() {
           </motion.article>
         </motion.div>
 
-        <motion.div className="mt-14 space-y-4" variants={itemVariants}>
-          <Marquee className="[--duration:48s]" pauseOnHover>
-            {industriesPrimary.map((industry) => (
-              <div
-                key={industry}
-                className="rounded-xl border border-primary/25 bg-primary/10 px-5 py-2 text-sm font-medium text-foreground"
-              >
-                {industry}
-              </div>
-            ))}
-          </Marquee>
-          <Marquee className="[--duration:44s]" pauseOnHover reverse>
-            {industriesSecondary.map((industry) => (
-              <div
-                key={industry}
-                className="rounded-xl border border-secondary/25 bg-secondary/10 px-5 py-2 text-sm font-medium text-foreground"
-              >
-                {industry}
-              </div>
-            ))}
-          </Marquee>
+        <motion.div className="mt-24 space-y-12" variants={itemVariants}>
+          <div className="space-y-4">
+            <h3 className="mb-6 text-center text-2xl font-semibold">
+              Industries We Serve
+            </h3>
+            <Marquee className="[--duration:45s]">
+              {industries.map((industry) => (
+                <div
+                  key={industry}
+                  className="mx-4 whitespace-nowrap rounded-xl bg-secondary px-6 py-3 font-medium text-secondary-foreground"
+                >
+                  {industry}
+                </div>
+              ))}
+            </Marquee>
+          </div>
+          <div>
+            <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+              Trusted by Tech Giants
+            </p>
+            <div className="relative w-full overflow-hidden">
+              <Marquee className="[--duration:30s] [--gap:3rem] md:[--gap:5rem]">
+                {clients.map((client) => (
+                  <div
+                    key={client.name}
+                    className="relative flex h-12 w-28 cursor-pointer items-center justify-center transition-all duration-300 md:h-16 md:w-36"
+                  >
+                    <Image
+                      src={client.src}
+                      alt={client.name}
+                      fill
+                      className="object-contain mix-blend-multiply"
+                    />
+                  </div>
+                ))}
+              </Marquee>
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent" />
+            </div>
+          </div>
         </motion.div>
       </motion.div>
     </section>
   );
 }
 
-const industriesPrimary = [
+const industries = [
   "Technology",
   "Finance",
   "Healthcare",
   "Consulting",
   "Manufacturing",
-];
-
-const industriesSecondary = [
   "Education",
   "E-Commerce",
   "Telecommunications",
   "Energy",
   "Media",
+];
+
+const clients = [
+  { name: "Google", src: "/google.png" },
+  { name: "Amazon", src: "/amazon.png" },
+  { name: "Microsoft", src: "/microsoft.png" },
+  { name: "Nvidia", src: "/nvidia.png" },
+  { name: "Apple", src: "/apple.png" },
 ];

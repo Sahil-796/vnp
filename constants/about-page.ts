@@ -103,7 +103,6 @@ export const aboutPageData = {
       icon: Users,
       value: 500,
       label: "Direct Clients",
-      label2: "(Including Fortune 500 companies)",
       suffix: "+",
     },
     { icon: Calendar, value: 10, label: "Years Experience", suffix: "+" },
