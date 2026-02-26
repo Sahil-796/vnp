@@ -3,10 +3,10 @@
 import { motion, type Variants } from "framer-motion";
 import { Zap } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import MagicBento from "@/components/MagicBento";
 import { PageTitle } from "@/components/PageTitle";
-import { Button } from "@/components/ui/button";
+import { CtaButton } from "@/components/ui/cta-button";
 import { Marquee } from "@/components/ui/marquee";
 import { aboutPageData } from "@/constants";
 
@@ -35,6 +35,7 @@ const itemVariants: Variants = {
 
 export default function AboutUsSection() {
   const { hero, values, stats, cta } = aboutPageData;
+  const router = useRouter();
 
   return (
     <section className="relative overflow-hidden bg-background px-4 py-24 text-foreground md:py-28">
@@ -202,12 +203,12 @@ export default function AboutUsSection() {
                     {cta.description}
                   </p>
                 </div>
-                <Button
-                  asChild
+                <CtaButton
                   className="h-12 rounded-xl bg-secondary px-8 text-secondary-foreground hover:bg-secondary/90"
+                  onClick={() => router.push("/contact")}
                 >
-                  <Link href="/contact">{cta.buttonText}</Link>
-                </Button>
+                  {cta.buttonText}
+                </CtaButton>
               </div>
             </motion.article>
           </MagicBento>
