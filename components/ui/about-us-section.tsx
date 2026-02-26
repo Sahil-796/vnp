@@ -104,7 +104,7 @@ export default function AboutUsSection() {
 
             <motion.article
               variants={itemVariants}
-              className="magic-bento-card card--border-glow rounded-3xl border border-border/60 bg-gradient-to-b from-card to-secondary/10 p-8 backdrop-blur-sm md:col-span-3"
+              className="magic-bento-card card--border-glow flex h-full flex-col rounded-3xl border border-border/60 bg-gradient-to-b from-card to-secondary/10 p-8 backdrop-blur-sm md:col-span-3"
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
@@ -114,11 +114,11 @@ export default function AboutUsSection() {
                   What Drives Us
                 </span>
               </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-3">
                 {values.map((value) => (
                   <div
                     key={value.title}
-                    className="rounded-2xl border border-secondary/20 bg-background/70 p-4"
+                    className="h-full rounded-2xl border border-secondary/20 bg-background/70 p-4"
                   >
                     <h3 className="text-sm font-semibold text-foreground">
                       {value.title}
@@ -128,6 +128,17 @@ export default function AboutUsSection() {
                     </p>
                   </div>
                 ))}
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                  Clarity
+                </span>
+                <span className="rounded-full border border-secondary/30 bg-secondary/15 px-3 py-1 text-xs font-medium text-foreground">
+                  Integrity
+                </span>
+                <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                  Outcomes
+                </span>
               </div>
             </motion.article>
 
