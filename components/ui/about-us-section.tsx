@@ -188,6 +188,60 @@ export default function AboutUsSection() {
 
             <motion.article
               variants={itemVariants}
+              className="magic-bento-card card--border-glow relative overflow-hidden rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/10 p-6 backdrop-blur-sm md:col-span-4"
+            >
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                Trusted by Tech Giants
+              </p>
+              <div className="relative overflow-hidden rounded-2xl border border-secondary/25 bg-background/70 py-2">
+                <Marquee className="[--duration:30s] [--gap:2.5rem] md:[--gap:4rem]">
+                  {clients.map((client) => (
+                    <div
+                      key={client.name}
+                      className="relative flex h-12 w-28 items-center justify-center md:h-16 md:w-36"
+                    >
+                      <Image
+                        src={client.src}
+                        alt={client.name}
+                        fill
+                        className="object-contain mix-blend-multiply"
+                      />
+                    </div>
+                  ))}
+                </Marquee>
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-background to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/5 bg-gradient-to-l from-background to-transparent" />
+              </div>
+            </motion.article>
+
+            <motion.article
+              variants={itemVariants}
+              className="magic-bento-card card--border-glow relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-b from-primary/15 via-card to-card p-6 backdrop-blur-sm md:col-span-2"
+            >
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                Industries We Serve
+              </p>
+              <div className="h-[180px] overflow-hidden rounded-2xl border border-primary/25 bg-background/70">
+                <Marquee
+                  vertical
+                  className="h-full [--duration:24s] [--gap:0.75rem]"
+                  pauseOnHover
+                  repeat={3}
+                >
+                  {industries.map((industry) => (
+                    <div
+                      key={industry}
+                      className="mx-2 whitespace-nowrap rounded-xl bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground"
+                    >
+                      {industry}
+                    </div>
+                  ))}
+                </Marquee>
+              </div>
+            </motion.article>
+
+            <motion.article
+              variants={itemVariants}
               className="magic-bento-card card--border-glow relative overflow-hidden rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/10 p-8 backdrop-blur-sm md:col-span-6"
             >
               <div className="pointer-events-none absolute -bottom-12 right-8 h-40 w-40 rounded-full border border-secondary/25 bg-secondary/10 blur-2xl" />
@@ -212,48 +266,6 @@ export default function AboutUsSection() {
               </div>
             </motion.article>
           </MagicBento>
-        </motion.div>
-
-        <motion.div className="mt-24 space-y-12" variants={itemVariants}>
-          <div>
-            <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-              Trusted by Tech Giants
-            </p>
-            <div className="relative w-full overflow-hidden">
-              <Marquee className="[--duration:30s] [--gap:3rem] md:[--gap:5rem]">
-                {clients.map((client) => (
-                  <div
-                    key={client.name}
-                    className="relative flex h-12 w-28 cursor-pointer items-center justify-center transition-all duration-300 md:h-16 md:w-36"
-                  >
-                    <Image
-                      src={client.src}
-                      alt={client.name}
-                      fill
-                      className="object-contain mix-blend-multiply"
-                    />
-                  </div>
-                ))}
-              </Marquee>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent" />
-            </div>
-          </div>
-          <div className="space-y-4">
-            <h3 className="mb-6 text-center text-2xl font-semibold">
-              Industries We Serve
-            </h3>
-            <Marquee className="[--duration:45s]">
-              {industries.map((industry) => (
-                <div
-                  key={industry}
-                  className="mx-4 whitespace-nowrap rounded-xl bg-secondary px-6 py-3 font-medium text-secondary-foreground"
-                >
-                  {industry}
-                </div>
-              ))}
-            </Marquee>
-          </div>
         </motion.div>
       </motion.div>
     </section>
