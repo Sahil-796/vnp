@@ -68,8 +68,8 @@ export default function AboutUsSection() {
             enableBorderGlow
             enableTilt={true}
             enableMagnetism={false}
-            clickEffect={false}
-            glowColor="34, 197, 94"
+            clickEffect={true}
+            glowColor="primary"
             spotlightRadius={280}
           >
             <motion.article
@@ -214,21 +214,6 @@ export default function AboutUsSection() {
         </motion.div>
 
         <motion.div className="mt-24 space-y-12" variants={itemVariants}>
-          <div className="space-y-4">
-            <h3 className="mb-6 text-center text-2xl font-semibold">
-              Industries We Serve
-            </h3>
-            <Marquee className="[--duration:45s]">
-              {industries.map((industry) => (
-                <div
-                  key={industry}
-                  className="mx-4 whitespace-nowrap rounded-xl bg-secondary px-6 py-3 font-medium text-secondary-foreground"
-                >
-                  {industry}
-                </div>
-              ))}
-            </Marquee>
-          </div>
           <div>
             <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground">
               Trusted by Tech Giants
@@ -252,6 +237,21 @@ export default function AboutUsSection() {
               <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent" />
               <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent" />
             </div>
+          </div>
+          <div className="space-y-4">
+            <h3 className="mb-6 text-center text-2xl font-semibold">
+              Industries We Serve
+            </h3>
+            <Marquee className="[--duration:45s]">
+              {industries.map((industry) => (
+                <div
+                  key={industry}
+                  className="mx-4 whitespace-nowrap rounded-xl bg-secondary px-6 py-3 font-medium text-secondary-foreground"
+                >
+                  {industry}
+                </div>
+              ))}
+            </Marquee>
           </div>
         </motion.div>
       </motion.div>

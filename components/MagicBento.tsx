@@ -33,6 +33,13 @@ const DEFAULT_GLOW_COLOR = "132, 0, 255";
 const MOBILE_BREAKPOINT = 768;
 const BENTO_CARD_SELECTOR = ".card, .magic-bento-card";
 
+const toAlphaColor = (color: string, alpha: number | string) => {
+  if (color === "primary") return `oklch(from var(--primary) l c h / ${alpha})`;
+  if (color === "secondary")
+    return `oklch(from var(--secondary) l c h / ${alpha})`;
+  return `rgba(${color}, ${alpha})`;
+};
+
 const cardData: BentoCardProps[] = [
   {
     color: "#060010",
@@ -84,8 +91,8 @@ const createParticleElement = (
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: rgba(${color}, 1);
-    box-shadow: 0 0 6px rgba(${color}, 0.6);
+    background: ${toAlphaColor(color, 1)};
+    box-shadow: 0 0 6px ${toAlphaColor(color, 0.6)};
     pointer-events: none;
     z-index: 100;
     left: ${x}px;
@@ -407,11 +414,11 @@ const GlobalSpotlight: React.FC<{
       border-radius: 50%;
       pointer-events: none;
       background: radial-gradient(circle,
-        rgba(${glowColor}, 0.15) 0%,
-        rgba(${glowColor}, 0.08) 15%,
-        rgba(${glowColor}, 0.04) 25%,
-        rgba(${glowColor}, 0.02) 40%,
-        rgba(${glowColor}, 0.01) 65%,
+        ${toAlphaColor(glowColor, 0.15)} 0%,
+        ${toAlphaColor(glowColor, 0.08)} 15%,
+        ${toAlphaColor(glowColor, 0.04)} 25%,
+        ${toAlphaColor(glowColor, 0.02)} 40%,
+        ${toAlphaColor(glowColor, 0.01)} 65%,
         transparent 70%
       );
       z-index: 200;
@@ -581,6 +588,140 @@ const MagicBento: React.FC<BentoProps> = ({
   const shouldDisableAnimations = disableAnimations || isMobile;
   const hasCustomCards = React.Children.count(children) > 0;
 
+  useEffect(() => {
+    if (!hasCustomCards || !gridRef.current || shouldDisableAnimations) return;
+
+    const cards = Array.from(
+      gridRef.current.querySelectorAll(".magic-bento-card"),
+    ) as HTMLElement[];
+    const cleanups: Array<() => void> = [];
+
+    cards.forEach((el) => {
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!enableTilt && !enableMagnetism) return;
+
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        if (enableTilt) {
+          const rotateX = ((y - centerY) / centerY) * -10;
+          const rotateY = ((x - centerX) / centerX) * 10;
+
+          gsap.to(el, {
+            rotateX,
+            rotateY,
+            duration: 0.1,
+            ease: "power2.out",
+            transformPerspective: 1000,
+          });
+        }
+
+        if (enableMagnetism) {
+          const magnetX = (x - centerX) * 0.05;
+          const magnetY = (y - centerY) * 0.05;
+
+          gsap.to(el, {
+            x: magnetX,
+            y: magnetY,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+      };
+
+      const handleMouseLeave = () => {
+        if (enableTilt) {
+          gsap.to(el, {
+            rotateX: 0,
+            rotateY: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+
+        if (enableMagnetism) {
+          gsap.to(el, {
+            x: 0,
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+      };
+
+      const handleClick = (e: MouseEvent) => {
+        if (!clickEffect) return;
+
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const maxDistance = Math.max(
+          Math.hypot(x, y),
+          Math.hypot(x - rect.width, y),
+          Math.hypot(x, y - rect.height),
+          Math.hypot(x - rect.width, y - rect.height),
+        );
+
+        const ripple = document.createElement("div");
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${maxDistance * 2}px;
+          height: ${maxDistance * 2}px;
+          border-radius: 50%;
+          background: radial-gradient(circle, ${toAlphaColor(glowColor, 0.4)} 0%, ${toAlphaColor(glowColor, 0.2)} 30%, transparent 70%);
+          left: ${x - maxDistance}px;
+          top: ${y - maxDistance}px;
+          pointer-events: none;
+          z-index: 1000;
+        `;
+
+        el.appendChild(ripple);
+
+        gsap.fromTo(
+          ripple,
+          {
+            scale: 0,
+            opacity: 1,
+          },
+          {
+            scale: 1,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            onComplete: () => ripple.remove(),
+          },
+        );
+      };
+
+      el.addEventListener("mousemove", handleMouseMove);
+      el.addEventListener("mouseleave", handleMouseLeave);
+      el.addEventListener("click", handleClick);
+
+      cleanups.push(() => {
+        el.removeEventListener("mousemove", handleMouseMove);
+        el.removeEventListener("mouseleave", handleMouseLeave);
+        el.removeEventListener("click", handleClick);
+      });
+    });
+
+    return () => {
+      cleanups.forEach((cleanup) => {
+        cleanup();
+      });
+    };
+  }, [
+    hasCustomCards,
+    shouldDisableAnimations,
+    enableTilt,
+    enableMagnetism,
+    clickEffect,
+    glowColor,
+  ]);
+
   return (
     <>
       <style>
@@ -639,8 +780,8 @@ const MagicBento: React.FC<BentoProps> = ({
             inset: 0;
             padding: 6px;
             background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
+                ${toAlphaColor(glowColor, "calc(var(--glow-intensity) * 0.8)")} 0%,
+                ${toAlphaColor(glowColor, "calc(var(--glow-intensity) * 0.4)")} 30%,
                 transparent 60%);
             border-radius: inherit;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -659,8 +800,8 @@ const MagicBento: React.FC<BentoProps> = ({
           
           .card--border-glow:hover {
             box-shadow:
-              0 4px 20px hsl(var(--primary) / 0.25),
-              0 0 30px hsl(var(--secondary) / 0.25);
+              0 4px 20px oklch(from var(--primary) l c h / 0.25),
+              0 0 30px oklch(from var(--secondary) l c h / 0.25);
           }
 
           .magic-bento-card {
@@ -672,17 +813,8 @@ const MagicBento: React.FC<BentoProps> = ({
           .magic-bento-card:hover {
             transform: translateY(-2px);
             box-shadow:
-              0 10px 28px hsl(var(--primary) / 0.2),
-              0 0 24px hsl(var(--secondary) / 0.18);
-          }
-
-          .magic-bento-card.card--border-glow::after {
-            background: radial-gradient(
-              var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-              hsl(var(--primary) / calc(var(--glow-intensity) * 0.8)) 0%,
-              hsl(var(--secondary) / calc(var(--glow-intensity) * 0.45)) 30%,
-              transparent 60%
-            );
+              0 10px 28px oklch(from var(--primary) l c h / 0.2),
+              0 0 24px oklch(from var(--secondary) l c h / 0.18);
           }
           
           .particle::before {
@@ -692,15 +824,15 @@ const MagicBento: React.FC<BentoProps> = ({
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: rgba(${glowColor}, 0.2);
+            background: ${toAlphaColor(glowColor, 0.2)};
             border-radius: 50%;
             z-index: -1;
           }
           
           .particle-container:hover {
             box-shadow:
-              0 4px 20px hsl(var(--primary) / 0.2),
-              0 0 30px hsl(var(--secondary) / 0.2);
+              0 4px 20px oklch(from var(--primary) l c h / 0.2),
+              0 0 30px oklch(from var(--secondary) l c h / 0.2);
           }
           
           .text-clamp-1 {
