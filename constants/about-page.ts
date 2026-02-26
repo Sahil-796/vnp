@@ -18,6 +18,23 @@ export const aboutPageData = {
     description:
       "We are a dedicated team of career experts, recruiters, and industry professionals committed to connecting talented individuals with their dream careers. With personalized guidance and proven strategies, we transform job searches into career success stories.",
   },
+  values: [
+    {
+      title: "People-First Guidance",
+      description:
+        "Every recommendation starts with your goals, strengths, and long-term growth.",
+    },
+    {
+      title: "Honest Expertise",
+      description:
+        "We give direct, practical coaching based on real hiring and recruiting experience.",
+    },
+    {
+      title: "Measurable Outcomes",
+      description:
+        "Our process is designed around results you can track: interviews, offers, and career progress.",
+    },
+  ],
   features: [
     {
       icon: Pen,

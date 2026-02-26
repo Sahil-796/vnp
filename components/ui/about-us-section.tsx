@@ -1,577 +1,225 @@
 "use client";
 
-import {
-  motion,
-  useInView,
-  useScroll,
-  useSpring,
-  useTransform,
-  type Variants,
-} from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Zap } from "lucide-react";
 import Image from "next/image";
-import type React from "react";
-import { useEffect, useRef, useState } from "react";
-import ClientsSection from "@/components/ClientsSection";
+import Link from "next/link";
 import { PageTitle } from "@/components/PageTitle";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import { CtaButton } from "@/components/ui/cta-button";
+import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
 import { aboutPageData } from "@/constants";
 
-// Custom SVG Icons
-const Icons = {
-  Interior: (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      {...props}
-    >
-      <title>Interior Design</title>
-      <path d="M3 21h18M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7" />
-      <path d="M19 10a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2" strokeOpacity="0.5" />
-      <path d="M9 12v-1a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" />
-      <circle cx="12" cy="5" r="2" fill="currentColor" fillOpacity="0.1" />
-    </svg>
-  ),
-  Exterior: (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      {...props}
-    >
-      <title>Exterior Design</title>
-      <path
-        d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-        fill="currentColor"
-        fillOpacity="0.05"
-      />
-      <path d="M9 22V12h6v10" />
-      <path d="M18 6L21 9M3 9l3-3" strokeOpacity="0.5" />
-    </svg>
-  ),
-  Design: (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      {...props}
-    >
-      <title>Design Planning</title>
-      <path d="M12 2L2 12l10 10 10-10L12 2z" strokeOpacity="0.5" />
-      <path d="M12 6L6 12l6 6 6-6-6-6z" fill="currentColor" fillOpacity="0.1" />
-      <path d="M12 2v20M2 12h20" strokeWidth="1" strokeDasharray="2 2" />
-    </svg>
-  ),
-  Decoration: (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      {...props}
-    >
-      <title>Decoration</title>
-      <path
-        d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"
-        fill="currentColor"
-        fillOpacity="0.1"
-      />
-      <path d="M9 22h6" strokeWidth="2" />
-      <path d="M12 6v4" strokeLinecap="round" />
-      <path d="M8 8l1 1M16 8l-1 1" />
-    </svg>
-  ),
-  Planning: (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      {...props}
-    >
-      <title>Project Planning</title>
-      <rect
-        x="3"
-        y="4"
-        width="18"
-        height="18"
-        rx="2"
-        ry="2"
-        fill="currentColor"
-        fillOpacity="0.05"
-      />
-      <line x1="16" y1="2" x2="16" y2="6" />
-      <line x1="8" y1="2" x2="8" y2="6" />
-      <line x1="3" y1="10" x2="21" y2="10" strokeOpacity="0.5" />
-      <path
-        d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"
-        strokeWidth="2"
-      />
-    </svg>
-  ),
-  Execution: (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      {...props}
-    >
-      <title>Execution</title>
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeOpacity="0.5" />
-      <path d="M22 4L12 14.01l-3-3" strokeWidth="2" />
-      <circle cx="12" cy="12" r="6" fill="currentColor" fillOpacity="0.1" />
-    </svg>
-  ),
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
 };
 
 export default function AboutUsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
-
-  // Parallax effect for decorative elements
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 20]);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -20]);
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const { hero, features, stats, cta } = aboutPageData;
+  const { hero, values, stats, cta } = aboutPageData;
 
   return (
-    <section
-      id="about-section"
-      ref={sectionRef}
-      className="w-full py-32 px-4 bg-background text-foreground overflow-hidden relative"
-    >
-      {/* Decorative background elements */}
-      <motion.div
-        className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl"
-        style={{ y: y1, rotate: rotate1 }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"
-        style={{ y: y2, rotate: rotate2 }}
-      />
+    <section className="relative overflow-hidden bg-background px-4 py-24 text-foreground md:py-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-8rem] top-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-8 right-[-10rem] h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
+      </div>
 
       <motion.div
-        className="px-4 container mx-auto max-w-6xl relative z-10"
+        className="container relative z-10 mx-auto max-w-6xl"
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
         variants={containerVariants}
       >
         <motion.div variants={itemVariants}>
           <PageTitle
             badge={hero.badge}
             title={hero.title}
-            description={hero.description}
+            description="A quick look at who we are and why professionals trust Vision and Path."
             icon={Zap}
           />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Left Column */}
-          <div className="space-y-16">
-            {features
-              .filter((feature) => feature.position === "left")
-              .map((feature, index) => {
-                const Icon =
-                  Icons[feature.title as keyof typeof Icons] || feature.icon;
-                return (
-                  <ServiceItem
-                    key={feature.title}
-                    icon={<Icon className="w-6 h-6" />}
-                    title={feature.title}
-                    description={feature.description}
-                    variants={itemVariants}
-                    delay={index * 0.2}
-                    direction="left"
-                    variant={index % 2 !== 0 ? "primary" : "secondary"}
-                  />
-                );
-              })}
-          </div>
-
-          {/* Center Image */}
-          <div className="flex justify-center items-center order-first md:order-0 mb-8 md:mb-0">
-            <motion.div
-              className="relative w-full max-w-xs"
-              variants={itemVariants}
-            >
-              <CardContainer containerClassName="py-3">
-                <CardBody className="relative h-auto w-full overflow-visible border-4 border-muted rounded-md p-2">
-                  <CardItem
-                    translateZ={6}
-                    className="pointer-events-none absolute inset-0 -m-3 z-[-1]"
-                  >
-                    <motion.div
-                      className="h-full w-full"
-                      initial={{ opacity: 0, scale: 1.1 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                    />
-                  </CardItem>
-
-                  <CardItem
-                    translateZ={18}
-                    className="pointer-events-none absolute -top-4 -right-8 w-16 h-16 rounded-full bg-primary/10"
-                  >
-                    <motion.div
-                      className="h-full w-full rounded-full"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 1, delay: 0.9 }}
-                      style={{ y: y1 }}
-                    />
-                  </CardItem>
-
-                  <CardItem
-                    translateZ={50}
-                    className="pointer-events-none absolute -bottom-6 -left-10 w-20 h-20 rounded-full bg-secondary/15"
-                  >
-                    <motion.div
-                      className="h-full w-full rounded-full"
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 1, delay: 1.1 }}
-                      style={{ y: y2 }}
-                    />
-                  </CardItem>
-
-                  <CardItem
-                    translateZ={50}
-                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary"
-                  >
-                    <span className="block h-full w-full rounded-full" />
-                  </CardItem>
-                  <CardItem
-                    translateZ={50}
-                    className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary"
-                  >
-                    <span className="block h-full w-full rounded-full" />
-                  </CardItem>
-
-                  <CardItem
-                    translateZ={26}
-                    className="rounded-md overflow-hidden shadow-xl"
-                  >
-                    <motion.div
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                      <Image
-                        src="/logo.png"
-                        alt="Vision and Path"
-                        className="w-full h-full py-12 object-cover"
-                        width={400}
-                        height={500}
-                      />
-                    </motion.div>
-                  </CardItem>
-
-                  <CardItem
-                    translateZ={100}
-                    className="absolute inset-0 flex items-end justify-center p-4"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.9 }}
-                    >
-                      <motion.button
-                        className="scale-95 bg-card text-card-foreground px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium cursor-pointer"
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Vision and Path
-                      </motion.button>
-                    </motion.div>
-                  </CardItem>
-                </CardBody>
-              </CardContainer>
-            </motion.div>
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-16">
-            {features
-              .filter((feature) => feature.position === "right")
-              .map((feature, index) => {
-                const Icon =
-                  Icons[feature.title as keyof typeof Icons] || feature.icon;
-                return (
-                  <ServiceItem
-                    key={feature.title}
-                    icon={<Icon className="w-6 h-6" />}
-                    title={feature.title}
-                    description={feature.description}
-                    variants={itemVariants}
-                    delay={index * 0.2}
-                    direction="right"
-                    variant={index % 2 === 0 ? "primary" : "secondary"}
-                  />
-                );
-              })}
-          </div>
-        </div>
-
-        <div className="mt-18">
-          <ClientsSection />
-        </div>
-
-        {/* Stats Section */}
         <motion.div
-          ref={statsRef}
-          className="mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-          initial="hidden"
-          animate={isStatsInView ? "visible" : "hidden"}
+          className="mt-12 grid auto-rows-[minmax(170px,auto)] grid-cols-1 gap-5 md:grid-cols-6"
           variants={containerVariants}
         >
-          {stats.map((stat, index) => (
-            <StatCounter
-              key={stat.label}
-              icon={<stat.icon />}
-              value={stat.value}
-              label={stat.label}
-              label2={stat.label2 || ""}
-              suffix={stat.suffix}
-              delay={index * 0.1}
-            />
-          ))}
+          <motion.article
+            variants={itemVariants}
+            className="group relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/20 via-card to-card p-8 shadow-[0_20px_50px_-30px_hsl(var(--primary)/0.7)] backdrop-blur-sm md:col-span-2"
+          >
+            <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full border border-primary/30 bg-primary/15 blur-xl" />
+            <div className="flex h-full min-h-[190px] items-center justify-center rounded-2xl border border-dashed border-primary/30 bg-background/65 p-4">
+              <Image
+                src="/logo.png"
+                alt="Vision and Path"
+                width={280}
+                height={280}
+                className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          </motion.article>
+
+          <motion.article
+            variants={itemVariants}
+            className="relative overflow-hidden rounded-3xl border border-secondary/25 bg-gradient-to-tr from-secondary/20 via-card to-card p-8 shadow-[0_20px_50px_-30px_hsl(var(--secondary)/0.8)] backdrop-blur-sm md:col-span-4"
+          >
+            <div className="pointer-events-none absolute -left-12 bottom-2 h-32 w-32 rounded-full border border-secondary/30 bg-secondary/10 blur-xl" />
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              Mission
+            </p>
+            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-foreground/90">
+              {hero.description}
+            </p>
+          </motion.article>
+
+          <motion.article
+            variants={itemVariants}
+            className="rounded-3xl border border-border/60 bg-gradient-to-b from-card to-secondary/10 p-8 backdrop-blur-sm md:col-span-3"
+          >
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                Values
+              </p>
+              <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                What Drives Us
+              </span>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {values.map((value) => (
+                <div
+                  key={value.title}
+                  className="rounded-2xl border border-secondary/20 bg-background/70 p-4"
+                >
+                  <h3 className="text-sm font-semibold text-foreground">
+                    {value.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {value.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.article>
+
+          <motion.article
+            variants={itemVariants}
+            className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-card via-card to-primary/10 p-8 backdrop-blur-sm md:col-span-3"
+          >
+            <div className="pointer-events-none absolute right-6 top-4 h-20 w-20 rounded-full border border-primary/30 bg-primary/10 blur-xl" />
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              Numbers
+            </p>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              {stats.map((stat) => {
+                const Icon = stat.icon;
+
+                return (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-primary/20 bg-background/70 p-4"
+                  >
+                    <Icon className="h-4 w-4 text-primary" />
+                    <p className="mt-3 text-3xl font-bold text-foreground">
+                      {stat.value}
+                      {stat.suffix}
+                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {stat.label}
+                    </p>
+                    {stat.label2 ? (
+                      <p className="mt-1 text-xs text-muted-foreground/80">
+                        {stat.label2}
+                      </p>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+          </motion.article>
+
+          <motion.article
+            variants={itemVariants}
+            className="relative overflow-hidden rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/10 p-8 backdrop-blur-sm md:col-span-6"
+          >
+            <div className="pointer-events-none absolute -bottom-12 right-8 h-40 w-40 rounded-full border border-secondary/25 bg-secondary/10 blur-2xl" />
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              Contact
+            </p>
+            <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-xl">
+                <h3 className="text-2xl font-semibold text-foreground">
+                  {cta.title}
+                </h3>
+                <p className="mt-2 text-muted-foreground">{cta.description}</p>
+              </div>
+              <Button
+                asChild
+                className="h-12 rounded-xl bg-secondary px-8 text-secondary-foreground hover:bg-secondary/90"
+              >
+                <Link href="/contact">{cta.buttonText}</Link>
+              </Button>
+            </div>
+          </motion.article>
         </motion.div>
 
-        {/* Marquees Section */}
-
-        <div className="mt-24 space-y-12 ">
-          <h3 className="text-2xl font-semibold text-center mb-6">
-            Industries We Serve
-          </h3>
-          <Marquee className="[--duration:45s]">
-            {industries.map((industry) => (
+        <motion.div className="mt-14 space-y-4" variants={itemVariants}>
+          <Marquee className="[--duration:48s]" pauseOnHover>
+            {industriesPrimary.map((industry) => (
               <div
                 key={industry}
-                className="mx-4 px-6 py-3 bg-secondary rounded-xl text-secondary-foreground font-medium whitespace-nowrap"
+                className="rounded-xl border border-primary/25 bg-primary/10 px-5 py-2 text-sm font-medium text-foreground"
               >
                 {industry}
               </div>
             ))}
           </Marquee>
-        </div>
-
-        {/* CTA Section */}
-        <motion.div
-          className="mt-20 bg-primary/10 text-foreground p-8 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <div className="flex-1">
-            <h3 className="text-2xl font-medium mb-2">{cta.title}</h3>
-            <p className="text-muted-foreground">{cta.description}</p>
-          </div>
-          <CtaButton className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl flex items-center gap-2 font-medium transition-colors">
-            {cta.buttonText}
-          </CtaButton>
+          <Marquee className="[--duration:44s]" pauseOnHover reverse>
+            {industriesSecondary.map((industry) => (
+              <div
+                key={industry}
+                className="rounded-xl border border-secondary/25 bg-secondary/10 px-5 py-2 text-sm font-medium text-foreground"
+              >
+                {industry}
+              </div>
+            ))}
+          </Marquee>
         </motion.div>
       </motion.div>
     </section>
   );
 }
 
-const industries = [
-  "Information Technology",
-  "Finance & Banking",
+const industriesPrimary = [
+  "Technology",
+  "Finance",
   "Healthcare",
-  "Education",
-  "E-commerce",
-  "Manufacturing",
   "Consulting",
-  "Media & Entertainment",
-  "Telecommunications",
-  "Energy",
+  "Manufacturing",
 ];
 
-import { Marquee } from "./marquee";
-
-interface ServiceItemProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  variants: Variants;
-  delay: number;
-  direction: "left" | "right";
-  variant?: "primary" | "secondary";
-}
-
-function ServiceItem({
-  icon,
-  title,
-  description,
-  variants,
-  delay,
-  direction,
-  variant = "primary",
-}: ServiceItemProps) {
-  return (
-    <motion.div
-      className="flex flex-col group"
-      variants={variants}
-      transition={{ delay }}
-    >
-      <CardContainer
-        containerClassName="py-0 items-start justify-start"
-        className="w-full"
-      >
-        <CardBody className="h-auto w-full rounded-lg transition-colors duration-150 hover:bg-primary/5 p-5">
-          <CardItem translateZ={80} className="flex items-center gap-3 mb-3">
-            <motion.div
-              initial={{ x: direction === "left" ? -20 : 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: delay + 0.2 }}
-              className={`flex items-center gap-3 ${
-                direction === "left" ? "origin-left" : "origin-right"
-              }`}
-            >
-              <div
-                className={`p-3 rounded-lg transition-colors duration-300 relative ${
-                  variant === "primary"
-                    ? "bg-primary/10 text-primary"
-                    : "bg-secondary/10 text-secondary"
-                }`}
-              >
-                {icon}
-              </div>
-              <h3
-                className={`text-xl font-medium text-foreground group-hover:text-primary transition-colors duration-300 ${
-                  variant === "primary"
-                    ? "group-hover:text-primary"
-                    : "group-hover:text-secondary"
-                }`}
-              >
-                {title}
-              </h3>
-            </motion.div>
-          </CardItem>
-
-          <CardItem
-            translateZ={50}
-            className="text-sm text-muted-foreground leading-relaxed pl-12"
-          >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: delay + 0.4 }}
-            >
-              {description}
-            </motion.p>
-          </CardItem>
-        </CardBody>
-      </CardContainer>
-    </motion.div>
-  );
-}
-
-interface StatCounterProps {
-  icon: React.ReactNode;
-  value: number;
-  label: string;
-  label2: string;
-  suffix: string;
-  delay: number;
-}
-
-function StatCounter({
-  icon,
-  value,
-  label,
-  label2,
-  suffix,
-  delay,
-}: StatCounterProps) {
-  const countRef = useRef(null);
-  const isInView = useInView(countRef, { once: true });
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  const springValue = useSpring(0, {
-    stiffness: 50,
-    damping: 10,
-  });
-
-  useEffect(() => {
-    if (isInView && !hasAnimated) {
-      springValue.set(value);
-      setHasAnimated(true);
-    } else if (!isInView && hasAnimated) {
-      springValue.set(0);
-      setHasAnimated(false);
-    }
-  }, [isInView, value, springValue, hasAnimated]);
-
-  const displayValue = useTransform(springValue, (latest) =>
-    Math.floor(latest),
-  );
-
-  return (
-    <motion.div
-      className="bg-card/50 backdrop-blur-sm p-6 rounded-xl flex flex-col items-center text-center group hover:bg-card transition-colors duration-300"
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, delay },
-        },
-      }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-    >
-      <motion.div
-        className="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center mb-4 text-primary group-hover:bg-primary/10 transition-colors duration-300"
-        whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
-      >
-        {icon}
-      </motion.div>
-      <motion.div
-        ref={countRef}
-        className="text-3xl font-bold text-foreground flex items-center"
-      >
-        <motion.span>{displayValue}</motion.span>
-        <span>{suffix}</span>
-      </motion.div>
-      <p className="text-muted-foreground text-sm mt-1">{label}</p>
-      <p className="text-muted-foreground text-sm mt-1">{label2}</p>
-
-      <motion.div className="w-10 h-0.5 bg-primary mt-3 group-hover:w-16 transition-all duration-300" />
-    </motion.div>
-  );
-}
+const industriesSecondary = [
+  "Education",
+  "E-Commerce",
+  "Telecommunications",
+  "Energy",
+  "Media",
+];
