@@ -4,6 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import { Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import MagicBento from "@/components/MagicBento";
 import { PageTitle } from "@/components/PageTitle";
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
@@ -58,146 +59,158 @@ export default function AboutUsSection() {
           />
         </motion.div>
 
-        <motion.div
-          className="mt-12 grid auto-rows-[minmax(170px,auto)] grid-cols-1 gap-5 md:grid-cols-6"
-          variants={containerVariants}
-        >
-          <motion.article
-            variants={itemVariants}
-            className="group relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/20 via-card to-card p-8 shadow-[0_20px_50px_-30px_hsl(var(--primary)/0.7)] backdrop-blur-sm md:col-span-2"
+        <motion.div className="mt-12" variants={containerVariants}>
+          <MagicBento
+            className="max-w-none p-0"
+            gridClassName="grid auto-rows-[minmax(170px,auto)] grid-cols-1 gap-5 md:grid-cols-6"
+            enableStars={true}
+            enableSpotlight
+            enableBorderGlow
+            enableTilt={true}
+            enableMagnetism={false}
+            clickEffect={false}
+            glowColor="34, 197, 94"
+            spotlightRadius={280}
           >
-            <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full border border-primary/30 bg-primary/15 blur-xl" />
-            <div className="flex h-full min-h-[190px] items-center justify-center rounded-2xl border border-dashed border-primary/30 bg-background/65 p-4">
-              <Image
-                src="/logo.png"
-                alt="Vision and Path"
-                width={280}
-                height={280}
-                className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-          </motion.article>
+            <motion.article
+              variants={itemVariants}
+              className="magic-bento-card card--border-glow group relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/20 via-card to-card p-8 shadow-[0_20px_50px_-30px_hsl(var(--primary)/0.7)] backdrop-blur-sm md:col-span-2"
+            >
+              <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full border border-primary/30 bg-primary/15 blur-xl" />
+              <div className="flex h-full min-h-[190px] items-center justify-center rounded-2xl border border-dashed border-primary/30 bg-background/65 p-4">
+                <Image
+                  src="/logo.png"
+                  alt="Vision and Path"
+                  width={280}
+                  height={280}
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            </motion.article>
 
-          <motion.article
-            variants={itemVariants}
-            className="relative overflow-hidden rounded-3xl border border-secondary/25 bg-gradient-to-tr from-secondary/20 via-card to-card p-8 shadow-[0_20px_50px_-30px_hsl(var(--secondary)/0.8)] backdrop-blur-sm md:col-span-4"
-          >
-            <div className="pointer-events-none absolute -left-12 bottom-2 h-32 w-32 rounded-full border border-secondary/30 bg-secondary/10 blur-xl" />
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-              Mission
-            </p>
-            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-foreground/90">
-              {hero.description}
-            </p>
-          </motion.article>
-
-          <motion.article
-            variants={itemVariants}
-            className="rounded-3xl border border-border/60 bg-gradient-to-b from-card to-secondary/10 p-8 backdrop-blur-sm md:col-span-3"
-          >
-            <div className="mb-6 flex items-center justify-between gap-4">
+            <motion.article
+              variants={itemVariants}
+              className="magic-bento-card card--border-glow relative overflow-hidden rounded-3xl border border-secondary/25 bg-gradient-to-tr from-secondary/20 via-card to-card p-8 shadow-[0_20px_50px_-30px_hsl(var(--secondary)/0.8)] backdrop-blur-sm md:col-span-4"
+            >
+              <div className="pointer-events-none absolute -left-12 bottom-2 h-32 w-32 rounded-full border border-secondary/30 bg-secondary/10 blur-xl" />
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                Values
+                Mission
               </p>
-              <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                What Drives Us
-              </span>
-            </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {values.map((value) => (
-                <div
-                  key={value.title}
-                  className="rounded-2xl border border-secondary/20 bg-background/70 p-4"
-                >
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {value.title}
+              <p className="mt-4 max-w-3xl text-lg leading-relaxed text-foreground/90">
+                {hero.description}
+              </p>
+            </motion.article>
+
+            <motion.article
+              variants={itemVariants}
+              className="magic-bento-card card--border-glow rounded-3xl border border-border/60 bg-gradient-to-b from-card to-secondary/10 p-8 backdrop-blur-sm md:col-span-3"
+            >
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                  Values
+                </p>
+                <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                  What Drives Us
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {values.map((value) => (
+                  <div
+                    key={value.title}
+                    className="rounded-2xl border border-secondary/20 bg-background/70 p-4"
+                  >
+                    <h3 className="text-sm font-semibold text-foreground">
+                      {value.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {value.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.article>
+
+            <motion.article
+              variants={itemVariants}
+              className="magic-bento-card card--border-glow relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/15 via-card to-secondary/15 p-8 backdrop-blur-sm md:col-span-3"
+            >
+              <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full border border-primary/30 bg-primary/10 blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-10 -left-10 h-32 w-32 rounded-full border border-secondary/30 bg-secondary/10 blur-2xl" />
+              <div className="relative mb-6 rounded-2xl border border-primary/20 bg-background/70 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                  Numbers
+                </p>
+                <p className="mt-2 text-lg font-semibold text-foreground">
+                  Results that prove the process
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Real placement momentum across candidates and employers.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {stats.map((stat, index) => {
+                  const Icon = stat.icon;
+
+                  return (
+                    <div
+                      key={stat.label}
+                      className={`rounded-2xl border p-4 transition-transform duration-300 hover:-translate-y-1 ${
+                        index % 2 === 0
+                          ? "border-primary/30 bg-primary/10"
+                          : "border-secondary/30 bg-secondary/10"
+                      }`}
+                    >
+                      <div className="mb-2 flex items-center justify-between">
+                        <Icon
+                          className={`h-4 w-4 ${
+                            index % 2 === 0 ? "text-primary" : "text-secondary"
+                          }`}
+                        />
+                      </div>
+                      <p className="mt-1 text-3xl font-bold leading-none text-foreground">
+                        {stat.value}
+                        {stat.suffix}
+                      </p>
+                      <p className="mt-2 text-sm font-medium text-foreground/90">
+                        {stat.label}
+                      </p>
+                      {stat.label2 ? (
+                        <p className="mt-1 text-xs leading-relaxed text-muted-foreground/80">
+                          {stat.label2}
+                        </p>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.article>
+
+            <motion.article
+              variants={itemVariants}
+              className="magic-bento-card card--border-glow relative overflow-hidden rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/10 p-8 backdrop-blur-sm md:col-span-6"
+            >
+              <div className="pointer-events-none absolute -bottom-12 right-8 h-40 w-40 rounded-full border border-secondary/25 bg-secondary/10 blur-2xl" />
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                Contact
+              </p>
+              <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-xl">
+                  <h3 className="text-2xl font-semibold text-foreground">
+                    {cta.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {value.description}
+                  <p className="mt-2 text-muted-foreground">
+                    {cta.description}
                   </p>
                 </div>
-              ))}
-            </div>
-          </motion.article>
-
-          <motion.article
-            variants={itemVariants}
-            className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/15 via-card to-secondary/15 p-8 backdrop-blur-sm md:col-span-3"
-          >
-            <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full border border-primary/30 bg-primary/10 blur-2xl" />
-            <div className="pointer-events-none absolute -bottom-10 -left-10 h-32 w-32 rounded-full border border-secondary/30 bg-secondary/10 blur-2xl" />
-            <div className="relative mb-6 rounded-2xl border border-primary/20 bg-background/70 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                Numbers
-              </p>
-              <p className="mt-2 text-lg font-semibold text-foreground">
-                Results that prove the process
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Real placement momentum across candidates and employers.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-
-                return (
-                  <div
-                    key={stat.label}
-                    className={`rounded-2xl border p-4 transition-transform duration-300 hover:-translate-y-1 ${
-                      index % 2 === 0
-                        ? "border-primary/30 bg-primary/10"
-                        : "border-secondary/30 bg-secondary/10"
-                    }`}
-                  >
-                    <div className="mb-2 flex items-center justify-between">
-                      <Icon
-                        className={`h-4 w-4 ${
-                          index % 2 === 0 ? "text-primary" : "text-secondary"
-                        }`}
-                      />
-                    </div>
-                    <p className="mt-1 text-3xl font-bold leading-none text-foreground">
-                      {stat.value}
-                      {stat.suffix}
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-foreground/90">
-                      {stat.label}
-                    </p>
-                    {stat.label2 ? (
-                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground/80">
-                        {stat.label2}
-                      </p>
-                    ) : null}
-                  </div>
-                );
-              })}
-            </div>
-          </motion.article>
-
-          <motion.article
-            variants={itemVariants}
-            className="relative overflow-hidden rounded-3xl border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/10 p-8 backdrop-blur-sm md:col-span-6"
-          >
-            <div className="pointer-events-none absolute -bottom-12 right-8 h-40 w-40 rounded-full border border-secondary/25 bg-secondary/10 blur-2xl" />
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-              Contact
-            </p>
-            <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div className="max-w-xl">
-                <h3 className="text-2xl font-semibold text-foreground">
-                  {cta.title}
-                </h3>
-                <p className="mt-2 text-muted-foreground">{cta.description}</p>
+                <Button
+                  asChild
+                  className="h-12 rounded-xl bg-secondary px-8 text-secondary-foreground hover:bg-secondary/90"
+                >
+                  <Link href="/contact">{cta.buttonText}</Link>
+                </Button>
               </div>
-              <Button
-                asChild
-                className="h-12 rounded-xl bg-secondary px-8 text-secondary-foreground hover:bg-secondary/90"
-              >
-                <Link href="/contact">{cta.buttonText}</Link>
-              </Button>
-            </div>
-          </motion.article>
+            </motion.article>
+          </MagicBento>
         </motion.div>
 
         <motion.div className="mt-24 space-y-12" variants={itemVariants}>
