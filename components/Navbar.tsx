@@ -97,7 +97,7 @@ export const Navbar = () => {
               filter: { duration: 1.5, times: [0.5, 1] },
             }}
           >
-            <Logo className="" />
+            <Logo size="full" />
           </motion.div>
         </Link>
 

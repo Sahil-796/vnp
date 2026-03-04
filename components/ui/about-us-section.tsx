@@ -80,7 +80,7 @@ export default function AboutUsSection() {
               <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full border border-primary/30 bg-primary/15 blur-xl" />
               <div className="flex h-full min-h-[190px] items-center justify-center rounded-2xl border border-dashed border-primary/30 bg-background/65 p-4">
                 <Image
-                  src="/logo.png"
+                  src="/logo-full.png"
                   alt="Vision and Path"
                   width={280}
                   height={280}

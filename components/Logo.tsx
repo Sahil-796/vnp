@@ -1,15 +1,17 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-interface LogoProps {
+export const Logo = ({
+  size = "icon",
+  className,
+}: {
+  size: "icon" | "full";
   className?: string;
-}
-
-export const Logo = ({ className }: LogoProps) => {
+}) => {
   return (
     <div className={cn("inline-flex", className)}>
       <Image
-        src="/logo.png"
+        src={size === "icon" ? "/logo.png" : "/logo-full.png"}
         height={55}
         width={55}
         alt="Logo"

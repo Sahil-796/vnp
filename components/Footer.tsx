@@ -33,7 +33,7 @@ const Footer = () => {
               {/* Left Content */}
               <div className="flex flex-col gap-8 md:gap-14 w-full md:w-1/3">
                 {/* Logo Mark */}
-                <Logo />
+                <Logo size="full" />
 
                 <div className="flex flex-col gap-4">
                   <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight">

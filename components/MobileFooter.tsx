@@ -25,7 +25,7 @@ export const MobileFooter = () => {
         <div className="flex flex-col w-full relative h-full gap-10">
           {/* Top Content - Logo & Address */}
           <div className="flex flex-col gap-8 w-full">
-            <Logo />
+            <Logo size="full" />
 
             <div className="flex flex-col gap-4">
               <h3 className="text-2xl font-bold tracking-tight leading-tight">
