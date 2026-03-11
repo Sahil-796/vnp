@@ -221,8 +221,7 @@ export const servicesPageData = {
         subtitle: "Build secure internal tools and customer-facing workflows.",
         popular: true,
         pdfUrl: "/pdfs/business-apps-package.pdf",
-        idealFor:
-          "Teams that need portals, dashboards, and operational systems.",
+        idealFor: "Teams needing portals, dashboards, and ops systems.",
         includes: [
           "Client portal or dashboard",
           "Admin panel/internal operations tool",
@@ -249,8 +248,7 @@ export const servicesPageData = {
         subtitle:
           "Run online sales with connected payments, tracking, and insights.",
         pdfUrl: "/pdfs/commerce-growth-package.pdf",
-        idealFor:
-          "Businesses selling online or expanding digital revenue channels.",
+        idealFor: "Businesses selling online or growing digital revenue.",
         includes: [
           "Online store/e-commerce platform",
           "Payment gateway integration",

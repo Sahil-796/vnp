@@ -18,6 +18,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import MagicBento from "@/components/MagicBento";
 import { Button } from "@/components/ui/button";
+import { CtaButton } from "@/components/ui/cta-button";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { servicesPageData } from "@/constants";
@@ -377,11 +378,6 @@ export function ServicesList() {
                               </p>
                             </div>
                           </div>
-                          {pkg.popular ? (
-                            <span className="rounded-full border border-secondary/45 bg-secondary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">
-                              Popular
-                            </span>
-                          ) : null}
                         </div>
 
                         <p className="mt-4 rounded-2xl border border-secondary/25 bg-secondary/10 px-4 py-3 text-sm leading-relaxed text-foreground/90">
@@ -412,18 +408,18 @@ export function ServicesList() {
                           href={buildContactHref("specific-package", pkg.name)}
                           className="mt-5 inline-flex w-full"
                         >
-                          <Button
+                          <CtaButton
                             size="sm"
                             className="w-full justify-center rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all duration-300 group-hover:bg-primary/95"
                           >
                             Discuss this package
-                          </Button>
+                          </CtaButton>
                         </Link>
                       </div>
 
                       <div className="mt-4 rounded-[1.6rem] border border-secondary/20 bg-background/60 p-3.5">
                         <ul className="space-y-0">
-                          {pkg.includes.map((item, itemIndex) => (
+                          {pkg.includes.slice(0, 4).map((item, itemIndex) => (
                             <li
                               key={`${pkg.name}-${item}`}
                               className={cn(
@@ -447,7 +443,7 @@ export function ServicesList() {
 
           <MagicBento
             className="software-packages-bento max-w-none p-0"
-            gridClassName="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr]"
+            gridClassName="grid grid-cols-1 gap-6"
             enableStars={true}
             enableSpotlight
             enableBorderGlow
@@ -465,11 +461,11 @@ export function ServicesList() {
               className="magic-bento-card card--border-glow relative overflow-hidden rounded-[2rem] border border-secondary/30 bg-gradient-to-br from-secondary/18 via-card to-background p-6 backdrop-blur-sm md:p-7"
             >
               <div className="pointer-events-none absolute -right-10 top-0 h-28 w-28 rounded-full border border-secondary/25 bg-secondary/15 blur-2xl" />
-              <h3 className="mb-3 flex items-center gap-2 text-xl font-semibold md:text-2xl">
+              <h3 className="mb-2 flex items-center gap-2 text-lg font-semibold md:text-xl">
                 <Puzzle className="h-5 w-5 text-primary" />
                 {softwareServices.createYourOwn.title}
               </h3>
-              <p className="mb-5 max-w-2xl text-muted-foreground">
+              <p className="mb-5 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-[15px]">
                 {softwareServices.createYourOwn.description}
               </p>
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
@@ -513,9 +509,9 @@ export function ServicesList() {
                     href={buildContactHref("build-own-package")}
                     className="mt-5 inline-flex w-full"
                   >
-                    <Button className="w-full rounded-xl">
+                    <CtaButton className="w-full rounded-xl">
                       Build my package
-                    </Button>
+                    </CtaButton>
                   </Link>
                 </div>
               </div>
@@ -526,43 +522,29 @@ export function ServicesList() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.08 }}
               viewport={{ once: true }}
-              className="magic-bento-card card--border-glow relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/5 p-6 backdrop-blur-sm md:p-7"
+              className="magic-bento-card card--border-glow relative h-full overflow-hidden rounded-[2rem] border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/5 p-6 backdrop-blur-sm md:p-7"
             >
               <div className="pointer-events-none absolute -bottom-10 -right-8 h-32 w-32 rounded-full border border-secondary/25 bg-secondary/15 blur-3xl" />
-              <div>
-                <p className="text-lg font-semibold">Need a recommendation?</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Tell us your business stage and goals, and we will suggest the
-                  best-fit package and add-ons.
-                </p>
-              </div>
-              <div className="mt-6 rounded-[1.6rem] border border-secondary/20 bg-background/70 p-4">
-                <ul className="space-y-0 text-sm text-muted-foreground">
-                  {[
-                    "Share your stage, goals, and current bottlenecks.",
-                    "Get a package recommendation with useful add-ons.",
-                    "Move forward with the leanest practical starting scope.",
-                  ].map((item, index) => (
-                    <li
-                      key={item}
-                      className={cn(
-                        "flex items-start gap-2.5 px-0 py-2.5",
-                        index !== 0 && "border-t border-secondary/15",
-                      )}
-                    >
-                      <AnimatedCheckIcon />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-xl">
+                  <p className="text-lg font-semibold">
+                    Need a recommendation?
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    Tell us your business stage and goals, and we will suggest
+                    the best-fit package and add-ons.
+                  </p>
+                </div>
                 <Link
                   href={buildContactHref("package-recommendation")}
-                  className="mt-5 inline-flex w-full"
+                  className="inline-flex md:shrink-0"
                 >
-                  <Button className="w-full rounded-xl">
-                    Get package recommendation
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <CtaButton className="w-full rounded-xl md:w-auto">
+                    <div className="flex items-center">
+                      Get package recommendation
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </div>
+                  </CtaButton>
                 </Link>
               </div>
             </motion.article>
