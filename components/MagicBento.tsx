@@ -22,6 +22,7 @@ export interface BentoProps {
   spotlightRadius?: number;
   particleCount?: number;
   enableTilt?: boolean;
+  tiltStrength?: number;
   glowColor?: string;
   clickEffect?: boolean;
   enableMagnetism?: boolean;
@@ -30,6 +31,7 @@ export interface BentoProps {
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
 const DEFAULT_GLOW_COLOR = "132, 0, 255";
+const DEFAULT_TILT_STRENGTH = 10;
 const MOBILE_BREAKPOINT = 768;
 const BENTO_CARD_SELECTOR = ".card, .magic-bento-card";
 
@@ -131,6 +133,7 @@ const ParticleCard: React.FC<{
   particleCount?: number;
   glowColor?: string;
   enableTilt?: boolean;
+  tiltStrength?: number;
   clickEffect?: boolean;
   enableMagnetism?: boolean;
 }> = ({
@@ -141,6 +144,7 @@ const ParticleCard: React.FC<{
   particleCount = DEFAULT_PARTICLE_COUNT,
   glowColor = DEFAULT_GLOW_COLOR,
   enableTilt = true,
+  tiltStrength = DEFAULT_TILT_STRENGTH,
   clickEffect = false,
   enableMagnetism = false,
 }) => {
@@ -240,8 +244,8 @@ const ParticleCard: React.FC<{
 
       if (enableTilt) {
         gsap.to(element, {
-          rotateX: 5,
-          rotateY: 5,
+          rotateX: tiltStrength / 2,
+          rotateY: tiltStrength / 2,
           duration: 0.3,
           ease: "power2.out",
           transformPerspective: 1000,
@@ -282,8 +286,8 @@ const ParticleCard: React.FC<{
       const centerY = rect.height / 2;
 
       if (enableTilt) {
-        const rotateX = ((y - centerY) / centerY) * -10;
-        const rotateY = ((x - centerX) / centerX) * 10;
+        const rotateX = ((y - centerY) / centerY) * -tiltStrength;
+        const rotateY = ((x - centerX) / centerX) * tiltStrength;
 
         gsap.to(element, {
           rotateX,
@@ -370,6 +374,7 @@ const ParticleCard: React.FC<{
     clearAllParticles,
     disableAnimations,
     enableTilt,
+    tiltStrength,
     enableMagnetism,
     clickEffect,
     glowColor,
@@ -579,6 +584,7 @@ const MagicBento: React.FC<BentoProps> = ({
   spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
   particleCount = DEFAULT_PARTICLE_COUNT,
   enableTilt = false,
+  tiltStrength = DEFAULT_TILT_STRENGTH,
   glowColor = DEFAULT_GLOW_COLOR,
   clickEffect = true,
   enableMagnetism = true,
@@ -607,8 +613,8 @@ const MagicBento: React.FC<BentoProps> = ({
         const centerY = rect.height / 2;
 
         if (enableTilt) {
-          const rotateX = ((y - centerY) / centerY) * -10;
-          const rotateY = ((x - centerX) / centerX) * 10;
+          const rotateX = ((y - centerY) / centerY) * -tiltStrength;
+          const rotateY = ((x - centerX) / centerX) * tiltStrength;
 
           gsap.to(el, {
             rotateX,
@@ -717,6 +723,7 @@ const MagicBento: React.FC<BentoProps> = ({
     hasCustomCards,
     shouldDisableAnimations,
     enableTilt,
+    tiltStrength,
     enableMagnetism,
     clickEffect,
     glowColor,
@@ -908,6 +915,7 @@ const MagicBento: React.FC<BentoProps> = ({
                       particleCount={particleCount}
                       glowColor={glowColor}
                       enableTilt={enableTilt}
+                      tiltStrength={tiltStrength}
                       clickEffect={clickEffect}
                       enableMagnetism={enableMagnetism}
                     >
@@ -950,8 +958,10 @@ const MagicBento: React.FC<BentoProps> = ({
                         const centerY = rect.height / 2;
 
                         if (enableTilt) {
-                          const rotateX = ((y - centerY) / centerY) * -10;
-                          const rotateY = ((x - centerX) / centerX) * 10;
+                          const rotateX =
+                            ((y - centerY) / centerY) * -tiltStrength;
+                          const rotateY =
+                            ((x - centerX) / centerX) * tiltStrength;
 
                           gsap.to(el, {
                             rotateX,
