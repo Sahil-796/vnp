@@ -16,6 +16,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import MagicBento from "@/components/MagicBento";
 import { Button } from "@/components/ui/button";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -115,8 +116,6 @@ const MagneticButton = ({
 const noiseTexture = {
   backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")`,
 };
-
-const themeSecondaryHex = "#E6C775";
 
 export function ServicesList() {
   const { content, header, softwareServices, labels } = servicesPageData;
@@ -329,7 +328,21 @@ export function ServicesList() {
               <Layers3 className="h-5 w-5 text-primary" />
               Package-Based Services
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            <p className="mb-6 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
+              {softwareServices.packageIntro}
+            </p>
+            <MagicBento
+              className="software-packages-bento max-w-none p-0"
+              gridClassName="grid grid-cols-1 gap-6 md:grid-cols-2"
+              enableStars={true}
+              enableSpotlight
+              enableBorderGlow
+              enableTilt={true}
+              enableMagnetism={false}
+              clickEffect={true}
+              glowColor="secondary"
+              spotlightRadius={260}
+            >
               {softwareServices.packages.map((pkg, index) => {
                 const PlanIcon =
                   index === 0
@@ -338,158 +351,237 @@ export function ServicesList() {
                       ? BriefcaseBusiness
                       : Building2;
                 return (
-                  <motion.div
+                  <motion.article
                     key={pkg.name}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.08 }}
                     viewport={{ once: true }}
-                    className="rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+                    className="magic-bento-card card--border-glow group relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[2rem] border border-secondary/35 bg-gradient-to-br from-secondary/25 via-card to-background p-5 shadow-[0_24px_60px_-36px_rgba(230,199,117,0.55)] backdrop-blur-sm md:p-6"
                   >
-                    <MagicCard
-                      className="rounded-[inherit] overflow-hidden p-6 md:p-7 h-full min-h-[400px]"
-                      gradientColor={themeSecondaryHex}
-                      gradientFrom={themeSecondaryHex}
-                      gradientTo={themeSecondaryHex}
-                      gradientSize={160}
-                      gradientOpacity={0.6}
-                    >
-                      <div className="h-full flex flex-col">
-                        <div className="rounded-2xl border border-primary/30 bg-card/70 p-5 md:p-6">
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="flex items-center gap-2">
-                              <PlanIcon className="h-5 w-5 text-primary" />
-                              <h4 className="text-base md:text-lg font-semibold leading-tight">
+                    <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full border border-secondary/35 bg-secondary/20 blur-2xl" />
+                    <div className="pointer-events-none absolute -bottom-14 -left-10 h-36 w-36 rounded-full border border-secondary/20 bg-secondary/15 blur-3xl" />
+                    <div className="relative flex h-full flex-col">
+                      <div className="rounded-[1.6rem] border border-secondary/30 bg-background/80 p-5 md:p-6">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex items-center gap-3">
+                            <div className="rounded-2xl border border-secondary/35 bg-secondary/15 p-3 text-primary">
+                              <PlanIcon className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-base font-semibold leading-tight md:text-lg">
                                 {pkg.name}
                               </h4>
+                              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                                {pkg.subtitle}
+                              </p>
                             </div>
                           </div>
-
-                          <p className="mt-4 rounded-xl border border-primary/20 bg-primary/5 px-3.5 py-2.5 text-sm leading-relaxed text-foreground/90">
-                            <span className="mr-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                              Ideal for:
+                          {pkg.popular ? (
+                            <span className="rounded-full border border-secondary/45 bg-secondary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">
+                              Popular
                             </span>
-                            {pkg.idealFor}
-                          </p>
-
-                          <Button
-                            asChild
-                            type="button"
-                            variant="outline"
-                            className="mt-3 w-full justify-center rounded-xl border-dashed border-primary/35 text-sm font-medium hover:bg-primary/5 hover:text-foreground"
-                          >
-                            <a
-                              href={pkg.pdfUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                              aria-label={`Open ${pkg.name} PDF in a new tab`}
-                            >
-                              <FileText className="mr-2 h-4 w-4" />
-                              View package PDF
-                            </a>
-                          </Button>
-
-                          <Link
-                            href={buildContactHref(
-                              "specific-package",
-                              pkg.name,
-                            )}
-                            className="inline-flex mt-5 w-full"
-                          >
-                            <Button
-                              size="sm"
-                              className="w-full justify-center group rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all duration-300"
-                            >
-                              Discuss this package
-                            </Button>
-                          </Link>
+                          ) : null}
                         </div>
 
-                        <ul className="space-y-2 mt-5">
-                          {pkg.includes.map((item) => (
+                        <p className="mt-4 rounded-2xl border border-secondary/25 bg-secondary/10 px-4 py-3 text-sm leading-relaxed text-foreground/90">
+                          <span className="mr-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/80">
+                            Ideal for:
+                          </span>
+                          {pkg.idealFor}
+                        </p>
+
+                        <Button
+                          asChild
+                          type="button"
+                          variant="outline"
+                          className="mt-4 w-full justify-center rounded-xl border-dashed border-secondary/40 bg-background/65 text-sm font-medium hover:bg-secondary/10 hover:text-foreground"
+                        >
+                          <a
+                            href={pkg.pdfUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Open ${pkg.name} PDF in a new tab`}
+                          >
+                            <FileText className="mr-2 h-4 w-4" />
+                            View package PDF
+                          </a>
+                        </Button>
+
+                        <Link
+                          href={buildContactHref("specific-package", pkg.name)}
+                          className="mt-5 inline-flex w-full"
+                        >
+                          <Button
+                            size="sm"
+                            className="w-full justify-center rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all duration-300 group-hover:bg-primary/95"
+                          >
+                            Discuss this package
+                          </Button>
+                        </Link>
+                      </div>
+
+                      <div className="mt-4 rounded-[1.6rem] border border-secondary/20 bg-background/60 p-3.5">
+                        <ul className="space-y-0">
+                          {pkg.includes.map((item, itemIndex) => (
                             <li
                               key={`${pkg.name}-${item}`}
-                              className="flex items-start gap-2 text-xs md:text-sm"
+                              className={cn(
+                                "flex items-start gap-2.5 px-1 py-2 text-xs md:text-sm",
+                                itemIndex !== 0 &&
+                                  "border-t border-secondary/15",
+                              )}
                             >
-                              <AnimatedCheckIcon />
+                              <AnimatedCheckIcon color="text-primary" />
                               <span>{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
-                    </MagicCard>
-                  </motion.div>
+                    </div>
+                  </motion.article>
                 );
               })}
-            </div>
+            </MagicBento>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
-            <h3 className="text-xl md:text-2xl font-semibold mb-3 flex items-center gap-2">
-              <Puzzle className="h-5 w-5 text-primary" />
-              {softwareServices.createYourOwn.title}
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              {softwareServices.createYourOwn.description}
-            </p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ol className="space-y-3">
-                {softwareServices.createYourOwn.steps.map((step, index) => (
-                  <li
-                    key={step}
-                    className="flex items-start gap-3 rounded-xl border border-border bg-background p-3"
+          <MagicBento
+            className="software-packages-bento max-w-none p-0"
+            gridClassName="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr]"
+            enableStars={true}
+            enableSpotlight
+            enableBorderGlow
+            enableTilt={true}
+            enableMagnetism={false}
+            clickEffect={true}
+            glowColor="secondary"
+            spotlightRadius={240}
+          >
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true }}
+              className="magic-bento-card card--border-glow relative overflow-hidden rounded-[2rem] border border-secondary/30 bg-gradient-to-br from-secondary/18 via-card to-background p-6 backdrop-blur-sm md:p-7"
+            >
+              <div className="pointer-events-none absolute -right-10 top-0 h-28 w-28 rounded-full border border-secondary/25 bg-secondary/15 blur-2xl" />
+              <h3 className="mb-3 flex items-center gap-2 text-xl font-semibold md:text-2xl">
+                <Puzzle className="h-5 w-5 text-primary" />
+                {softwareServices.createYourOwn.title}
+              </h3>
+              <p className="mb-5 max-w-2xl text-muted-foreground">
+                {softwareServices.createYourOwn.description}
+              </p>
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                <ol className="rounded-[1.6rem] border border-secondary/20 bg-background/70 p-3.5">
+                  {softwareServices.createYourOwn.steps.map((step, index) => (
+                    <li
+                      key={step}
+                      className={cn(
+                        "flex items-start gap-3 px-1 py-2.5",
+                        index !== 0 && "border-t border-secondary/15",
+                      )}
+                    >
+                      <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold">
+                        {index + 1}
+                      </span>
+                      <span className="text-sm md:text-base">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <div className="rounded-[1.6rem] border border-secondary/20 bg-background/70 p-5">
+                  <p className="mb-3 text-sm font-medium text-foreground">
+                    Popular Custom Mixes
+                  </p>
+                  <ul className="space-y-0 text-sm text-muted-foreground">
+                    {softwareServices.createYourOwn.suggestedMixes.map(
+                      (mix, index) => (
+                        <li
+                          key={mix}
+                          className={cn(
+                            "flex items-start gap-2 px-0 py-2.5",
+                            index !== 0 && "border-t border-secondary/15",
+                          )}
+                        >
+                          <AnimatedCheckIcon />
+                          <span>{mix}</span>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                  <Link
+                    href={buildContactHref("build-own-package")}
+                    className="mt-5 inline-flex w-full"
                   >
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold">
-                      {index + 1}
-                    </span>
-                    <span className="text-sm md:text-base">{step}</span>
-                  </li>
-                ))}
-              </ol>
-              <div className="rounded-xl border border-border bg-background p-5">
-                <p className="text-sm font-medium mb-3 text-foreground">
-                  Popular Custom Mixes
+                    <Button className="w-full rounded-xl">
+                      Build my package
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </motion.article>
+
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.08 }}
+              viewport={{ once: true }}
+              className="magic-bento-card card--border-glow relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] border border-secondary/30 bg-gradient-to-br from-secondary/20 via-card to-primary/5 p-6 backdrop-blur-sm md:p-7"
+            >
+              <div className="pointer-events-none absolute -bottom-10 -right-8 h-32 w-32 rounded-full border border-secondary/25 bg-secondary/15 blur-3xl" />
+              <div>
+                <p className="text-lg font-semibold">Need a recommendation?</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Tell us your business stage and goals, and we will suggest the
+                  best-fit package and add-ons.
                 </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {softwareServices.createYourOwn.suggestedMixes.map((mix) => (
-                    <li key={mix} className="flex items-start gap-2">
+              </div>
+              <div className="mt-6 rounded-[1.6rem] border border-secondary/20 bg-background/70 p-4">
+                <ul className="space-y-0 text-sm text-muted-foreground">
+                  {[
+                    "Share your stage, goals, and current bottlenecks.",
+                    "Get a package recommendation with useful add-ons.",
+                    "Move forward with the leanest practical starting scope.",
+                  ].map((item, index) => (
+                    <li
+                      key={item}
+                      className={cn(
+                        "flex items-start gap-2.5 px-0 py-2.5",
+                        index !== 0 && "border-t border-secondary/15",
+                      )}
+                    >
                       <AnimatedCheckIcon />
-                      <span>{mix}</span>
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
                 <Link
-                  href={buildContactHref("build-own-package")}
-                  className="inline-flex mt-5 w-full"
+                  href={buildContactHref("package-recommendation")}
+                  className="mt-5 inline-flex w-full"
                 >
-                  <Button className="w-full rounded-lg">
-                    Build my package
+                  <Button className="w-full rounded-xl">
+                    Get package recommendation
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
-            </div>
-          </div>
-
-          <div className="mt-8 rounded-2xl border border-border bg-primary/10 p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div>
-              <p className="text-lg font-semibold">Need a recommendation?</p>
-              <p className="text-sm text-muted-foreground">
-                Tell us your business stage and goals, and we will suggest the
-                best-fit package and add-ons.
-              </p>
-            </div>
-            <Link
-              href={buildContactHref("package-recommendation")}
-              className="inline-flex"
-            >
-              <Button className="rounded-lg">
-                Get package recommendation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
+            </motion.article>
+          </MagicBento>
         </TabsContent>
       </Tabs>
+      <style jsx>{`
+        :global(.software-packages-bento .card--border-glow:hover) {
+          box-shadow:
+            0 12px 34px oklch(from var(--secondary) l c h / 0.24),
+            0 0 30px oklch(from var(--secondary) l c h / 0.2);
+        }
+
+        :global(.software-packages-bento .magic-bento-card:hover) {
+          box-shadow:
+            0 16px 40px oklch(from var(--secondary) l c h / 0.22),
+            0 0 26px oklch(from var(--secondary) l c h / 0.18);
+        }
+      `}</style>
     </div>
   );
 }
