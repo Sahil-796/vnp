@@ -104,6 +104,24 @@ const serviceMetadata: Record<
     ogDescription:
       "Learn proven strategies for finding opportunities, networking effectively, and applying smartly. Get hired faster with our expert guidance.",
   },
+  "hiring-services": {
+    keywords: [
+      "hiring services",
+      "recruitment support",
+      "candidate screening",
+      "talent sourcing",
+      "candidate shortlisting",
+      "staffing support",
+      "business hiring",
+      "remote hiring",
+      "contract hiring",
+      "full time hiring",
+      "interview coordination",
+      "talent acquisition support",
+    ],
+    ogDescription:
+      "Hire stronger candidates with role definition, screening, shortlisting, interview coordination, and practical hiring support from Vision and Path.",
+  },
   "resume-building": {
     keywords: [
       "resume writing",

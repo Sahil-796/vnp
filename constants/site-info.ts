@@ -16,5 +16,6 @@ export const siteInfo = {
   },
   social: {
     linkedin: "https://www.linkedin.com/company/visionandpath.com",
+    instagram: "https://www.instagram.com/visionandpath",
   },
 };

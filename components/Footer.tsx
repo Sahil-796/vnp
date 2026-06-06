@@ -1,11 +1,17 @@
 "use client";
 
+import { Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { DotGrid } from "@/components/ui/dot-grid";
 import { landingPageData } from "@/constants";
 import { Logo } from "./Logo";
 import { MobileFooter } from "./MobileFooter";
+
+const socialIcons = {
+  Instagram,
+  LinkedIn: Linkedin,
+};
 
 const Footer = () => {
   return (
@@ -33,14 +39,9 @@ const Footer = () => {
               {/* Left Content */}
               <div className="flex flex-col gap-8 md:gap-14 w-full md:w-1/3">
                 {/* Logo Mark */}
-                <Logo size="full" />
+                <Logo size="full" imageClassName="w-36 md:w-44" />
 
                 <div className="flex flex-col gap-4">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
-                    {landingPageData.footer.titlep1}
-                    <br />
-                    {landingPageData.footer.titlep2}
-                  </h3>
                   <div className="flex flex-col gap-1 mt-2">
                     <p className="text-sm md:text-base font-medium opacity-70">
                       {landingPageData.footer.address}
@@ -75,16 +76,30 @@ const Footer = () => {
                   <h4 className="font-bold text-xs md:text-sm tracking-widest uppercase">
                     Social Media
                   </h4>
-                  <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
-                    {landingPageData.footer.socialLinks.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+                  <div className="flex items-center gap-3 text-muted-foreground">
+                    {landingPageData.footer.socialLinks.map((link) => {
+                      const Icon =
+                        socialIcons[link.label as keyof typeof socialIcons];
+
+                      return (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={link.label}
+                          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-background/55 text-foreground shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-background/80 hover:text-primary"
+                        >
+                          {Icon ? (
+                            <Icon className="h-5 w-5" aria-hidden="true" />
+                          ) : (
+                            <span className="text-xs font-semibold">
+                              {link.label.slice(0, 1)}
+                            </span>
+                          )}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

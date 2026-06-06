@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { CtaButton } from "@/components/ui/cta-button";
 import { landingPageData } from "@/constants";
-import Link from "next/link";
+
 const Hero = () => {
   return (
     <div className="relative mt-32 mb-48 md:mb-32">
@@ -19,13 +20,13 @@ const Hero = () => {
           />
         </div>
 
-        <div className="absolute top-[20%] md:top-1/2 left-6 md:left-24 md:-translate-y-1/2 z-10 max-w-xl md:max-w-2xl lg:max-w-3xl">
+        <div className="absolute top-[18%] md:top-1/2 left-6 md:left-24 md:-translate-y-1/2 z-10 max-w-xl md:max-w-2xl lg:max-w-[54rem]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary mb-4 md:mb-6 leading-tight drop-shadow-md">
+            <h1 className="text-4xl sm:text-5xl md:text-[3.35rem] lg:text-[3.75rem] xl:text-[4rem] font-bold text-primary mb-3 md:mb-5 leading-[1.12] text-balance drop-shadow-md">
               {landingPageData.hero.titlep1}
               <br />
               <span className=" text-primary bg-clip-text bg-linear-to-r from-primary to-primary/70">
@@ -47,6 +48,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Link href="/contact">
               <CtaButton
@@ -54,6 +56,15 @@ const Hero = () => {
                 className="rounded-2xl text-base md:text-lg h-12 md:h-14 px-6 md:px-8 shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
               >
                 {landingPageData.hero.ctap}
+              </CtaButton>
+            </Link>
+            <Link href="/services">
+              <CtaButton
+                size="lg"
+                variant="outline"
+                className="rounded-2xl text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-background/50 shadow-lg backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                {landingPageData.hero.ctad}
               </CtaButton>
             </Link>
           </motion.div>

@@ -246,6 +246,11 @@ export function ServicesList() {
                               src={service.imgsrc}
                               alt={service.title}
                               fill
+                              sizes={
+                                isLarge
+                                  ? "(min-width: 768px) 50vw, 100vw"
+                                  : "(min-width: 768px) 33vw, 100vw"
+                              }
                               className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                           </div>

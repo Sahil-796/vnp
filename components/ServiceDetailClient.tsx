@@ -75,6 +75,7 @@ export function ServiceDetailClient({ service }: { service: ServiceType }) {
               src={service.imgsrc}
               alt={service.title}
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
               priority
             />

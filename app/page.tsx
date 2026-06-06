@@ -182,6 +182,15 @@ const serviceSchema = {
             "ATS-optimized resume writing and professional document creation",
         },
       },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Hiring Services",
+          description:
+            "Hiring support for businesses including role definition, candidate screening, shortlisting, and interview coordination",
+        },
+      },
     ],
   },
 };

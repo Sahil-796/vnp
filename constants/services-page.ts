@@ -3,7 +3,7 @@ export const servicesPageData = {
     badge: "WHAT WE OFFER",
     title: "Our Services",
     description:
-      "We provide career-focused services designed to guide, support, and accelerate your professional growth.",
+      "We provide career-focused services for candidates and hiring support for businesses, with practical guidance from assessment to placement.",
   },
   labels: {
     backToServices: "Back to Services",
@@ -17,33 +17,40 @@ export const servicesPageData = {
   metadata: {
     title: "Services",
     description:
-      "Explore our comprehensive range of services designed to help you succeed.",
+      "Explore career development, job search, interview preparation, resume, placement, and hiring services designed to help candidates and businesses succeed.",
   },
   content: [
     {
       title: "Personalized Career Assessment",
       slug: "career-assessment",
-      desc: "Understand your strengths, interests, and career direction with a detailed assessment. Gain clarity and make informed decisions about your future with expert guidance.",
+      desc: "Understand your strengths, interests, work style, experience, and career direction with a detailed assessment. Gain clarity on the roles, industries, and growth steps that fit you best.",
       details: {
         longDescription:
-          "Our Career Assessment service helps you understand your personality, skills, and aspirations so you can make confident, informed career decisions. Through structured evaluation and expert consultation, we help you discover your unique strengths and identify the career paths that align with your goals.",
+          "Our Career Assessment service helps you understand your personality, skills, experience, values, and aspirations so you can make confident, informed career decisions. Through structured evaluation and expert consultation, we identify what you do well, where you may be under-positioned, and which career paths align with your goals, working style, and long-term earning potential. You leave with a practical direction instead of vague advice.",
         benefits: [
           "Clear understanding of strengths and interests",
           "Better career clarity and direction",
           "Reduced confusion about future choices",
           "More confident career decisions",
+          "Stronger awareness of target roles and industries",
+          "Personalized next steps based on your real profile",
         ],
         process: [
           "Comprehensive assessment of skills, interests, and goals",
           "In-depth one-on-one discussion with career expert",
           "Personalized insights and tailored recommendations",
           "Clear action plan with next steps for growth",
+          "Role and industry mapping based on your experience",
+          "Priority recommendations for resume, skills, and job search",
         ],
       },
       features: [
         "Personalized evaluation tailored to your unique profile",
         "Expert guidance for clarity and strategic direction",
         "Actionable recommendations for career improvement",
+        "Strength, skill-gap, and role-fit analysis",
+        "Career path options ranked by fit and opportunity",
+        "Clear next-step plan for immediate progress",
       ],
       imgsrc:
         "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2070&auto=format&fit=crop",
@@ -58,27 +65,34 @@ export const servicesPageData = {
     {
       title: "Goal Setting & Action Planning",
       slug: "goal-setting",
-      desc: "Turn your ambitions into achievable goals. We help you build a clear, structured career roadmap so you can stay focused and make consistent progress.",
+      desc: "Turn your ambitions into achievable goals with a structured roadmap. We help you prioritize applications, learning, networking, interview preparation, and career decisions.",
       details: {
         longDescription:
-          "This service helps you define meaningful goals and break them into actionable steps so you stay focused and consistent. We work with you to create a realistic, personalized roadmap that turns your career aspirations into concrete milestones.",
+          "This service helps you define meaningful goals and break them into practical actions so you stay focused and consistent. We work with you to create a realistic roadmap that turns career aspirations into milestones, weekly priorities, measurable progress, and decision points. Whether you are starting your search, changing direction, or aiming for a better role, we help you move with structure.",
         benefits: [
           "Clear short-term and long-term career goals",
           "Stronger focus and sustained motivation",
           "Structured roadmap for measurable success",
           "Better accountability and consistency in progress",
+          "Less overwhelm from unclear or competing priorities",
+          "A repeatable system for tracking progress and adjusting direction",
         ],
         process: [
           "Understanding your current situation and aspirations",
           "Defining realistic and meaningful career goals",
           "Breaking goals into actionable, manageable steps",
           "Tracking progress and refining your approach",
+          "Setting timelines for applications, skill growth, and interviews",
+          "Reviewing blockers and updating the plan as your search evolves",
         ],
       },
       features: [
         "Personalized career roadmap aligned with your goals",
         "Step-by-step execution plan with clear milestones",
         "Practical strategies for maintaining consistency",
+        "Weekly and monthly priority planning",
+        "Application, networking, and learning targets",
+        "Progress tracking with course corrections",
       ],
       imgsrc:
         "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5?q=80&w=2070&auto=format&fit=crop",
@@ -93,27 +107,34 @@ export const servicesPageData = {
     {
       title: "Skill Development",
       slug: "skill-development",
-      desc: "Build in-demand technical and soft skills through guided learning programs. Strengthen your profile and stay competitive in today's evolving job market.",
+      desc: "Build in-demand technical, communication, workplace, and leadership skills through guided development. Strengthen your profile for the roles you actually want.",
       details: {
         longDescription:
-          "We help you identify skill gaps and focus on the most relevant skills for your career so your growth is intentional and impactful. Our structured approach ensures you develop both technical expertise and essential soft skills that employers value.",
+          "We help you identify skill gaps and focus on the skills that matter most for your target roles. Instead of collecting random courses, you get a guided development plan that connects learning to employability. Our approach covers technical capability, communication, problem solving, collaboration, leadership, and job-readiness skills so your profile becomes stronger in interviews and on the job.",
         benefits: [
           "Improved employability and market competitiveness",
           "Stronger professional confidence and capability",
           "Better alignment with current industry needs",
           "Sustainable long-term career growth",
+          "Clearer proof of skills through projects and examples",
+          "More focused learning with less wasted effort",
         ],
         process: [
           "Identifying current skill gaps and opportunities",
           "Selecting high-impact skills to focus on first",
           "Guided learning direction with resources and support",
           "Tracking improvement and celebrating progress",
+          "Connecting new skills to resume bullets and interview stories",
+          "Reviewing role requirements to keep development market-relevant",
         ],
       },
       features: [
         "Career-focused skill guidance tailored to your industry",
         "Support for both technical and essential soft skills",
         "Structured improvement approach with clear milestones",
+        "Skill-gap mapping against target job descriptions",
+        "Project and portfolio guidance where relevant",
+        "Interview-ready examples that demonstrate your growth",
       ],
       imgsrc:
         "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
@@ -128,27 +149,34 @@ export const servicesPageData = {
     {
       title: "Interview Preparation",
       slug: "interview-preparation",
-      desc: "Prepare confidently with mock interviews, real-world questions, and personalized feedback. Improve communication, structure better answers, and perform at your best.",
+      desc: "Prepare confidently for recruiter screens, hiring manager interviews, behavioral rounds, technical discussions, and final conversations with realistic practice and direct feedback.",
       details: {
         longDescription:
-          "Our Interview Preparation service helps you build confidence and master the art of interviewing. Through realistic mock interviews, expert feedback, and proven frameworks, you'll learn to communicate your value effectively and handle any interview situation with poise.",
+          "Our Interview Preparation service helps you build confidence and communicate your value clearly. Through realistic mock interviews, expert feedback, and proven answer frameworks, you learn how to respond to behavioral, situational, technical, and role-specific questions. We work on your stories, delivery, body language, follow-up strategy, and salary conversations so you can perform well across the full hiring process.",
         benefits: [
           "Sharper and more impactful interview answers",
           "Higher confidence under pressure and in challenging situations",
           "Stronger communication skills and executive presence",
           "Better performance in competitive interview processes",
+          "Clear STAR stories tailored to your experience",
+          "Better preparation for objections, gaps, and difficult questions",
         ],
         process: [
           "Evaluation of your current interview skills and experience",
           "High-quality mock interview sessions with real-world scenarios",
           "Detailed, actionable feedback and answer refinement",
           "Coaching on delivery, body language, and presence",
+          "Practice for role-specific, behavioral, and culture-fit questions",
+          "Follow-up and negotiation guidance after interview rounds",
         ],
       },
       features: [
         "Realistic mock interviews with industry-specific questions",
         "Deep personalized feedback on content and delivery",
         "Proven frameworks for structuring compelling answers",
+        "Behavioral, technical, and hiring-manager round preparation",
+        "Resume-based question practice and gap handling",
+        "Confidence-building support for virtual and in-person interviews",
       ],
       imgsrc:
         "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop",
@@ -163,27 +191,34 @@ export const servicesPageData = {
     {
       title: "Job Search Strategies",
       slug: "job-search-strategies",
-      desc: "Learn proven strategies for finding opportunities, networking effectively, and applying smartly. Increase your chances of getting hired faster.",
+      desc: "Learn how to find better opportunities, apply strategically, use referrals, improve outreach, organize your pipeline, and follow up without losing momentum.",
       details: {
         longDescription:
-          "This service helps you design a strategic, system-based job search approach that consistently generates interviews instead of wasted effort. Learn how to target the right opportunities, network effectively, and present yourself as the ideal candidate.",
+          "This service helps you design a strategic, system-based job search approach that generates better conversations and more interview opportunities. We help you define target roles, identify companies, improve your application materials, use LinkedIn and networking effectively, build referral paths, track follow-ups, and avoid the common trap of applying everywhere without a plan.",
         benefits: [
           "Higher quality job opportunities aligned with your goals",
           "Reduced wasted effort on random applications",
           "More interview callbacks and meaningful conversations",
           "Better control and efficiency in your job search",
+          "Stronger outreach messages and follow-up habits",
+          "Clear application pipeline visibility from lead to offer",
         ],
         process: [
           "Understanding your ideal roles and target companies",
           "Designing your personalized job search system",
           "Improving outreach, networking, and application strategy",
           "Tracking results and optimizing your approach",
+          "Creating a referral and recruiter-contact plan",
+          "Reviewing response rates and improving weak points",
         ],
       },
       features: [
         "System-based job search approach for consistency",
         "Strategic targeting instead of mass applying",
         "Proven networking and outreach strategies",
+        "Application tracker and follow-up rhythm",
+        "LinkedIn, recruiter, and referral guidance",
+        "Role targeting based on fit, growth, and compensation potential",
       ],
       imgsrc:
         "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
@@ -192,6 +227,47 @@ export const servicesPageData = {
         bg: "bg-sky-100 dark:bg-sky-900/20",
         accent: "text-sky-700 dark:text-sky-300",
         blob: "bg-sky-200 dark:bg-sky-800/40",
+      },
+    },
+    {
+      title: "Hiring Services",
+      slug: "hiring-services",
+      desc: "Hiring support for businesses that need reliable, role-ready talent. We help define requirements, screen candidates, coordinate interviews, and connect teams with profiles that match the work and culture.",
+      details: {
+        longDescription:
+          "Our Hiring Services support companies, founders, and growing teams that need dependable talent without adding unnecessary hiring complexity. We help clarify role requirements, build a practical candidate profile, screen resumes, shortlist qualified candidates, coordinate interview steps, and keep communication organized. The goal is simple: help you meet candidates who are aligned with the role, the expectations, the work environment, and the timeline.",
+        benefits: [
+          "Clearer role requirements before sourcing begins",
+          "Shortlisted candidates aligned with skills, availability, and expectations",
+          "Reduced time spent reviewing unqualified profiles",
+          "More structured interview coordination and candidate communication",
+          "Hiring support for full-time, contract, remote, and hybrid roles",
+          "Better candidate fit through practical screening and expectation alignment",
+        ],
+        process: [
+          "Understand the role, hiring timeline, must-have skills, and team context",
+          "Create a practical candidate profile and screening criteria",
+          "Source, review, and shortlist candidates against the agreed requirements",
+          "Coordinate interviews and gather feedback from both sides",
+          "Support offer-stage communication and expectation alignment",
+          "Refine sourcing criteria if the market response needs adjustment",
+        ],
+      },
+      features: [
+        "Role definition and hiring requirement clarification",
+        "Resume screening and candidate shortlisting",
+        "Interview coordination and candidate communication",
+        "Support for full-time, contract, remote, and hybrid hiring",
+        "Expectation alignment around skills, compensation, and availability",
+        "Hiring process support for growing teams and small businesses",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Start Hiring",
+      color: {
+        bg: "bg-purple-100 dark:bg-purple-900/20",
+        accent: "text-purple-700 dark:text-purple-300",
+        blob: "bg-purple-200 dark:bg-purple-800/40",
       },
     },
   ],

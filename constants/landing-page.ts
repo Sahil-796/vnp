@@ -10,12 +10,13 @@ import { siteInfo } from "./site-info";
 
 export const landingPageData = {
   hero: {
-    titlep1: "Career guidance that",
-    titlep2: "Leads to Real Career Growth",
-    subtitle: "Get the Right Career Advice from Industry Experts",
-    ctap: "Get Started Now",
+    titlep1: "Career Guidance for Talent.",
+    titlep2: "Hiring Support for Teams.",
+    subtitle:
+      "We help students and professionals build the right career path, while helping companies find dependable, role-ready candidates.",
+    ctap: "Get Career or Hiring Support",
     desc: "Move your career forward with focused guidance, practical coaching, and services designed around real employment outcomes.",
-    ctad: "Learn More",
+    ctad: "Explore Services",
   },
 
   services: {
@@ -25,7 +26,7 @@ export const landingPageData = {
       {
         title: "Personalized Career Assessment",
         slug: "career-assessment",
-        desc: "Understand your strengths, interests, and career direction with a detailed assessment. Gain clarity and make informed decisions about your future with expert guidance.",
+        desc: "Understand your strengths, work style, experience, and career direction through a guided assessment. We help you identify the right roles, industries, growth gaps, and next moves so your career decisions feel focused instead of random.",
         imgsrc:
           "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2070&auto=format&fit=crop",
         ctaText: "Start Assessment",
@@ -33,7 +34,7 @@ export const landingPageData = {
       {
         title: "Goal Setting & Action Planning",
         slug: "goal-setting",
-        desc: "Turn your ambitions into achievable goals. We help you build a clear, structured career roadmap so you can stay focused and make consistent progress.",
+        desc: "Turn broad ambitions into a practical roadmap with clear milestones, weekly priorities, and measurable outcomes. We help you plan applications, learning, networking, interview prep, and career moves with structure.",
         imgsrc:
           "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5?q=80&w=2070&auto=format&fit=crop",
         ctaText: "Create Your Plan",
@@ -41,7 +42,7 @@ export const landingPageData = {
       {
         title: "Skill Development",
         slug: "skill-development",
-        desc: "Build in-demand technical and soft skills through guided learning programs. Strengthen your profile and stay competitive in today's evolving job market.",
+        desc: "Build the technical, communication, leadership, and job-readiness skills employers look for. We map your current capabilities against target roles and guide you toward the highest-impact learning first.",
         imgsrc:
           "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
         ctaText: "Explore Programs",
@@ -49,7 +50,7 @@ export const landingPageData = {
       {
         title: "Interview Preparation",
         slug: "interview-preparation",
-        desc: "Prepare confidently with mock interviews, real-world questions, and personalized feedback. Improve communication, structure better answers, and perform at your best.",
+        desc: "Prepare for recruiter screens, hiring manager rounds, behavioral interviews, technical discussions, and final conversations. Practice with realistic questions, sharper stories, and feedback that improves both content and delivery.",
         imgsrc:
           "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop",
         ctaText: "Start Practicing",
@@ -57,10 +58,18 @@ export const landingPageData = {
       {
         title: "Job Search Strategies",
         slug: "job-search-strategies",
-        desc: "Learn proven strategies for finding opportunities, networking effectively, and applying smartly. Increase your chances of getting hired faster.",
+        desc: "Replace scattered applications with a targeted search system. We help you choose better roles, improve outreach, track applications, use referrals, strengthen LinkedIn, and follow up with confidence.",
         imgsrc:
           "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
         ctaText: "Improve Your Search",
+      },
+      {
+        title: "Hiring Services",
+        slug: "hiring-services",
+        desc: "For businesses that need dependable talent, we support hiring from role definition to candidate shortlisting. We help clarify requirements, screen profiles, coordinate interviews, and connect teams with candidates who match the work, culture, and timeline.",
+        imgsrc:
+          "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Hire With Us",
       },
     ],
   },
@@ -347,8 +356,11 @@ export const landingPageData = {
         label: "LinkedIn",
         href: siteInfo.social.linkedin,
       },
+      {
+        label: "Instagram",
+        href: siteInfo.social.instagram,
+      },
       // { label: "Facebook", href: "#" },
-      // { label: "Instagram", href: "#" },
       // { label: "Twitter", href: "#" },
     ],
     copyright: "Copyright © 2026 Vision & Path. All Rights Reserved.",
