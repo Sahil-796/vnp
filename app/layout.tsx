@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ExpandableChatDemo } from "@/components/AI";
 import Footer from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { siteInfo } from "@/constants";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -19,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 // ✅ Canonical domain (no www - consistent across all files)
-const siteUrl = "https://visionandpath.com";
+const siteUrl = siteInfo.url;
 
 // Cache-busting version for OG image and logo (update this when you change images)
 const ogImageVersion = "v3";
@@ -58,8 +59,8 @@ export const metadata: Metadata = {
     "vision & path",
     "Vision and Path career services",
     "Vision and Path job placement",
-    "Vision and Path Texas",
-    "Vision and Path Laredo",
+    "Vision and Path Wyoming",
+    "Vision and Path Sheridan",
     "visionandpath.com",
     "job placement services",
     "career coaching",
@@ -75,8 +76,8 @@ export const metadata: Metadata = {
     "career guidance",
     "professional career coaching",
     "VP Career Services",
-    "Texas job placement",
-    "Laredo career services",
+    "Wyoming job placement",
+    "Sheridan career services",
   ],
 
   authors: [{ name: "Vision and Path", url: siteUrl }],
@@ -174,20 +175,16 @@ const organizationSchema = {
     "Expert job placement services, career coaching, and professional development to accelerate your career success.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "5900 Balcones Dr",
-    addressLocality: "Laredo",
-    addressRegion: "TX",
-    postalCode: "78046",
-    addressCountry: "US",
+    ...siteInfo.address,
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+1-210-530-1296",
+    telephone: siteInfo.phoneSchema,
     contactType: "customer service",
-    email: "careers@visionandpath.com",
+    email: siteInfo.email,
     availableLanguage: ["English"],
   },
-  sameAs: ["https://www.linkedin.com/company/visionandpath"],
+  sameAs: [siteInfo.social.linkedin],
 };
 
 const websiteSchema = {
@@ -218,15 +215,11 @@ const localBusinessSchema = {
   name: "Vision and Path",
   image: `${siteUrl}/og-image.png`,
   url: siteUrl,
-  telephone: "+1-210-530-1296",
-  email: "careers@visionandpath.com",
+  telephone: siteInfo.phoneSchema,
+  email: siteInfo.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "5900 Balcones Dr",
-    addressLocality: "Laredo",
-    addressRegion: "TX",
-    postalCode: "78046",
-    addressCountry: "US",
+    ...siteInfo.address,
   },
   priceRange: "$$",
   openingHoursSpecification: {

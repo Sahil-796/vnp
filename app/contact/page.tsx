@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ContactUs } from "@/components/ContactUs";
-import { contactPageData } from "@/constants";
+import { contactPageData, siteInfo } from "@/constants";
 
-const siteUrl = "https://visionandpath.com";
+const siteUrl = siteInfo.url;
 const ogImageVersion = "v3";
 
 export const metadata: Metadata = {
@@ -78,9 +78,9 @@ const contactPageSchema = {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+1-210-530-1296",
+        telephone: siteInfo.phoneSchema,
         contactType: "Career Services",
-        email: "hello@visionandpath.com",
+        email: siteInfo.email,
         areaServed: "US",
         availableLanguage: ["English"],
         hoursAvailable: {

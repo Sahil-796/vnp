@@ -6,6 +6,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { siteInfo } from "./site-info";
 
 export const landingPageData = {
   hero: {
@@ -13,7 +14,7 @@ export const landingPageData = {
     titlep2: "Leads to Real Career Growth",
     subtitle: "Get the Right Career Advice from Industry Experts",
     ctap: "Get Started Now",
-    desc: "Unlock the potential of your business with our comprehensive suite of tools designed to streamline your workflow and boost productivity.",
+    desc: "Move your career forward with focused guidance, practical coaching, and services designed around real employment outcomes.",
     ctad: "Learn More",
   },
 
@@ -334,8 +335,8 @@ export const landingPageData = {
   footer: {
     titlep1: "Vision",
     titlep2: "& Path",
-    address: "30 N Gould St Ste R Sheridan, WY 82801 USA",
-    phone: "+1 (210) 538-1296",
+    address: siteInfo.addressDisplay,
+    phone: siteInfo.phoneDisplay,
     companyLinks: [
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
@@ -344,7 +345,7 @@ export const landingPageData = {
     socialLinks: [
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/company/visionandpath.com",
+        href: siteInfo.social.linkedin,
       },
       // { label: "Facebook", href: "#" },
       // { label: "Instagram", href: "#" },

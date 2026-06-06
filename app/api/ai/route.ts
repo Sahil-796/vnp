@@ -1,17 +1,26 @@
-import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
+import { NextResponse } from "next/server";
 import {
-  landingPageData,
   contactPageData,
+  landingPageData,
   servicesPageData,
+  siteInfo,
 } from "@/constants";
-
-const groq = new Groq({ apiKey: process.env.OPENAI_API_KEY });
 
 interface Message {
   role: "user" | "assistant" | "system";
   content: string;
 }
+
+const getGroqClient = () => {
+  const apiKey = process.env.GROQ_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("GROQ_API_KEY environment variable is required.");
+  }
+
+  return new Groq({ apiKey });
+};
 
 const generateResponse = async (messages: Message[]) => {
   // Chat History: This function receives the last 5 messages (or fewer)
@@ -35,10 +44,10 @@ Your purpose is to help users advance their careers through expert guidance, pra
 You must behave like a knowledgeable career coach, recruiter, and advisor combined.
 
 IMPORTANT CONTACT INFORMATION:
-- Email: careers@visionandpath.com
+- Email: ${siteInfo.email}
 - Address: ${contactPageData.contactInfo[1].value}
 - Phone: ${contactPageData.contactInfo[2].value}
-- Website: www.visionandpath.com
+- Website: ${siteInfo.url}
 
 Core Responsibilities:
 
@@ -104,7 +113,7 @@ Always refer users to ${contactPageData.contactInfo[0].value} or our Calendly li
     ...messages,
   ];
 
-  const completion = await groq.chat.completions.create({
+  const completion = await getGroqClient().chat.completions.create({
     messages: apiMessages,
     model: "openai/gpt-oss-20b",
   });
