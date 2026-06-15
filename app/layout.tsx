@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Outfit } from "next/font/google";
+import { Bricolage_Grotesque, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { ExpandableChatDemo } from "@/components/AI";
@@ -8,13 +8,21 @@ import { Navbar } from "@/components/Navbar";
 import { siteInfo } from "@/constants";
 
 const outfit = Outfit({
-  variable: "--font-sans",
+  variable: "--font-sans-src",
   subsets: ["latin"],
   display: "swap",
 });
 
+// Display face: characterful Gen-Z grotesque for headlines
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display-src",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
 const geistMono = Geist_Mono({
-  variable: "--font-mono",
+  variable: "--font-mono-src",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,8 +39,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f6fe" },
+    { media: "(prefers-color-scheme: dark)", color: "#07103a" },
   ],
 };
 
@@ -316,7 +324,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${outfit.variable} ${geistMono.variable} antialiased font-sans`}
+        className={`${outfit.variable} ${bricolage.variable} ${geistMono.variable} antialiased font-sans`}
       >
         <Navbar />
         {children}

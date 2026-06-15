@@ -1,336 +1,187 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { motion } from "framer-motion";
 import { ChevronDown, X } from "lucide-react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import GlassSurface from "@/components/GlassSurface";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
-import { Button } from "./ui/button";
 import { FlowButton } from "./ui/flow-button";
 import { TextRollLink } from "./ui/text-roll-link";
+
+const menuItems = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Contact", href: "/contact" },
+];
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
+  const { scrollY } = useScroll();
 
-  const menuItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
-  ];
-
-  const handleLinkClick = () => {
-    setIsOpen(false);
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    // Initial check
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 12);
+  });
 
   return (
     <div
       className={cn(
-        "fixed z-50 w-full top-0 left-0 transition-all duration-500 ease-in-out",
+        "fixed left-0 top-0 z-50 w-full transition-all duration-500 ease-out",
         isScrolled ? "py-2" : "py-4",
       )}
     >
-      <header className="flex items-center justify-between container mx-auto px-6 md:px-10 relative">
+      <header className="relative mx-auto flex max-w-[1400px] items-center justify-between px-5 md:px-8">
+        {/* Logo */}
         <Link
           href="/"
           className={cn(
-            "relative z-10 transition-all duration-500 flex items-center justify-center",
-            isScrolled ? "px-5 py-2" : "px-0 py-0",
+            "relative z-10 flex items-center rounded-full transition-all duration-500",
+            isScrolled
+              ? "bg-paper-2/70 px-4 py-1.5 shadow-sm backdrop-blur-md"
+              : "px-0 py-0",
           )}
         >
-          {/* Glass Background - Mobile Only/Scrolled */}
-          <div
-            className={cn(
-              "absolute inset-0 -z-10 transition-opacity duration-500",
-              isScrolled ? "opacity-100" : "opacity-0",
-            )}
-          >
-            {isScrolled && (
-              <GlassSurface
-                width="100%"
-                height="100%"
-                borderRadius={40}
-                blur={10}
-                opacity={0.5}
-                borderWidth={0.3}
-              />
-            )}
-          </div>
-
           <motion.div
-            className="relative z-10"
-            initial={{
-              x: -100,
-              opacity: 0,
-              filter: "drop-shadow(0 0 0px rgba(59, 130, 246, 0))",
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-              filter: [
-                "drop-shadow(0 0 20px rgba(59, 130, 246, 0.5))",
-                "drop-shadow(0 0 0px rgba(59, 130, 246, 0))",
-              ],
-            }}
-            transition={{
-              x: { duration: 0.8, type: "spring", bounce: 0.4 },
-              opacity: { duration: 0.8 },
-              filter: { duration: 1.5, times: [0.5, 1] },
-            }}
+            initial={{ x: -40, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.7, type: "spring", bounce: 0.35 }}
           >
             <Logo size="full" />
           </motion.div>
         </Link>
 
-        {/* Desktop Navbar - Pill Shape */}
-        <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-          <GlassSurface
-            borderRadius={40}
-            width="100%"
-            height="100%"
-            blur={10}
-            opacity={0.7}
-            borderWidth={1.2}
-            className="p-1 overflow-visible"
-          >
-            <nav className="flex items-center gap-16 relative">
-              {menuItems.map((item) => {
-                const isActive =
-                  item.href === "/services"
-                    ? pathname.startsWith("/services")
-                    : pathname === item.href;
+        {/* Desktop pill nav */}
+        <div className="absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+          <nav className="flex items-center gap-1 rounded-full border border-ink/10 bg-paper-2/70 p-1.5 shadow-sm backdrop-blur-md">
+            {menuItems.map((item) => {
+              const isActive =
+                item.href === "/services"
+                  ? pathname.startsWith("/services")
+                  : pathname === item.href;
 
-                if (item.name === "Services") {
-                  return (
-                    <div key={item.name} className="relative group/services">
-                      <button
-                        type="button"
-                        className={cn(
-                          "px-5 py-2 text-lg font-medium rounded-full transition-colors duration-299 relative z-10 flex items-center gap-1.5",
-                          isActive
-                            ? "text-black"
-                            : "text-muted-foreground hover:text-foreground",
-                        )}
-                      >
-                        {isActive && (
-                          <motion.div
-                            layoutId="navbar-pill"
-                            className="absolute inset-0 rounded-full -z-10 backdrop-blur-md"
-                            animate={{ scale: [1, 1.5, 1] }}
-                            transition={{
-                              scale: { duration: 0.35, ease: "easeInOut" },
-                              layout: {
-                                delay: 0.2,
-                                type: "spring",
-                                stiffness: 200,
-                                damping: 25,
-                              },
-                            }}
-                            style={{
-                              background: "rgba(255, 255, 255, 0.1)",
-                              border: "1px solid rgba(255, 255, 255, 0.18)",
-                              boxShadow:
-                                "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.3)",
-                            }}
-                          />
-                        )}
-                        <span>Services</span>
-                        <ChevronDown
-                          className={cn(
-                            "h-4 w-4 transition-transform",
-                            "group-hover/services:rotate-180",
-                          )}
+              if (item.name === "Services") {
+                return (
+                  <div key={item.name} className="group/services relative">
+                    <span
+                      className={cn(
+                        "relative flex cursor-default items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                        isActive
+                          ? "text-blue"
+                          : "text-ink-soft group-hover/services:text-ink",
+                      )}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-pill"
+                          className="absolute inset-0 -z-10 rounded-full bg-blue-100"
+                          transition={{
+                            type: "spring",
+                            stiffness: 320,
+                            damping: 30,
+                          }}
                         />
-                      </button>
-
-                      <div
-                        className={cn(
-                          "absolute left-1/2 -translate-x-1/2 top-full pt-2 min-w-64 transition-all duration-150",
-                          "opacity-0 -translate-y-1 pointer-events-none group-hover/services:opacity-100 group-hover/services:translate-y-0 group-hover/services:pointer-events-auto",
-                        )}
-                      >
-                        <div className="rounded-2xl border border-border/60 bg-background/95 p-2 shadow-xl backdrop-blur">
-                          <Link
-                            href="/services?tab=career-development"
-                            className="block rounded-xl px-3 py-2.5 text-sm text-foreground hover:bg-muted"
-                          >
-                            Career Consultation
-                          </Link>
-                          <Link
-                            href="/services?tab=software-building"
-                            className="mt-1 block rounded-xl px-3 py-2.5 text-sm text-foreground hover:bg-muted"
-                          >
-                            Software Building
-                          </Link>
-                        </div>
+                      )}
+                      Services
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover/services:rotate-180" />
+                    </span>
+                    <div className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover/services:pointer-events-auto group-hover/services:opacity-100">
+                      <div className="w-60 rounded-2xl border border-ink/10 bg-paper-2 p-2 shadow-lg">
+                        <Link
+                          href="/services?tab=career-development"
+                          className="block rounded-xl px-3 py-2.5 text-sm font-medium text-ink hover:bg-blue-100 hover:text-blue"
+                        >
+                          Career Consultation
+                        </Link>
+                        <Link
+                          href="/services?tab=software-building"
+                          className="mt-1 block rounded-xl px-3 py-2.5 text-sm font-medium text-ink hover:bg-blue-100 hover:text-blue"
+                        >
+                          Software Building
+                        </Link>
                       </div>
                     </div>
-                  );
-                }
-
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={cn(
-                      "px-5 py-2 text-lg font-medium rounded-full transition-colors duration-299 relative z-10",
-                      isActive
-                        ? "text-black"
-                        : "text-muted-foreground hover:text-foreground",
-                    )}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="navbar-pill"
-                        className="absolute inset-0 rounded-full -z-10 backdrop-blur-md"
-                        animate={{ scale: [1, 1.5, 1] }}
-                        transition={{
-                          scale: { duration: 0.35, ease: "easeInOut" },
-                          layout: {
-                            delay: 0.2,
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 25,
-                          },
-                        }}
-                        style={{
-                          background: "rgba(255, 255, 255, 0.1)",
-                          border: "1px solid rgba(255, 255, 255, 0.18)",
-                          boxShadow:
-                            "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.3)",
-                        }}
-                      />
-                    )}
-
-                    {item.name}
-                  </Link>
+                  </div>
                 );
-              })}
-            </nav>
-          </GlassSurface>
+              }
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                    isActive ? "text-blue" : "text-ink-soft hover:text-ink",
+                  )}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-blue-100"
+                      transition={{
+                        type: "spring",
+                        stiffness: 320,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  {item.name}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
+
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <Link href="/contact">
-            <FlowButton text="Book a Session" />
+            <FlowButton text="Book a session" />
           </Link>
         </div>
 
-        {/* Mobile Menu Trigger */}
+        {/* Mobile trigger */}
         <div className="md:hidden">
           <Dialog.Root modal={false} open={isOpen} onOpenChange={setIsOpen}>
             <Dialog.Trigger asChild>
-              <motion.button
-                className={cn(
-                  "group outline-none cursor-pointer transition-all duration-500 relative flex items-center justify-center",
-                  isScrolled ? "p-3" : "p-2",
-                )}
+              <button
+                type="button"
                 aria-label="Open menu"
-                initial="initial"
-                animate={isHovered ? "hover" : "animate"}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                className="flex items-center justify-center rounded-full bg-paper-2/70 p-3 shadow-sm backdrop-blur-md"
               >
-                {/* Glass Background for Menu */}
-                <div
-                  className={cn(
-                    "absolute inset-0 -z-10 transition-opacity duration-500",
-                    isScrolled ? "opacity-100" : "opacity-0",
-                  )}
-                >
-                  {isScrolled && (
-                    <GlassSurface
-                      width="100%"
-                      height="100%"
-                      borderRadius={99}
-                      blur={10}
-                      opacity={0.5}
-                      borderWidth={0.3}
-                    />
-                  )}
-                </div>
-
-                <motion.div className="flex flex-col gap-1.5 items-end relative z-10">
-                  {[0, 1, 2].map((i) => (
-                    <motion.div
-                      key={i}
-                      variants={{
-                        initial: { x: 20, opacity: 0, skewX: -15 },
-                        animate: {
-                          x: 0,
-                          opacity: 1,
-                          skewX: -15,
-                          transition: {
-                            delay: i * 0.1,
-                            duration: 0.4,
-                            type: "spring",
-                            stiffness: 260,
-                            damping: 20,
-                            skewX: { duration: 0.3, delay: 0 },
-                            x: { duration: 0.3, delay: 0 },
-                          },
-                        },
-                        hover: {
-                          x: i === 0 ? 0 : i === 1 ? -8 : -16,
-                          opacity: 1,
-                          skewX: 15,
-                          transition: {
-                            duration: 0.3,
-                            delay: i * 0.1,
-                          },
-                        },
-                      }}
-                      className={cn(
-                        "h-0.5 bg-foreground rounded-full transition-colors duration-300 group-hover:bg-primary",
-                        i === 0 ? "w-8" : i === 1 ? "w-6" : "w-4",
-                      )}
-                    />
-                  ))}
-                </motion.div>
-              </motion.button>
+                <span className="flex flex-col items-end gap-1.5">
+                  <span className="h-0.5 w-7 rounded-full bg-ink" />
+                  <span className="h-0.5 w-5 rounded-full bg-ink" />
+                  <span className="h-0.5 w-6 rounded-full bg-ink" />
+                </span>
+              </button>
             </Dialog.Trigger>
 
             <Dialog.Portal>
-              <Dialog.Content className="fixed inset-0 z-60 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[2%] data-[state=open]:slide-in-from-top-[2%] duration-300">
+              <Dialog.Content className="fixed inset-0 z-60 flex flex-col items-center justify-center bg-paper/95 backdrop-blur-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 duration-300">
                 <Dialog.Close asChild>
-                  <Button
-                    variant="default"
-                    className="absolute top-12 right-10 md:top-16 md:right-38 px-8 py-7 rounded-full transition-colors cursor-pointer"
+                  <button
+                    type="button"
                     aria-label="Close menu"
+                    className="absolute right-6 top-8 flex h-12 w-12 items-center justify-center rounded-full bg-blue text-white"
                   >
-                    <X className="size-8" />
-                  </Button>
+                    <X className="h-6 w-6" />
+                  </button>
                 </Dialog.Close>
 
-                <Dialog.Title className="sr-only">Mobile Menu</Dialog.Title>
+                <Dialog.Title className="sr-only">Menu</Dialog.Title>
 
-                <nav className="flex flex-col items-center gap-8">
+                <nav className="flex flex-col items-center gap-7">
                   {menuItems.map((item, i) => (
                     <TextRollLink
                       key={item.name}
                       href={item.href}
-                      onClick={handleLinkClick}
+                      onClick={() => setIsOpen(false)}
                       className="overflow-hidden"
-                      textClassName="text-5xl md:text-7xl font-medium text-muted-foreground group-hover:text-primary duration-300 tracking-tight block pb-1"
+                      textClassName="font-display block pb-1 text-5xl font-bold tracking-tight text-ink-soft duration-300 group-hover:text-blue md:text-7xl"
                       style={{ transitionDelay: `${i * 50}ms` }}
                     >
                       {item.name}
@@ -338,9 +189,9 @@ export const Navbar = () => {
                   ))}
                 </nav>
 
-                <div className="mt-16">
-                  <Link href="/contact" onClick={handleLinkClick}>
-                    <FlowButton text="Book a Session" />
+                <div className="mt-14">
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>
+                    <FlowButton text="Book a session" />
                   </Link>
                 </div>
               </Dialog.Content>

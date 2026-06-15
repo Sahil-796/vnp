@@ -1,11 +1,9 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import type React from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-
-import SectionTitle from "../SectionTitle";
 
 interface FAQItemType {
   question: string;
@@ -20,7 +18,6 @@ interface FAQProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-// Main reusable FAQ component
 export const FAQ = ({
   title = "FAQs",
   subtitle = "Frequently Asked Questions",
@@ -30,150 +27,123 @@ export const FAQ = ({
   ...props
 }: FAQProps) => {
   const categoryKeys = Object.keys(categories);
-  const [selectedCategory, setSelectedCategory] = useState(categoryKeys[0]);
+  const [selected, setSelected] = useState(categoryKeys[0]);
+  // single-open accordion: only one question expanded at a time
+  const [openQ, setOpenQ] = useState<string | null>(null);
 
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-background px-4 py-12 text-foreground",
+        "mx-auto max-w-[1400px] px-5 py-24 md:px-8 md:py-28",
         className,
       )}
       {...props}
     >
-      <div className="mb-12">
-        <SectionTitle title={title} description={subtitle} />
+      <div className="grid gap-12 lg:grid-cols-12">
+        {/* Left: heading + category tabs (sticky on desktop) */}
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-28">
+            <h2 className="font-display text-4xl font-bold tracking-tight text-ink md:text-5xl">
+              {title}
+            </h2>
+            <p className="mt-4 max-w-sm text-lg text-ink-soft">{subtitle}</p>
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              {Object.entries(categories).map(([key, label]) => (
+                <button
+                  type="button"
+                  key={key}
+                  onClick={() => {
+                    setSelected(key);
+                    setOpenQ(null);
+                  }}
+                  className={cn(
+                    "rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200",
+                    selected === key
+                      ? "bg-blue text-white shadow-sm"
+                      : "border border-ink/15 text-ink-soft hover:border-blue/50 hover:text-blue",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right: accordion */}
+        <div className="lg:col-span-7">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selected}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-3"
+            >
+              {faqData[selected]?.map((faq) => (
+                <FAQItem
+                  key={faq.question}
+                  {...faq}
+                  isOpen={openQ === faq.question}
+                  onToggle={() =>
+                    setOpenQ((q) => (q === faq.question ? null : faq.question))
+                  }
+                />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
-      <FAQTabs
-        categories={categories}
-        selected={selectedCategory}
-        setSelected={setSelectedCategory}
-      />
-      <FAQList faqData={faqData} selected={selectedCategory} />
     </section>
   );
 };
 
-const FAQTabs = ({
-  categories,
-  selected,
-  setSelected,
-}: {
-  categories: Record<string, string>;
-  selected: string;
-  setSelected: (key: string) => void;
-}) => (
-  <div className="relative z-10 flex flex-wrap items-center justify-center gap-4">
-    {Object.entries(categories).map(([key, label]) => (
-      <button
-        type="button"
-        key={key}
-        onClick={() => setSelected(key)}
-        className={cn(
-          "relative overflow-hidden whitespace-nowrap rounded-md border px-3 py-1.5 text-sm font-medium transition-colors duration-500 cursor-pointer",
-          selected === key
-            ? "border-primary text-background"
-            : "border-border bg-transparent text-muted-foreground hover:text-foreground",
-        )}
-      >
-        <span className="relative z-10">{label}</span>
-        <AnimatePresence>
-          {selected === key && (
-            <motion.span
-              initial={{ y: "100%" }}
-              animate={{ y: "0%" }}
-              exit={{ y: "100%" }}
-              transition={{ duration: 0.5, ease: "backIn" }}
-              className="absolute inset-0 z-0 bg-gradient-to-r from-primary to-primary/80"
-            />
-          )}
-        </AnimatePresence>
-      </button>
-    ))}
-  </div>
-);
-
-const FAQList = ({
-  faqData,
-  selected,
-}: {
-  faqData: Record<string, FAQItemType[]>;
-  selected: string;
-}) => (
-  <div className="mx-auto mt-12 max-w-3xl">
-    <AnimatePresence mode="wait">
-      {Object.entries(faqData).map(([category, questions]) => {
-        if (selected === category) {
-          return (
-            <motion.div
-              key={category}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, ease: "backIn" }}
-              className="space-y-4"
-            >
-              {questions.map((faq, index) => (
-                <FAQItem key={index} {...faq} />
-              ))}
-            </motion.div>
-          );
-        }
-        return null;
-      })}
-    </AnimatePresence>
-  </div>
-);
-
-const FAQItem = ({ question, answer }: FAQItemType) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const FAQItem = ({
+  question,
+  answer,
+  isOpen,
+  onToggle,
+}: FAQItemType & { isOpen: boolean; onToggle: () => void }) => {
   return (
-    <motion.div
-      animate={isOpen ? "open" : "closed"}
+    <div
       className={cn(
-        "rounded-xl border transition-colors",
-        isOpen ? "bg-muted/50" : "bg-card",
+        "rounded-2xl border transition-colors duration-300",
+        isOpen ? "border-blue/30 bg-blue-100/50" : "border-ink/10 bg-paper-2",
       )}
     >
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between gap-4 p-4 text-left cursor-pointer"
+        onClick={onToggle}
+        className="flex w-full items-center justify-between gap-4 p-5 text-left"
       >
-        <span
+        <h3
           className={cn(
-            "text-lg font-medium transition-colors flex-1",
-            isOpen ? "text-foreground" : "text-muted-foreground",
+            "flex-1 text-base font-semibold transition-colors md:text-lg",
+            isOpen ? "text-ink" : "text-ink/80",
           )}
         >
-          <h3 className="inline text-inherit font-inherit">{question}</h3>
-        </span>
+          {question}
+        </h3>
         <motion.span
-          variants={{
-            open: { rotate: "45deg" },
-            closed: { rotate: "0deg" },
-          }}
+          animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.2 }}
+          className={cn(
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
+            isOpen ? "bg-blue text-white" : "bg-blue-100 text-blue",
+          )}
         >
-          <Plus
-            className={cn(
-              "h-5 w-5 transition-colors",
-              isOpen ? "text-foreground" : "text-muted-foreground",
-            )}
-          />
+          <Plus className="h-4 w-4" />
         </motion.span>
       </button>
       <motion.div
         initial={false}
-        animate={{
-          height: isOpen ? "auto" : "0px",
-          marginBottom: isOpen ? "16px" : "0px",
-        }}
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="overflow-hidden px-4"
+        className="overflow-hidden"
       >
-        <p className="text-muted-foreground">{answer}</p>
+        <p className="px-5 pb-5 leading-relaxed text-ink-soft">{answer}</p>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };

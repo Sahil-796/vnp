@@ -1,12 +1,7 @@
-"use client";
-
 import { Instagram, Linkedin } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { DotGrid } from "@/components/ui/dot-grid";
-import { landingPageData } from "@/constants";
+import { landingPageData, siteInfo } from "@/constants";
 import { Logo } from "./Logo";
-import { MobileFooter } from "./MobileFooter";
 
 const socialIcons = {
   Instagram,
@@ -14,125 +9,102 @@ const socialIcons = {
 };
 
 const Footer = () => {
+  const { footer } = landingPageData;
+
   return (
-    <>
-      <div className="block md:hidden">
-        <MobileFooter />
-      </div>
-      <div className="hidden md:block p-4 md:p-10 pb-20 md:pb-10">
-        <div className="rounded-3xl md:rounded-4xl relative w-full bg-muted overflow-hidden flex flex-col">
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/new-hero.jpg"
-              alt="background"
-              fill
-              sizes="(min-width: 768px) 100vw, 100vw"
-              className="object-cover opacity-80"
-              priority
-            />
-          </div>
-
-          {/* Content Overlay */}
-          <div className="relative z-10 flex flex-col justify-between p-6 sm:p-10 md:p-16 text-foreground min-h-[500px] md:h-[50vh]">
-            <div className="flex flex-col md:flex-row justify-between w-full relative gap-10 md:gap-0 h-full">
-              {/* Left Content */}
-              <div className="flex flex-col gap-8 md:gap-14 w-full md:w-1/3">
-                {/* Logo Mark */}
-                <Logo size="full" imageClassName="w-36 md:w-44" />
-
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-1 mt-2">
-                    <p className="text-sm md:text-base font-medium opacity-70">
-                      {landingPageData.footer.address}
-                    </p>
-                    <p className="text-sm md:text-base font-medium opacity-70">
-                      {landingPageData.footer.phone}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Content - Links */}
-              <div className="flex flex-wrap md:flex-nowrap gap-10 md:gap-24 mr-0 md:mr-20 z-20">
-                <div className="flex flex-col gap-4 md:gap-6">
-                  <h4 className="font-bold text-xs md:text-sm tracking-widest uppercase">
-                    Company
-                  </h4>
-                  <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
-                    {landingPageData.footer.companyLinks.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-4 md:gap-6">
-                  <h4 className="font-bold text-xs md:text-sm tracking-widest uppercase">
-                    Social Media
-                  </h4>
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    {landingPageData.footer.socialLinks.map((link) => {
-                      const Icon =
-                        socialIcons[link.label as keyof typeof socialIcons];
-
-                      return (
-                        <Link
-                          key={link.label}
-                          href={link.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={link.label}
-                          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-background/55 text-foreground shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-background/80 hover:text-primary"
-                        >
-                          {Icon ? (
-                            <Icon className="h-5 w-5" aria-hidden="true" />
-                          ) : (
-                            <span className="text-xs font-semibold">
-                              {link.label.slice(0, 1)}
-                            </span>
-                          )}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+    <footer className="px-3 pb-3 md:px-4 md:pb-4">
+      <div className="relative overflow-hidden rounded-[2rem] bg-navy px-6 pt-14 text-white md:px-12 md:pt-20">
+        <div className="relative grid gap-12 md:grid-cols-2 lg:grid-cols-12">
+          {/* brand + contact */}
+          <div className="lg:col-span-5">
+            <div className="inline-flex rounded-2xl bg-white/95 px-3 py-2">
+              <Logo size="full" imageClassName="w-36 md:w-40" />
             </div>
-
-            <div className="w-full md:w-1/3 mt-12 md:mt-0 relative z-20 border-t border-foreground pt-6 md:pt-8 bg-transparent">
-              <p className="text-xs md:text-sm font-medium opacity-60 md:opacity-100">
-                {landingPageData.footer.copyright}
+            <div className="mt-6 space-y-1.5 text-sm text-white/65 md:text-base">
+              <p className="max-w-xs">{footer.address}</p>
+              <p>
+                <a
+                  href={siteInfo.phoneHref}
+                  className="transition-colors hover:text-white"
+                >
+                  {footer.phone}
+                </a>
+              </p>
+              <p>
+                <a
+                  href={`mailto:${siteInfo.email}`}
+                  className="transition-colors hover:text-white"
+                >
+                  {siteInfo.email}
+                </a>
               </p>
             </div>
           </div>
 
-          {/* Decorations */}
-
-          {/* Top Right DotGrid Container */}
-          <div className="absolute top-[18%] -right-[4%] z-10 hidden md:block opacity-70">
-            <DotGrid size={4} />
+          {/* links */}
+          <div className="lg:col-span-3 lg:col-start-8">
+            <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/50">
+              Company
+            </h4>
+            <ul className="mt-5 space-y-3">
+              {footer.companyLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="inline-block text-lg font-medium text-white/80 transition-all duration-200 hover:translate-x-1 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Bottom Left DotGrid */}
-          <div className="absolute bottom-[20%] -left-[5%] z-20 hidden md:block">
-            <DotGrid size={5} />
-          </div>
-
-          {/* Bottom Right Box Decoration */}
-          <div className="absolute bottom-10 right-10 w-30 h-30 z-0 hidden md:block pointer-events-none">
-            <div className="w-full h-full border border-foreground rounded-3xl relative">
-              <div className="absolute top-5 -left-10 w-15 h-15 bg-foreground rounded-2xl"></div>
+          {/* social */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/50">
+              Follow
+            </h4>
+            <div className="mt-5 flex gap-3">
+              {footer.socialLinks.map((link) => {
+                const Icon =
+                  socialIcons[link.label as keyof typeof socialIcons];
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={link.label}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all duration-200 hover:-translate-y-0.5 hover:border-yellow hover:text-yellow"
+                  >
+                    {Icon ? (
+                      <Icon className="h-5 w-5" aria-hidden />
+                    ) : (
+                      <span className="text-xs font-semibold">
+                        {link.label.slice(0, 1)}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
+
+        {/* oversized wordmark */}
+        <div className="relative mt-12 select-none border-t border-white/10 pt-6">
+          <p className="text-sm text-white/50">{footer.copyright}</p>
+          <div
+            aria-hidden
+            className="font-display pointer-events-none mt-2 flex justify-between text-[18vw] font-extrabold leading-[0.8] tracking-tighter text-white/[0.05] md:text-[15vw]"
+          >
+            <span>Vision</span>
+            <span className="text-yellow/15">&amp; Path</span>
+          </div>
+        </div>
       </div>
-    </>
+    </footer>
   );
 };
 

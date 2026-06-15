@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import type * as React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { MessageLoading } from "@/components/ui/message-loading";
+import { cn } from "@/lib/utils";
 
 interface ChatBubbleProps {
-  variant?: "sent" | "received"
-  layout?: "default" | "ai"
-  className?: string
-  children: React.ReactNode
+  variant?: "sent" | "received";
+  layout?: "default" | "ai";
+  className?: string;
+  children: React.ReactNode;
 }
 
 export function ChatBubble({
@@ -48,9 +48,10 @@ export function ChatBubbleMessage({
   return (
     <div
       className={cn(
-        "rounded-lg p-3",
-
-        variant === "sent" ? "bg-primary text-primary-foreground" : "bg-white-400",
+        "rounded-lg p-3 text-sm",
+        variant === "sent"
+          ? "bg-primary text-primary-foreground"
+          : "bg-blue-100 text-ink",
         className,
       )}
     >
@@ -62,14 +63,13 @@ export function ChatBubbleMessage({
         children
       )}
     </div>
-  )
+  );
 }
 
 interface ChatBubbleAvatarProps {
-  src?: string
-  fallback?: string
-  className?: string
-
+  src?: string;
+  fallback?: string;
+  className?: string;
 }
 
 export function ChatBubbleAvatar({
@@ -82,7 +82,6 @@ export function ChatBubbleAvatar({
       {src && <AvatarImage src={src} />}
       <AvatarFallback>{fallback}</AvatarFallback>
     </Avatar>
-
   );
 }
 
@@ -113,8 +112,8 @@ export function ChatBubbleActionWrapper({
   className,
   children,
 }: {
-  className?: string
-  children: React.ReactNode
+  className?: string;
+  children: React.ReactNode;
 }) {
   return (
     <div className={cn("flex items-center gap-1 mt-2", className)}>

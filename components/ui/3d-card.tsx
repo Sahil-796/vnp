@@ -1,14 +1,8 @@
 "use client";
 
+import type React from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-
-import React, {
-  createContext,
-  useState,
-  useContext,
-  useRef,
-  useEffect,
-} from "react";
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
@@ -50,7 +44,7 @@ export const CardContainer = ({
       <div
         className={cn(
           "py-20 flex items-center justify-center",
-          containerClassName
+          containerClassName,
         )}
         style={{
           perspective: "1000px",
@@ -63,7 +57,7 @@ export const CardContainer = ({
           onMouseLeave={handleMouseLeave}
           className={cn(
             "flex items-center justify-center relative transition-all duration-200 ease-linear",
-            className
+            className,
           )}
           style={{
             transformStyle: "preserve-3d",
@@ -87,7 +81,7 @@ export const CardBody = ({
     <div
       className={cn(
         "h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
-        className
+        className,
       )}
     >
       {children}
@@ -107,7 +101,8 @@ export const CardItem = ({
   rotateZ = 0,
   ...rest
 }: {
-  as?: React.ElementType;
+  // biome-ignore lint/suspicious/noExplicitAny: dynamic polymorphic tag
+  as?: React.ElementType<any>;
   children: React.ReactNode;
   className?: string;
   translateX?: number | string;
@@ -134,14 +129,16 @@ export const CardItem = ({
     }
   };
 
+  // biome-ignore lint/suspicious/noExplicitAny: polymorphic tag breaks JSX prop inference
+  const Component = Tag as any;
   return (
-    <Tag
+    <Component
       ref={ref}
       className={cn("w-fit transition duration-200 ease-linear", className)}
       {...rest}
     >
       {children}
-    </Tag>
+    </Component>
   );
 };
 

@@ -1,140 +1,127 @@
 "use client";
 
-import React from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import SectionTitle from "./SectionTitle";
+import { useEffect, useState } from "react";
 import { landingPageData } from "@/constants";
+import { cn } from "@/lib/utils";
 
-interface Testimonial {
-  text: string;
-  image: string;
-  name: string;
-  role: string;
-}
-
-const testimonials: Testimonial[] = landingPageData.testimonials.content;
-
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
-
-// --- Sub-Components ---
-const TestimonialsColumn = (props: {
-  className?: string;
-  testimonials: Testimonial[];
-  duration?: number;
-}) => {
-  return (
-    <div className={props.className}>
-      <motion.ul
-        animate={{
-          translateY: "-50%",
-        }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0"
-      >
-        {[
-          ...["original", "clone"].map((key, index) => (
-            <React.Fragment key={key}>
-              {props.testimonials.map(({ text, image, name, role }) => (
-                <motion.li
-                  key={name}
-                  aria-hidden={index === 1 ? "true" : "false"}
-                  tabIndex={index === 1 ? -1 : 0}
-                  whileHover={{
-                    scale: 1.03,
-                    y: -8,
-                    boxShadow:
-                      "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
-                    transition: { type: "spring", stiffness: 400, damping: 17 },
-                  }}
-                  whileFocus={{
-                    scale: 1.03,
-                    y: -8,
-                    boxShadow:
-                      "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
-                    transition: { type: "spring", stiffness: 400, damping: 17 },
-                  }}
-                  className="p-10 rounded-3xl border border-border shadow-lg max-w-xs w-full bg-card transition-all duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-primary/30"
-                >
-                  <blockquote className="m-0 p-0">
-                    <p className="text-muted-foreground leading-relaxed font-normal m-0 transition-colors duration-300">
-                      {text}
-                    </p>
-                    <footer className="flex items-center gap-3 mt-6">
-                      <Image
-                        width={40}
-                        height={40}
-                        src={image}
-                        alt={`Avatar of ${name}`}
-                        className="h-10 w-10 rounded-full object-cover ring-2 ring-border group-hover:ring-primary/30 transition-all duration-300 ease-in-out"
-                      />
-                      <div className="flex flex-col">
-                        <cite className="font-semibold not-italic tracking-tight leading-5 text-foreground transition-colors duration-300">
-                          {name}
-                        </cite>
-                        <span className="text-sm leading-5 tracking-tight text-muted-foreground mt-0.5 transition-colors duration-300">
-                          {role}
-                        </span>
-                      </div>
-                    </footer>
-                  </blockquote>
-                </motion.li>
-              ))}
-            </React.Fragment>
-          )),
-        ]}
-      </motion.ul>
-    </div>
-  );
-};
+const testimonials = landingPageData.testimonials.content;
 
 export default function Testimonials() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduce = useReducedMotion();
+  const current = testimonials[active];
+
+  // auto-advance, paused on hover and under reduced motion
+  useEffect(() => {
+    if (reduce || paused) return;
+    const id = setInterval(() => {
+      setActive((a) => (a + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [reduce, paused]);
+
   return (
     <section
-      aria-labelledby="testimonials-heading"
-      className="bg-transparent pb-8 relative overflow-hidden"
+      aria-labelledby="stories-heading"
+      className="mx-auto max-w-[1400px] px-5 py-24 md:px-8 md:py-28"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 50, rotate: -2 }}
-        whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{
-          duration: 1.2,
-          ease: [0.16, 1, 0.3, 1],
-          opacity: { duration: 0.8 },
-        }}
-        className="container px-4 z-10 mx-auto"
-      >
-        <SectionTitle
-          title={landingPageData.testimonials.title}
-          description={landingPageData.testimonials.desc}
-          id="testimonials-heading"
-        />
-
-        <section
-          className="flex justify-center gap-6 mt-10 mask-[linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] max-h-185 overflow-hidden"
-          aria-label="Scrolling Testimonials"
+      <div className="mb-12 max-w-3xl">
+        <h2
+          id="stories-heading"
+          className="font-display text-4xl font-bold tracking-tight text-ink md:text-6xl"
         >
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
-          <TestimonialsColumn
-            testimonials={secondColumn}
-            className="hidden md:block"
-            duration={19}
-          />
-          <TestimonialsColumn
-            testimonials={thirdColumn}
-            className="hidden lg:block"
-            duration={17}
-          />
-        </section>
-      </motion.div>
+          {landingPageData.testimonials.title}
+        </h2>
+        <p className="mt-4 max-w-xl text-lg text-ink-soft">
+          {landingPageData.testimonials.desc}
+        </p>
+      </div>
+
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: hover only pauses auto-advance; all controls are real buttons */}
+      <div
+        className="grid gap-6 lg:grid-cols-12"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* Featured quote */}
+        <div className="relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-navy p-8 text-white md:p-12 lg:col-span-7">
+          <span
+            aria-hidden
+            className="font-display text-7xl leading-none text-yellow"
+          >
+            &ldquo;
+          </span>
+          <AnimatePresence mode="wait">
+            <motion.blockquote
+              key={active}
+              initial={{ opacity: 0, y: reduce ? 0 : 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reduce ? 0 : -12 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-4 flex-1"
+            >
+              <p className="line-clamp-4 text-2xl font-medium leading-snug text-white md:text-3xl">
+                {current.text}
+              </p>
+              <footer className="mt-8 flex items-center gap-3">
+                <Image
+                  src={current.image}
+                  alt={current.name}
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-full object-cover ring-2 ring-white/20"
+                />
+                <div>
+                  <div className="font-semibold">{current.name}</div>
+                  <div className="text-sm text-white/55">{current.role}</div>
+                </div>
+              </footer>
+            </motion.blockquote>
+          </AnimatePresence>
+        </div>
+
+        {/* Selector */}
+        <div className="lg:col-span-5">
+          <div className="grid grid-cols-5 gap-2.5 sm:grid-cols-6 lg:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <button
+                key={t.name}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={`Read ${t.name}'s story`}
+                aria-pressed={i === active}
+                className={cn(
+                  "group relative aspect-square overflow-hidden rounded-2xl ring-2 transition-all duration-300",
+                  i === active
+                    ? "ring-blue"
+                    : "opacity-60 ring-transparent hover:opacity-100",
+                )}
+              >
+                <Image
+                  src={t.image}
+                  alt={t.name}
+                  width={120}
+                  height={120}
+                  className="h-full w-full object-cover"
+                />
+                {i === active && (
+                  <span className="absolute inset-x-0 bottom-0 h-1 bg-blue" />
+                )}
+              </button>
+            ))}
+          </div>
+          <p className="mt-5 font-mono text-sm text-ink-soft">
+            {String(active + 1).padStart(2, "0")} /{" "}
+            {String(testimonials.length).padStart(2, "0")}
+            <span className="ml-3 text-ink/40">
+              Tap a face to read their story
+            </span>
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

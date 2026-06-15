@@ -14,7 +14,7 @@ export const landingPageData = {
     titlep2: "Hiring Support for Teams.",
     subtitle:
       "We help students and professionals build the right career path, while helping companies find dependable, role-ready candidates.",
-    ctap: "Get Career or Hiring Support",
+    ctap: "Book a session",
     desc: "Move your career forward with focused guidance, practical coaching, and services designed around real employment outcomes.",
     ctad: "Explore Services",
   },

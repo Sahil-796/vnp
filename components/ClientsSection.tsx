@@ -13,17 +13,17 @@ const clients = [
 
 export default function ClientsSection() {
   return (
-    <section className="bg-background/50">
-      <div className="container px-4 md:px-6 mx-auto">
-        <p className="text-center text-muted-foreground mb-8 text-sm font-semibold uppercase tracking-widest">
-          Trusted by Top Giants
+    <section className="py-6">
+      <div className="container mx-auto px-4 md:px-6">
+        <p className="mb-8 text-center text-sm font-semibold uppercase tracking-[0.18em] text-ink-soft">
+          Our candidates now work at
         </p>
         <div className="relative w-full overflow-hidden">
-          <Marquee className="[--duration:30s] [--gap:3rem] md:[--gap:5rem]">
+          <Marquee className="[--duration:32s] [--gap:3rem] md:[--gap:5rem]">
             {clients.map((client) => (
               <div
                 key={client.name}
-                className="flex items-center justify-center relative h-12 w-28 md:h-16 md:w-36 transition-all duration-300 cursor-pointer"
+                className="relative flex h-12 w-28 items-center justify-center opacity-70 transition-opacity duration-300 hover:opacity-100 md:h-16 md:w-36"
               >
                 <Image
                   src={client.src}
@@ -35,9 +35,8 @@ export default function ClientsSection() {
             ))}
           </Marquee>
 
-          {/* Gradient Fade Edges */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent"></div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-paper to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-paper to-transparent" />
         </div>
       </div>
     </section>

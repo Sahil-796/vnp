@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { CtaBand } from "@/components/CtaBand";
 import FAQSection from "@/components/FAQSection";
 import Hero from "@/components/Hero";
 import { PlacementBridge } from "@/components/PlacementBridge";
-import { Services } from "@/components/Services";
+import { Process } from "@/components/Process";
+import { ServicesIndex } from "@/components/ServicesIndex";
+import { Stats } from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
+import { TwoPaths } from "@/components/TwoPaths";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 
 const siteUrl = "https://visionandpath.com";
@@ -212,23 +216,16 @@ export default function Page() {
         }}
       />
 
-      <div className="max-w-[85vw] mx-auto mt-24">
-        <Hero />
-      </div>
-
-      <div className="max-w-[85vw] mx-auto">
-        <PlacementBridge />
-      </div>
-
-      <div className="max-w-[85vw] mx-auto">
-        <Services />
-      </div>
-
-      <div className="max-w-[85vw] mx-auto">
-        <WhyChooseUs />
-        <Testimonials />
-        <FAQSection />
-      </div>
+      <Hero />
+      <PlacementBridge />
+      <TwoPaths />
+      <ServicesIndex />
+      <Process />
+      <Stats />
+      <WhyChooseUs />
+      <Testimonials />
+      <FAQSection />
+      <CtaBand />
     </>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import SectionTitle from "@/components/SectionTitle";
 
 const companies = [
   { name: "Google", src: "/google.png" },
@@ -12,267 +11,318 @@ const companies = [
   { name: "Apple", src: "/apple.png" },
 ];
 
-const students = [
-  {
-    name: "Alex M.",
-    role: "Full Stack",
-    src: "https://api.dicebear.com/7.x/notionists/svg?seed=Alex",
-  },
-  {
-    name: "Sarah K.",
-    role: "Data Scientist",
-    src: "https://api.dicebear.com/7.x/notionists/svg?seed=Sarah",
-  },
-  {
-    name: "James R.",
-    role: "Backend Dev",
-    src: "https://api.dicebear.com/7.x/notionists/svg?seed=James",
-  },
-  {
-    name: "Emily T.",
-    role: "Product Manager",
-    src: "https://api.dicebear.com/7.x/notionists/svg?seed=Emily",
-  },
-  {
-    name: "Michael C.",
-    role: "AI Engineer",
-    src: "https://api.dicebear.com/7.x/notionists/svg?seed=Michael",
-  },
+const talent = [
+  { name: "Aanya R.", role: "Software Engineer", seed: "Aanya" },
+  { name: "Marcus L.", role: "Data Scientist", seed: "Marcus" },
+  { name: "Priya N.", role: "Product Manager", seed: "Priya" },
+  { name: "Diego S.", role: "AI Engineer", seed: "Diego" },
+  { name: "Lena K.", role: "UX Designer", seed: "Lena" },
 ];
 
+const avatarUrl = (seed: string) =>
+  `https://api.dicebear.com/7.x/notionists/svg?seed=${seed}&backgroundColor=transparent`;
+
+// node centres in the 1000x640 SVG userspace (5 items, evenly distributed)
+const nodeY = (i: number) => 64 + i * 128;
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
 export const PlacementBridge = () => {
+  const reduce = useReducedMotion();
+
   return (
-    <section className="py-12 overflow-hidden bg-background/50">
-      <div className="container px-4 md:px-6 mx-auto">
-        <div className="mb-16">
-          <SectionTitle
-            title="From Learning to Leading"
-            description="Our placement program bridges the gap between ambitious talent and world-class organizations."
-          />
+    <section className="relative overflow-hidden bg-navy py-20 text-white md:py-28">
+      {/* night-sky texture */}
+      <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-[0.07]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+      <div className="container relative z-10 mx-auto max-w-6xl px-4 md:px-6">
+        {/* Heading */}
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="font-mono text-xs font-medium uppercase tracking-[0.22em] text-yellow">
+            Our candidates now work at
+          </span>
+          <h2 className="font-display mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+            Talent, bridged to the best.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/65">
+            Vision &amp; Path connects ambitious people with world-class teams —
+            and walks with them from first conversation to first day.
+          </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-stretch justify-center w-full max-w-6xl mx-auto relative px-4 gap-10 md:gap-0 md:h-[650px]">
-          {/* Left Column: Students */}
-          <div className="w-full md:w-48 flex flex-col z-20 md:py-8 order-1 md:h-full">
-            <div className="flex-1 flex flex-row md:flex-col flex-wrap md:flex-nowrap justify-center md:justify-between items-center gap-4 md:gap-0 bg-transparent">
-              {students.map((student, idx) => (
+        {/* ===== Desktop bridge ===== */}
+        <div className="mt-16 hidden md:block">
+          <div className="flex items-stretch md:h-[460px]">
+            {/* Left: talent */}
+            <div className="flex w-44 flex-col justify-between py-1">
+              {talent.map((person, i) => (
                 <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -50 }}
+                  key={person.seed}
+                  initial={
+                    reduce ? { opacity: 1 } : { opacity: 0, x: -40 }
+                  }
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="relative group cursor-pointer"
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ delay: i * 0.1, duration: 0.6, ease }}
+                  className="group relative mx-auto"
                 >
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-50 group-hover:opacity-100 transition duration-300"></div>
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-background bg-card shadow-xl">
+                  <div className="absolute -inset-1 rounded-full bg-blue/60 opacity-50 blur-md transition-opacity duration-300 group-hover:opacity-90" />
+                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-white/80 bg-paper shadow-lg">
                     <Image
-                      src={student.src}
-                      alt={student.name}
+                      src={avatarUrl(person.seed)}
+                      alt={person.name}
                       width={64}
                       height={64}
-                      className="object-cover"
                       unoptimized
+                      className="h-full w-full object-cover"
                     />
                   </div>
-                  {/* Floating Tooltip */}
-                  <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-3 py-1.5 bg-card/90 backdrop-blur border rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 hidden md:block">
-                    <p className="font-semibold text-xs text-foreground">
-                      {student.name}
+                  {/* tooltip */}
+                  <div className="pointer-events-none absolute left-full top-1/2 z-50 ml-4 -translate-y-1/2 whitespace-nowrap rounded-xl border border-white/10 bg-navy-2/95 px-3 py-1.5 opacity-0 shadow-xl backdrop-blur transition-all duration-300 group-hover:opacity-100">
+                    <p className="text-xs font-semibold text-white">
+                      {person.name}
                     </p>
-                    <p className="text-[10px] text-muted-foreground">
-                      {student.role}
-                    </p>
+                    <p className="text-[10px] text-yellow">{person.role}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
-            {/* Label below column with spacing */}
-            <div className="text-center mt-4 md:mt-8">
-              <h3 className="font-bold text-primary uppercase tracking-widest text-sm">
-                Talent
-              </h3>
-            </div>
-          </div>
 
-          {/* Mobile Connector */}
-          <div className="md:hidden order-2 flex items-center justify-center relative my-2">
-            <div className="h-px w-3/4 bg-secondary/40" />
-            <div className="absolute">
-              <div className="h-12 w-12 rounded-full bg-background border border-secondary/40 shadow-lg flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/logo.png"
-                  alt="Vision and Path"
-                  width={40}
-                  height={40}
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
+            {/* Center: animated bridge */}
+            <div className="relative flex-1">
+              <svg
+                className="absolute inset-0 h-full w-full"
+                viewBox="0 0 1000 640"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient
+                    id="bridgeLine"
+                    gradientUnits="userSpaceOnUse"
+                    x1="0"
+                    y1="0"
+                    x2="1000"
+                    y2="0"
+                  >
+                    <stop offset="0%" stopColor="#5b7bf0" />
+                    <stop offset="45%" stopColor="#aab8f5" />
+                    <stop offset="55%" stopColor="var(--brand-yellow-300)" />
+                    <stop offset="100%" stopColor="var(--brand-yellow)" />
+                  </linearGradient>
+                  <filter
+                    id="bridgeGlow"
+                    x="-60%"
+                    y="-60%"
+                    width="220%"
+                    height="220%"
+                  >
+                    <feGaussianBlur stdDeviation="7" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
 
-          {/* Center Column: Bridge (SVG) */}
-          <div className="flex-1 relative hidden md:block order-2 mx-8 self-start h-[600px] mt-8">
-            {/* Note: SVG height matches the flex content excluding the bottom label area approximately */}
-            <svg
-              className="absolute inset-0 w-full h-full text-foreground/20"
-              preserveAspectRatio="none"
-              viewBox="0 0 100 100"
-            >
-              <defs>
-                <linearGradient
-                  id="bridgeGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="var(--primary)"
-                    stopOpacity="0.4"
-                  />
-                  <stop
-                    offset="50%"
-                    stopColor="var(--secondary)"
-                    stopOpacity="0.8"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--chart-1)"
-                    stopOpacity="0.4"
-                  />
-                </linearGradient>
-              </defs>
-
-              {/* Connecting Lines */}
-              {students.map((_, i) => {
-                // Adjust yStart/yEnd to match the item positions in the flex-col containers.
-                // It was 10 + i * 20. The container is full height.
-                // 5 items distributed evenly. 0%, 25%, 50%, 75%, 100% of the available vertical space for items.
-                // The SVG spans the same height as the items container.
-                const yStart = 10 + i * 20;
-                const yEnd = 10 + i * 20;
-
-                return (
-                  <g key={`path-${i}`}>
-                    {/* Left merging to center hub */}
-                    <motion.path
-                      d={`M 0,${yStart} C 35,${yStart} 35,50 45,50`}
-                      fill="none"
-                      stroke="url(#bridgeGradient)"
-                      strokeWidth="0.4"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      whileInView={{ pathLength: 1, opacity: 1 }}
-                      transition={{ duration: 1.5, delay: i * 0.1 }}
-                    />
-                    {/* Diverging from center hub to right */}
-                    <motion.path
-                      d={`M 55,50 C 65,50 65,${yEnd} 100,${yEnd}`}
-                      fill="none"
-                      stroke="url(#bridgeGradient)"
-                      strokeWidth="0.4"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      whileInView={{ pathLength: 1, opacity: 1 }}
-                      transition={{ duration: 1.5, delay: 0.8 + i * 0.1 }}
-                    />
-
-                    {/* Animated Particles */}
-                    <circle r="0.8" fill="var(--secondary)">
-                      <animateMotion
-                        dur={`${4 + i * 0.5}s`}
-                        repeatCount="indefinite"
-                        keyPoints="0;0.45;0.55;1"
-                        keyTimes="0;0.45;0.55;1"
-                        calcMode="linear"
-                        path={`M 0,${yStart} C 35,${yStart} 35,50 45,50 L 55,50 C 65,50 65,${yEnd} 100,${yEnd}`}
+                {talent.map((_, i) => {
+                  const y = nodeY(i);
+                  const leftD = `M 0,${y} C 320,${y} 320,320 440,320`;
+                  const rightD = `M 560,320 C 680,320 680,${y} 1000,${y}`;
+                  const fullD = `M 0,${y} C 320,${y} 320,320 440,320 L 560,320 C 680,320 680,${y} 1000,${y}`;
+                  return (
+                    <g key={i}>
+                      <motion.path
+                        d={leftD}
+                        fill="none"
+                        stroke="url(#bridgeLine)"
+                        strokeWidth={4}
+                        strokeLinecap="round"
+                        initial={
+                          reduce
+                            ? { pathLength: 1, opacity: 0.7 }
+                            : { pathLength: 0, opacity: 0 }
+                        }
+                        whileInView={{ pathLength: 1, opacity: 0.7 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.4, delay: i * 0.12, ease }}
                       />
-                    </circle>
-                  </g>
-                );
-              })}
-              {/* Central baseline (split) */}
-              <motion.line
-                x1="0"
-                y1="50"
-                x2="45"
-                y2="50"
-                stroke="var(--secondary)"
-                strokeOpacity="0.5"
-                strokeWidth="0.3"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 1.2, delay: 0.2 }}
-              />
-              <motion.line
-                x1="55"
-                y1="50"
-                x2="100"
-                y2="50"
-                stroke="var(--secondary)"
-                strokeOpacity="0.5"
-                strokeWidth="0.3"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 1.2, delay: 0.2 }}
-              />
+                      <motion.path
+                        d={rightD}
+                        fill="none"
+                        stroke="url(#bridgeLine)"
+                        strokeWidth={4}
+                        strokeLinecap="round"
+                        initial={
+                          reduce
+                            ? { pathLength: 1, opacity: 0.7 }
+                            : { pathLength: 0, opacity: 0 }
+                        }
+                        whileInView={{ pathLength: 1, opacity: 0.7 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 1.4,
+                          delay: 0.7 + i * 0.12,
+                          ease,
+                        }}
+                      />
+                      {!reduce && (
+                        <circle
+                          r="5"
+                          fill="var(--brand-yellow)"
+                          filter="url(#bridgeGlow)"
+                        >
+                          <animateMotion
+                            dur={`${4 + i * 0.55}s`}
+                            repeatCount="indefinite"
+                            keyPoints="0;0.46;0.54;1"
+                            keyTimes="0;0.46;0.54;1"
+                            calcMode="linear"
+                            path={fullD}
+                          />
+                        </circle>
+                      )}
+                    </g>
+                  );
+                })}
+              </svg>
 
-              {/* Central Hub Decorative Elements */}
-              <circle
-                cx="50"
-                cy="50"
-                r="8"
-                stroke="var(--secondary)"
-                strokeWidth="0.15"
-                strokeDasharray="1 1"
-                fill="none"
-              />
-            </svg>
-            {/* Center Logo */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="h-16 w-16 rounded-full bg-background border border-secondary/40 shadow-lg flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/logo.png"
-                  alt="Vision and Path"
-                  width={56}
-                  height={56}
-                  className="object-contain"
-                />
+              {/* Central Vision & Path hub */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="relative grid h-24 w-24 place-items-center">
+                  <div className="absolute inset-0 rounded-full bg-yellow/25 blur-xl" />
+                  <div
+                    className={`absolute inset-0 rounded-full border border-dashed border-white/25 ${
+                      reduce ? "" : "animate-spin-slow"
+                    }`}
+                  />
+                  <div className="relative grid h-[4.5rem] w-[4.5rem] place-items-center overflow-hidden rounded-full border border-white/15 bg-paper shadow-2xl">
+                    <Image
+                      src="/logo.png"
+                      alt="Vision and Path"
+                      width={56}
+                      height={56}
+                      className="h-12 w-12 object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Companies */}
-          <div className="w-full md:w-48 flex flex-col z-20 md:py-8 order-3 md:h-full">
-            <div className="flex-1 flex flex-row md:flex-col flex-wrap md:flex-nowrap justify-center md:justify-between items-center gap-4 md:gap-0">
-              {companies.map((company, idx) => (
+            {/* Right: companies */}
+            <div className="flex w-44 flex-col justify-between py-1">
+              {companies.map((company, i) => (
                 <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: 50 }}
+                  key={company.name}
+                  initial={reduce ? { opacity: 1 } : { opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 + 0.5, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="relative group p-3 bg-card border rounded-xl shadow-sm w-32 md:w-40 flex items-center justify-center h-16 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ delay: 0.5 + i * 0.1, duration: 0.6, ease }}
+                  className="flex h-16 items-center justify-center rounded-2xl border border-white/10 bg-white px-4 shadow-lg transition-transform duration-300 hover:-translate-y-1"
                 >
                   <Image
                     src={company.src}
                     alt={company.name}
-                    width={100}
+                    width={120}
                     height={40}
-                    className="object-contain max-h-12 w-auto"
+                    className="max-h-9 w-auto object-contain"
                   />
                 </motion.div>
               ))}
             </div>
-            {/* Label below column with spacing */}
-            <div className="text-center mt-4 md:mt-8">
-              <h3 className="font-bold text-primary uppercase tracking-widest text-sm">
-                Careers
-              </h3>
+          </div>
+
+          {/* Labels row, aligned under the columns */}
+          <div className="mt-6 flex items-center">
+            <div className="w-44 text-center">
+              <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-blue-100">
+                Talent
+              </span>
             </div>
+            <div className="flex-1" />
+            <div className="w-44 text-center">
+              <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-yellow">
+                Hired at
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* ===== Mobile bridge ===== */}
+        <div className="mt-12 md:hidden">
+          {/* Talent */}
+          <p className="mb-4 text-center font-mono text-xs font-semibold uppercase tracking-[0.22em] text-blue-100">
+            Talent
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {talent.map((person) => (
+              <div
+                key={person.seed}
+                className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-white/80 bg-paper shadow-lg"
+              >
+                <Image
+                  src={avatarUrl(person.seed)}
+                  alt={person.name}
+                  width={56}
+                  height={56}
+                  unoptimized
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Connector + hub */}
+          <div className="relative my-6 flex flex-col items-center">
+            <span
+              className={`block h-10 w-px bg-gradient-to-b from-blue-100/60 to-yellow/60 ${
+                reduce ? "" : "animate-pulse"
+              }`}
+            />
+            <div className="relative grid h-16 w-16 place-items-center">
+              <div className="absolute inset-0 rounded-full bg-yellow/25 blur-lg" />
+              <div className="relative grid h-14 w-14 place-items-center overflow-hidden rounded-full border border-white/15 bg-paper shadow-2xl">
+                <Image
+                  src="/logo.png"
+                  alt="Vision and Path"
+                  width={44}
+                  height={44}
+                  className="h-10 w-10 object-contain"
+                />
+              </div>
+            </div>
+            <span
+              className={`block h-10 w-px bg-gradient-to-b from-yellow/60 to-blue-100/60 ${
+                reduce ? "" : "animate-pulse"
+              }`}
+            />
+          </div>
+
+          {/* Companies */}
+          <p className="mb-4 text-center font-mono text-xs font-semibold uppercase tracking-[0.22em] text-yellow">
+            Hired at
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            {companies.map((company) => (
+              <div
+                key={company.name}
+                className="flex h-14 items-center justify-center rounded-2xl border border-white/10 bg-white px-4 shadow-lg"
+              >
+                <Image
+                  src={company.src}
+                  alt={company.name}
+                  width={110}
+                  height={36}
+                  className="max-h-8 w-auto object-contain"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+export default PlacementBridge;
