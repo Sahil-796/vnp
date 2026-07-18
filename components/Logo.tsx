@@ -16,13 +16,13 @@ export const Logo = ({
     <div className={cn("inline-flex", className)}>
       <Image
         src={isFullLogo ? "/logo-full.png" : "/logo.png"}
-        height={55}
-        width={55}
+        height={72}
+        width={72}
         alt="Logo"
         style={{ height: "auto" }}
         className={cn(
           "h-auto",
-          isFullLogo ? "w-[55px]" : "w-14",
+          isFullLogo ? "w-[72px]" : "w-[72px]",
           imageClassName,
         )}
       />
