@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import { PlacementBridge } from "@/components/PlacementBridge";
 import { Services } from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
+import { TwoPaths } from "@/components/TwoPaths";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 
 const siteUrl = "https://visionandpath.com";
@@ -218,6 +219,10 @@ export default function Page() {
 
       <div className="max-w-[85vw] mx-auto">
         <PlacementBridge />
+      </div>
+
+      <div className="max-w-[85vw] mx-auto">
+        <TwoPaths />
       </div>
 
       <div className="max-w-[85vw] mx-auto">

@@ -75,6 +75,39 @@ export const landingPageData = {
     ],
   },
 
+  twoPaths: {
+    title: "Built for Talent and Employers",
+    desc: "Whether you're building your career or building your team, we run the process end to end so the right people and the right roles find each other.",
+    columns: [
+      {
+        index: "01",
+        theme: "light" as const,
+        title: "For talent",
+        desc: "Build a career on purpose. We turn scattered applications into a focused plan with real momentum.",
+        points: [
+          "Career assessment + direction",
+          "Goal setting and skill development",
+          "Interview prep that builds confidence",
+          "A job-search system, not guesswork",
+        ],
+        cta: { label: "Explore services", href: "/services" },
+      },
+      {
+        index: "02",
+        theme: "dark" as const,
+        title: "For employers",
+        desc: "Hire people who actually fit the work. We run the search end to end so your roles close faster.",
+        points: [
+          "Role definition and intake",
+          "Sourcing and profile screening",
+          "Shortlists matched to your bar",
+          "Interview coordination to offer",
+        ],
+        cta: { label: "Book a session", href: "/contact" },
+      },
+    ],
+  },
+
   whyChooseUs: {
     title: "Why Choose Us for Your Career Success?",
     description:
