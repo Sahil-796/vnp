@@ -10,8 +10,9 @@ import { siteInfo } from "./site-info";
 
 export const landingPageData = {
   hero: {
-    titlep1: "Career Guidance for Talent.",
-    titlep2: "Hiring Support for Teams.",
+    titlep1: "Where talent and enterprises finds",
+    titlep2: "Their path towards excellence",
+    highlight: ["talent", "enterprises", "excellence"],
     subtitle:
       "We help students and professionals build the right career path, while helping companies find dependable, role-ready candidates.",
     ctap: "Get Career or Hiring Support",

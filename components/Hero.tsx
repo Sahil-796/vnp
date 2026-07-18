@@ -6,6 +6,22 @@ import Link from "next/link";
 import { CtaButton } from "@/components/ui/cta-button";
 import { landingPageData } from "@/constants";
 
+const renderTitle = (text: string, highlight: string[]) =>
+  text.split(/(\s+)/).map((token, i) => {
+    const clean = token.replace(/[^a-zA-Z]/g, "").toLowerCase();
+    if (clean && highlight.includes(clean)) {
+      return (
+        <span
+          key={i}
+          className="box-decoration-clone bg-linear-to-b from-transparent from-[62%] to-secondary to-[62%] px-1 -mx-0.5"
+        >
+          {token}
+        </span>
+      );
+    }
+    return token;
+  });
+
 const Hero = () => {
   return (
     <div className="relative mt-32 mb-48 md:mb-32">
@@ -26,12 +42,16 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-[3.35rem] lg:text-[3.75rem] xl:text-[4rem] font-bold text-primary mb-3 md:mb-5 leading-[1.12] text-balance drop-shadow-md">
-              {landingPageData.hero.titlep1}
+            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-[3.1rem] xl:text-[3.35rem] font-bold text-primary mb-3 md:mb-5 leading-[1.12] text-balance drop-shadow-md">
+              {renderTitle(
+                landingPageData.hero.titlep1,
+                landingPageData.hero.highlight,
+              )}
               <br />
-              <span className=" text-primary bg-clip-text bg-linear-to-r from-primary to-primary/70">
-                {landingPageData.hero.titlep2}
-              </span>
+              {renderTitle(
+                landingPageData.hero.titlep2,
+                landingPageData.hero.highlight,
+              )}
             </h1>
           </motion.div>
 
