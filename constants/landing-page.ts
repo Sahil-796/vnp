@@ -381,9 +381,16 @@ export const landingPageData = {
     address: siteInfo.addressDisplay,
     phone: siteInfo.phoneDisplay,
     companyLinks: [
+      { label: "Home", href: "/" },
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
       { label: "Contact", href: "/contact" },
+    ],
+    serviceLinks: [
+      { label: "Career Assessment", href: "/services/career-assessment" },
+      { label: "Interview Prep", href: "/services/interview-preparation" },
+      { label: "Job Search Strategy", href: "/services/job-search-strategies" },
+      { label: "Hiring Services", href: "/services/hiring-services" },
     ],
     socialLinks: [
       {

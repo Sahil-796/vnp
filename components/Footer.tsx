@@ -3,8 +3,8 @@
 import { Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { DotGrid } from "@/components/ui/dot-grid";
 import { landingPageData } from "@/constants";
+import { EVerifyBadge } from "./EVerifyBadge";
 import { Logo } from "./Logo";
 import { MobileFooter } from "./MobileFooter";
 
@@ -34,10 +34,10 @@ const Footer = () => {
           </div>
 
           {/* Content Overlay */}
-          <div className="relative z-10 flex flex-col justify-between p-6 sm:p-10 md:p-16 text-foreground min-h-[500px] md:h-[50vh]">
-            <div className="flex flex-col md:flex-row justify-between w-full relative gap-10 md:gap-0 h-full">
+          <div className="relative z-10 flex flex-col gap-6 md:gap-8 p-6 sm:p-8 md:p-10 text-foreground">
+            <div className="flex flex-col md:flex-row justify-between w-full relative gap-10 md:gap-0">
               {/* Left Content */}
-              <div className="flex flex-col gap-8 md:gap-14 w-full md:w-1/3">
+              <div className="flex flex-col gap-8 md:gap-10 w-full md:w-1/3">
                 {/* Logo Mark */}
                 <Logo size="full" imageClassName="w-36 md:w-44" />
 
@@ -54,13 +54,30 @@ const Footer = () => {
               </div>
 
               {/* Right Content - Links */}
-              <div className="flex flex-wrap md:flex-nowrap gap-10 md:gap-24 mr-0 md:mr-20 z-20">
+              <div className="flex flex-wrap md:flex-nowrap gap-10 md:gap-16 lg:gap-20 mr-0 md:mr-16 lg:mr-24 z-20">
                 <div className="flex flex-col gap-4 md:gap-6">
                   <h4 className="font-bold text-xs md:text-sm tracking-widest uppercase">
                     Company
                   </h4>
                   <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
                     {landingPageData.footer.companyLinks.map((link) => (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4 md:gap-6">
+                  <h4 className="font-bold text-xs md:text-sm tracking-widest uppercase">
+                    Services
+                  </h4>
+                  <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
+                    {landingPageData.footer.serviceLinks.map((link) => (
                       <Link
                         key={link.label}
                         href={link.href}
@@ -101,6 +118,12 @@ const Footer = () => {
                       );
                     })}
                   </div>
+
+                  {/* E-Verify Badge - aligned under the social links */}
+                  <EVerifyBadge
+                    className="mt-4"
+                    imageClassName="w-28 lg:w-32"
+                  />
                 </div>
               </div>
             </div>
@@ -109,25 +132,6 @@ const Footer = () => {
               <p className="text-xs md:text-sm font-medium opacity-60 md:opacity-100">
                 {landingPageData.footer.copyright}
               </p>
-            </div>
-          </div>
-
-          {/* Decorations */}
-
-          {/* Top Right DotGrid Container */}
-          <div className="absolute top-[18%] -right-[4%] z-10 hidden md:block opacity-70">
-            <DotGrid size={4} />
-          </div>
-
-          {/* Bottom Left DotGrid */}
-          <div className="absolute bottom-[20%] -left-[5%] z-20 hidden md:block">
-            <DotGrid size={5} />
-          </div>
-
-          {/* Bottom Right Box Decoration */}
-          <div className="absolute bottom-10 right-10 w-30 h-30 z-0 hidden md:block pointer-events-none">
-            <div className="w-full h-full border border-foreground rounded-3xl relative">
-              <div className="absolute top-5 -left-10 w-15 h-15 bg-foreground rounded-2xl"></div>
             </div>
           </div>
         </div>

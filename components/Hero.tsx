@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaButton } from "@/components/ui/cta-button";
 import { landingPageData } from "@/constants";
+import { EVerifyBadge } from "./EVerifyBadge";
 
 const renderTitle = (text: string, highlight: string[]) =>
   text.split(/(\s+)/).map((token, i) => {
@@ -12,6 +13,7 @@ const renderTitle = (text: string, highlight: string[]) =>
     if (clean && highlight.includes(clean)) {
       return (
         <span
+          // biome-ignore lint/suspicious/noArrayIndexKey: static title tokens, never reordered
           key={i}
           className="box-decoration-clone bg-linear-to-b from-transparent from-[62%] to-secondary to-[62%] px-1 -mx-0.5"
         >
@@ -41,6 +43,15 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="mb-4 md:mb-6"
+          >
+            <EVerifyBadge imageClassName="w-24 md:w-28" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-[3.1rem] xl:text-[3.35rem] font-bold text-primary mb-3 md:mb-5 leading-[1.12] text-balance drop-shadow-md">
               {renderTitle(

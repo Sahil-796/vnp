@@ -4,6 +4,7 @@ import { Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { landingPageData } from "@/constants";
+import { EVerifyBadge } from "./EVerifyBadge";
 import { Logo } from "./Logo";
 
 const socialIcons = {
@@ -42,6 +43,8 @@ export const MobileFooter = () => {
                   {landingPageData.footer.phone}
                 </p>
               </div>
+
+              <EVerifyBadge />
             </div>
           </div>
 
@@ -53,6 +56,23 @@ export const MobileFooter = () => {
               </h4>
               <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
                 {landingPageData.footer.companyLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <h4 className="font-bold text-xs tracking-widest uppercase">
+                Services
+              </h4>
+              <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
+                {landingPageData.footer.serviceLinks.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
