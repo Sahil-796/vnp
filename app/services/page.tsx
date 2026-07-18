@@ -117,12 +117,14 @@ export default function Page() {
       {/* Structured Data */}
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(servicesListSchema),
         }}
       />
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}

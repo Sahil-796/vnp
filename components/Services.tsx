@@ -1,16 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SectionTitle } from "@/components/SectionTitle";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Timeline } from "@/components/ui/timeline";
 import { landingPageData } from "../constants";
-import Image from "next/image";
 
 export function Services() {
   const data = landingPageData.services.content.map((service, index) => ({
     id: String(index),
     title: service.title,
     content: (
-      <div key={index}>
+      <div key={service.slug}>
         <p className="mb-8 text-muted-foreground text-xs md:text-sm font-normal">
           {service.desc}
         </p>

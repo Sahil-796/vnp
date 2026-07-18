@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { servicesPageData } from "@/constants";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -40,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: "monthly" as const,
       priority: 0.8,
-    })
+    }),
   );
 
   // Hidden service pages (still indexable, just not shown in main grid)

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { X, MessageCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { MessageCircle, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export type ChatPosition = "bottom-right" | "bottom-left";
 export type ChatSize = "sm" | "md" | "lg" | "xl" | "full";
@@ -119,7 +119,8 @@ const ExpandableChatFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 
 ExpandableChatFooter.displayName = "ExpandableChatFooter";
 
-interface ExpandableChatToggleProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ExpandableChatToggleProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
   isOpen: boolean;
   toggleChat: () => void;
@@ -158,16 +159,17 @@ const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
     <div className="relative">
       {/* Popup message */}
       {showPopup && !isOpen && (
-        <div 
+        <button
+          type="button"
           className="absolute bottom-2 right-20 cursor-pointer"
           onClick={toggleChat}
         >
           <div className="bg-primary text-primary-foreground px-4 py-2.5 rounded-full shadow-lg whitespace-nowrap text-sm font-medium hover:scale-105 transition-transform">
             Hey, how may I help you? 👋
           </div>
-        </div>
+        </button>
       )}
-      
+
       <Button
         variant="default"
         onClick={toggleChat}

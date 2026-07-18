@@ -34,11 +34,7 @@
       "purpose": "any"
     }
   ],
-  "categories": [
-    "business",
-    "education",
-    "productivity"
-  ],
+  "categories": ["business", "education", "productivity"],
   "shortcuts": [
     {
       "name": "Services",

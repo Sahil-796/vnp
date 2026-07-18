@@ -320,18 +320,21 @@ export default async function ServicePage({
       {/* Structured Data */}
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(serviceSchema),
         }}
       />
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
       />
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(howToSchema),
         }}

@@ -1,37 +1,28 @@
-import {
-  Briefcase,
-  Search,
-  Users,
-  CheckCircle,
-} from "lucide-react";
+import { Briefcase, CheckCircle, Search, Users } from "lucide-react";
 
 const steps = [
   {
     step: "Step 01",
     title: "Identifying the needs",
-    description:
-      "Understanding your needs, qualifications, and ambitions.",
+    description: "Understanding your needs, qualifications, and ambitions.",
     icon: Briefcase,
   },
   {
     step: "Step 02",
     title: "Hunting for opportunities",
-    description:
-      "Finding the best roles tailored for you in the market.",
+    description: "Finding the best roles tailored for you in the market.",
     icon: Search,
   },
   {
     step: "Step 03",
     title: "Career grooming",
-    description:
-      "We groom and guide you towards the right job.",
+    description: "We groom and guide you towards the right job.",
     icon: Users,
   },
   {
     step: "Step 04",
     title: "Job landing success",
-    description:
-      "Finally securing a job that aligns with your ambitions.",
+    description: "Finally securing a job that aligns with your ambitions.",
     icon: CheckCircle,
   },
 ];
@@ -42,9 +33,8 @@ export default function HowWeHelp() {
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading */}
         <h2 className="mb-20 max-w-xl text-4xl font-semibold text-foreground">
-          A personalized{" "}
-          <span className="text-primary">road map</span> to secure the
-          right job for you.
+          A personalized <span className="text-primary">road map</span> to
+          secure the right job for you.
         </h2>
 
         {/* Timeline */}

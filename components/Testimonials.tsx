@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import SectionTitle from "./SectionTitle";
+import Image from "next/image";
+import React from "react";
 import { landingPageData } from "@/constants";
+import SectionTitle from "./SectionTitle";
 
 interface Testimonial {
   text: string;

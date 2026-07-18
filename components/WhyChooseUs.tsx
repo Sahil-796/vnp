@@ -1,19 +1,29 @@
 "use client";
 
-import React from "react";
-import { cn } from "@/lib/utils";
-import SectionTitle from "./SectionTitle";
+import type * as React from "react";
 import { landingPageData } from "@/constants";
 import { useInView } from "@/hooks/use-in-view";
+import { cn } from "@/lib/utils";
+import SectionTitle from "./SectionTitle";
+
+type Feature = {
+  title: string;
+  description: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  iconColor: string;
+  color: string;
+  pinColor?: string;
+};
 
 // Custom SVG Icons
 const Icons = {
-  Expertise: (props: any) => (
+  Expertise: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
+      aria-hidden="true"
       {...props}
     >
       <path
@@ -26,12 +36,13 @@ const Icons = {
       <path d="M16 8h6M16 12h5M2 8h6M3 12h5" strokeOpacity="0.5" />
     </svg>
   ),
-  "Custom Solutions": (props: any) => (
+  "Custom Solutions": (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
+      aria-hidden="true"
       {...props}
     >
       <rect
@@ -57,12 +68,13 @@ const Icons = {
       <path d="M11 7h6M7 11v6" strokeOpacity="0.5" strokeDasharray="2 2" />
     </svg>
   ),
-  "Customer-Focused": (props: any) => (
+  "Customer-Focused": (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
+      aria-hidden="true"
       {...props}
     >
       <path
@@ -74,12 +86,13 @@ const Icons = {
       <path d="M8 17c0-2.21 1.79-4 4-4s4 1.79 4 4" />
     </svg>
   ),
-  Innovation: (props: any) => (
+  Innovation: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
+      aria-hidden="true"
       {...props}
     >
       <path d="M9 18h6" />
@@ -93,12 +106,13 @@ const Icons = {
       <path d="M9.5 7.5l1 1M14.5 7.5l-1 1" />
     </svg>
   ),
-  Flexibility: (props: any) => (
+  Flexibility: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
+      aria-hidden="true"
       {...props}
     >
       <path
@@ -109,12 +123,13 @@ const Icons = {
       <path d="M12 8a4 4 0 0 1 0 8 4 4 0 0 1 0-8z" strokeDasharray="2 2" />
     </svg>
   ),
-  "Quality Commitment": (props: any) => (
+  "Quality Commitment": (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
+      aria-hidden="true"
       {...props}
     >
       <path
@@ -132,10 +147,16 @@ const Icons = {
   ),
 };
 
-const FeatureCard = ({ feature, index }: { feature: any; index: number }) => {
+const FeatureCard = ({
+  feature,
+  index,
+}: {
+  feature: Feature;
+  index: number;
+}) => {
   const { ref, isInView } = useInView({ once: true, rootMargin: "-50px" });
 
-  // @ts-ignore
+  // @ts-expect-error
   const Icon = Icons[feature.title] || feature.icon;
 
   return (
@@ -145,12 +166,14 @@ const FeatureCard = ({ feature, index }: { feature: any; index: number }) => {
         "group relative flex flex-col items-start p-6 rounded-[2rem] border-[6px] border-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:rotate-0",
         index % 2 === 1 ? "lg:mt-12 -rotate-4" : "rotate-4",
         isInView
-          ? (index % 2 === 0 ? "animate-enter-left" : "animate-enter-right")
-          : "opacity-0"
+          ? index % 2 === 0
+            ? "animate-enter-left"
+            : "animate-enter-right"
+          : "opacity-0",
       )}
       style={{
         backgroundColor: feature.color,
-        animationDelay: `${index * 0.1}s`
+        animationDelay: `${index * 0.1}s`,
       }}
     >
       {/* Decorative Pin */}
@@ -160,7 +183,6 @@ const FeatureCard = ({ feature, index }: { feature: any; index: number }) => {
           <div
             className={cn(
               "w-8 h-8 rounded-full shadow-lg flex items-center justify-center border-2 border-white/50 z-10",
-              // @ts-ignore
               feature.pinColor || "bg-secondary",
             )}
           >
@@ -203,6 +225,7 @@ export const WhyChooseUs = () => {
               viewBox="0 0 1024 1200"
               fill="none"
               preserveAspectRatio="none"
+              aria-hidden="true"
             >
               <path
                 d="M230,100 C500,100 500,300 790,300 C500,300 500,500 230,500 C500,500 500,700 790,700 C500,700 500,900 230,900 C500,900 500,1100 790,1100"
@@ -216,7 +239,11 @@ export const WhyChooseUs = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
             {landingPageData.whyChooseUs.content.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} />
+              <FeatureCard
+                key={feature.title}
+                feature={feature}
+                index={index}
+              />
             ))}
           </div>
         </div>

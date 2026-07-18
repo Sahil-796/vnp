@@ -285,6 +285,7 @@ export default function RootLayout({
         {/* Structured data - Organization */}
         <script
           type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
           }}
@@ -293,6 +294,7 @@ export default function RootLayout({
         {/* Structured data - Website */}
         <script
           type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema),
           }}
@@ -301,6 +303,7 @@ export default function RootLayout({
         {/* Structured data - Local Business */}
         <script
           type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
           }}
@@ -309,6 +312,7 @@ export default function RootLayout({
         {/* Structured data - Breadcrumb */}
         <script
           type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static JSON-LD structured data
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(breadcrumbSchema),
           }}

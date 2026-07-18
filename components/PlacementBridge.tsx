@@ -57,7 +57,7 @@ export const PlacementBridge = () => {
             <div className="flex-1 flex flex-row md:flex-col flex-wrap md:flex-nowrap justify-center md:justify-between items-center gap-4 md:gap-0 bg-transparent">
               {students.map((student, idx) => (
                 <motion.div
-                  key={idx}
+                  key={student.name}
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.1, duration: 0.5 }}
@@ -118,6 +118,7 @@ export const PlacementBridge = () => {
               className="absolute inset-0 w-full h-full text-foreground/20"
               preserveAspectRatio="none"
               viewBox="0 0 100 100"
+              aria-hidden="true"
             >
               <defs>
                 <linearGradient
@@ -146,7 +147,7 @@ export const PlacementBridge = () => {
               </defs>
 
               {/* Connecting Lines */}
-              {students.map((_, i) => {
+              {students.map((student, i) => {
                 // Adjust yStart/yEnd to match the item positions in the flex-col containers.
                 // It was 10 + i * 20. The container is full height.
                 // 5 items distributed evenly. 0%, 25%, 50%, 75%, 100% of the available vertical space for items.
@@ -155,7 +156,7 @@ export const PlacementBridge = () => {
                 const yEnd = 10 + i * 20;
 
                 return (
-                  <g key={`path-${i}`}>
+                  <g key={student.name}>
                     {/* Left merging to center hub */}
                     <motion.path
                       d={`M 0,${yStart} C 35,${yStart} 35,50 45,50`}
@@ -247,7 +248,7 @@ export const PlacementBridge = () => {
             <div className="flex-1 flex flex-row md:flex-col flex-wrap md:flex-nowrap justify-center md:justify-between items-center gap-4 md:gap-0">
               {companies.map((company, idx) => (
                 <motion.div
-                  key={idx}
+                  key={company.name}
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.1 + 0.5, duration: 0.5 }}

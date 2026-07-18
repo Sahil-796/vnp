@@ -1,5 +1,5 @@
-import { FAQ } from '@/components/ui/faq-tabs'
-import { landingPageData } from '@/constants';
+import { FAQ } from "@/components/ui/faq-tabs";
+import { landingPageData } from "@/constants";
 
 const FAQSection = () => {
   return (

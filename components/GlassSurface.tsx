@@ -1,5 +1,29 @@
 import type React from "react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+
+const supportsSVGFilters = (filterId: string) => {
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    return false;
+  }
+
+  const isWebkit =
+    /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+  const isFirefox = /Firefox/.test(navigator.userAgent);
+
+  if (isWebkit || isFirefox) {
+    return false;
+  }
+
+  const div = document.createElement("div");
+  div.style.backdropFilter = `url(#${filterId})`;
+
+  return div.style.backdropFilter !== "";
+};
+
+const supportsBackdropFilter = () => {
+  if (typeof window === "undefined") return false;
+  return CSS.supports("backdrop-filter", "blur(10px)");
+};
 
 export interface GlassSurfaceProps {
   children?: React.ReactNode;
@@ -99,7 +123,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
   const isDarkMode = useDarkMode();
 
-  const generateDisplacementMap = () => {
+  const generateDisplacementMap = useCallback(() => {
     const rect = containerRef.current?.getBoundingClientRect();
     const actualWidth = rect?.width || 400;
     const actualHeight = rect?.height || 200;
@@ -125,11 +149,20 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     `;
 
     return `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
-  };
+  }, [
+    borderWidth,
+    redGradId,
+    blueGradId,
+    borderRadius,
+    mixBlendMode,
+    brightness,
+    opacity,
+    blur,
+  ]);
 
-  const updateDisplacementMap = () => {
+  const updateDisplacementMap = useCallback(() => {
     feImageRef.current?.setAttribute("href", generateDisplacementMap());
-  };
+  }, [generateDisplacementMap]);
 
   useEffect(() => {
     updateDisplacementMap();
@@ -150,13 +183,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
     gaussianBlurRef.current?.setAttribute("stdDeviation", displace.toString());
   }, [
-    width,
-    height,
-    borderRadius,
-    borderWidth,
-    brightness,
-    opacity,
-    blur,
+    updateDisplacementMap,
     displace,
     distortionScale,
     redOffset,
@@ -164,12 +191,11 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     blueOffset,
     xChannel,
     yChannel,
-    mixBlendMode,
   ]);
 
   useEffect(() => {
-    setSvgSupported(supportsSVGFilters());
-  }, []);
+    setSvgSupported(supportsSVGFilters(filterId));
+  }, [filterId]);
 
   useEffect(() => {
     setBackdropFilterSupported(supportsBackdropFilter());
@@ -187,49 +213,13 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     return () => {
       resizeObserver.disconnect();
     };
-  }, []);
+  }, [updateDisplacementMap]);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const resizeObserver = new ResizeObserver(() => {
-      setTimeout(updateDisplacementMap, 0);
-    });
-
-    resizeObserver.observe(containerRef.current);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
-
+  // width/height are resize triggers; the map is generated from the live DOM rect.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: width/height trigger regeneration but are not read here
   useEffect(() => {
     setTimeout(updateDisplacementMap, 0);
-  }, [width, height]);
-
-  const supportsSVGFilters = () => {
-    if (typeof window === "undefined" || typeof document === "undefined") {
-      return false;
-    }
-
-    const isWebkit =
-      /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-    const isFirefox = /Firefox/.test(navigator.userAgent);
-
-    if (isWebkit || isFirefox) {
-      return false;
-    }
-
-    const div = document.createElement("div");
-    div.style.backdropFilter = `url(#${filterId})`;
-
-    return div.style.backdropFilter !== "";
-  };
-
-  const supportsBackdropFilter = () => {
-    if (typeof window === "undefined") return false;
-    return CSS.supports("backdrop-filter", "blur(10px)");
-  };
+  }, [updateDisplacementMap, width, height]);
 
   const getContainerStyles = (): React.CSSProperties => {
     const baseStyles: React.CSSProperties = {
@@ -329,6 +319,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
       <svg
         className="w-full h-full pointer-events-none absolute inset-0 opacity-0 -z-10"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
         <defs>
           <filter

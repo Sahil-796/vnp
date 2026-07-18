@@ -79,6 +79,7 @@ export function useAutoScroll(options: UseAutoScrollOptions = {}) {
     return () => element.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `content` is a render trigger — it changes the scrollHeight read below but is not referenced directly
   useEffect(() => {
     const scrollElement = scrollRef.current;
     if (!scrollElement) return;

@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  
+
   // Redirect www to non-www for consistent canonical URL
   async redirects() {
     return [

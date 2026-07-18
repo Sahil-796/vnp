@@ -1,10 +1,5 @@
 "use client";
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -65,7 +60,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         ))}
         <div
           style={{
-            height: height + "px",
+            height: `${height}px`,
           }}
           className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-border to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
         >

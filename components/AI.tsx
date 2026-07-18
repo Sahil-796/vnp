@@ -1,7 +1,10 @@
 "use client";
 
-import { useState, FormEvent, useEffect, useRef } from "react";
-import { Send, ArrowUp, X } from "lucide-react";
+import { ArrowUp } from "lucide-react";
+import Image from "next/image";
+import { type FormEvent, useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import {
   ChatBubble,
@@ -9,16 +12,13 @@ import {
   ChatBubbleMessage,
 } from "@/components/ui/chat-bubble";
 import { ChatInput } from "@/components/ui/chat-input";
+import { ChatMessageList } from "@/components/ui/chat-message-list";
 import {
   ExpandableChat,
-  ExpandableChatHeader,
   ExpandableChatBody,
   ExpandableChatFooter,
+  ExpandableChatHeader,
 } from "@/components/ui/expandable-chat";
-import { ChatMessageList } from "@/components/ui/chat-message-list";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import Image from "next/image";
 
 export function ExpandableChatDemo() {
   const [messages, setMessages] = useState([
@@ -34,23 +34,21 @@ export function ExpandableChatDemo() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatBodyRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 0) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e as any);
+      handleSubmit();
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: FormEvent) => {
+    e?.preventDefault();
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
@@ -129,196 +127,194 @@ export function ExpandableChatDemo() {
   };
 
   return (
-    <>
-      <ExpandableChat
-        size="lg"
-        position="bottom-right"
-        icon={
-          <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-lg">
-            <Image
-              src="/ai-avatar.png"
-              alt="AI Assistant"
-              width={64}
-              height={64}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        }
-      >
-        <ExpandableChatHeader className="flex-col text-center justify-center gap-1">
-          <div className="w-12 h-12 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
-            <Image
-              src="/ai-avatar.png"
-              alt="AI Assistant"
-              width={48}
-              height={48}
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <h1 className="text-xl font-semibold">Pathfinder</h1>
-          <p className="text-sm text-muted-foreground">
-            Ask me anything about the company
-          </p>
-        </ExpandableChatHeader>
+    <ExpandableChat
+      size="lg"
+      position="bottom-right"
+      icon={
+        <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-lg">
+          <Image
+            src="/ai-avatar.png"
+            alt="AI Assistant"
+            width={64}
+            height={64}
+            className="object-cover w-full h-full"
+          />
+        </div>
+      }
+    >
+      <ExpandableChatHeader className="flex-col text-center justify-center gap-1">
+        <div className="w-12 h-12 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
+          <Image
+            src="/ai-avatar.png"
+            alt="AI Assistant"
+            width={48}
+            height={48}
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <h1 className="text-xl font-semibold">Pathfinder</h1>
+        <p className="text-sm text-muted-foreground">
+          Ask me anything about the company
+        </p>
+      </ExpandableChatHeader>
 
-        <ExpandableChatBody ref={chatBodyRef}>
-          <ChatMessageList>
-            {messages.map((message) => (
-              <ChatBubble
-                key={message.id}
-                variant={message.sender === "user" ? "sent" : "received"}
-              >
-                <ChatBubbleAvatar
-                  className="h-8 w-8 shrink-0"
-                  src={
-                    message.sender === "user"
-                      ? "/user-avatar.png"
-                      : "/ai-avatar.png"
-                  }
-                  fallback={message.sender === "user" ? "US" : "AI"}
-                />
-                <ChatBubbleMessage
-                  variant={message.sender === "user" ? "sent" : "received"}
-                  className={
-                    message.sender === "user" ? "rounded-3xl" : "rounded-3xl"
-                  }
-                >
-                  {message.sender === "ai" ? (
-                    <div className="prose prose-sm max-w-none">
-                      <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
-                        components={{
-                          p: ({ children }) => (
-                            <p className="mb-3 last:mb-0 leading-relaxed whitespace-pre-wrap wrap-break-word">
-                              {children}
-                            </p>
-                          ),
-                          ul: ({ children }) => (
-                            <ul className="mb-3 ml-5 list-disc space-y-1.5 leading-relaxed">
-                              {children}
-                            </ul>
-                          ),
-                          ol: ({ children }) => (
-                            <ol className="mb-3 ml-5 list-decimal space-y-1.5 leading-relaxed">
-                              {children}
-                            </ol>
-                          ),
-                          li: ({ children }) => (
-                            <li className="pl-1 leading-relaxed">{children}</li>
-                          ),
-                          code: ({ node, ...props }) => {
-                            const isInline =
-                              !node?.position ||
-                              typeof props.children === "string";
-                            return isInline ? (
-                              <code className="bg-muted/60 px-1.5 py-0.5 rounded text-sm font-mono wrap-break-word">
-                                {props.children}
-                              </code>
-                            ) : (
-                              <code className="block bg-muted/60 p-2 rounded text-sm font-mono overflow-x-auto whitespace-pre">
-                                {props.children}
-                              </code>
-                            );
-                          },
-                          pre: ({ children }) => (
-                            <pre className="bg-muted/60 p-3 rounded-lg my-3 overflow-x-auto">
-                              {children}
-                            </pre>
-                          ),
-                          h1: ({ children }) => (
-                            <h1 className="text-lg font-bold mb-2.5 mt-4 first:mt-0 leading-tight">
-                              {children}
-                            </h1>
-                          ),
-                          h2: ({ children }) => (
-                            <h2 className="text-base font-bold mb-2 mt-3 first:mt-0 leading-tight">
-                              {children}
-                            </h2>
-                          ),
-                          h3: ({ children }) => (
-                            <h3 className="text-sm font-bold mb-1.5 mt-2 first:mt-0 leading-tight">
-                              {children}
-                            </h3>
-                          ),
-                          a: ({ children, href }) => (
-                            <a
-                              href={href}
-                              className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors wrap-break-word"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {children}
-                            </a>
-                          ),
-                          strong: ({ children }) => (
-                            <strong className="font-semibold text-foreground">
-                              {children}
-                            </strong>
-                          ),
-                          em: ({ children }) => (
-                            <em className="italic">{children}</em>
-                          ),
-                          blockquote: ({ children }) => (
-                            <blockquote className="border-l-4 border-muted-foreground/30 pl-4 my-3 italic text-muted-foreground">
-                              {children}
-                            </blockquote>
-                          ),
-                          hr: () => (
-                            <hr className="my-4 border-muted-foreground/20" />
-                          ),
-                        }}
-                      >
-                        {message.content}
-                      </ReactMarkdown>
-                    </div>
-                  ) : (
-                    <div className="whitespace-pre-wrap wrap-break-word">
-                      {message.content}
-                    </div>
-                  )}
-                </ChatBubbleMessage>
-              </ChatBubble>
-            ))}
-
-            {isLoading && (
-              <ChatBubble variant="received">
-                <ChatBubbleAvatar
-                  className="h-8 w-8 shrink-0"
-                  src="/ai-avatar.png"
-                  fallback="AI"
-                />
-                <ChatBubbleMessage isLoading className="rounded-3xl" />
-              </ChatBubble>
-            )}
-            <div ref={messagesEndRef} />
-          </ChatMessageList>
-        </ExpandableChatBody>
-
-        <ExpandableChatFooter>
-          <form
-            onSubmit={handleSubmit}
-            className="relative rounded-2xl border bg-background focus-within:ring-2 focus-within:ring-ring transition-all"
-          >
-            <div className="flex items-center gap-2 p-2">
-              <ChatInput
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Type your message..."
-                className="min-h-12 resize-none rounded-2xl bg-background border-0 p-3 shadow-none focus-visible:ring-0 flex-1"
+      <ExpandableChatBody ref={chatBodyRef}>
+        <ChatMessageList>
+          {messages.map((message) => (
+            <ChatBubble
+              key={message.id}
+              variant={message.sender === "user" ? "sent" : "received"}
+            >
+              <ChatBubbleAvatar
+                className="h-8 w-8 shrink-0"
+                src={
+                  message.sender === "user"
+                    ? "/user-avatar.png"
+                    : "/ai-avatar.png"
+                }
+                fallback={message.sender === "user" ? "US" : "AI"}
               />
-              <Button
-                type="submit"
-                size="icon"
-                className="h-12 w-12 rounded-full shrink-0 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isLoading || !input.trim()}
+              <ChatBubbleMessage
+                variant={message.sender === "user" ? "sent" : "received"}
+                className={
+                  message.sender === "user" ? "rounded-3xl" : "rounded-3xl"
+                }
               >
-                <ArrowUp className="h-5 w-5" />
-              </Button>
-            </div>
-          </form>
-        </ExpandableChatFooter>
-      </ExpandableChat>
-    </>
+                {message.sender === "ai" ? (
+                  <div className="prose prose-sm max-w-none">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        p: ({ children }) => (
+                          <p className="mb-3 last:mb-0 leading-relaxed whitespace-pre-wrap wrap-break-word">
+                            {children}
+                          </p>
+                        ),
+                        ul: ({ children }) => (
+                          <ul className="mb-3 ml-5 list-disc space-y-1.5 leading-relaxed">
+                            {children}
+                          </ul>
+                        ),
+                        ol: ({ children }) => (
+                          <ol className="mb-3 ml-5 list-decimal space-y-1.5 leading-relaxed">
+                            {children}
+                          </ol>
+                        ),
+                        li: ({ children }) => (
+                          <li className="pl-1 leading-relaxed">{children}</li>
+                        ),
+                        code: ({ node, ...props }) => {
+                          const isInline =
+                            !node?.position ||
+                            typeof props.children === "string";
+                          return isInline ? (
+                            <code className="bg-muted/60 px-1.5 py-0.5 rounded text-sm font-mono wrap-break-word">
+                              {props.children}
+                            </code>
+                          ) : (
+                            <code className="block bg-muted/60 p-2 rounded text-sm font-mono overflow-x-auto whitespace-pre">
+                              {props.children}
+                            </code>
+                          );
+                        },
+                        pre: ({ children }) => (
+                          <pre className="bg-muted/60 p-3 rounded-lg my-3 overflow-x-auto">
+                            {children}
+                          </pre>
+                        ),
+                        h1: ({ children }) => (
+                          <h1 className="text-lg font-bold mb-2.5 mt-4 first:mt-0 leading-tight">
+                            {children}
+                          </h1>
+                        ),
+                        h2: ({ children }) => (
+                          <h2 className="text-base font-bold mb-2 mt-3 first:mt-0 leading-tight">
+                            {children}
+                          </h2>
+                        ),
+                        h3: ({ children }) => (
+                          <h3 className="text-sm font-bold mb-1.5 mt-2 first:mt-0 leading-tight">
+                            {children}
+                          </h3>
+                        ),
+                        a: ({ children, href }) => (
+                          <a
+                            href={href}
+                            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors wrap-break-word"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {children}
+                          </a>
+                        ),
+                        strong: ({ children }) => (
+                          <strong className="font-semibold text-foreground">
+                            {children}
+                          </strong>
+                        ),
+                        em: ({ children }) => (
+                          <em className="italic">{children}</em>
+                        ),
+                        blockquote: ({ children }) => (
+                          <blockquote className="border-l-4 border-muted-foreground/30 pl-4 my-3 italic text-muted-foreground">
+                            {children}
+                          </blockquote>
+                        ),
+                        hr: () => (
+                          <hr className="my-4 border-muted-foreground/20" />
+                        ),
+                      }}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
+                ) : (
+                  <div className="whitespace-pre-wrap wrap-break-word">
+                    {message.content}
+                  </div>
+                )}
+              </ChatBubbleMessage>
+            </ChatBubble>
+          ))}
+
+          {isLoading && (
+            <ChatBubble variant="received">
+              <ChatBubbleAvatar
+                className="h-8 w-8 shrink-0"
+                src="/ai-avatar.png"
+                fallback="AI"
+              />
+              <ChatBubbleMessage isLoading className="rounded-3xl" />
+            </ChatBubble>
+          )}
+          <div ref={messagesEndRef} />
+        </ChatMessageList>
+      </ExpandableChatBody>
+
+      <ExpandableChatFooter>
+        <form
+          onSubmit={handleSubmit}
+          className="relative rounded-2xl border bg-background focus-within:ring-2 focus-within:ring-ring transition-all"
+        >
+          <div className="flex items-center gap-2 p-2">
+            <ChatInput
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Type your message..."
+              className="min-h-12 resize-none rounded-2xl bg-background border-0 p-3 shadow-none focus-visible:ring-0 flex-1"
+            />
+            <Button
+              type="submit"
+              size="icon"
+              className="h-12 w-12 rounded-full shrink-0 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isLoading || !input.trim()}
+            >
+              <ArrowUp className="h-5 w-5" />
+            </Button>
+          </div>
+        </form>
+      </ExpandableChatFooter>
+    </ExpandableChat>
   );
 }

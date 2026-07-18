@@ -22,7 +22,6 @@ export const SectionTitle = ({
         containerClassName,
       )}
     >
-
       <h2
         id={id}
         className={cn(

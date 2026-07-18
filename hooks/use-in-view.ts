@@ -1,36 +1,41 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface UseInViewOptions extends IntersectionObserverInit {
-    once?: boolean;
+  once?: boolean;
 }
 
 export function useInView(options?: UseInViewOptions) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [isInView, setIsInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
-    useEffect(() => {
-        const element = ref.current;
-        if (!element) return;
+  const { threshold, root, rootMargin, once } = options ?? {};
 
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setIsInView(true);
-                if (options?.once) {
-                    observer.disconnect();
-                }
-            } else {
-                if (!options?.once) {
-                    setIsInView(false);
-                }
-            }
-        }, options);
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
 
-        observer.observe(element);
-
-        return () => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          if (once) {
             observer.disconnect();
-        };
-    }, [options?.threshold, options?.root, options?.rootMargin, options?.once]);
+          }
+        } else {
+          if (!once) {
+            setIsInView(false);
+          }
+        }
+      },
+      { threshold, root, rootMargin },
+    );
 
-    return { ref, isInView };
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [threshold, root, rootMargin, once]);
+
+  return { ref, isInView };
 }

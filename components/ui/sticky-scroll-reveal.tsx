@@ -1,14 +1,20 @@
 "use client";
-import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { ArrowRight, Check } from "lucide-react";
+import {
+  type MotionValue,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import type React from "react";
+import { useRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface ContentItem {
   title: string;
   description: string;
-  content?: React.ReactNode | any;
+  content?: React.ReactNode;
   pillColor?: string;
   bullets?: string[];
   cta?: { label: string; href: string };
@@ -26,6 +32,7 @@ const CustomCheckIcon = ({ className }: { className?: string }) => (
     strokeWidth="3"
     strokeLinecap="round"
     strokeLinejoin="round"
+    aria-hidden="true"
   >
     <path d="M20 6L9 17l-5-5" />
   </svg>
@@ -75,7 +82,7 @@ const StickyCard = ({
       className={cn(
         "absolute inset-0 h-full w-full flex flex-col justify-center",
         item.cardGradient || "bg-background",
-        index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+        index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse",
       )}
     >
       {/* Text Section - Mobile: Vertically centered, Left aligned, Padded top */}
@@ -85,7 +92,7 @@ const StickyCard = ({
             <h2
               className={cn(
                 "text-2xl lg:text-3xl font-bold px-3 py-1 lg:px-4 lg:py-2 rounded-xl inline-block mb-3 lg:mb-6",
-                item.pillColor
+                item.pillColor,
               )}
             >
               {item.title}
@@ -102,15 +109,17 @@ const StickyCard = ({
 
           {item.bullets && (
             <ul className="mt-4 lg:mt-8 space-y-2 lg:space-y-3">
-              {item.bullets.map((bullet, idx) => (
+              {item.bullets.map((bullet) => (
                 <li
-                  key={idx}
+                  key={bullet}
                   className="flex items-center gap-2 lg:gap-3 text-muted-foreground"
                 >
                   <div className="flex-shrink-0 w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
                     <CustomCheckIcon className="w-3 h-3 lg:w-3.5 lg:h-3.5" />
                   </div>
-                  <span className="text-xs lg:text-sm font-medium leading-tight">{bullet}</span>
+                  <span className="text-xs lg:text-sm font-medium leading-tight">
+                    {bullet}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -134,7 +143,7 @@ const StickyCard = ({
       <div
         className={cn(
           "w-full lg:w-1/2 h-1/2 lg:h-full overflow-hidden bg-muted",
-          contentClassName
+          contentClassName,
         )}
       >
         {item.content ?? null}
@@ -170,7 +179,7 @@ export const StickyScroll = ({
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {content.map((item, index) => (
           <StickyCard
-            key={index}
+            key={item.title}
             item={item}
             index={index}
             cardLength={cardLength}

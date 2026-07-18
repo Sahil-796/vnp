@@ -112,8 +112,8 @@ const FAQList = ({
               transition={{ duration: 0.5, ease: "backIn" }}
               className="space-y-4"
             >
-              {questions.map((faq, index) => (
-                <FAQItem key={index} {...faq} />
+              {questions.map((faq) => (
+                <FAQItem key={faq.question} {...faq} />
               ))}
             </motion.div>
           );
