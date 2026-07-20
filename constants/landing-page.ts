@@ -25,11 +25,11 @@ export const complianceLinks = [
 
 export const landingPageData = {
   hero: {
-    titlep1: "Where talent and enterprises finds",
-    titlep2: "Their path towards excellence",
-    highlight: ["talent", "enterprises", "excellence"],
+    titlep1: "Bridging talent & innovation",
+    titlep2: "for global success",
+    highlight: ["talent", "innovation", "success"],
     subtitle:
-      "We help students and professionals build the right career path, while helping companies find dependable, role-ready candidates.",
+      "Providing enterprises with role-ready talent. Guiding professionals to the right career path.",
     ctap: "Get Career or Hiring Support",
     desc: "Move your career forward with focused guidance, practical coaching, and services designed around real employment outcomes.",
     ctad: "Explore Services",
@@ -38,7 +38,7 @@ export const landingPageData = {
 
   services: {
     title: "Our Services",
-    desc: "We provide career-focused services designed to guide, support, and accelerate your professional growth.",
+    desc: "We provide comprehensive talent solutions designed to accelerate professional growth for candidates and build high-performing teams for enterprises.",
     content: [
       {
         title: "Personalized Career Assessment",
@@ -81,12 +81,20 @@ export const landingPageData = {
         ctaText: "Improve Your Search",
       },
       {
-        title: "Hiring Services",
-        slug: "hiring-services",
-        desc: "For businesses that need dependable talent, we support hiring from role definition to candidate shortlisting. We help clarify requirements, screen profiles, coordinate interviews, and connect teams with candidates who match the work, culture, and timeline.",
+        title: "Corporate Recruitment Solutions",
+        slug: "corporate-recruitment",
+        desc: "Source, vet, and secure top-tier talent with precision. We handle the end-to-end recruitment lifecycle to deliver dependable, role-ready candidates who align with your company's culture and operational goals.",
         imgsrc:
           "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop",
-        ctaText: "Hire With Us",
+        ctaText: "Start Hiring",
+      },
+      {
+        title: "Executive Search & Leadership Strategy",
+        slug: "executive-search",
+        desc: "Discover the visionary leaders who will shape your company's future. We provide discrete, highly targeted executive search and role definition services to secure leadership that drives innovation and global success.",
+        imgsrc:
+          "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
+        ctaText: "Find Your Leader",
       },
     ],
   },
@@ -127,7 +135,7 @@ export const landingPageData = {
   whyChooseUs: {
     title: "Why Choose Us for Your Career Success?",
     description:
-      "Discover why top professionals trust us for career advancement, job placement, and professional development solutions",
+      "Discover why top professionals and leading enterprises trust us for career advancement and strategic recruitment solutions",
     content: [
       {
         title: "Proven Career Placement Expertise",
@@ -165,7 +173,7 @@ export const landingPageData = {
       {
         title: "Cutting-Edge Recruitment Technology",
         description:
-          "Leveraging advanced AI-powered job matching, applicant tracking systems, and market analytics to connect you with premier employment opportunities faster.",
+          "Leveraging advanced AI-powered matching and analytics to connect elite talent with premier enterprise opportunities seamlessly.",
         icon: Lightbulb,
         iconColor: "text-blue-600",
         color: "#CDE1E4", // Pastel Blue
@@ -408,7 +416,11 @@ export const landingPageData = {
       { label: "Career Assessment", href: "/services/career-assessment" },
       { label: "Interview Prep", href: "/services/interview-preparation" },
       { label: "Job Search Strategy", href: "/services/job-search-strategies" },
-      { label: "Hiring Services", href: "/services/hiring-services" },
+      {
+        label: "Corporate Recruitment",
+        href: "/services/corporate-recruitment",
+      },
+      { label: "Executive Search", href: "/services/executive-search" },
     ],
     complianceLinks,
     socialLinks: [

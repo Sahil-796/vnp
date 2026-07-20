@@ -46,11 +46,11 @@ export const metadata: Metadata = {
   title: {
     template: "%s | Vision and Path",
     default:
-      "Vision and Path | Expert Job Placement & Career Coaching Services",
+      "Vision and Path | Expert Staffing & Job Placement Services",
   },
 
   description:
-    "Vision and Path provides expert career services including job placement, career coaching, resume optimization, interview preparation, and skill development. Transform your career with personalized guidance from industry professionals.",
+    "Vision and Path provides expert staffing and career services including job placement, career coaching, resume optimization, interview preparation, and skill development. Transform your career with personalized guidance from industry professionals.",
 
   keywords: [
     "Vision and Path",
@@ -62,6 +62,11 @@ export const metadata: Metadata = {
     "Vision and Path Wyoming",
     "Vision and Path Sheridan",
     "visionandpath.com",
+    "staffing agency",
+    "staffing services",
+    "staffing and recruiting",
+    "direct hire staffing",
+    "contract staffing",
     "job placement services",
     "career coaching",
     "resume optimization",
@@ -110,9 +115,9 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 
   openGraph: {
-    title: "Vision and Path | Expert Job Placement & Career Coaching Services",
+    title: "Vision and Path | Expert Staffing & Job Placement Services",
     description:
-      "Transform your career with Vision and Path. Expert job placement, career coaching, resume optimization, interview preparation, and personalized career guidance.",
+      "Transform your career with Vision and Path. Expert staffing, job placement, career coaching, resume optimization, interview preparation, and personalized career guidance.",
     url: siteUrl,
     siteName: "Vision and Path",
     images: [
@@ -130,9 +135,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Vision and Path | Expert Job Placement & Career Coaching Services",
+    title: "Vision and Path | Expert Staffing & Job Placement Services",
     description:
-      "Transform your career with Vision and Path. Expert job placement, career coaching, resume optimization, and interview preparation.",
+      "Transform your career with Vision and Path. Expert staffing, job placement, career coaching, resume optimization, and interview preparation.",
     images: [`${siteUrl}/og-image.png?${ogImageVersion}`],
     creator: "@visionandpath",
     site: "@visionandpath",
@@ -240,6 +245,7 @@ const localBusinessSchema = {
     name: "United States",
   },
   serviceType: [
+    "Staffing",
     "Job Placement",
     "Career Coaching",
     "Resume Writing",

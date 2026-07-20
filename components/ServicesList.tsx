@@ -34,6 +34,7 @@ const getGradientColor = (bgClass: string) => {
   if (bgClass.includes("amber")) return "#fcd34d"; // Amber-300
   if (bgClass.includes("sky")) return "#7dd3fc"; // Sky-300
   if (bgClass.includes("purple")) return "#d8b4fe"; // Purple-300
+  if (bgClass.includes("blue")) return "#93c5fd"; // Blue-300
   return "#262626"; // Default
 };
 

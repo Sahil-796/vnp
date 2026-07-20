@@ -11,7 +11,7 @@ const siteUrl = "https://visionandpath.com";
 const ogImageVersion = "v3";
 
 export const metadata: Metadata = {
-  title: "Vision and Path | Career Coaching & Job Placement",
+  title: "Vision and Path | Staffing & Job Placement",
   description:
     "Expert career services including job placement, career coaching, resume optimization, interview preparation, and skill development.",
   alternates: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Vision and Path | Career Coaching & Job Placement",
+    title: "Vision and Path | Staffing & Job Placement",
     description:
       "Expert job placement, career coaching, resume optimization, interview preparation, and personalized career guidance.",
     url: siteUrl,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vision and Path | Career Coaching & Job Placement",
+    title: "Vision and Path | Staffing & Job Placement",
     description:
       "Expert job placement, career coaching, resume optimization, and interview preparation.",
     images: [`${siteUrl}/og-image.png?${ogImageVersion}`],
@@ -187,9 +187,18 @@ const serviceSchema = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Hiring Services",
+          name: "Corporate Recruitment Solutions",
           description:
-            "Hiring support for businesses including role definition, candidate screening, shortlisting, and interview coordination",
+            "End-to-end corporate recruitment including role profiling, market mapping, targeted sourcing, rigorous vetting, and interview coordination",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Executive Search & Leadership Strategy",
+          description:
+            "Discreet executive search and leadership consulting including role definition, confidential market mapping, and comprehensive leadership assessment",
         },
       },
     ],

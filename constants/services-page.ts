@@ -3,7 +3,7 @@ export const servicesPageData = {
     badge: "WHAT WE OFFER",
     title: "Our Services",
     description:
-      "We provide career-focused services for candidates and hiring support for businesses, with practical guidance from assessment to placement.",
+      "We provide comprehensive talent solutions designed to accelerate professional growth for candidates and build high-performing teams for enterprises.",
   },
   labels: {
     backToServices: "Back to Services",
@@ -17,9 +17,93 @@ export const servicesPageData = {
   metadata: {
     title: "Services",
     description:
-      "Explore career development, job search, interview preparation, resume, placement, and hiring services designed to help candidates and businesses succeed.",
+      "Explore corporate recruitment, executive search, career development, job search, interview preparation, resume, and placement services designed to help businesses and candidates succeed.",
   },
   content: [
+    {
+      title: "Corporate Recruitment Solutions",
+      slug: "corporate-recruitment",
+      desc: "Source, vet, and secure top-tier talent with precision. We handle the end-to-end recruitment lifecycle to deliver dependable, role-ready candidates who align with your company's culture and operational goals.",
+      details: {
+        longDescription:
+          "Finding the right candidate takes more than just matching a resume to a job description; it requires a deep understanding of your operational needs and company culture. Our Corporate Recruitment solutions are designed to streamline your hiring process, reducing time-to-fill while elevating the quality of your hires. We manage the entire recruitment lifecycle from initial role profiling and market mapping to rigorous screening and interview coordination. By leveraging advanced sourcing strategies and assessing candidates for both technical capability and cultural fit, we bridge talent and innovation for your organization, ensuring your new hires are ready to make an immediate impact.",
+        benefits: [
+          "Reduced time-to-fill on critical operational and technical roles",
+          "Higher quality hires screened for skill and cultural fit",
+          "Less internal time lost reviewing unqualified profiles",
+          "Access to passive candidates who are not actively applying",
+          "Structured interview coordination and candidate communication",
+          "Support for full-time, contract, remote, and hybrid hiring",
+        ],
+        process: [
+          "Role profiling to define must-have skills, seniority, and team context",
+          "Market mapping to identify where the right talent actually sits",
+          "Targeted sourcing across passive and active candidate pools",
+          "Rigorous screening with skill assessments and behavioral evaluation",
+          "Shortlist delivery and interview coordination with your team",
+          "Offer-stage support and expectation alignment through to acceptance",
+        ],
+      },
+      features: [
+        "Targeted sourcing across local and global markets",
+        "Rigorous vetting with skill assessments and behavioral screening",
+        "End-to-end process management that saves your internal teams time",
+        "Role profiling and market mapping before outreach begins",
+        "Cultural-fit assessment alongside technical capability",
+        "Transparent pipeline reporting from first outreach to offer",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Start Hiring",
+      color: {
+        bg: "bg-sky-100 dark:bg-sky-900/20",
+        accent: "text-sky-700 dark:text-sky-300",
+        blob: "bg-sky-200 dark:bg-sky-800/40",
+      },
+    },
+
+    {
+      title: "Executive Search & Leadership Strategy",
+      slug: "executive-search",
+      desc: "Discover the visionary leaders who will shape your company's future. We provide discrete, highly targeted executive search and role definition services to secure leadership that drives innovation and global success.",
+      details: {
+        longDescription:
+          "Leadership defines the trajectory of your business. At the executive level, the margin for error is zero. Our Executive Search & Strategy practice partners with higher-tier enterprises to identify, engage, and secure transformational leaders who align with your long-term corporate vision. We don't just fill executive seats; we help you define the path forward. Our consulting team works closely with your board and stakeholders to define complex leadership roles, map the competitive landscape, and discreetly approach top-tier talent. We focus on finding leaders who do more than manage — we find those who innovate, scale operations, and drive international growth.",
+        benefits: [
+          "Leadership hires aligned with long-term corporate vision",
+          "Confidential outreach that protects your market position",
+          "Clearer executive role definition before the search begins",
+          "Visibility into how competitors structure equivalent roles",
+          "Reduced risk of a costly mis-hire at the leadership level",
+          "Board and stakeholder alignment throughout the process",
+        ],
+        process: [
+          "Consulting sessions with your board and stakeholders to define the role",
+          "Aligning the executive profile with strategic business objectives",
+          "Discreet market mapping of the competitive leadership landscape",
+          "Confidential, highly targeted outreach to industry-leading professionals",
+          "In-depth leadership assessment and stakeholder interview rounds",
+          "Offer negotiation, onboarding guidance, and transition support",
+        ],
+      },
+      features: [
+        "Role definition and consulting aligned to business objectives",
+        "Discreet market mapping and confidential outreach",
+        "Comprehensive leadership assessment of strategic thinking and cultural fit",
+        "Change-management and scale-readiness evaluation",
+        "VP, Director, and C-Suite search across international markets",
+        "Direct partnership with founders, CEOs, and corporate boards",
+      ],
+      imgsrc:
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
+      ctaText: "Find Your Leader",
+      color: {
+        bg: "bg-purple-100 dark:bg-purple-900/20",
+        accent: "text-purple-700 dark:text-purple-300",
+        blob: "bg-purple-200 dark:bg-purple-800/40",
+      },
+    },
+
     {
       title: "Personalized Career Assessment",
       slug: "career-assessment",
@@ -224,50 +308,9 @@ export const servicesPageData = {
         "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
       ctaText: "Improve Your Search",
       color: {
-        bg: "bg-sky-100 dark:bg-sky-900/20",
-        accent: "text-sky-700 dark:text-sky-300",
-        blob: "bg-sky-200 dark:bg-sky-800/40",
-      },
-    },
-    {
-      title: "Hiring Services",
-      slug: "hiring-services",
-      desc: "Hiring support for businesses that need reliable, role-ready talent. We help define requirements, screen candidates, coordinate interviews, and connect teams with profiles that match the work and culture.",
-      details: {
-        longDescription:
-          "Our Hiring Services support companies, founders, and growing teams that need dependable talent without adding unnecessary hiring complexity. We help clarify role requirements, build a practical candidate profile, screen resumes, shortlist qualified candidates, coordinate interview steps, and keep communication organized. The goal is simple: help you meet candidates who are aligned with the role, the expectations, the work environment, and the timeline.",
-        benefits: [
-          "Clearer role requirements before sourcing begins",
-          "Shortlisted candidates aligned with skills, availability, and expectations",
-          "Reduced time spent reviewing unqualified profiles",
-          "More structured interview coordination and candidate communication",
-          "Hiring support for full-time, contract, remote, and hybrid roles",
-          "Better candidate fit through practical screening and expectation alignment",
-        ],
-        process: [
-          "Understand the role, hiring timeline, must-have skills, and team context",
-          "Create a practical candidate profile and screening criteria",
-          "Source, review, and shortlist candidates against the agreed requirements",
-          "Coordinate interviews and gather feedback from both sides",
-          "Support offer-stage communication and expectation alignment",
-          "Refine sourcing criteria if the market response needs adjustment",
-        ],
-      },
-      features: [
-        "Role definition and hiring requirement clarification",
-        "Resume screening and candidate shortlisting",
-        "Interview coordination and candidate communication",
-        "Support for full-time, contract, remote, and hybrid hiring",
-        "Expectation alignment around skills, compensation, and availability",
-        "Hiring process support for growing teams and small businesses",
-      ],
-      imgsrc:
-        "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop",
-      ctaText: "Start Hiring",
-      color: {
-        bg: "bg-purple-100 dark:bg-purple-900/20",
-        accent: "text-purple-700 dark:text-purple-300",
-        blob: "bg-purple-200 dark:bg-purple-800/40",
+        bg: "bg-blue-100 dark:bg-blue-900/20",
+        accent: "text-blue-700 dark:text-blue-300",
+        blob: "bg-blue-200 dark:bg-blue-800/40",
       },
     },
   ],

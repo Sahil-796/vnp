@@ -104,23 +104,41 @@ const serviceMetadata: Record<
     ogDescription:
       "Learn proven strategies for finding opportunities, networking effectively, and applying smartly. Get hired faster with our expert guidance.",
   },
-  "hiring-services": {
+  "corporate-recruitment": {
     keywords: [
-      "hiring services",
-      "recruitment support",
-      "candidate screening",
+      "corporate recruitment",
+      "recruitment solutions",
       "talent sourcing",
+      "candidate screening",
       "candidate shortlisting",
-      "staffing support",
+      "staffing services",
       "business hiring",
       "remote hiring",
       "contract hiring",
       "full time hiring",
       "interview coordination",
-      "talent acquisition support",
+      "talent acquisition",
     ],
     ogDescription:
-      "Hire stronger candidates with role definition, screening, shortlisting, interview coordination, and practical hiring support from Vision and Path.",
+      "Source, vet, and secure role-ready talent. End-to-end corporate recruitment with targeted sourcing, rigorous vetting, and streamlined hiring from Vision and Path.",
+  },
+  "executive-search": {
+    keywords: [
+      "executive search",
+      "leadership recruitment",
+      "C-suite hiring",
+      "executive recruiters",
+      "leadership strategy",
+      "VP recruitment",
+      "director recruitment",
+      "confidential search",
+      "market mapping",
+      "leadership assessment",
+      "executive staffing",
+      "board advisory hiring",
+    ],
+    ogDescription:
+      "Secure visionary leadership with discreet, highly targeted executive search. Role definition, confidential market mapping, and leadership assessment from Vision and Path.",
   },
   "resume-building": {
     keywords: [

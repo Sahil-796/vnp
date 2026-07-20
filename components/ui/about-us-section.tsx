@@ -97,9 +97,11 @@ export default function AboutUsSection() {
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                 Mission
               </p>
-              <p className="mt-4 max-w-3xl text-lg leading-relaxed text-foreground/90">
-                {hero.description}
-              </p>
+              <div className="mt-4 max-w-3xl space-y-4 text-lg leading-relaxed text-foreground/90">
+                {hero.description.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </motion.article>
 
             <motion.article

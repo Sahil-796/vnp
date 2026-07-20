@@ -173,7 +173,7 @@ export const Navbar = () => {
                             href="/services?tab=career-development"
                             className="block rounded-xl px-3 py-2.5 text-sm text-foreground hover:bg-muted"
                           >
-                            Career Consultation
+                            Staffing & Recruitment
                           </Link>
                           <Link
                             href="/services?tab=software-building"

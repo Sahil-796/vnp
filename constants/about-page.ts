@@ -15,8 +15,10 @@ export const aboutPageData = {
   hero: {
     badge: "DISCOVER OUR MISSION",
     title: "Empowering Careers, Transforming Lives",
-    description:
-      "We are a dedicated team of career experts, recruiters, and industry professionals committed to connecting talented individuals with their dream careers. With personalized guidance and proven strategies, we transform job searches into career success stories.",
+    description: [
+      "At Vision and Path Solutions INC., our mission is to eliminate the costly friction of the traditional hiring process by bridging talent and innovation for global success. We know that a bad hire drains your time, budget, and business momentum, which is why we refuse to operate like a standard agency that simply pushes stacks of resumes. Instead, we act as a strategic, dedicated extension of your team, digging deep into your operational needs and unique culture to ensure we only introduce dependable, role-ready talent capable of making an immediate impact.",
+      "Whether we are guiding an ambitious professional toward their ideal career path or partnering with a global enterprise to secure an executive leader, our foundational approach remains uncompromising: we listen to your vision, we strategize for your success, and we deliver.",
+    ],
   },
   values: [
     {
