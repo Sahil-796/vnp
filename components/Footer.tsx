@@ -60,7 +60,7 @@ const Footer = () => {
               </div>
 
               {/* Right Content - Links */}
-              <div className="flex flex-wrap md:flex-nowrap gap-10 md:gap-16 lg:gap-20 mr-0 md:mr-16 lg:mr-24 z-20">
+              <div className="flex flex-wrap lg:flex-nowrap gap-10 md:gap-12 lg:gap-14 mr-0 md:mr-0 lg:mr-16 z-20">
                 <div className="flex flex-col gap-4 md:gap-6">
                   <h4 className="font-bold text-xs md:text-sm tracking-widest uppercase">
                     Company
@@ -91,6 +91,25 @@ const Footer = () => {
                       >
                         {link.label}
                       </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4 md:gap-6">
+                  <h4 className="font-bold text-xs md:text-sm tracking-widest uppercase">
+                    Compliance
+                  </h4>
+                  <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-base font-medium text-muted-foreground">
+                    {landingPageData.footer.complianceLinks.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-foreground hover:translate-x-1 transition-all duration-300"
+                      >
+                        {link.label}
+                      </a>
                     ))}
                   </div>
                 </div>

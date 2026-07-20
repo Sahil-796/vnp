@@ -92,6 +92,25 @@ export const MobileFooter = () => {
 
             <div className="flex flex-col gap-4">
               <h4 className="font-bold text-xs tracking-widest uppercase">
+                Compliance
+              </h4>
+              <div className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
+                {landingPageData.footer.complianceLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <h4 className="font-bold text-xs tracking-widest uppercase">
                 Social Media
               </h4>
               <div className="flex items-center gap-3 text-muted-foreground">

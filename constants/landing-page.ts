@@ -8,6 +8,21 @@ import {
 } from "lucide-react";
 import { siteInfo } from "./site-info";
 
+/**
+ * Federally required employment-eligibility notices. Surfaced in the hero and
+ * the footer, so they live outside `landingPageData` to avoid duplication.
+ */
+export const complianceLinks = [
+  {
+    label: "E-Verify Participation Poster",
+    href: "/E-Verify_Participation_Poster_Eng_Es.pdf",
+  },
+  {
+    label: "Right to Work Poster",
+    href: "/IER_RightToWorkPoster_Eng_Es.pdf",
+  },
+];
+
 export const landingPageData = {
   hero: {
     titlep1: "Where talent and enterprises finds",
@@ -18,6 +33,7 @@ export const landingPageData = {
     ctap: "Get Career or Hiring Support",
     desc: "Move your career forward with focused guidance, practical coaching, and services designed around real employment outcomes.",
     ctad: "Explore Services",
+    complianceLinks,
   },
 
   services: {
@@ -380,6 +396,8 @@ export const landingPageData = {
     titlep2: "& Path",
     address: siteInfo.addressDisplay,
     phone: siteInfo.phoneDisplay,
+    eVerifyStatement:
+      "Vision & Path Solutions Inc participates in E-Verify, the federal program for electronic verification of employment eligibility.",
     companyLinks: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
@@ -392,6 +410,7 @@ export const landingPageData = {
       { label: "Job Search Strategy", href: "/services/job-search-strategies" },
       { label: "Hiring Services", href: "/services/hiring-services" },
     ],
+    complianceLinks,
     socialLinks: [
       {
         label: "LinkedIn",

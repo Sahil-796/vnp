@@ -42,15 +42,6 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 md:mb-6"
-          >
-            <EVerifyBadge imageClassName="w-24 md:w-28" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-[3.1rem] xl:text-[3.35rem] font-bold text-primary mb-3 md:mb-5 leading-[1.12] text-balance drop-shadow-md">
@@ -98,6 +89,29 @@ const Hero = () => {
                 {landingPageData.hero.ctad}
               </CtaButton>
             </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-5 md:mt-6 flex flex-wrap items-center gap-x-3 gap-y-2"
+          >
+            <EVerifyBadge
+              className="rounded-xl px-2.5 py-1.5"
+              imageClassName="w-16 md:w-[4.5rem]"
+            />
+            {landingPageData.hero.complianceLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-xl border border-[#3A566D]/20 bg-background/50 px-3 py-1.5 text-xs md:text-sm font-medium text-[#3A566D] shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#3A566D]/40 hover:bg-background/80 hover:shadow-md"
+              >
+                {link.label}
+              </a>
+            ))}
           </motion.div>
         </div>
 
