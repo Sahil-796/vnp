@@ -39,7 +39,13 @@ const Footer = () => {
               {/* Left Content */}
               <div className="flex flex-col gap-8 md:gap-10 w-full md:w-1/3">
                 {/* Logo Mark */}
-                <Logo size="full" imageClassName="w-36 md:w-44" />
+                <div className="flex flex-col gap-4">
+                  <Logo size="full" imageClassName="w-28 md:w-36" />
+
+                  <p className="max-w-sm text-xs md:text-sm font-medium leading-relaxed opacity-70">
+                    {landingPageData.footer.eVerifyStatement}
+                  </p>
+                </div>
 
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1 mt-2">

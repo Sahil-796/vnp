@@ -32,7 +32,13 @@ export const MobileFooter = () => {
         <div className="flex flex-col w-full relative h-full gap-10">
           {/* Top Content - Logo & Address */}
           <div className="flex flex-col gap-8 w-full">
-            <Logo size="full" imageClassName="w-36" />
+            <div className="flex flex-col gap-4">
+              <Logo size="full" imageClassName="w-28" />
+
+              <p className="text-xs font-medium leading-relaxed opacity-70">
+                {landingPageData.footer.eVerifyStatement}
+              </p>
+            </div>
 
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-1 mt-2">
