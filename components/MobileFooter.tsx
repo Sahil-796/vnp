@@ -34,10 +34,6 @@ export const MobileFooter = () => {
           <div className="flex flex-col gap-8 w-full">
             <div className="flex flex-col gap-4">
               <Logo size="full" imageClassName="w-28" />
-
-              <p className="text-xs font-medium leading-relaxed opacity-70">
-                {landingPageData.footer.eVerifyStatement}
-              </p>
             </div>
 
             <div className="flex flex-col gap-4">
@@ -51,6 +47,9 @@ export const MobileFooter = () => {
               </div>
 
               <EVerifyBadge />
+              <p className="text-xs font-medium leading-relaxed opacity-70">
+                {landingPageData.footer.eVerifyStatement}
+              </p>
             </div>
           </div>
 
